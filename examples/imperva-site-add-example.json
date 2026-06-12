@@ -1,0 +1,18 @@
+{
+  "site_id": 12345,
+  "domain": "example.com",
+  "status": "active",
+  "active": "active",
+  "plan_id": "trial",
+  "acceleration_level": "none",
+  "site_creation_date": 1717200000000,
+  "dns": [
+    {
+      "dns_record_name": "example.com",
+      "set_type": "CNAME",
+      "set_data_to": [
+        "imperva-cloudwaf.example.com"
+      ]
+    }
+  ]
+}

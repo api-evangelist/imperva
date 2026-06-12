@@ -1,0 +1,61 @@
+vocabulary:
+  name: Imperva API Vocabulary
+  description: Key terms, objects, and concepts used across Imperva's Cloud Application Security and SecureSphere APIs
+  version: "1.0"
+  terms:
+    - name: account
+      description: An Imperva customer account that owns sites and configurations. Identified by account_id.
+    - name: site
+      description: A web property (domain) protected by the Imperva Cloud WAF and CDN. Each site has security policies, DNS settings, and analytics.
+    - name: site_id
+      description: Unique integer identifier for an Imperva-protected site.
+    - name: account_id
+      description: Unique integer identifier for an Imperva account or sub-account.
+    - name: api_id
+      description: Identifier component of the API credential pair used for authenticating requests to the Imperva API.
+    - name: api_key
+      description: Secret key component of the API credential pair, paired with api_id for request authentication.
+    - name: waf
+      description: Web Application Firewall - the Imperva cloud-based layer that inspects and filters HTTP/HTTPS traffic to block attacks.
+    - name: ddos
+      description: Distributed Denial of Service protection - Imperva infrastructure that absorbs and mitigates volumetric DDoS attacks.
+    - name: cdn
+      description: Content Delivery Network - Imperva's global network for caching and accelerating web content delivery.
+    - name: security_rule
+      description: A rule within the WAF that defines conditions and actions for blocking, challenging, or allowing traffic.
+    - name: acl
+      description: Access Control List - rules that allow or block traffic based on IP addresses, countries, or URLs.
+    - name: bot_protection
+      description: Advanced Bot Protection (ABP) - Imperva feature that detects and mitigates automated bot traffic.
+    - name: incap_rule
+      description: Incapsula rule - a security or delivery rule applied to a site's configuration.
+    - name: policy
+      description: A named collection of security rules and settings applied to one or more sites.
+    - name: ssl_certificate
+      description: TLS/SSL certificate managed by Imperva for a protected site, used to terminate HTTPS traffic.
+    - name: cache_rule
+      description: Rule defining how Imperva CDN caches specific URLs or content types for a site.
+    - name: data_center
+      description: An origin data center configured for a site, containing one or more origin servers.
+    - name: server_group
+      description: SecureSphere concept grouping one or more protected servers under a common security policy.
+    - name: web_service
+      description: SecureSphere representation of a web application endpoint (host:port) protected by an MX appliance.
+    - name: db_service
+      description: SecureSphere representation of a database service monitored and protected by the DSF or MX appliance.
+    - name: audit_policy
+      description: SecureSphere policy defining which database transactions to audit and log.
+    - name: security_event
+      description: A detected attack, violation, or anomaly recorded by the Imperva platform.
+    - name: res
+      description: Numeric response code in API results; 0 indicates success, non-zero indicates an error.
+    - name: res_message
+      description: Human-readable message accompanying the numeric res code in API responses.
+    - name: sub_account
+      description: A child account nested under a parent Imperva account, used for multi-tenant management.
+    - name: log_level
+      description: Verbosity of traffic logs captured for a site (none, security, full).
+    - name: plan_id
+      description: Identifier for the Imperva subscription plan associated with an account or site.
+    - name: fingerprint
+      description: A unique identifier derived from request characteristics used in bot detection and client classification.

@@ -1,0 +1,123 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "imperva": "https://www.imperva.com/vocabulary/",
+
+    "Account": "imperva:Account",
+    "Site": "imperva:Site",
+    "SecurityRule": "imperva:SecurityRule",
+    "Policy": "imperva:Policy",
+    "DataCenter": "imperva:DataCenter",
+    "ServerGroup": "imperva:ServerGroup",
+    "WebService": "imperva:WebService",
+    "DatabaseService": "imperva:DatabaseService",
+    "SecurityEvent": "imperva:SecurityEvent",
+    "CacheRule": "imperva:CacheRule",
+    "BotProtection": "imperva:BotProtection",
+    "SSLCertificate": "imperva:SSLCertificate",
+    "SubAccount": "imperva:SubAccount",
+    "AuditPolicy": "imperva:AuditPolicy",
+    "AccessControlList": "imperva:AccessControlList",
+
+    "account_id": {
+      "@id": "imperva:accountId",
+      "@type": "xsd:integer"
+    },
+    "site_id": {
+      "@id": "imperva:siteId",
+      "@type": "xsd:integer"
+    },
+    "api_id": {
+      "@id": "imperva:apiId",
+      "@type": "xsd:string"
+    },
+    "api_key": {
+      "@id": "imperva:apiKey",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "plan_id": {
+      "@id": "imperva:planId",
+      "@type": "xsd:string"
+    },
+    "plan_name": {
+      "@id": "imperva:planName",
+      "@type": "xsd:string"
+    },
+    "domain": {
+      "@id": "schema:domainName",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "schema:status",
+      "@type": "xsd:string"
+    },
+    "log_level": {
+      "@id": "imperva:logLevel",
+      "@type": "xsd:string"
+    },
+    "res": {
+      "@id": "imperva:responseCode",
+      "@type": "xsd:integer"
+    },
+    "res_message": {
+      "@id": "imperva:responseMessage",
+      "@type": "xsd:string"
+    },
+    "site_creation_date": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:long"
+    },
+    "trial_end_date": {
+      "@id": "imperva:trialEndDate",
+      "@type": "xsd:dateTime"
+    },
+    "server_address": {
+      "@id": "schema:serverAddress",
+      "@type": "xsd:string"
+    },
+    "fingerprint": {
+      "@id": "imperva:fingerprint",
+      "@type": "xsd:string"
+    },
+    "security_event": {
+      "@id": "imperva:securityEvent"
+    },
+    "incap_rule_id": {
+      "@id": "imperva:incapRuleId",
+      "@type": "xsd:integer"
+    },
+    "policy_id": {
+      "@id": "imperva:policyId",
+      "@type": "xsd:integer"
+    },
+    "dns": {
+      "@id": "imperva:dnsRecord",
+      "@container": "@set"
+    },
+    "logins": {
+      "@id": "imperva:loginList",
+      "@container": "@set"
+    },
+    "sub_account_id": {
+      "@id": "imperva:subAccountId",
+      "@type": "xsd:integer"
+    },
+    "debug_info": {
+      "@id": "imperva:debugInfo"
+    },
+    "waf_rules": {
+      "@id": "imperva:wafRules",
+      "@container": "@set"
+    },
+    "acl_rules": {
+      "@id": "imperva:aclRules",
+      "@container": "@set"
+    }
+  }
+}

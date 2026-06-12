@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "accounts",
+  "description": "Imperva Cloud Application Security - accounts schema",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "example": "example@imperva.com"
+    },
+    "plan_id": {
+      "type": "string",
+      "example": "ent100"
+    },
+    "plan_name": {
+      "type": "string",
+      "example": "Enterprise 100"
+    },
+    "trial_end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "account_id": {
+      "type": "integer",
+      "format": "int64",
+      "example": 10
+    },
+    "John Account": {
+      "type": "string",
+      "example": "Jhon"
+    },
+    "user_name": {
+      "type": "string",
+      "example": "Jhon"
+    },
+    "logins": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Login"
+      }
+    },
+    "log_level": {
+      "type": "string",
+      "example": "full"
+    },
+    "support_level": {
+      "type": "string",
+      "example": "Standard"
+    },
+    "support_all_tls_versions": {
+      "type": "boolean",
+      "example": true
+    },
+    "wildcard_san_for_new_sites": {
+      "type": "string",
+      "example": "true",
+      "enum": [
+        "True",
+        "False",
+        "Default"
+      ]
+    },
+    "naked_domain_san_for_new_www_sites": {
+      "type": "boolean",
+      "example": true
+    }
+  }
+}

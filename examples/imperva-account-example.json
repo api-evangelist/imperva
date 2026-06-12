@@ -1,0 +1,12 @@
+{
+  "email": "example@imperva.com",
+  "plan_id": "ent100",
+  "plan_name": "Enterprise 100",
+  "trial_end_date": "2026-12-31T00:00:00Z",
+  "account_id": 10,
+  "user_name": "john.doe",
+  "log_level": "full",
+  "logins": [
+    "john.doe@example.com"
+  ]
+}

@@ -48,6 +48,8 @@ apis:
         url: https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
       - type: OpenAPI
         url: https://github.com/imperva/imperva-web-api-composer/blob/master/src/assets/cwaf/cwaf-v1-swagger-3.json
+      - type: OpenAPI
+        url: openapi/imperva-cloud-application-security-openapi.yml
   - aid: imperva:securesphere-open-api
     name: Imperva SecureSphere Open API
     description: >-
@@ -66,6 +68,8 @@ apis:
         url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
       - type: OpenAPI
         url: https://github.com/imperva-dev/securesphere-swagger
+      - type: OpenAPI
+        url: openapi/imperva-securesphere-openapi.yml
   - aid: imperva:api-security
     name: Imperva API Security
     description: >-
@@ -120,6 +124,10 @@ common:
     url: rate-limits/imperva-rate-limits.yml
   - type: FinOps
     url: finops/imperva-finops.yml
+  - type: Vocabulary
+    url: vocabulary/imperva-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/imperva-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
