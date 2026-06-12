@@ -1,0 +1,44 @@
+---
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Imperva
+providerId: imperva
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Rate Limiting
+  - API Management
+  - Cloud Security
+description: Imperva Cloud Application Security API enforces rate limits per API key; the platform also provides configurable per-path rate limiting policies for protected applications with intervals from 10 to 300 seconds.
+sources:
+  - https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - https://docs-cybersec.thalesgroup.com/bundle/advanced-bot-protection/page/74868.htm
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Cloud Application Security Management API
+    scope: key
+    metric: requests_per_minute
+    limit: 100
+    timeFrame: minute
+  - name: Cloud Application Security Management API - Burst
+    scope: key
+    metric: requests_per_second
+    limit: 10
+    timeFrame: second
+  - name: Per-Path Bot Protection Rate Limit Policy
+    scope: user
+    metric: requests_per_interval
+    limit: -1
+    timeFrame: minute
+    notes: Configurable; interval is a multiple of 10 seconds, minimum 10 seconds, maximum 300 seconds. Set by security policy per application path.
+  - name: SecureSphere Open API
+    scope: user
+    metric: requests_per_minute
+    limit: 100
+    timeFrame: minute
+    notes: On-premises MX API; subject to appliance resource capacity.

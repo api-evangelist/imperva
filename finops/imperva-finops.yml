@@ -1,0 +1,58 @@
+---
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Imperva
+providerId: imperva
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Security
+  - Cloud Security
+description: FOCUS-aligned FinOps for Imperva cloud application security and data security services.
+sources:
+  - https://www.imperva.com/products/plans/
+  - https://www.g2.com/products/imperva-app-protect/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Imperva
+serviceCategory: Security
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Imperva
+  ServiceCategory: Security
+  ProviderName: Imperva
+  PublisherName: Imperva
+  BillingCurrency: USD
+meters:
+  - name: App Protect Bandwidth
+    unit: Mbps
+    aggregation: max
+  - name: Protected Sites
+    unit: sites
+    aggregation: sum
+  - name: Data Repositories Audited
+    unit: repositories
+    aggregation: sum
+  - name: API Calls Processed
+    unit: requests
+    aggregation: sum
+principles:
+  - name: Visibility
+    description: Track Imperva App Protect bandwidth consumption and protected site count monthly to identify growth trends and unused capacity.
+  - name: Optimization
+    description: Right-size bandwidth tier based on peak traffic patterns; consolidate protected sites to reduce per-site subscription costs.
+  - name: Accountability
+    description: Allocate Imperva costs by application team or business unit using site-level tagging in the Imperva management console.
+  - name: Forecasting
+    description: Project Imperva costs by monitoring traffic growth quarter-over-quarter and scheduling bandwidth tier reviews at renewal.

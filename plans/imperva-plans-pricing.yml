@@ -1,0 +1,265 @@
+---
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Imperva
+providerId: imperva
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Security
+  - WAF
+  - DDoS Protection
+  - Bot Management
+  - API Security
+description: Imperva offers subscription-based App Protect plans (Core, Professional, Enterprise, 360) based on bandwidth with enterprise contact-for-quote pricing; Data Security Fabric plans require custom quotes.
+sources:
+  - https://www.imperva.com/products/plans/
+  - https://www.g2.com/products/imperva-app-protect/pricing
+plans:
+  - id: imperva-app-protect-core
+    name: App Protect Core
+    type: paid
+    description: Entry-level cloud application security plan including WAF, DDoS protection, advanced bot detection, and client-side security. Base plan starts at 20 Mbps bandwidth. Annual subscription. Includes 2 Enterprise Services training units.
+    entries:
+      - label: Bandwidth
+        name: bandwidth
+        type: metered
+        metric: Mbps
+        limit: 20
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'contact-for-quote'
+        userMultiplied: false
+      - label: Web Application Firewall
+        name: waf
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: DDoS Protection
+        name: ddos-protection
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: Advanced Bot Protection
+        name: bot-protection
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: Enterprise Services Training Units
+        name: training-units
+        type: quota
+        metric: units
+        limit: 2
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+  - id: imperva-app-protect-professional
+    name: App Protect Professional
+    type: paid
+    description: Mid-tier cloud application security plan with expanded bandwidth (50 Mbps base), enhanced WAF rules, DDoS protection, bot management, and API security. Includes 6 Enterprise Services training units. Annual enhanced subscription.
+    entries:
+      - label: Bandwidth
+        name: bandwidth
+        type: metered
+        metric: Mbps
+        limit: 50
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'contact-for-quote'
+        userMultiplied: false
+      - label: Web Application Firewall
+        name: waf
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: API Security
+        name: api-security
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: Enterprise Services Training Units
+        name: training-units
+        type: quota
+        metric: units
+        limit: 6
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+  - id: imperva-app-protect-enterprise
+    name: App Protect Enterprise
+    type: enterprise
+    description: Enterprise cloud application security plan with full WAF, DDoS protection, API security, advanced bot management, custom security rules, real-time event monitoring, and 24/7 SLA support. Includes 8 Enterprise Services training units and Live Security bundled.
+    entries:
+      - label: Bandwidth
+        name: bandwidth
+        type: metered
+        metric: Mbps
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'contact-for-quote'
+        userMultiplied: false
+      - label: Custom Security Rules
+        name: custom-rules
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: 24/7 Support and Uptime SLA
+        name: support-sla
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: Enterprise Services Training Units
+        name: training-units
+        type: quota
+        metric: units
+        limit: 8
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: Live Security
+        name: live-security
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+  - id: imperva-app-protect-360
+    name: App Protect 360
+    type: enterprise
+    description: Top-tier comprehensive cloud application security plan combining full WAF, DDoS protection, API security, advanced bot management, client-side protection, and managed security services. Includes 10 Enterprise Services training units, Live Security, and full managed service options.
+    entries:
+      - label: Bandwidth
+        name: bandwidth
+        type: metered
+        metric: Mbps
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'contact-for-quote'
+        userMultiplied: false
+      - label: Managed Security Service
+        name: managed-service
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+      - label: Enterprise Services Training Units
+        name: training-units
+        type: quota
+        metric: units
+        limit: 10
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false
+  - id: imperva-data-assure
+    name: Data Assure
+    type: enterprise
+    description: Entry-level Data Security Fabric plan for discovering, categorizing, and understanding structured and semi-structured data. On-premises deployment only. Contact for pricing.
+    entries:
+      - label: Data Repositories Supported
+        name: data-repos
+        type: quota
+        metric: repositories
+        limit: 100
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'contact-for-quote'
+        userMultiplied: false
+  - id: imperva-data-secure
+    name: Data Secure
+    type: enterprise
+    description: Mid-tier Data Security Fabric plan with agentless structured data security for compliance reporting and hybrid cloud/on-premises visibility. Includes cloud provider auditing for AWS, Azure, and GCP.
+    entries:
+      - label: Data Repositories Supported
+        name: data-repos
+        type: quota
+        metric: repositories
+        limit: 100
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'contact-for-quote'
+        userMultiplied: false
+  - id: imperva-data-360
+    name: Data 360
+    type: enterprise
+    description: Comprehensive Data Security Fabric plan with full data discovery, auditing, UEBA, active attack detection, unlimited data retention management, and 260+ integrations including Splunk. Contact for pricing.
+    entries:
+      - label: Data Repositories Supported
+        name: data-repos
+        type: quota
+        metric: repositories
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'contact-for-quote'
+        userMultiplied: false
+      - label: UEBA
+        name: ueba
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'included'
+        userMultiplied: false

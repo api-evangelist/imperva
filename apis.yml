@@ -1,0 +1,125 @@
+---
+aid: imperva
+name: Imperva
+description: >-
+  Imperva (a Thales company) is a cybersecurity company providing cloud-based
+  and on-premises application security, data security, and network security
+  solutions. Their developer APIs cover cloud WAF management, DDoS protection,
+  API security, advanced bot protection, and data security fabric for enterprises.
+  Developers can manage sites, policies, configurations, and analytics
+  programmatically via REST APIs authenticated with API keys. Imperva also
+  provides a Python SDK (imperva-sdk) for the SecureSphere on-premises MX
+  platform, a Terraform provider for infrastructure-as-code provisioning, and
+  a CLI for orchestration and automation workflows.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Security
+  - Cybersecurity
+  - WAF
+  - DDoS Protection
+  - API Security
+  - Bot Management
+  - Data Security
+  - Cloud Security
+url: https://raw.githubusercontent.com/api-evangelist/imperva/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+apis:
+  - aid: imperva:cloud-application-security-api
+    name: Imperva Cloud Application Security API
+    description: >-
+      REST API for managing Imperva cloud WAF, DDoS protection, CDN, bot
+      management, and API security policies. Enables programmatic site
+      provisioning, security policy configuration, traffic analytics, and
+      account management. Authenticated via API ID and API key obtained from
+      the Imperva management console.
+    humanURL: https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+    baseURL: https://api.imperva.com
+    tags:
+      - WAF
+      - DDoS Protection
+      - CDN
+      - Bot Management
+      - Cloud Security
+    properties:
+      - type: Documentation
+        url: https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+      - type: OpenAPI
+        url: https://github.com/imperva/imperva-web-api-composer/blob/master/src/assets/cwaf/cwaf-v1-swagger-3.json
+  - aid: imperva:securesphere-open-api
+    name: Imperva SecureSphere Open API
+    description: >-
+      REST API for managing on-premises Imperva SecureSphere MX appliances,
+      including site configuration, security policies, server groups, web
+      services, and threat mitigation rules. Authenticated via username and
+      password credentials against the SecureSphere management server host.
+    humanURL: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+    tags:
+      - On-Premises
+      - SecureSphere
+      - WAF
+      - Security Management
+    properties:
+      - type: Documentation
+        url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+      - type: OpenAPI
+        url: https://github.com/imperva-dev/securesphere-swagger
+  - aid: imperva:api-security
+    name: Imperva API Security
+    description: >-
+      API for managing Imperva's API security product, providing visibility
+      into API traffic, detection of API vulnerabilities and threats, and
+      enforcement of API access policies. Integrates with cloud WAF and
+      gateway environments to protect REST, GraphQL, and other API endpoints
+      from attacks.
+    humanURL: https://docs-cybersec.thalesgroup.com/bundle/basic-api-security/page/80414.htm
+    tags:
+      - API Security
+      - API Protection
+      - Threat Detection
+    properties:
+      - type: Documentation
+        url: https://docs-cybersec.thalesgroup.com/bundle/basic-api-security/page/80414.htm
+  - aid: imperva:data-security-fabric-api
+    name: Imperva Data Security Fabric API
+    description: >-
+      API for managing Imperva's Data Security Fabric (DSF) product,
+      enabling automated deployment and configuration of data security
+      monitoring, auditing, and analytics across cloud and on-premises
+      data repositories including databases and data lakes.
+    humanURL: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+    tags:
+      - Data Security
+      - Database Auditing
+      - Compliance
+    properties:
+      - type: Documentation
+        url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+common:
+  - type: Website
+    url: https://www.imperva.com
+  - type: Documentation
+    url: https://docs.imperva.com
+  - type: GitHubOrganization
+    url: https://github.com/imperva
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/imperva
+  - type: X
+    url: https://x.com/imperva
+  - type: Blog
+    url: https://www.imperva.com/blog/
+  - type: Pricing
+    url: https://www.imperva.com/products/plans/
+  - type: StatusPage
+    url: https://status.imperva.com
+  - type: Plans
+    url: plans/imperva-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/imperva-rate-limits.yml
+  - type: FinOps
+    url: finops/imperva-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
