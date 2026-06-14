@@ -1,0 +1,861 @@
+# Imperva GraphQL Schema
+# Conceptual SDL derived from Imperva Cloud Application Security REST API,
+# SecureSphere Open API, API Security, and Data Security Fabric product docs.
+# Source: https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+# Source: https://github.com/imperva/imperva-web-api-composer
+# Source: https://github.com/imperva-dev/securesphere-swagger
+
+scalar DateTime
+scalar JSON
+
+# ─── Enumerations ────────────────────────────────────────────────────────────
+
+enum SiteStatus {
+  ACTIVE
+  BYPASS
+  MAINTENANCE
+  PENDING
+  SUSPENDED
+}
+
+enum ProtectionMode {
+  MONITOR
+  BLOCK
+  SIMULATE
+}
+
+enum RuleAction {
+  ALLOW
+  BLOCK
+  CHALLENGE
+  REDIRECT
+  CUSTOM_RESPONSE
+  RATE_LIMIT
+}
+
+enum Severity {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+  INFO
+}
+
+enum ThreatType {
+  SQL_INJECTION
+  XSS
+  REMOTE_FILE_INCLUSION
+  DIRECTORY_TRAVERSAL
+  BACKDOOR
+  BOT
+  DDOS
+  SCRAPING
+  BRUTE_FORCE
+  API_ABUSE
+}
+
+enum CertificateStatus {
+  ACTIVE
+  EXPIRED
+  PENDING
+  REVOKED
+}
+
+enum CertificateType {
+  CUSTOM
+  MANAGED
+  WILDCARD
+}
+
+enum OriginProtocol {
+  HTTP
+  HTTPS
+  BOTH
+}
+
+enum AccountStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum DBType {
+  ORACLE
+  MSSQL
+  MYSQL
+  POSTGRESQL
+  DB2
+  MONGODB
+  CASSANDRA
+  REDIS
+}
+
+enum AuditEventType {
+  LOGIN
+  LOGOUT
+  POLICY_CHANGE
+  SITE_CREATED
+  SITE_DELETED
+  RULE_CREATED
+  RULE_MODIFIED
+  RULE_DELETED
+  CERTIFICATE_UPLOADED
+  USER_CREATED
+  USER_DELETED
+  PASSWORD_CHANGE
+}
+
+enum ReportFormat {
+  PDF
+  CSV
+  JSON
+}
+
+enum ReportType {
+  SECURITY_EVENTS
+  BANDWIDTH
+  VISITS
+  BOT_ACTIVITY
+  API_USAGE
+  PCI_COMPLIANCE
+  AUDIT_LOG
+}
+
+enum ConditionOperator {
+  EQUALS
+  NOT_EQUALS
+  CONTAINS
+  NOT_CONTAINS
+  STARTS_WITH
+  ENDS_WITH
+  MATCHES_REGEX
+  IN_LIST
+  NOT_IN_LIST
+}
+
+enum NotificationChannel {
+  EMAIL
+  WEBHOOK
+  SYSLOG
+  PAGERDUTY
+  SLACK
+}
+
+# ─── Account & User Management ───────────────────────────────────────────────
+
+type Account {
+  id: ID!
+  name: String!
+  status: AccountStatus!
+  plan: Plan
+  parentAccountId: ID
+  subAccounts: [Account!]
+  users: [User!]
+  sites: [Site!]
+  apiKeys: [APIKey!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type User {
+  id: ID!
+  accountId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  role: String!
+  mfaEnabled: Boolean!
+  lastLoginAt: DateTime
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type APIKey {
+  id: ID!
+  accountId: ID!
+  name: String!
+  apiId: String!
+  createdAt: DateTime!
+  lastUsedAt: DateTime
+}
+
+type Plan {
+  name: String!
+  wafEnabled: Boolean!
+  ddosEnabled: Boolean!
+  cdnEnabled: Boolean!
+  botProtectionEnabled: Boolean!
+  apiSecurityEnabled: Boolean!
+  sitesLimit: Int
+}
+
+# ─── Site & Domain ───────────────────────────────────────────────────────────
+
+type Site {
+  id: ID!
+  accountId: ID!
+  name: String!
+  domain: String!
+  status: SiteStatus!
+  originServers: [Origin!]
+  sslCertificates: [SSLCertificate!]
+  securityPolicy: SecurityPolicy
+  ddosProtection: DDoSProtection
+  cdnConfiguration: CDNConfiguration
+  botProtection: BotProtection
+  wafRules: [WAFRule!]
+  customRules: [CustomRule!]
+  dns: DNSConfiguration
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type Domain {
+  id: ID!
+  siteId: ID!
+  name: String!
+  isMain: Boolean!
+  createdAt: DateTime!
+}
+
+type Origin {
+  id: ID!
+  siteId: ID!
+  address: String!
+  port: Int
+  protocol: OriginProtocol!
+  weight: Int
+  isBackup: Boolean!
+  isEnabled: Boolean!
+  healthCheckEnabled: Boolean!
+}
+
+type DNSConfiguration {
+  siteId: ID!
+  cnameRecord: String
+  aRecords: [String!]
+  txtRecord: String
+  isDNSPointedToImperva: Boolean!
+}
+
+# ─── SSL / TLS ───────────────────────────────────────────────────────────────
+
+type SSLCertificate {
+  id: ID!
+  siteId: ID!
+  type: CertificateType!
+  status: CertificateStatus!
+  commonName: String!
+  subjectAltNames: [String!]
+  issuer: String
+  expiresAt: DateTime
+  autoRenewal: Boolean!
+  createdAt: DateTime!
+}
+
+type TLSSettings {
+  siteId: ID!
+  minTLSVersion: String!
+  supportedCiphers: [String!]
+  hstsEnabled: Boolean!
+  hstsMaxAge: Int
+  ocspStaplingEnabled: Boolean!
+}
+
+# ─── Security Policy & WAF ────────────────────────────────────────────────────
+
+type SecurityPolicy {
+  id: ID!
+  siteId: ID!
+  name: String!
+  mode: ProtectionMode!
+  wafEnabled: Boolean!
+  allowedCountries: [String!]
+  blockedCountries: [String!]
+  blockedIPRanges: [String!]
+  allowedIPRanges: [String!]
+  rules: [WAFRule!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type WAFRule {
+  id: ID!
+  siteId: ID!
+  policyId: ID
+  name: String!
+  description: String
+  ruleType: ThreatType!
+  action: RuleAction!
+  severity: Severity!
+  enabled: Boolean!
+  conditions: [Condition!]
+  exceptions: [RuleException!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type CustomRule {
+  id: ID!
+  siteId: ID!
+  name: String!
+  description: String
+  enabled: Boolean!
+  action: Action!
+  conditions: [Condition!]
+  priority: Int!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type Condition {
+  id: ID!
+  ruleId: ID!
+  field: String!
+  operator: ConditionOperator!
+  value: String!
+  negated: Boolean!
+}
+
+type RuleException {
+  id: ID!
+  ruleId: ID!
+  description: String
+  conditions: [Condition!]
+  createdAt: DateTime!
+}
+
+type Action {
+  type: RuleAction!
+  redirectUrl: String
+  responseCode: Int
+  responseBody: String
+  rateLimitRequests: Int
+  rateLimitWindow: Int
+}
+
+# ─── DDoS Protection ─────────────────────────────────────────────────────────
+
+type DDoSProtection {
+  id: ID!
+  siteId: ID!
+  enabled: Boolean!
+  mode: ProtectionMode!
+  sensitivityLevel: String
+  activationMode: String
+  activationThreshold: Int
+  mitigation: DDoSMitigation
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type DDoSMitigation {
+  id: ID!
+  startedAt: DateTime!
+  endedAt: DateTime
+  peakTrafficGbps: Float
+  attackVectors: [String!]
+  mitigatedRequests: Int
+}
+
+# ─── CDN Configuration ───────────────────────────────────────────────────────
+
+type CDNConfiguration {
+  id: ID!
+  siteId: ID!
+  enabled: Boolean!
+  cachingEnabled: Boolean!
+  compressionEnabled: Boolean!
+  http2Enabled: Boolean!
+  http3Enabled: Boolean!
+  minifyJS: Boolean!
+  minifyCSS: Boolean!
+  minifyHTML: Boolean!
+  cacheRules: [CacheRule!]
+  customHeaders: [CustomHeader!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type CacheRule {
+  id: ID!
+  siteId: ID!
+  name: String!
+  enabled: Boolean!
+  ttl: Int
+  conditions: [Condition!]
+  action: String!
+}
+
+type CustomHeader {
+  id: ID!
+  siteId: ID!
+  name: String!
+  value: String!
+  direction: String!
+  enabled: Boolean!
+}
+
+# ─── Bot Protection ──────────────────────────────────────────────────────────
+
+type BotProtection {
+  id: ID!
+  siteId: ID!
+  enabled: Boolean!
+  mode: ProtectionMode!
+  badBotBlocking: Boolean!
+  goodBotAllowing: Boolean!
+  captchaEnabled: Boolean!
+  jsInjectionEnabled: Boolean!
+  rateLimitRules: [RateLimitRule!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type RateLimitRule {
+  id: ID!
+  siteId: ID!
+  name: String!
+  enabled: Boolean!
+  requestsLimit: Int!
+  windowSeconds: Int!
+  action: RuleAction!
+  conditions: [Condition!]
+}
+
+# ─── API Security ─────────────────────────────────────────────────────────────
+
+type APIEndpoint {
+  id: ID!
+  siteId: ID!
+  path: String!
+  method: String!
+  detected: Boolean!
+  documented: Boolean!
+  lastSeenAt: DateTime
+  requestsCount: Int
+  threats: [ThreatIndicator!]
+  createdAt: DateTime!
+}
+
+type APISecurityPolicy {
+  id: ID!
+  siteId: ID!
+  name: String!
+  enabled: Boolean!
+  mode: ProtectionMode!
+  positiveSecurityEnabled: Boolean!
+  schemaValidationEnabled: Boolean!
+  allowedEndpoints: [APIEndpoint!]
+  blockedEndpoints: [APIEndpoint!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type ThreatIndicator {
+  id: ID!
+  type: ThreatType!
+  severity: Severity!
+  description: String!
+  sourceIP: String
+  targetPath: String
+  detectedAt: DateTime!
+  mitigated: Boolean!
+}
+
+# ─── Security Events & Alerts ─────────────────────────────────────────────────
+
+type SecurityEvent {
+  id: ID!
+  siteId: ID!
+  accountId: ID!
+  eventType: ThreatType!
+  severity: Severity!
+  sourceIP: String!
+  country: String
+  userAgent: String
+  requestURL: String!
+  requestMethod: String
+  action: RuleAction!
+  ruleId: ID
+  ruleName: String
+  timestamp: DateTime!
+}
+
+type Alert {
+  id: ID!
+  accountId: ID!
+  siteId: ID
+  title: String!
+  description: String!
+  severity: Severity!
+  isActive: Boolean!
+  acknowledgedAt: DateTime
+  resolvedAt: DateTime
+  createdAt: DateTime!
+}
+
+type Incident {
+  id: ID!
+  accountId: ID!
+  siteId: ID
+  title: String!
+  description: String!
+  severity: Severity!
+  status: String!
+  startedAt: DateTime!
+  resolvedAt: DateTime
+  events: [SecurityEvent!]
+  createdAt: DateTime!
+}
+
+type Block {
+  id: ID!
+  siteId: ID!
+  sourceIP: String!
+  reason: String!
+  expiresAt: DateTime
+  createdAt: DateTime!
+}
+
+# ─── Notifications ────────────────────────────────────────────────────────────
+
+type Notification {
+  id: ID!
+  accountId: ID!
+  name: String!
+  enabled: Boolean!
+  channel: NotificationChannel!
+  recipients: [String!]
+  webhookUrl: String
+  events: [String!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+# ─── Reports & Analytics ──────────────────────────────────────────────────────
+
+type Report {
+  id: ID!
+  accountId: ID!
+  siteId: ID
+  name: String!
+  type: ReportType!
+  format: ReportFormat!
+  scheduledAt: DateTime
+  generatedAt: DateTime
+  downloadUrl: String
+  createdAt: DateTime!
+}
+
+type TrafficStats {
+  siteId: ID!
+  period: String!
+  totalRequests: Int!
+  blockedRequests: Int!
+  challengedRequests: Int!
+  bandwidthBytes: Int!
+  uniqueVisitors: Int!
+  botsBlocked: Int!
+  ddosAttacks: Int!
+}
+
+# ─── Audit Logs ───────────────────────────────────────────────────────────────
+
+type Audit {
+  id: ID!
+  accountId: ID!
+  userId: ID
+  userEmail: String
+  eventType: AuditEventType!
+  resourceType: String!
+  resourceId: ID
+  details: JSON
+  ipAddress: String
+  timestamp: DateTime!
+}
+
+# ─── SecureSphere (On-Premises) ───────────────────────────────────────────────
+
+type ServerGroup {
+  id: ID!
+  siteName: String!
+  name: String!
+  operationMode: String!
+  servers: [DBServer!]
+  webServices: [WebService!]
+  securityPolicy: SecurityPolicy
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type WebService {
+  id: ID!
+  serverGroupId: ID!
+  name: String!
+  ports: [Int!]
+  sslPorts: [Int!]
+  enabled: Boolean!
+  wafProfile: String
+  createdAt: DateTime!
+}
+
+type DBServer {
+  id: ID!
+  serverGroupId: ID!
+  hostname: String!
+  port: Int!
+  dbType: DBType!
+  name: String
+  username: String
+  isMonitored: Boolean!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type Connection {
+  id: ID!
+  dbServerId: ID!
+  clientIP: String!
+  username: String!
+  dbName: String
+  startedAt: DateTime!
+  endedAt: DateTime
+  queriesCount: Int
+  isActive: Boolean!
+}
+
+# ─── Data Security Fabric (DSF) ───────────────────────────────────────────────
+
+type DataSecurityRule {
+  id: ID!
+  name: String!
+  description: String
+  enabled: Boolean!
+  severity: Severity!
+  action: String!
+  conditions: [Condition!]
+  dbTypes: [DBType!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type DataRepository {
+  id: ID!
+  name: String!
+  type: DBType!
+  host: String!
+  port: Int!
+  cloud: Boolean!
+  cloudProvider: String
+  region: String
+  monitoringEnabled: Boolean!
+  classificationEnabled: Boolean!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+# ─── IP Lists & Network ───────────────────────────────────────────────────────
+
+type IPList {
+  id: ID!
+  accountId: ID!
+  name: String!
+  description: String
+  entries: [IPListEntry!]
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type IPListEntry {
+  id: ID!
+  listId: ID!
+  cidr: String!
+  description: String
+  addedAt: DateTime!
+}
+
+# ─── Query ───────────────────────────────────────────────────────────────────
+
+type Query {
+  # Account
+  account(id: ID!): Account
+  accounts: [Account!]!
+
+  # Users
+  user(id: ID!): User
+  users(accountId: ID!): [User!]!
+
+  # Sites
+  site(id: ID!): Site
+  sites(accountId: ID, status: SiteStatus): [Site!]!
+
+  # Origins
+  origin(id: ID!): Origin
+  origins(siteId: ID!): [Origin!]!
+
+  # SSL
+  sslCertificate(id: ID!): SSLCertificate
+  sslCertificates(siteId: ID!): [SSLCertificate!]!
+  tlsSettings(siteId: ID!): TLSSettings
+
+  # Security Policy & WAF
+  securityPolicy(id: ID!): SecurityPolicy
+  wafRule(id: ID!): WAFRule
+  wafRules(siteId: ID!): [WAFRule!]!
+  customRule(id: ID!): CustomRule
+  customRules(siteId: ID!): [CustomRule!]!
+
+  # DDoS
+  ddosProtection(siteId: ID!): DDoSProtection
+
+  # CDN
+  cdnConfiguration(siteId: ID!): CDNConfiguration
+  cacheRules(siteId: ID!): [CacheRule!]!
+
+  # Bot Protection
+  botProtection(siteId: ID!): BotProtection
+
+  # API Security
+  apiEndpoint(id: ID!): APIEndpoint
+  apiEndpoints(siteId: ID!): [APIEndpoint!]!
+  apiSecurityPolicy(siteId: ID!): APISecurityPolicy
+
+  # Events & Alerts
+  securityEvent(id: ID!): SecurityEvent
+  securityEvents(siteId: ID, accountId: ID, severity: Severity, from: DateTime, to: DateTime): [SecurityEvent!]!
+  alert(id: ID!): Alert
+  alerts(accountId: ID!, isActive: Boolean): [Alert!]!
+  incident(id: ID!): Incident
+  incidents(accountId: ID!): [Incident!]!
+  blocks(siteId: ID!): [Block!]!
+  threatIndicators(siteId: ID!): [ThreatIndicator!]!
+
+  # Notifications
+  notification(id: ID!): Notification
+  notifications(accountId: ID!): [Notification!]!
+
+  # Reports & Analytics
+  report(id: ID!): Report
+  reports(accountId: ID!, type: ReportType): [Report!]!
+  trafficStats(siteId: ID!, period: String!): TrafficStats
+
+  # Audit
+  auditLogs(accountId: ID!, from: DateTime, to: DateTime): [Audit!]!
+
+  # SecureSphere On-Premises
+  serverGroup(id: ID!): ServerGroup
+  serverGroups(siteName: String!): [ServerGroup!]!
+  webService(id: ID!): WebService
+  dbServer(id: ID!): DBServer
+  dbServers(serverGroupId: ID!): [DBServer!]!
+  connection(id: ID!): Connection
+  activeConnections(dbServerId: ID!): [Connection!]!
+
+  # Data Security Fabric
+  dataSecurityRule(id: ID!): DataSecurityRule
+  dataSecurityRules: [DataSecurityRule!]!
+  dataRepository(id: ID!): DataRepository
+  dataRepositories: [DataRepository!]!
+
+  # IP Lists
+  ipList(id: ID!): IPList
+  ipLists(accountId: ID!): [IPList!]!
+}
+
+# ─── Mutation ─────────────────────────────────────────────────────────────────
+
+type Mutation {
+  # Sites
+  createSite(accountId: ID!, domain: String!, name: String): Site!
+  updateSite(id: ID!, status: SiteStatus, name: String): Site!
+  deleteSite(id: ID!): Boolean!
+
+  # Origins
+  addOrigin(siteId: ID!, address: String!, port: Int, protocol: OriginProtocol!): Origin!
+  updateOrigin(id: ID!, address: String, port: Int, enabled: Boolean): Origin!
+  removeOrigin(id: ID!): Boolean!
+
+  # SSL
+  uploadCertificate(siteId: ID!, certificate: String!, privateKey: String!, passphrase: String): SSLCertificate!
+  deleteCertificate(id: ID!): Boolean!
+  updateTLSSettings(siteId: ID!, minTLSVersion: String, hstsEnabled: Boolean): TLSSettings!
+
+  # WAF Rules
+  createWAFRule(siteId: ID!, name: String!, ruleType: ThreatType!, action: RuleAction!): WAFRule!
+  updateWAFRule(id: ID!, action: RuleAction, enabled: Boolean, severity: Severity): WAFRule!
+  deleteWAFRule(id: ID!): Boolean!
+
+  # Custom Rules
+  createCustomRule(siteId: ID!, name: String!, action: Action!, conditions: [ConditionInput!]!): CustomRule!
+  updateCustomRule(id: ID!, enabled: Boolean, priority: Int): CustomRule!
+  deleteCustomRule(id: ID!): Boolean!
+
+  # Security Policy
+  updateSecurityPolicy(id: ID!, mode: ProtectionMode, allowedCountries: [String!], blockedCountries: [String!]): SecurityPolicy!
+
+  # DDoS
+  updateDDoSProtection(siteId: ID!, enabled: Boolean, mode: ProtectionMode, sensitivityLevel: String): DDoSProtection!
+
+  # CDN
+  updateCDNConfiguration(siteId: ID!, cachingEnabled: Boolean, compressionEnabled: Boolean): CDNConfiguration!
+  createCacheRule(siteId: ID!, name: String!, ttl: Int!, conditions: [ConditionInput!]!): CacheRule!
+  deleteCacheRule(id: ID!): Boolean!
+
+  # Bot Protection
+  updateBotProtection(siteId: ID!, enabled: Boolean, mode: ProtectionMode): BotProtection!
+  createRateLimitRule(siteId: ID!, name: String!, requestsLimit: Int!, windowSeconds: Int!, action: RuleAction!): RateLimitRule!
+  deleteRateLimitRule(id: ID!): Boolean!
+
+  # API Security
+  updateAPISecurityPolicy(siteId: ID!, enabled: Boolean, mode: ProtectionMode): APISecurityPolicy!
+
+  # Blocks
+  blockIP(siteId: ID!, sourceIP: String!, reason: String!, expiresAt: DateTime): Block!
+  unblockIP(id: ID!): Boolean!
+
+  # Alerts
+  acknowledgeAlert(id: ID!): Alert!
+  resolveAlert(id: ID!): Alert!
+
+  # Notifications
+  createNotification(accountId: ID!, name: String!, channel: NotificationChannel!, recipients: [String!]!): Notification!
+  updateNotification(id: ID!, enabled: Boolean, recipients: [String!]): Notification!
+  deleteNotification(id: ID!): Boolean!
+
+  # Reports
+  generateReport(accountId: ID!, type: ReportType!, format: ReportFormat!, siteId: ID): Report!
+
+  # Users
+  createUser(accountId: ID!, email: String!, role: String!): User!
+  updateUser(id: ID!, role: String, mfaEnabled: Boolean): User!
+  deleteUser(id: ID!): Boolean!
+
+  # IP Lists
+  createIPList(accountId: ID!, name: String!, description: String): IPList!
+  addIPEntry(listId: ID!, cidr: String!, description: String): IPListEntry!
+  removeIPEntry(id: ID!): Boolean!
+  deleteIPList(id: ID!): Boolean!
+
+  # SecureSphere On-Premises
+  createServerGroup(siteName: String!, name: String!, operationMode: String!): ServerGroup!
+  deleteServerGroup(id: ID!): Boolean!
+  createDBServer(serverGroupId: ID!, hostname: String!, port: Int!, dbType: DBType!): DBServer!
+  deleteDBServer(id: ID!): Boolean!
+
+  # Data Security Fabric
+  createDataSecurityRule(name: String!, severity: Severity!, action: String!): DataSecurityRule!
+  updateDataSecurityRule(id: ID!, enabled: Boolean, severity: Severity): DataSecurityRule!
+  deleteDataSecurityRule(id: ID!): Boolean!
+  addDataRepository(name: String!, type: DBType!, host: String!, port: Int!): DataRepository!
+  deleteDataRepository(id: ID!): Boolean!
+}
+
+# ─── Input Types ─────────────────────────────────────────────────────────────
+
+input ConditionInput {
+  field: String!
+  operator: ConditionOperator!
+  value: String!
+  negated: Boolean
+}
