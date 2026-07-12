@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/imperva-cloud-application-security-openapi.yml, openapi/imperva-securesphere-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: api_id
+  type: apiKey
+  in: header
+  parameter: x-API-Id
+  sources:
+  - openapi/imperva-cloud-application-security-openapi.yml
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: x-API-Key
+  sources:
+  - openapi/imperva-cloud-application-security-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/imperva-securesphere-openapi.yml
