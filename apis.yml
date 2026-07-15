@@ -95,6 +95,8 @@ apis:
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 common:
+- type: AgenticAccess
+  url: agentic-access/imperva-agentic-access.yml
 - type: DomainSecurity
   url: security/imperva-domain-security.yml
 - type: Authentication
