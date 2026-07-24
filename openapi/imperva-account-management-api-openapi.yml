@@ -1,0 +1,1006 @@
+openapi: 3.0.1
+info:
+  title: Cloud Application Security Account Management API
+  license:
+    name: Imperva License Agreement.
+    url: http://www.imperva.com/other/license_agreement.asp
+  version: '1.0'
+  description: Add, delete, and modify accounts. Get account details.
+servers:
+- url: https://my.imperva.com
+  description: Imperva API server
+  variables: {}
+security:
+- api_key: []
+- api_id: []
+tags:
+- name: Account Management
+  description: Add, delete, and modify accounts. Get account details.
+paths:
+  /api/prov/v1/accounts/gettoken:
+    post:
+      tags:
+      - Account Management
+      summary: Get account login token
+      description: 'Tokens are used instead of user/password based authentication to log in to the Imperva Cloud Security Console.
+
+        Use this operation to generate a token for an account. The token is valid for 15 minutes.'
+      operationId: getToken
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: string
+        example: 10
+      - name: partner_id
+        in: query
+        description: Numeric identifier of the parent id to operate on
+        schema:
+          type: string
+        example: 15
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultGetSsoToken'
+  /api/prov/v1/accounts/list:
+    post:
+      tags:
+      - Account Management
+      summary: List managed accounts
+      description: Available for Reseller accounts only.<br/>Use this operation to get the list of accounts that are managed by account of the API client (the parent account).
+      operationId: listAccounts
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: string
+        example: 10
+      - name: page_size
+        in: query
+        description: 'The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100'
+        schema:
+          type: string
+        example: 75
+      - name: page_num
+        in: query
+        description: 'The page to return starting from 0. Default: ''0'
+        schema:
+          type: string
+        example: 0
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultListUsers'
+  /api/prov/v1/subaccounts/add:
+    post:
+      tags:
+      - Account Management
+      summary: Add a new sub account
+      description: Use this operation to add a new sub account to be managed by the account of the API client (the parent account).
+      operationId: addSubAccount
+      parameters:
+      - name: sub_account_name
+        in: query
+        description: The name of the sub account.
+        required: true
+        schema:
+          type: string
+        example: My Sub Account
+      - name: parent_id
+        in: query
+        description: The newly created account's parent id. If not specified, the invoking account will be assigned as the parent account.
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: ref_id
+        in: query
+        description: Customer specific identifier for this operation.
+        schema:
+          type: string
+        example: 1
+      - name: log_level
+        in: query
+        description: 'Sets the log reporting level for the site.<br/>Possible values: full, security, none, default<br/>Available only for customers that purchased the Logs Integration SKU.'
+        schema:
+          type: string
+        example: full
+      - name: logs_account_id
+        in: query
+        description: Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.<br/>Available only for customers that purchased the Logs Integration SKU.
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9403 - Unknown/unauthorized account_id<br/>9415 - Operation not allowed<br/>1015 - Maximum number of SubAccounts reached<br/>1003 - Plan ID invalid<br/>1010 - Account exists
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSubAccountStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/listSubAccounts:
+    post:
+      tags:
+      - Account Management
+      summary: List account's sub accounts
+      description: Use this operation to get a list of sub accounts that are managed by the account of the API client (the parent account).
+      operationId: listSubAccounts
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: string
+        example: 10
+      - name: page_size
+        in: query
+        description: 'The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100'
+        schema:
+          type: string
+        example: 75
+      - name: page_num
+        in: query
+        description: 'The page to return starting from 0. Default: 0'
+        schema:
+          type: string
+        example: 0
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9415 - Operation not allowed<br/>1002 - Account doesn't exist
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubAccountStatus'
+  /api/prov/v1/accounts/configure:
+    post:
+      tags:
+      - Account Management
+      summary: Modify account configuration
+      description: Use this operation to change the configuration of the account of the API client or one of its managed accounts.
+      operationId: modifyAccountConfiguration
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: string
+        example: 10
+      - name: param
+        in: query
+        description: 'Name of the configuration parameter to set.<br/>Possible values: name | email | plan_id | error_page_template | support_all_tls_versions | naked_domain_san_for_new_www_sites | wildcard_san_for_new_sites | ref_id<br/>Note: plan_id, email, and error_page_template parameters are available for Reseller account only.'
+        required: true
+        schema:
+          type: string
+        example: email
+      - name: value
+        in: query
+        description: 'According to the configuration paramater used.<br/>For name - the updated name, for e-mail - the updated e-mail address.<br/>For plan_id - a plan id.<br/>For error_page_template - a Base64 encoded template for an error page.<br/>For log_level - Available only for customers that purchased the Logs Integration SKU. Sets the log reporting level for the site. Possible values: full, security, none, default<br/>For support_all_tls_versions - Use this operation to allow sites in the account to support all TLS versions for connectivity between clients (visitors) and the Imperva service. When this option is set, you can then enable the option per site to support all TLS versions. Possible values: true, false. Note: To remain PCI-compliant, do not enable this option.<br/>For naked_domain_san_for_new_www_sites - Use this option to determine if the naked domain SAN will be added to the SSL certificate for new www sites. Default value: true<br/>For wildcard_san_for_new_sites - Use this option to determine if the wildcard SAN or the full domain SAN is added to the Imperva SSL certificate for new sites. Possible values: true, false, default (determined by plan) Default value: default<br/>For ref_id - Sets the Reference ID, a free-text field that enables you to add a unique identifier to correlate an object in our service, such as a protected website, with an object on the customer side.'
+        required: true
+        schema:
+          type: string
+        example: John@example.com
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>6001 - Invalid configuration parameter name<br/>6002 - Invalid configuration parameter value<br/>6003 - Action required<br/>2 - Invalid input<br/>9415 - Operation not allowed<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/delete:
+    post:
+      tags:
+      - Account Management
+      summary: Delete managed account
+      description: 'Available for Reseller accounts only
+
+        Use this operation to delete an account.'
+      operationId: deleteAccount
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>1 - Unexpected error<br/>2 - Invalid input<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/subaccounts/delete:
+    post:
+      tags:
+      - Account Management
+      summary: Delete sub account
+      description: Use this operation to delete a sub account.
+      operationId: deleteSubAccount
+      parameters:
+      - name: sub_account_id
+        in: query
+        description: Numeric identifier of the sub account to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>1 - Unexpected error<br/>2002 - Invalid input2001 - Object is not empty<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts:
+    post:
+      tags:
+      - Account Management
+      summary: Get account status
+      description: Use this operation to get account status
+      operationId: getAccountStatus
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultAccountStatus'
+  /api/prov/v1/accounts/setlog:
+    post:
+      tags:
+      - Account Management
+      summary: Modify account log level
+      description: Available for Reseller accounts only<br/>Use this operation to change the account log configuration.
+      operationId: modifyAccountLogLevel
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: string
+        example: 10
+      - name: log_level
+        in: query
+        description: 'Sets the log reporting level for the site.<br/>Possible values: full, security, none, default<br/>Available only for customers that purchased the Log Integration SKU.'
+        required: true
+        schema:
+          type: string
+        example: full
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>6001 - Invalid configuration parameter name<br/>1003 - Plan ID invalid<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/subscription:
+    post:
+      tags:
+      - Account Management
+      summary: Get account subscription details
+      description: Use this operation to get subscription details for an account.
+      operationId: subscription
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultAccountSubscription'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/add:
+    post:
+      tags:
+      - Account Management
+      summary: Add a new managed account
+      description: 'Available for Reseller accounts only<br/>Use this operation to add a new account that should be managed by the account of the API client (the parent account). The new account will be configured according to the preferences set for the parent account by Imperva.
+
+        Depending on these preferences, an activation e-mail will be sent to the specified e-mail address. The user responds to the activation e-mail, selects a password, and can then log directly into the Imperva console. The same e-mail address can also be used to send system notifications to the account. The new account is identified by a numeric value as provided by Imperva in the response in the field account_id.'
+      operationId: addAccount
+      parameters:
+      - name: email
+        in: query
+        description: 'Email address. For example: "joe@example.com".'
+        required: true
+        schema:
+          type: string
+        example: example@imperva.com
+      - name: parent_id
+        in: query
+        description: The newly created account's parent id. If not specified, the invoking account will be assigned as the parent.
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: name
+        in: query
+        description: 'The account owner''s name. For example: "John Doe".'
+        schema:
+          type: string
+        example: Jhon
+      - name: plan_id
+        in: query
+        description: An identifier of the plan to assign to the new account. For example, ent100 for the Enterprise 100 plan.
+        schema:
+          type: string
+        example: ent100
+      - name: ref_id
+        in: query
+        description: Customer specific identifier for this operation.
+        schema:
+          type: string
+        example: 324
+      - name: account_name
+        in: query
+        description: Account name.
+        schema:
+          type: string
+        example: John Account
+      - name: account_description
+        in: query
+        description: The account description
+        schema:
+          type: string
+        example: Demo account
+      - name: user_name
+        in: query
+        description: 'The account owner''s name. For example: "John Doe".'
+        schema:
+          type: string
+        example: Jhon
+      - name: log_level
+        in: query
+        description: 'Sets the log reporting level for the site.Possible values: full, security, none, default<br/>Available only for customers that purchased the Logs Integration SKU.'
+        schema:
+          type: string
+        example: full
+      - name: logs_account_id
+        in: query
+        description: 'Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+
+          Available only for customers that purchased the Logs Integration SKU.'
+        schema:
+          type: string
+        example: 15
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>1003 - Plan ID invalid<br/>1001 - Email invalid<br/>1010 - Account exists<br/>9403 - Unknown/unauthorized account_id
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultAccountStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/testS3Connection:
+    post:
+      tags:
+      - Account Management
+      summary: Test connection with S3 bucket
+      description: Use this operation to check that a connection can be created with your Amazon S3 bucket.
+      operationId: testConnectionS3
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: bucket_name
+        in: query
+        description: S3 bucket name
+        required: true
+        schema:
+          type: string
+      - name: access_key
+        in: query
+        description: S3 access key
+        required: true
+        schema:
+          type: string
+      - name: secret_key
+        in: query
+        description: S3 secret key
+        required: true
+        schema:
+          type: string
+      - name: save_on_success
+        in: query
+        description: Save this configuration if the test connection was successful. Default value:false
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error<br/>6002- Invalid configuration parameter value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/testSftpConnection:
+    post:
+      tags:
+      - Account Management
+      summary: Test connection with SFTP server
+      description: Use this operation to check that a connection can be created with your SFTP storage.
+      operationId: testConnectionSftp
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: host
+        in: query
+        description: The IP address of your SFTP server
+        required: true
+        schema:
+          type: string
+        example: 10.1.1.1
+      - name: user_name
+        in: query
+        description: A user name that will be used to log in to the SFTP server
+        required: true
+        schema:
+          type: string
+        example: John Doe
+      - name: password
+        in: query
+        description: A corresponding password for the user account used to log in to the SFTP server
+        required: true
+        schema:
+          type: string
+      - name: destination_folder
+        in: query
+        description: The path to the directory on the SFTP server
+        required: true
+        schema:
+          type: string
+      - name: save_on_success
+        in: query
+        description: 'Save this configuration if the test connection was successful. Default value: false'
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error<br/>6002- Invalid configuration parameter value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/setDefaultSiemStorage:
+    post:
+      tags:
+      - Account Management
+      summary: Set Imperva servers for log storage
+      description: Use this operation to have your logs saved on Incapsula servers. Once configured, the logs can be retrieved by API calls.
+      operationId: setDefaultSiemStorage
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/setAmazonSiemStorage:
+    post:
+      tags:
+      - Account Management
+      summary: Set S3 configuration for log storage
+      description: Use this operation to configure your Amazon cloud storage. Once configured, Imperva logs will be uploaded to the selected location.
+      operationId: setStorageToS3
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: bucket_name
+        in: query
+        description: S3 bucket name
+        required: true
+        schema:
+          type: string
+      - name: access_key
+        in: query
+        description: S3 access key
+        required: true
+        schema:
+          type: string
+      - name: secret_key
+        in: query
+        description: S3 secret key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/accounts/setSftpSiemStorage:
+    post:
+      tags:
+      - Account Management
+      summary: Set SFTP server configuration for log storage
+      description: Use this operation to configure your SFTP server storage. Once configured, Incapsula logs will be uploaded to the selected location.
+      operationId: setStorageToSftp
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: host
+        in: query
+        description: The IP address of your SFTP server
+        required: true
+        schema:
+          type: string
+        example: 10.1.1.1
+      - name: user_name
+        in: query
+        description: A user name that will be used to log in to the SFTP server
+        required: true
+        schema:
+          type: string
+        example: John Doe
+      - name: password
+        in: query
+        description: A corresponding password for the user account used to log in to the SFTP server
+        required: true
+        schema:
+          type: string
+      - name: destination_folder
+        in: query
+        description: The path to the directory on the SFTP server
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+components:
+  schemas:
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    AccountBandwidth:
+      type: object
+      properties:
+        ' billingCycle':
+          type: string
+          example: Earlier billing cycle
+        onDemandBandwidth:
+          type: string
+          example: 0bps
+        alwaysOnBandwidth:
+          type: string
+          example: 7.7kbps
+    SubAccountStatus:
+      type: object
+      properties:
+        sub_account_id:
+          type: integer
+          format: int64
+          example: 10
+        sub_account_name:
+          type: string
+          example: My Sub Account
+        ref_id:
+          type: string
+          example: '432'
+        logins:
+          type: array
+          items:
+            $ref: '#/components/schemas/Login'
+        log_level:
+          type: string
+          example: full
+        support_level:
+          type: string
+          example: Standard
+    accounts:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@imperva.com
+        plan_id:
+          type: string
+          example: ent100
+        plan_name:
+          type: string
+          example: Enterprise 100
+        trial_end_date:
+          type: string
+          format: date-time
+        account_id:
+          type: integer
+          format: int64
+          example: 10
+        John Account:
+          type: string
+          example: Jhon
+        user_name:
+          type: string
+          example: Jhon
+        logins:
+          type: array
+          items:
+            $ref: '#/components/schemas/Login'
+        log_level:
+          type: string
+          example: full
+        support_level:
+          type: string
+          example: Standard
+        support_all_tls_versions:
+          type: boolean
+          example: true
+        wildcard_san_for_new_sites:
+          type: string
+          example: 'true'
+          enum:
+          - 'True'
+          - 'False'
+          - Default
+        naked_domain_san_for_new_www_sites:
+          type: boolean
+          example: true
+    Login:
+      type: object
+      properties:
+        login_id:
+          type: string
+          example: demo_account@incapsula.com
+        email_verified:
+          type: boolean
+          example: true
+    account:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@imperva.com
+        plan_id:
+          type: string
+          example: ent100
+        plan_name:
+          type: string
+          example: Enterprise 100
+        trial_end_date:
+          type: string
+          format: date-time
+        account_id:
+          type: integer
+          format: int64
+          example: 10
+        John Account:
+          type: string
+          example: Jhon
+        user_name:
+          type: string
+          example: Jhon
+        logins:
+          type: array
+          items:
+            $ref: '#/components/schemas/Login'
+        log_level:
+          type: string
+          example: full
+        support_level:
+          type: string
+          example: Standard
+        support_all_tls_versions:
+          type: boolean
+          example: true
+        wildcard_san_for_new_sites:
+          type: string
+          example: 'true'
+          enum:
+          - 'True'
+          - 'False'
+          - Default
+        naked_domain_san_for_new_www_sites:
+          type: boolean
+          example: true
+    ApiResultAccountStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        account:
+          $ref: '#/components/schemas/account'
+    ApiResultGetSsoToken:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        generated_token:
+          type: string
+          example: 344ebcaf34dff34
+    ApiResultListUsers:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/accounts'
+    PlanSectionRow:
+      type: object
+      properties:
+        name:
+          type: string
+        purchased:
+          type: string
+        used:
+          type: string
+    ApiResultAccountSubscription:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        planStatus:
+          $ref: '#/components/schemas/AccountPlanStatus'
+        bandwidthHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountBandwidth'
+    ApiResultSubAccountStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        sub_account:
+          $ref: '#/components/schemas/SubAccountStatus'
+    AccountPlanStatus:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int64
+          example: 12345
+        accountName:
+          type: string
+          example: demo_account@incapsula.com
+        websiteProtection:
+          type: array
+          example:
+            name: Website Protection
+            planSectionRows:
+            - name: Additional Sites
+              purchased: '100'
+              used: '2'
+            - name: Load Balancing (old)
+              purchased: '0'
+              used: '0'
+            - name: Additional Login Protect Users
+              purchased: '5'
+              used: '0'
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              planSectionRows:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanSectionRow'
+        infrastructureProtection:
+          type: array
+          example:
+            name: Infrastructure Protection
+            planSectionRows:
+            - name: On Demand Bandwidth (Clean traffic)
+              purchased: '0'
+              used: ''
+            - name: GRE Tunnel Pairs
+              purchased: '0  '
+              used: '0'
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              planSectionRows:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanSectionRow'
+        dnsProtection:
+          type: array
+          example:
+            name: DNS Protection
+            planSectionRows:
+            - name: Additional DNS Zones
+              purchased: '0'
+              used: '0'
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              planSectionRows:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanSectionRow'
+        additionalServices:
+          type: array
+          example:
+            name: Additional Services
+            planSectionRows:
+            - name: Always On Bandwidth (Clean traffic)
+              purchased: 10Mbps
+              used: N/A
+            - name: DDoS Protection
+              purchased: None
+              used: ''
+            - name: Support Level
+              purchased: Standard
+              used: Standard
+            - name: SIEM Integration
+              purchased: '10'
+              used: '0'
+            - name: Web Attack Analytics
+              purchased: '0'
+              used: ''
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              planSectionRows:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanSectionRow'
+  securitySchemes:
+    api_id:
+      type: apiKey
+      name: x-API-Id
+      in: header
+    api_key:
+      type: apiKey
+      name: x-API-Key
+      in: header
+externalDocs:
+  description: Cloud Application Security API Reference
+  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm

@@ -1,0 +1,174 @@
+openapi: 3.0.1
+info:
+  title: Cloud Application Security Account Management Administration API
+  license:
+    name: Imperva License Agreement.
+    url: http://www.imperva.com/other/license_agreement.asp
+  version: '1.0'
+  description: Add, delete, and modify accounts. Get account details.
+servers:
+- url: https://my.imperva.com
+  description: Imperva API server
+  variables: {}
+security:
+- api_key: []
+- api_id: []
+tags:
+- name: Administration
+paths:
+  /v1/administration/log/level:
+    put:
+      operationId: setLogLevel
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/LogLevelDTO'
+  /v1/administration/gatewayRegistrationToken:
+    get:
+      operationId: getGatewayRegistrationToken
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/RegistrationTokenDTO'
+  /v1/administration/version:
+    get:
+      operationId: getVersion
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/VersionDTO'
+  /v1/administration/strict:
+    put:
+      operationId: setStrictMode
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/StrictModeDTO'
+  /v1/administration/challenge:
+    get:
+      operationId: getChallenge
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/ChallengeDTO'
+  /v1/administration/user/password/firsttime:
+    post:
+      operationId: getSessionId
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/SessionIdDTO'
+  /v1/administration/flex_protect:
+    post:
+      operationId: uploadFlexProtectCode
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/LicenseDTO'
+  /v1/administration/license:
+    post:
+      operationId: uploadLicenseFile
+      summary: ''
+      description: ''
+      tags:
+      - Administration
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/LicenseDTO'
+components:
+  securitySchemes:
+    api_id:
+      type: apiKey
+      name: x-API-Id
+      in: header
+    api_key:
+      type: apiKey
+      name: x-API-Key
+      in: header
+externalDocs:
+  description: Cloud Application Security API Reference
+  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm

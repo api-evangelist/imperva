@@ -1,0 +1,436 @@
+openapi: 3.0.1
+info:
+  title: Cloud Application Security Account Management DDoS for Networks Test Alerts API
+  license:
+    name: Imperva License Agreement.
+    url: http://www.imperva.com/other/license_agreement.asp
+  version: '1.0'
+  description: Add, delete, and modify accounts. Get account details.
+servers:
+- url: https://my.imperva.com
+  description: Imperva API server
+  variables: {}
+security:
+- api_key: []
+- api_id: []
+tags:
+- name: DDoS for Networks Test Alerts
+  description: Generate dummy notifications to test system alerts.
+paths:
+  /api/v1/infra-protect/test-alerts/ddos/start:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: DDoS Start
+      description: Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has started.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.
+      operationId: postInfraProtectDdosStart
+      parameters:
+      - name: ip_prefix
+        in: query
+        description: The IP prefix to send a notification for. For example, 10.10.10.10
+        schema:
+          type: string
+        example: 100.1.2.0/24
+      - name: bps
+        in: query
+        description: Number of bits per second
+        schema:
+          type: integer
+          format: int32
+        example: 8
+      - name: pps
+        in: query
+        description: Number of packets per second
+        schema:
+          type: integer
+          format: int64
+        example: 16
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlert'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/ddos/stop:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: DDoS Stop
+      description: Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has ended.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.
+      operationId: postInfraProtectDdosStop
+      parameters:
+      - name: ip_prefix
+        in: query
+        description: The IP prefix to send a notification for. For example, 10.10.10.10
+        schema:
+          type: string
+        example: 100.1.2.0/24
+      - name: bps
+        in: query
+        description: Number of bits per second
+        schema:
+          type: integer
+          format: int32
+        example: 8
+      - name: pps
+        in: query
+        description: Number of packets per second
+        schema:
+          type: integer
+          format: int64
+        example: 16
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlert'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/connection/down:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: Connection Down
+      description: Use this operation to send a test notification informing you that the Infrastructure Protection connection is down.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.
+      operationId: postInfraProtectTunnelDown
+      parameters:
+      - name: connection_name
+        in: query
+        description: The connection to send a notification for.<br/>Enter the connection name as it appears in the Cloud Security Console’s Protection Settings page. For example, Test_GRE_Tunnel.
+        schema:
+          type: string
+        example: CONNECTION_NAME
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlertConnectionStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/connection/up:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: Connection UP
+      description: Use this operation to send a test notification informing you that the Infrastructure Protection connection is up.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.
+      operationId: postInfraProtectTunnelUp
+      parameters:
+      - name: connection_name
+        in: query
+        description: The connection to send a notification for.<br/>Enter the connection name as it appears in the Cloud Security Console’s Protection Settings page. For example, Test_GRE_Tunnel.
+        schema:
+          type: string
+        example: CONNECTION_NAME
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlertConnectionStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/ip-protection-status/up:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: IP Protection Status Up
+      description: Use this operation to send a test notification informing you that the IP Protection status is up.
+      operationId: postProtectedIPStatusUp
+      parameters:
+      - name: ip_protection
+        in: query
+        description: The IP to send a notification for. For example, 10.10.10.10
+        schema:
+          type: string
+        example: 1.1.1.1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlert'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/ip-protection-status/down:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: IP Protection Status Down
+      description: Use this operation to send a test notification informing you that the IP Protection status is down.
+      operationId: postProtectedIPStatusDown
+      parameters:
+      - name: ip_protection
+        in: query
+        description: The IP to send a notification for. For example, 10.10.10.10
+        schema:
+          type: string
+        example: 1.1.1.1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlertProtectedIPStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/monitoring/start:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: Monitoring Start
+      description: Use this operation to send a test notification informing you that flow monitoring has started.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.
+      operationId: postInfraProtectNetFlowStart
+      parameters:
+      - name: exporter_ip
+        in: query
+        description: The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page.
+        schema:
+          type: string
+        example: 1.1.1.1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlertExporterStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/monitoring/stop:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: Monitoring Stop
+      description: Use this operation to send a test notification informing you that NetFlow monitoring has stopped.
+      operationId: postInfraProtectNetFlowStop
+      parameters:
+      - name: exporter_ip
+        in: query
+        description: The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page.
+        schema:
+          type: string
+        example: 1.1.1.1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlertExporterStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/monitoring/bad-data:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: Monitoring Bad Data
+      description: Use this operation to send a test notification informing you that the monitoring service is receiving messages that do not conform to the accepted format.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.
+      operationId: postInfraProtectNetFlowBadData
+      parameters:
+      - name: exporter_ip
+        in: query
+        description: The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page.
+        schema:
+          type: string
+        example: 1.1.1.1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlertExporterStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/v1/infra-protect/test-alerts/monitoring/attack-start:
+    post:
+      tags:
+      - DDoS for Networks Test Alerts
+      summary: Monitoring Attack Start
+      description: Use this operation to send a test notification informing you that the monitoring service has detected a DDoS attack.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.
+      operationId: postInfraProtectMonitoringAttackStartCriticalAlert
+      parameters:
+      - name: ip_prefix
+        in: query
+        description: The IP range to send a notification for. For example, 1.1.1.0/24
+        schema:
+          type: string
+        example: 100.1.2.1
+      - name: bps
+        in: query
+        description: Number of bits per second
+        schema:
+          type: integer
+          format: int32
+        example: 8
+      - name: pps
+        in: query
+        description: Number of packets per second
+        schema:
+          type: integer
+          format: int64
+        example: 16
+      - name: packet_type
+        in: query
+        description: Packet type. (UDP, TCP, DNS, DNS_RESPONSE, ICMP, SYN, FRAG, LARGE_SYN, NTP, NETFLOW, SSDP, GENERAL)
+        schema:
+          type: string
+        example: TCP
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultTestAlert'
+                - $ref: '#/components/schemas/ApiResult'
+components:
+  schemas:
+    ApiResultTestAlert:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    ApiResultTestAlertProtectedIPStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
+        ip:
+          type: string
+          example: 1.2.3.4
+    ApiResultTestAlertConnectionStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
+        connection_name:
+          type: string
+          example: CONNECTION_NAME
+    ApiResultTestAlertExporterStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
+  securitySchemes:
+    api_id:
+      type: apiKey
+      name: x-API-Id
+      in: header
+    api_key:
+      type: apiKey
+      name: x-API-Key
+      in: header
+externalDocs:
+  description: Cloud Application Security API Reference
+  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm

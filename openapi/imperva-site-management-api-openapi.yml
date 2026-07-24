@@ -1,0 +1,4271 @@
+openapi: 3.0.1
+info:
+  title: Cloud Application Security Account Management Site Management API
+  license:
+    name: Imperva License Agreement.
+    url: http://www.imperva.com/other/license_agreement.asp
+  version: '1.0'
+  description: Add, delete, and modify accounts. Get account details.
+servers:
+- url: https://my.imperva.com
+  description: Imperva API server
+  variables: {}
+security:
+- api_key: []
+- api_id: []
+tags:
+- name: Site Management
+  description: Add, remove, and update sites.
+paths:
+  /api/prov/v1/sites/performance/caching-rules/add:
+    post:
+      tags:
+      - Site Management
+      summary: Add a cache rule
+      description: Use this operation for adding a cache rule
+      operationId: addCacheRule
+      parameters:
+      - name: action
+        in: query
+        description: Rule action. See Possible action parameter values.<br/>Possible action parameter values:<br/><ul><li><b>HTTP_CACHE_MAKE_STATIC</b> Cache Resource</li><li><b>HTTP_CACHE_CLIENT_CACHE_CTL</b> Cache Resource on Client</li><li><b>HTTP_CACHE_FORCE_UNCACHEABLE</b> Don't Cache Resource</li><li><b>HTTP_CACHE_DIFFERENTIATE_SSL</b> Differentiate Cache Key by HTTP/HTTPS Scheme</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_HEADER</b> Differentiate Cache Key by Header</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_COOKIE</b> Differentiate Cache Key by Cookie</li><li><b>HTTP_CACHE_IGNORE_PARAMS</b> Ignore Parameters in Cache Key</li><li><b>HTTP_CACHE_IGNORE_AUTH_HEADER</b> CacheRuleAction.HTTP_CACHE_IGNORE_AUTH_HEADER</li><li><b>HTTP_CACHE_FORCE_VALIDATION</b> Force User Authentication</li><li><b>HTTP_CACHE_ADD_TAG</b> Create Tag</li><li><b>HTTP_CACHE_ENRICH_CACHE_KEY</b> Enrich Cache Key</li></ul>
+        required: true
+        schema:
+          type: string
+        example: HTTP_CACHE_CREATE_TAG
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: name
+        in: query
+        description: Rule name.
+        required: true
+        schema:
+          type: string
+        example: rule1
+      - name: filter
+        in: query
+        description: Rule will trigger only a request that matches this filter. For more details on filters, see <a href="https://docs.imperva.com/csh?context=rule_syntax">Syntax Guide</a>.
+        schema:
+          type: string
+        example: URL ==  /admin
+      - name: ttl
+        in: query
+        description: Rule TTL. Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL
+        schema:
+          type: string
+        example: TTL value
+      - name: ttl_unit
+        in: query
+        description: Rule TTL time unit.<br/>Must be one of SECONDS, MINUTES, HOURS, DAYS or WEEKS. If no time unit is provided, SECONDS is used.<br/>Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL
+        schema:
+          type: string
+        example: SECONDS
+      - name: differentiated_by_value
+        in: query
+        description: Value to differentiate by. HTTP_CACHE_DIFFERENTIATE_BY_HEADER - header name, HTTP_CACHE_DIFFERENTIATE_BY_COOKIE - cookie name, HTTP_CACHE_DIFFERENTIATE_BY_GEO - geo location <br/>(ISO 3166-1 alpha-2 country codes ), otherwise irrelevant.
+        schema:
+          type: string
+        example: cookie name
+      - name: params
+        in: query
+        description: Comma separated list of parameters to ignore.
+        schema:
+          type: string
+        example: '{a,b,c}'
+      - name: all_params
+        in: query
+        description: 'When set to <b>true</b>: all parameters in cache key will be ignored.<br/>Default: false.<br/>Relevant for HTTP_CACHE_IGNORE_PARAMS action'
+        schema:
+          type: boolean
+        example: true
+      - name: tag_name
+        in: query
+        description: The name of the tag to add.
+        schema:
+          type: string
+        example: tag example
+      - name: text
+        in: query
+        description: Add text to the cache key as suffix. Relevant for the HTTP_CACHE_ENRICH_CACHE_KEY action
+        schema:
+          type: string
+        example: suffix
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed<br/>2 - Invalid input
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultAddCacheRule'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/caching-rules/delete:
+    post:
+      tags:
+      - Site Management
+      summary: Delete a cache rule
+      description: Use this operation for deleting a cache rule
+      operationId: deleteCacheRule
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: rule_id
+        in: query
+        description: ID of the rule to change.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 3746
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed<br/>2 - Invalid input<br/>2002 - Object is not found<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/caching-rules/enable:
+    post:
+      tags:
+      - Site Management
+      summary: Enable or disable cache rule
+      description: Use this operation for enabling or disable cache rule
+      operationId: enableDisableCacheRule
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: rule_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 3746
+      - name: enable
+        in: query
+        description: When true, the rule will be enabled. Set to false to disable.
+        required: true
+        schema:
+          type: string
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed<br/>2 - Invalid input<br/>2002 - Object is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/caching-rules/list:
+    post:
+      tags:
+      - Site Management
+      summary: List cache rules for a given site
+      description: Use this operation for representing cache rules for a given site
+      operationId: listCacheRules
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: page_size
+        in: query
+        description: 'The number of objects to return in the response.<br/>Default is 50.<br/>Maximum: 100'
+        schema:
+          type: string
+        example: 75
+      - name: page_num
+        in: query
+        description: The page to return starting from 0. Default is 0.
+        schema:
+          type: string
+        example: 0
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed<br/>2 - Invalid input<br/>
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/SiteCacheRuleResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/caching-rules/edit:
+    post:
+      tags:
+      - Site Management
+      summary: Edit a cache rule
+      description: Use this operation for editing a cache rule
+      operationId: editCacheRule
+      parameters:
+      - name: action
+        in: query
+        description: Rule action. See Possible action parameter values.<br/>Possible action parameter values:<br/><ul><li><b>HTTP_CACHE_MAKE_STATIC</b> Cache Resource</li><li><b>HTTP_CACHE_CLIENT_CACHE_CTL</b> Cache Resource on Client</li><li><b>HTTP_CACHE_FORCE_UNCACHEABLE</b> Don't Cache Resource</li><li><b>HTTP_CACHE_DIFFERENTIATE_SSL</b> Differentiate Cache Key by HTTP/HTTPS Scheme</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_HEADER</b> Differentiate Cache Key by Header</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_COOKIE</b> Differentiate Cache Key by Cookie</li><li><b>HTTP_CACHE_IGNORE_PARAMS</b> Ignore Parameters in Cache Key</li><li><b>HTTP_CACHE_IGNORE_AUTH_HEADER</b> CacheRuleAction.HTTP_CACHE_IGNORE_AUTH_HEADER</li><li><b>HTTP_CACHE_FORCE_VALIDATION</b> Force User Authentication</li><li><b>HTTP_CACHE_ADD_TAG</b> Create Tag</li><li><b>HTTP_CACHE_ENRICH_CACHE_KEY</b> Enrich Cache Key</li></ul>
+        required: true
+        schema:
+          type: string
+        example: HTTP_CACHE_CREATE_TAG
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: rule_id
+        in: query
+        description: ID of the rule to change.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 3746
+      - name: name
+        in: query
+        description: Rule name.
+        required: true
+        schema:
+          type: string
+        example: rule1
+      - name: filter
+        in: query
+        description: Rule will trigger only a request that matches this filter. For more details on filters, see <a href="https://docs.imperva.com/csh?context=rule_syntax">Syntax Guide</a>.
+        schema:
+          type: string
+        example: URL ==  /admin
+      - name: ttl
+        in: query
+        description: Rule TTL. Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL
+        schema:
+          type: string
+        example: TTL value
+      - name: ttl_unit
+        in: query
+        description: Rule TTL time unit.<br/>Must be one of SECONDS, MINUTES, HOURS, DAYS or WEEKS. If no time unit is provided, SECONDS is used.<br/>Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL
+        schema:
+          type: string
+        example: SECONDS
+      - name: differentiated_by_value
+        in: query
+        description: Value to differentiate by. HTTP_CACHE_DIFFERENTIATE_BY_HEADER - header name, HTTP_CACHE_DIFFERENTIATE_BY_COOKIE - cookie name, HTTP_CACHE_DIFFERENTIATE_BY_GEO - geo location<br/> (ISO 3166-1 alpha-2 country codes ), otherwise irrelevant.
+        schema:
+          type: string
+        example: cookie name
+      - name: params
+        in: query
+        description: Comma separated list of parameters to ignore.
+        schema:
+          type: string
+        example: '{a,b,c}'
+      - name: all_params
+        in: query
+        description: 'When set to <b>true</b>: all parameters in cache key will be ignored.<br/>Default: false.<br/>Relevant for HTTP_CACHE_IGNORE_PARAMS action'
+        schema:
+          type: boolean
+        example: true
+      - name: tag_name
+        in: query
+        description: The name of the tag to add.
+        schema:
+          type: string
+        example: tag1
+      - name: text
+        in: query
+        description: Add text to the cache key as suffix. Relevant for the HTTP_CACHE_ENRICH_CACHE_KEY action
+        schema:
+          type: string
+        example: cache
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed<br/>2 - Invalid input<br/>2002 - Object is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/add:
+    post:
+      tags:
+      - Site Management
+      summary: Add data center
+      description: Use this operation for adding data center to site.
+      operationId: addDataCenter
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: name
+        in: query
+        description: The new data center's name.
+        required: true
+        schema:
+          type: string
+        example: DataCenter
+      - name: server_address
+        in: query
+        description: 'The server''s address. Possible values: IP, CNAME'
+        required: true
+        schema:
+          type: string
+        example: 1.1.1.1
+      - name: lb_algorithm
+        in: query
+        description: Data center load balancing algorithm. Possible values are:<br/>LB_LEAST_PENDING_REQUESTS - Server with least pending requests<br/>LB_LEAST_OPEN_CONNECTIONS - Server with least open connections<br/>LB_SOURCE_IP_HASH - Server by IP hash<br/>RANDOM - Random server<br/>WEIGHTED - Server by weight
+        schema:
+          type: string
+          enum:
+          - LB_LEAST_PENDING_REQUESTS
+          - LB_LEAST_OPEN_CONNECTIONS
+          - LB_SOURCE_IP_HASH
+          - RANDOM
+          - WEIGHTED
+        example: LB_LEAST_PENDING_REQUESTS
+      - name: is_enabled
+        in: query
+        description: Enables the data center.
+        schema:
+          type: boolean
+        example: true
+      - name: is_content
+        in: query
+        description: The data center will be available for specific resources (<b>Forward</b> Delivery Rules).
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - a datacenter with that name already exists
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/DataCenterResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/edit:
+    post:
+      tags:
+      - Site Management
+      summary: Edit site
+      description: Use this operation to editing site's data center
+      operationId: editDataCenter
+      parameters:
+      - name: dc_id
+        in: query
+        description: The data center's ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: name
+        in: query
+        description: The new data center's name.
+        schema:
+          type: string
+        example: DataCenter
+      - name: is_enabled
+        in: query
+        description: Enables the data center.
+        schema:
+          type: boolean
+        example: true
+      - name: is_standby
+        in: query
+        description: Defines the data center as <b>standby</b> for failover.
+        schema:
+          type: boolean
+        example: true
+      - name: is_content
+        in: query
+        description: The data center will be available for specific resources (<b>Forward</b> Delivery Rules).
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 -invalid datacenter</br>2- datacenter with that name already exists
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/DataCenterResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/resume:
+    post:
+      tags:
+      - Site Management
+      summary: Resume traffic to your active data centers
+      description: When at least one active data center is back up, you have to manually reroute your traffic back to the active data center.<br/>Traffic does not revert automatically to your active data centers.
+      operationId: resumeTrafficToActiveDCs
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 -Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/delete:
+    post:
+      tags:
+      - Site Management
+      summary: delete site
+      description: Use this operation for deleting site datacenter.
+      operationId: deleteDataCenter
+      parameters:
+      - name: dc_id
+        in: query
+        description: The data center's ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>5 -Could not delete datacenter</br>2- invalid datacenter</br>9415- invalid.dc.state<br/>3011 - There must be at least one active data center not configured for forward rules in the site
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/DataCenterResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/servers/add:
+    post:
+      tags:
+      - Site Management
+      summary: 'Add datacenter '
+      description: Use this operation to adding datacenter server.
+      operationId: addDCServer
+      parameters:
+      - name: dc_id
+        in: query
+        description: The data center's ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: server_address
+        in: query
+        description: Server IP address.
+        required: true
+        schema:
+          type: string
+        example: 1.1.1.1
+      - name: is_disabled
+        in: query
+        description: Enables the data center
+        schema:
+          type: boolean
+        example: true
+      - name: is_standby
+        in: query
+        description: Set the server as Active (P0) or Standby (P1) (Boolean).
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>1 -General error</br>2- invalid datacenter
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ServerOperationResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/servers/delete:
+    post:
+      tags:
+      - Site Management
+      summary: 'Delete datacenter '
+      description: Use this operation to deleting datacenter server.
+      operationId: deleteDCServer
+      parameters:
+      - name: server_id
+        in: query
+        description: Server ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9415 -invalid.server.state</br>2- invalid datacenter<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ServerOperationResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/servers/edit:
+    post:
+      tags:
+      - Site Management
+      summary: Edit datacenter
+      description: Use this operation to editing datacenter server.
+      operationId: editDCServer
+      parameters:
+      - name: server_id
+        in: query
+        description: Server ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: server_address
+        in: query
+        description: The IP address of the server to modify.
+        schema:
+          type: string
+        example: 1.1.1.1
+      - name: is_enabled
+        in: query
+        description: Enable or disable the server (Boolean).
+        schema:
+          type: boolean
+        example: true
+      - name: is_standby
+        in: query
+        description: Set the server as Active (P0) or Standby (P1) (Boolean).
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9415 -invalid.server.state</br>2- invalid datacenter<br/>1 -Unexpected error<br/>9413 -invalid server<br/>1 -General error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ServerOperationResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/dataCenters/list:
+    post:
+      tags:
+      - Site Management
+      summary: List site's data centers
+      description: Use this operation for listing site's data centers including datacenters servers.
+      operationId: listDataCenters
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - invalid site</br>2 - invalid datacenter<br/>
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ListDataCenterResponse'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/datacenter/origin-pop/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Set Data Center Origin PoP
+      description: Set an origin PoP for a given data center.
+      operationId: setDataCenterOriginPoP
+      parameters:
+      - name: dc_id
+        in: query
+        description: Numeric identifier of the data center to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: origin_pop
+        in: query
+        description: 'The ID of the PoP that serves as an access point between Imperva and the customer’s origin server. For example: “lax”, for Los Angeles.'
+        schema:
+          type: string
+        example: lax, for Los Angeles
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>405 - Api is disabled</br>2 - invalid datacenter<br/>5 - Cant set Origin PoP for datacenter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/datacenter/origin-pop/recommend:
+    post:
+      tags:
+      - Site Management
+      summary: Get Data Center Recommended Origin PoPs
+      description: Get a list of recommended origin PoPs for a given data center.
+      operationId: getRecommendedDataCenterOriginPoPs
+      parameters:
+      - name: dc_id
+        in: query
+        description: Numeric identifier of the data center to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>405 - Api is disabled</br>2- invalid datacenter<br/>5 - Cant set Origin PoP for datacenter
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/RecommendedPopsApiResult'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache-mode:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Caching Mode
+      description: Use this operation to edit basic site caching settings.
+      operationId: setCachingMode
+      parameters:
+      - name: cache_mode
+        in: query
+        description: 'Possible values:<br/><ul/><li>disable</li><li>custom_cache_rules_only</li><li>static_only</li><li>static_and_dynamic</li><li>aggressive</li>Default value: static_only</ul>'
+        required: true
+        schema:
+          type: string
+        example: static_and_dynamic
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: dynamic_cache_duration
+        in: query
+        description: 'Profile dynamic pages and cache duration. Pass a number followed by ''_'' and one of: hr | min | sec | days | weeks.</br>Default: 5_min'
+        schema:
+          type: string
+        example: 5_min
+      - name: aggressive_cache_duration
+        in: query
+        description: 'Cache resource duration. Pass a number followed by ''_'' and one of: hr | min | sec | days | weeks</br>Default: 1_hr'
+        schema:
+          type: string
+        example: 1_hr
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache-mode/get:
+    post:
+      tags:
+      - Site Management
+      summary: Get Caching Mode
+      description: Use this operation to get a site's caching mode.
+      operationId: getCachingMode
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetCacheMode'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/purge:
+    post:
+      tags:
+      - Site Management
+      summary: Purge Resources
+      description: Use this operation to purge site resources.
+      operationId: modifyPurgeSettings
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: resource_url
+        in: query
+        description: Comma separated list of URLs where the resource is located.
+        required: true
+        schema:
+          type: string
+        example: /home
+      - name: resource_pattern
+        in: query
+        description: 'Comma separated list of pattern. One of: contains | equals | prefix | suffix | not_equals | not_contains | not_prefix | not_suffix'
+        required: true
+        schema:
+          type: string
+        example: prefix
+      - name: should_purge_all_site_resources
+        in: query
+        description: 'Should purge all cached resources on site.</br>Possible values:</br>If the parameter does not exist, is null, or an empty string, it is ignored and only specific resources defined by the resource_pattern and resource_url parameters are purged.</br><b>true</b> or <b>TRUE</b>: All site resources are purged.</br><b>false</b> or <b>FALSE</b>: Nothing is done.</br>Any other string: An error is returned.'
+        schema:
+          type: string
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>3015 - Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/cache/purge:
+    post:
+      tags:
+      - Site Management
+      summary: Purge Site Cache
+      description: Use this operation to purge all cached content on our proxy servers for a specific site.<br/>Our Proxy servers keep cached content of your sites in order to accelerate page load times for your users.<br/>When you want this cached content to be refreshed (for example, after making adjustments in your site) you can use this API call.<br/>In order to purge the entire cached content for this site just use the API call with no parameters.<br/>If you want to purge a specific resource add the resource name as parameter.
+      operationId: purgeSiteCache
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: purge_pattern
+        in: query
+        description: The pattern of the resource to be purged from the cache. For example:</br><ul/><li><b>Resource_name</b> - Resources that contain Resource_name will be purged</li><li><b>^Resource_name</b> - Resources that start with Resource_name will be purged</li><li><b>Resource_name$</b> - Resources that end with Resource_name will be purged.</li></ul>
+        schema:
+          type: string
+      - name: purge_tag_names
+        in: query
+        description: A comma separated list of tag names to purge.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>5010 - Pattern invalid<br/>9413 - Unknown/unauthorized site_id.<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/response-headers:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Cached Response Headers
+      description: Use this operation to modify cached response headers.
+      operationId: modifyResponseHeaderSettings
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: cache_headers
+        in: query
+        description: Comma separated list of header names to be cached
+        schema:
+          type: string
+        example: h1
+      - name: cache_all_headers
+        in: query
+        description: Cache all response headers. Pass "true" or "false" in the value parameter. Cannot be selected together with cache_headers. Default:false
+        schema:
+          type: string
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/response-headers/get:
+    post:
+      tags:
+      - Site Management
+      summary: Get Cached Response Headers
+      description: Use this operation to get a site's cached response headers.
+      operationId: getResponseHeaderSettings
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed<br/>5 - Operation is unavailable
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetResponseHeaderSettings'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/tag-response:
+    post:
+      tags:
+      - Site Management
+      summary: Tag the Response According to the Value of a Header
+      description: Specify which origin response header contains the cache tags in your resources.
+      operationId: modifyTagResponseHeader
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: header
+        in: query
+        description: 'Specify which origin response header contains the cache tags in your resources. default: "".'
+        required: true
+        schema:
+          type: string
+        example: cache
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/tag-response/get:
+    post:
+      tags:
+      - Site Management
+      summary: Get Header to Tag Responses By
+      description: Get the origin response header containing the cache tags in your resources
+      operationId: getTagResponseHeader
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetTagResponseHeader'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache404/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Cache 404 Settings
+      description: Use this operation to modify the caching settings of 404 responses for a site.
+      operationId: modifyCache404Settings
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: enable
+        in: query
+        description: Pass 'true' to cache 404 responses, 'false' to disable the option.
+        required: true
+        schema:
+          type: string
+        example: true
+      - name: time
+        in: query
+        description: 'A positive number representing the amount of time to cache 404 responses. Default value: 10'
+        schema:
+          type: string
+        example: 10
+      - name: time_unit
+        in: query
+        description: 'Unit of time for caching 404 responses. One of MINUTES, HOURS, DAYS, WEEKS. Default value: HOURS'
+        schema:
+          type: string
+        example: HOURS
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache404:
+    post:
+      tags:
+      - Site Management
+      summary: Get Cache 404 Settings
+      description: Use this operation to get the caching settings of 404 responses for a site.
+      operationId: getCache404Settings
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/GetCache404SettingsApiResult'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/pop-level-cache/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Modify PoP Level Cache
+      description: Use this operation to modify the PoP level cache status for a site.
+      operationId: modifyPopLevelCache
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: enable
+        in: query
+        description: Pass 'true' to enable pop level cache, 'false' to disable the option.
+        required: true
+        schema:
+          type: string
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/pop-level-cache:
+    post:
+      tags:
+      - Site Management
+      summary: Get PoP Level Cache
+      description: Use this operation to get the PoP level cache status for a site.
+      operationId: getPopLevelCache
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/GetPopLevelCacheSettingsApiResult'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/resource-map-size/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Set Resource Map Size
+      description: Set the site's maximum number of cached resources.
+      operationId: setResourceMapSize
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: resource_map_size
+        in: query
+        description: Limit for the amount of cached resources.
+        required: true
+        schema:
+          type: string
+        example: 34000
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/resource-map-size:
+    post:
+      tags:
+      - Site Management
+      summary: Get Resource Map Size
+      description: Get the site's maximum number of cached resources.
+      operationId: getResourceMapSize
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetResourceMapSize'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache-size-limit-large-mem/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Set Total Cache Size
+      description: Set the site's limit for the total size of cache.
+      operationId: setCacheSizeLimitLargeMem
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: cache_size_limit_large_mem
+        in: query
+        description: A positive number representing limit for total size of cached resources.
+        required: true
+        schema:
+          type: string
+        example: 500
+      - name: cache_size_limit_large_mem_unit
+        in: query
+        description: Unit of the limit for total size of cached resources. One of BYTES, KB, MB.
+        required: true
+        schema:
+          type: string
+        example: BYTES
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache-size-limit-large-mem:
+    post:
+      tags:
+      - Site Management
+      summary: Get Total Cache Size
+      description: Get the site's limit for the total size of cache.
+      operationId: getCacheSizeLimitLargeMem
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetCacheSizeLimitLargeMem'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/max-resp-size/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Set Response Max Size
+      description: Set the site's limit for the size of a single file returned from the cache.
+      operationId: setMaxRespSize
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: max_resp_size
+        in: query
+        description: A positive number representing limit for the size of cached resources.
+        required: true
+        schema:
+          type: string
+        example: 20971520
+      - name: max_resp_size_unit
+        in: query
+        description: Unit of the limit for the size of cached resources. One of BYTES, KB, MB.
+        required: true
+        schema:
+          type: string
+        example: BYTES
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/max-resp-size:
+    post:
+      tags:
+      - Site Management
+      summary: Get Response Max Size
+      description: Get the site's limit for the size of a single file returned from the cache.
+      operationId: getMaxRespSize
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetMaxRespSize'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/secure-resources:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Secure Resources Mode
+      description: Use this operation to modify the Secure Resources mode for a site.
+      operationId: setSecureResourcesMode
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: secured_resources_mode
+        in: query
+        description: <b>do_not_cache</b> - Do not cache HTTPS resources<br/><b>defaults</b> - Use default HTTPS caching. Do not cache HTML pages<br/><b>defaults_with_html</b> - Use default HTTPS caching. Also cache HTML pages<br/><b>general</b> - Cache HTTPS according to general caching settings
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/secure-resources/get:
+    post:
+      tags:
+      - Site Management
+      summary: Get Secure Resources Mode
+      description: Use this operation to get the Secure Resources mode for a site.
+      operationId: getSecureResourcesMode
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetSecureResources'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/stale-content:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Stale Content Settings
+      description: When Imperva can't connect to the origin server, serve stale content instead of displaying an error to end users for the specified amount of time. Expired resources are returned from cache, and refreshed asynchronously in the background.
+      operationId: modifyStaleContent
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: serve_stale_content
+        in: query
+        description: Pass <b>true</b> to serve stale content, <b>false</b> to disable the option.
+        required: true
+        schema:
+          type: string
+        example: true
+      - name: stale_content_mode
+        in: query
+        description: Pass <b>ADAPTIVE</b> to use Imperva's algorithm, or <b>CUSTOM</b> to specify an amount of time. When using <b>CUSTOM</b>, you must specify the time and time_unit parameters.
+        schema:
+          type: string
+        example: ADAPTIVE
+      - name: time
+        in: query
+        description: A positive number representing the amount of time to serve stale content.
+        schema:
+          type: string
+        example: 10
+      - name: time_unit
+        in: query
+        description: Stale content time unit. One of SECONDS, MINUTES, HOURS.
+        schema:
+          type: string
+        example: MINUTES
+      responses:
+        '200':
+          description: 'res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed<br/>5 - Operation unavailable '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/stale-content/get:
+    post:
+      tags:
+      - Site Management
+      summary: Get Stale Content Settings
+      description: When Imperva can't connect to the origin server, serve stale content instead of displaying an error to end users for the specified amount of time. Expired resources are returned from cache, and refreshed asynchronously in the background.
+      operationId: getStaleContent
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/GetStaleContentApiResult'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/advanced:
+    post:
+      tags:
+      - Site Management
+      summary: Advanced Caching Settings
+      description: Use this operation to modify advanced caching settings.
+      operationId: modifyAdvancedCachingSettings
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: param
+        in: query
+        description: 'Name of configuration parameter to set.<br/>Possible values for param and value parameters:<br/><ul><li><b>async_validation</b> Sets Async validation. Pass "true" or "false" in the value parameter.</li><li><b>minify_javascript</b> Sets the Minify JS. Pass "true" or "false" in the value parameter.</li><li><b>minify_css</b> Sets the Minify CSS. Pass "true" or "false" in the value parameter</li><li><b>minify_static_html</b> Sets Minify static HTML. Pass "true" or "false" in the value parameter</li><li><b>compress_jpeg</b> Sets the Compress JPEG. Pass "true" or "false" in the value parameter.</li><li><b>progressive_image_rendering</b> Sets the Progressive Image rendering flag. Pass "true" or "false" in the value parameter.</li><li><b>aggressive_compression</b> Sets the Aggressive compression rendering flag. Pass "true" or "false" in the value parameter.</li><li><b>compress_png</b> Sets the Compress PNG flag. Pass "true" or "false" in the value parameter.</li><li><b>on_the_fly_compression</b> "On the fly" Compression. Pass "true" or "false" in the value parameter.</li><li><b>tcp_pre_pooling</b> TCP Pre-Pooling. Pass "true" or "false" in the value parameter.</li><li><b>comply_no_cache</b> Comply with no-cache and max-age directives in client requests. Pass "true" or "false" in the value parameter.</li><li><b>comply_vary</b> Comply with the <b>Vary</b> header. Pass "true" or "false" in the value parameter.</li><li><b>use_shortest_caching</b> Use shortest caching duration in case of conflicts. Pass "true" or "false" in the value parameter.</li><li><b>prefer_last_modified</b> Prefer ''last modified'' over eTag. Pass "true" or "false" in the value parameter.</li><li><b>disable_client_side_caching</b> Disable client side caching. Pass "true" or "false" in the value parameter.</li><li><b>cache_300x</b> Cache 300X responses. Pass "true" or "false" in the value parameter.</li><li><b>unite_naked_full_cache</b> Use the same cache for full and naked domains. For example, use the same cached resource for <a href="https://www.example.com/a"></a> and <a href="https://example.com/"></a>a.</li><li><b>cache_empty_responses</b> Cache responses that don’t have a message body.</li><li><b>cache_http_10_responses</b> Cache HTTP 1.0 type responses that don’t include the Content-Length header or chunking. Pass "true" or "false" in the value parameter.</li><li><b>send_age_header</b> Send <b>Cache-Control: max-age</b> and <b>Age</b> headers. Pass "true" or "false" in the value parameter.</li><li><b>support_non_sni_clients</b> By default, non-SNI clients are supported. Disable this option to block non-SNI clients. Pass "true" or "false" in the value parameter.</li><li><b>origin_connection_reuse</b> By default, TCP connections that are opened for a client request remain open for a short time to handle additional requests that may arrive. This option disables that behavior.. Pass "true" or "false" in the value parameter.</li><li><b>redirect_http_to_https</b> Redirect HTTP requests to HTTPS requests by sending an HTTP 301 response.</li><li><b>redirect_naked_domain_to_full</b> Redirect requests from your website''s naked domain to its full domain by sending and HTTP 301 response.</li><li><b>http_2</b> Enables supporting browsers to take advantage of the performance enhancements provided by HTTP/2 for your website. Non-supporting browsers can connect via HTTP/1.0 or HTTP/1.1. HTTP/2 support requires that SSL is configured for your website. Pass "true" or "false" in the value parameter</li></ul>'
+        required: true
+        schema:
+          type: string
+        example: async_validation
+      - name: value
+        in: query
+        description: According to the param value.
+        required: true
+        schema:
+          type: string
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>5 - Operation unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/advanced/get:
+    post:
+      tags:
+      - Site Management
+      summary: Get Advanced Caching Settings
+      description: Use this operation to get advanced caching settings.
+      operationId: getAdvancedCachingSettings
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: param
+        in: query
+        description: 'Name of configuration parameter to set.<br/>Possible values for param and value parameters:<br/><ul><li><b>async_validation</b> Sets Async validation. Pass "true" or "false" in the value parameter.</li><li><b>minify_javascript</b> Sets the Minify JS. Pass "true" or "false" in the value parameter.</li><li><b>minify_css</b> Sets the Minify CSS. Pass "true" or "false" in the value parameter</li><li><b>minify_static_html</b> Sets Minify static HTML. Pass "true" or "false" in the value parameter</li><li><b>compress_jpeg</b> Sets the Compress JPEG. Pass "true" or "false" in the value parameter.</li><li><b>progressive_image_rendering</b> Sets the Progressive Image rendering flag. Pass "true" or "false" in the value parameter.</li><li><b>aggressive_compression</b> Sets the Aggressive compression rendering flag. Pass "true" or "false" in the value parameter.</li><li><b>compress_png</b> Sets the Compress PNG flag. Pass "true" or "false" in the value parameter.</li><li><b>on_the_fly_compression</b> "On the fly" Compression. Pass "true" or "false" in the value parameter.</li><li><b>tcp_pre_pooling</b> TCP Pre-Pooling. Pass "true" or "false" in the value parameter.</li><li><b>comply_no_cache</b> Comply with no-cache and max-age directives in client requests. Pass "true" or "false" in the value parameter.</li><li><b>comply_vary</b> Comply with the <b>Vary</b> header. Pass "true" or "false" in the value parameter.</li><li><b>use_shortest_caching</b> Use shortest caching duration in case of conflicts. Pass "true" or "false" in the value parameter.</li><li><b>prefer_last_modified</b> Prefer ''last modified'' over eTag. Pass "true" or "false" in the value parameter.</li><li><b>disable_client_side_caching</b> Disable client side caching. Pass "true" or "false" in the value parameter.</li><li><b>cache_300x</b> Cache 300X responses. Pass "true" or "false" in the value parameter.</li><li><b>unite_naked_full_cache</b> Use the same cache for full and naked domains. For example, use the same cached resource for <a href="https://www.example.com/a"></a> and <a href="https://example.com/"></a>a.</li><li><b>cache_empty_responses</b> Cache responses that don’t have a message body.</li><li><b>cache_http_10_responses</b> Cache HTTP 1.0 type responses that don’t include the Content-Length header or chunking. Pass "true" or "false" in the value parameter.</li><li><b>send_age_header</b> Send <b>Cache-Control: max-age</b> and <b>Age</b> headers. Pass "true" or "false" in the value parameter.</li><li><b>support_non_sni_clients</b> By default, non-SNI clients are supported. Disable this option to block non-SNI clients. Pass "true" or "false" in the value parameter.</li><li><b>origin_connection_reuse</b> By default, TCP connections that are opened for a client request remain open for a short time to handle additional requests that may arrive. This option disables that behavior.. Pass "true" or "false" in the value parameter.</li><li><b>redirect_http_to_https</b> Redirect HTTP requests to HTTPS requests by sending an HTTP 301 response.</li><li><b>redirect_naked_domain_to_full</b> Redirect requests from your website''s naked domain to its full domain by sending and HTTP 301 response.</li><li><b>http_2</b> Enables supporting browsers to take advantage of the performance enhancements provided by HTTP/2 for your website. Non-supporting browsers can connect via HTTP/1.0 or HTTP/1.1. HTTP/2 support requires that SSL is configured for your website. Pass "true" or "false" in the value parameter</li></ul>'
+        required: true
+        schema:
+          type: string
+        example: async_validation
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/GetAdvancedCachingSettingsApiResult'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/xray/get-link:
+    post:
+      tags:
+      - Site Management
+      summary: Get XRay Access Link
+      description: 'Use this operation to get a URL that enables debug headers on the specific site. '
+      operationId: getXrayLink
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetSiteXrayLink'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache-shield/enable:
+    post:
+      tags:
+      - Site Management
+      summary: Enable Cache Shield
+      description: Enable Cache Shield for a given site.
+      operationId: enableCacheShield
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: enable
+        in: query
+        description: Use <b>true</b> to enable cache shield on the specified site, and <b>false</b> to disable it.
+        required: true
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>1 - Unexpected error<br/>405 - Api is disabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/cache-shield:
+    post:
+      tags:
+      - Site Management
+      summary: Is Cache Shield Enabled
+      description: Get the enablement state of the Cache Shield feature for a given site.
+      operationId: isCacheShieldEnabled
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/IsCacheShieldEnabledApiResult'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/rewrite-port/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Rewrite Port
+      description: Use this operation to rewrite the port number used to access the origin server.
+      operationId: modifyRewritePorts
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: rewrite_port_enabled
+        in: query
+        description: Boolean value to indicate whether the default non-SSL port should be rewritten or not
+        required: true
+        schema:
+          type: boolean
+        example: true
+      - name: port
+        in: query
+        description: The port number. If empty, rewrite port will be removed
+        schema:
+          type: string
+        example: 80
+      - name: rewrite_ssl_port_enabled
+        in: query
+        description: Boolean value to indicate whether the default SSL port should be rewritten or not
+        required: true
+        schema:
+          type: boolean
+        example: true
+      - name: ssl_port
+        in: query
+        description: The port number to rewrite default SSL port to
+        schema:
+          type: string
+        example: 443
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/rewrite-port:
+    post:
+      tags:
+      - Site Management
+      summary: Get Rewrite Port
+      description: Use this operation to get the rewritten port number used to access the origin server.
+      operationId: getRewritePorts
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultGetRewritePorts'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/error-page/modify:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Error Page
+      description: Use this operation to set a custom error page for a given site.
+      operationId: modifySiteErrorPageTemplate
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: error_page_template
+        in: query
+        description: The error page html template. $TITLE$ and $BODY$ placeholders are required.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/performance/error-page:
+    post:
+      tags:
+      - Site Management
+      summary: Get Error Page
+      description: Use this operation to get the custom error page for a given site.
+      operationId: getSiteErrorPageTemplate
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/status:
+    post:
+      tags:
+      - Site Management
+      summary: Get Site Status
+      description: Use this operation to get the status of a site.
+      operationId: siteStatus
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: tests
+        in: query
+        description: 'List of tests to run on site before returning its status.<br/>A comma separated list of one of: domain_validation, services, dns<br/>Values for the stats parameters:<br/><ul><li><b>domain_validation</b> Runs the domain validation test on the specified site. This test will check for HTML meta tag or DNS records, according to the selected domain validation method.</li><li><b>services</b> Runs the services test on the specified site. This test will check the availability of HTTP and HTTPS connections on the site.</li><li><b>dns</b> Runs the DNS test on the specified site. This test will check whether the site owner performed the DNS changes required in order to protect the site.</li></ul>'
+        schema:
+          type: string
+        example: domain_validation
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3001 - Domain invalid<br/>6002 - Invalid configuration parameter value<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSiteStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/list:
+    post:
+      tags:
+      - Site Management
+      summary: List Sites
+      description: List sites for an account
+      operationId: listSites
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.<br/>If the account has sub accounts, the operation returns results for the sites in the account and in all of its sub accounts.
+        schema:
+          type: string
+        example: 15
+      - name: page_size
+        in: query
+        description: 'The number of objects to return in the response. Default is 50. Maximum: 100'
+        schema:
+          type: string
+        example: 2
+      - name: page_num
+        in: query
+        description: he page to return starting from 0. Default is 0
+        schema:
+          type: string
+        example: 1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultListSites'
+  /api/prov/v1/domain/emails:
+    post:
+      tags:
+      - Site Management
+      summary: Get Domain Approver E-mail Addresses
+      description: Use this operation to get the list of email addresses that can be used when adding an SSL site.
+      operationId: domainEmails
+      parameters:
+      - name: domain
+        in: query
+        description: 'The domain name of the site. For example: <a href="www.example.com">www.example.com</a>, <a href="hello.example.com">www.example.com</a>, <a href="example.com">www.example.com</a>'
+        required: true
+        schema:
+          type: string
+        example: www.example.com
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3001 - Domain invalid<br/>3011 - Site unresolvable
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultDomainEmails'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/setlog:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Site Logs Level
+      description: Use this operation to change the site log configuration.
+      operationId: modifySiteLogLevel
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: log_level
+        in: query
+        description: 'Available only for customers that purchased the Logs Integration SKU. Sets the log reporting level for the site.<br/>Possible values: full, security, none, default'
+        required: true
+        schema:
+          type: string
+        example: full
+      - name: logs_account_id
+        in: query
+        description: Available only for customers that purchased the Logs Integration SKU. Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>6002 - Invalid configuration parameter name<br/>6001 - Invalid configuration parameter name<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/tls:
+    post:
+      tags:
+      - Site Management
+      summary: Set support for all TLS versions
+      description: Use this operation to support all TLS versions for the site for connectivity between clients (visitors) and the Imperva service. To remain PCI-compliant, do not enable this option.
+      operationId: modifySiteSupportDeprecatedTLS
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: support_all_tls_versions
+        in: query
+        description: 'Support all TLS versions. Default value: false'
+        required: true
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>5 - Operation unavailable<br/>9415 - Operation not allowed<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSetSupportDeprecatedTLSForSite'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/configure:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Site Configuration
+      description: Use this operation to change one of the basic configuration settings of the site.
+      operationId: modifySiteConfiguration
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: example.imperva.com
+      - name: param
+        in: query
+        description: 'Name of configuration parameter to set.<br/>Parameter values:<br/><ul><li><b>active</b> Whether the site is active or bypassed by the Imperva network. One of: active | bypass.</li><li><b>site_ip</b> Comma separated list of IPs. For example: 8.8.8.8,1.2.2.2</li><li><b>domain_validation</b> Sets the domain validation method that will be used to generate an SSL certificate. One of: email | html | dns<br/><b>Note</b>: When running domain validation on a site, you may see the following error message in the API response: Internal error - "Add site operation hasn''t finished".<br/>After running the add site process, it may take several minutes for the database to finish updating. During this time, attempts to further configure the site are blocked.<br/>In some cases, the database is not updated even after the add site process is complete.<br/>If the issue does not resolve after a few minutes, contact Support.</li><li><b>approver</b> Sets the approver e-mail address that will be used to perform SSL domain validation.</li><li><b>ignore_ssl</b> Sets the ignore SSL flag (if the site is in pending-select-approver state). Pass "true" in the value parameter.</li><li><b>acceleration_level</b> Sets the acceleration level of the site, one of: none | standard | aggressive. It is advised to use the newer Modify caching mode API call instead, as it provides enhanced functionality.</li><li><b>seal_location</b> Sets the seal location, e.g. "api.seal_location.bottom_right".</li><li><b>domain_redirect_to_full</b> Sets the redirect naked to full flag. Pass "true" in the value parameter.</li><li><b>remove_ssl</b> Sets the remove SSL from site flag. Pass "true" in the value parameter.</li><li><b>ref_id</b> Sets the Reference ID, a free-text field that enables you to add a unique identifier to correlate an object in our service, such as a protected website, with an object on the customer side.</li></ul>'
+        required: true
+        schema:
+          type: string
+        example: active
+      - name: value
+        in: query
+        description: According to the param value.
+        required: true
+        schema:
+          type: string
+        example: bypass
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>6001 - Invalid configuration parameter name<br/>6002 - Invalid configuration parameter value<br/>1 - Unexpected error<br/>9414 - Feature not permitted
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSiteStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/delete:
+    post:
+      tags:
+      - Site Management
+      summary: Delete Site
+      description: Delete the site.
+      operationId: deleteSite
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        schema:
+          type: string
+        example: 15
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/add:
+    post:
+      tags:
+      - Site Management
+      summary: Add a Site
+      description: Add a new site to an account. If the site already exists, its status is returned.
+      operationId: addSite
+      parameters:
+      - name: domain
+        in: query
+        description: 'The domain name of the site. For example: <a href="www.example.com">www.example.com</a>, <a href="hello.example.com">www.example.com</a>, <a href="example.com">www.example.com</a>'
+        required: true
+        schema:
+          type: string
+        example: example.imperva.com
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        schema:
+          type: string
+        example: 10
+      - name: ref_id
+        in: query
+        description: Customer specific identifier for this operation
+        schema:
+          type: string
+        example: 11
+      - name: send_site_setup_emails
+        in: query
+        description: If this value is false, end users will not get emails about the add site process such as DNS instructions and SSL setup.
+        schema:
+          type: string
+        example: false
+      - name: site_ip
+        in: query
+        description: Manually set the web server IP/CNAME
+        schema:
+          type: string
+        example: 1.2.3.4
+      - name: force_ssl
+        in: query
+        description: If this value is true, manually set the site to support SSL.<br/>This option is only available for sites with manually configured IP/CNAME and for specific accounts.
+        schema:
+          type: string
+        example: true
+      - name: naked_domain_san
+        in: query
+        description: 'Use “true” to add the naked domain SAN to a www site’s SSL certificate. Default value: true'
+        schema:
+          type: string
+        example: true
+      - name: wildcard_san
+        in: query
+        description: 'Use “true” to add the wildcard SAN or “false” to add the full domain SAN to the site’s SSL certificate. Default value: true'
+        schema:
+          type: string
+        example: true
+      - name: log_level
+        in: query
+        description: Available only for customers that purchased the Logs Integration SKU.<br/>Sets the log reporting level for the site. Options are “full”, “security”, “none” and default
+        schema:
+          type: string
+        example: full
+      - name: logs_account_id
+        in: query
+        description: Available only for customers that purchased the Logs Integration SKU.<br/>Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters
+        schema:
+          type: string
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3001 - Domain invalid<br/>3002 - Site is on the CloudFlare network<br/>3003 - Site requires SSL<br/>3004 - Domain belongs to a known service</br>3005 - Site is on a service<br/>3006 - Site requires multiple IPs support<br/>3011 - Site unresolvable<br/>3012 - Site unreachable<br/>3013 -Site already protected by the service<br/>3014 - Number of allowed sites exceeded.<br/>3015 - Internal error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSiteStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/configure/acl:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Site Access Control List (ACL) Configuration
+      description: Use this operation to change the ACL configuration of a site. To modify the configuration for a specific ACL rule, its values are required, as documented below. To delete an entire ACL list, send an empty string as the list values.
+      operationId: modifySiteAclConfiguration
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 15
+      - name: rule_id
+        in: query
+        description: The id of the acl, e.g api.acl.blacklisted_ips.<br/>Values for the rule_id parameter:<br/><ul><li><b>api.acl.blacklisted_countries</b> Visitors from denylisted countries and/or continents.</li><li><b>api.acl.blacklisted_urls</b> Visitors from denylisted URLs.</li><li><b>api.acl.blacklisted_ips</b> Visitors from denylisted IPs.</li><li><b>api.acl.whitelisted_ips</b> Visitors from allowlisted IPs.</li></ul>
+        required: true
+        schema:
+          type: string
+        example: 548723
+      - name: urls
+        in: query
+        description: A comma separated list of resource paths. For example, /home and /admin/index.html are resource paths, however <a href="http://www.example.com/home">http://www.example.com/home</a> is not. Each URL should be encoded separately using percent encoding as specified by RFC 3986 (<a href="http://tools.ietf.org/html/rfc3986#section-2.1">http://tools.ietf.org/html/rfc3986#section-2.1</a>). An empty URL list will remove all URLs
+        schema:
+          type: string
+        example: /home
+      - name: url_patterns
+        in: query
+        description: 'A comma separated list of url patterns, one of: contains | equals | prefix | suffix | not_equals | not_contain | not_prefix | not_suffix. The patterns should be in accordance with the matching urls sent by the urls parameter'
+        schema:
+          type: string
+        example: contains
+      - name: countries
+        in: query
+        description: A comma separated list of country codes
+        schema:
+          type: string
+        example: US
+      - name: continents
+        in: query
+        description: A comma separated list of continent codes
+        schema:
+          type: string
+        example: SA
+      - name: ips
+        in: query
+        description: 'A comma separated list of IPs or IP ranges, e.g: 192.168.1.1, 192.168.1.1-192.168.1.100 or 192.168.1.1/24'
+        schema:
+          type: string
+        example: 192.168.1.1/24
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>1 - Unexpected error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSiteStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/data-privacy/show:
+    post:
+      tags:
+      - Site Management
+      summary: Get Site Data Storage Region
+      description: Use this operation to get the site data region.
+      operationId: getDataRegion
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9415 - Operation not allowed<br/>14002 - No region for account
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSetDataRegion'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/configure/allowlist:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Allow Lists Configuration
+      description: Use this operation to set allow lists to security rules or ACLs. To update an existing allow list, send its ID in the id parameter. If the id parameter does not exist a new allow list will be created.
+      operationId: modifySiteAllowListsConfiguration
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: string
+        example: 15
+      - name: rule_id
+        in: query
+        description: The id of the rule (either a security or an acl rule), e.g api.threats.sql_injection, api.threats.cross_site_scripting, api.threats.illegal_resource_access
+        required: true
+        schema:
+          type: string
+        example: 548723
+      - name: allowlist_id
+        in: query
+        description: The id (an integer) of the allow list to be set. This field is optional - in case no id is supplied, a new allow list will be created.
+        required: true
+        schema:
+          type: string
+        example: 433245
+      - name: delete_allowlist
+        in: query
+        description: An optional boolean parameter. If it is set to "true" and a allow list id is sent, the allow list will be deleted.
+        schema:
+          type: string
+        example: false
+      - name: urls
+        in: query
+        description: A comma separated list of resource paths.</br>For example, /home and /admin/index.html are resource paths, while <a href="http://www.example.com/home">http://www.example.com/home</a> is not.</br>Each URL should be encoded separately using percent encoding as specified by RFC 3986 (<a href="http://tools.ietf.org/html/rfc3986#section-2.1">http://tools.ietf.org/html/rfc3986#section-2.1</a>).<br/>An empty URL list will remove all URLs.
+        schema:
+          type: string
+        example: /home
+      - name: countries
+        in: query
+        description: A comma separated list of country codes.
+        schema:
+          type: string
+        example: US
+      - name: continents
+        in: query
+        description: A comma separated list of continent codes.
+        schema:
+          type: string
+        example: SA
+      - name: ips
+        in: query
+        description: 'A comma separated list of IPs or IP ranges, e.g: 192.168.1.1, 192.168.1.1-192.168.1.100 or 192.168.1.1/24'
+        schema:
+          type: string
+        example: 192.168.1.1/24
+      - name: client_app_types
+        in: query
+        description: A comma separated list of client application types
+        schema:
+          type: string
+        example: Browser
+      - name: client_apps
+        in: query
+        description: A comma separated list of client application IDs.
+        schema:
+          type: string
+        example: 3
+      - name: parameters
+        in: query
+        description: A comma separated list of encoded parameters.
+        schema:
+          type: string
+      - name: user_agents
+        in: query
+        description: A comma separated list of encoded user agents.
+        schema:
+          type: string
+        example: Googlebot-2.1
+      - name: exception_id_only
+        in: query
+        description: Return only the new/edited exception id.
+        schema:
+          type: string
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSiteStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/configure/security:
+    post:
+      tags:
+      - Site Management
+      summary: Modify Site Security Configuration
+      description: Use this operation to change the security configuration of a site. To modify the configuration for a specific rule, additional parameters may be required, as documented below.
+      operationId: modifySiteSecurityConfiguration
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 15
+      - name: rule_id
+        in: query
+        description: ID of the security rule to change.<br/>Values for the rule_id parameter:<br/><ul><li>api.threats.bot_access_control</li><li>api.threats.sql_injection</li><li>api.threats.cross_site_scripting</li><li>api.threats.backdoor</li><li>api.threats.ddos</li><li>api.threats.remote_file_inclusion</li></ul>
+        required: true
+        schema:
+          type: string
+        example: 578942
+      - name: block_bad_bots
+        in: query
+        description: 'Whether or not to block bad bots. Possible values: true, false'
+        schema:
+          type: string
+        example: true
+      - name: challenge_suspected_bots
+        in: query
+        description: 'Whether or not to send a challenge to clients that are suspected to be bad bots (CAPTCHA for example). Possible values: true, false'
+        schema:
+          type: string
+        example: true
+      - name: activation_mode
+        in: query
+        description: 'Possible values: off, auto, on<br/><ul><li><b>off</b> security measures are disabled even if site is under a DDoS attack</li><li><b>auto</b> security measures will be activated automatically when the system suspects site is under a DDoS attack</li><li><b>on</b> security measures are enabled even if site is not under a DDoS attack</li></ul>The syntax is as follows:<rule_id>.activation_mode.<value> For example, for ''off'', use ''activation_mode=api.threats.ddos.activation_mode.off.<br/><b>Note:</b> This parameter is relevant and required for a DDoS rule only -- where rule_id=api.threats.ddos.'
+        schema:
+          type: string
+        example: 'off'
+      - name: security_rule_action
+        in: query
+        description: The action that should be taken when a threat is detected, for example:<br/>api.threats.action.block_ip. Different actions are allowed per different threats, e.g. backdoors may only be quarantined, ignored, or trigger an alert.<br/>Values for the security_rule_action parameter:<br/><ul><li><b>api.threats.action.disabled</b> Threat is not blocked, site owner is not notified.</li><li><b>api.threats.action.alert</b> Threat is not blocked, site owner is notified.</li><li><b>api.threats.action.block_request</b> Threat blocked by stopping the request, site owner is notified.</li><li><b>api.threats.action.block_user</b> Threat blocked by stopping the request. Additional requests by the client application will be automatically blocked for a duration of several minutes. Site owner is notified.</li><li><b>api.threats.action.block_ip</b> Threat blocked by stopping the request. Additional requests from the same IP addresses will be automatically blocked for a duration of several minutes. Site owner is notified.</li><li><b>api.threats.action.quarantine_url</b> Relevant only for Backdoor Protect. When detecting a backdoor, additional requests to the URL of the backdoor will be automatically blocked. Site owner is notified.</li></ul>
+        schema:
+          type: string
+        example: api.threats.action.alert
+      - name: quarantined_urls
+        in: query
+        description: 'Removes quarantined URLs from the backdoor protection list, as defined in the Cloud Security Console Website Settings > WAF Settings > Backdoor Protect.<br/>To remove a URL from the backdoor protection list, use the following parameters with the specified values:<br/>quarantined_urls: <URL full path><br/>rule_id: api.threats.backdoor<br/>security_rule_action: api.threats.action.quarantine_url'
+        schema:
+          type: string
+        example: www.example.com
+      - name: ddos_traffic_threshold
+        in: query
+        description: Consider site to be under DDoS if the request rate is above this threshold.<br/>The valid values are 10, 20, 50, 100, 200, 500, 750, 1000, 2000, 3000, 4000, 5000
+        schema:
+          type: integer
+          format: int64
+        example: 1500
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9414 - Feature not permitted<br/>9415 - Operation not allowed<br/>2 - Invalid input
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSiteStatus'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/report:
+    post:
+      tags:
+      - Site Management
+      summary: Get Site Report
+      description: Use this operation to get a report for a site. Reports are sent using Base64 encoding.
+      operationId: getSiteReport
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: report
+        in: query
+        description: 'The report to get. One of: pci-compliance'
+        required: true
+        schema:
+          type: string
+        example: pci-compliance
+      - name: format
+        in: query
+        description: 'The format to get the report in. One of: pdf | html'
+        required: true
+        schema:
+          type: string
+        example: pdf
+      - name: time_range
+        in: query
+        description: 'Time range to fetch data for.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>'
+        required: true
+        schema:
+          type: string
+        example: last_7_days
+      - name: start
+        in: query
+        description: 'Start date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>'
+        schema:
+          type: string
+        example: 1610356734
+      - name: end
+        in: query
+        description: 'End date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>'
+        schema:
+          type: string
+        example: 1610356734
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>5001 - Report invalid<br/>5002 - Format invalid
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultReport'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/hostname/purge:
+    post:
+      tags:
+      - Site Management
+      summary: Purge Hostname from Cache
+      description: Use this operation to purge the hostname from the cache. This API is for customers who use the same CNAME provided by Imperva for multiple hostnames and would like to change the CNAME for a particular hostname. Purging the hostname is required for the CNAME change to take effect.
+      operationId: purgeHostname
+      parameters:
+      - name: host_name
+        in: query
+        description: The hostname to purge from the cache
+        schema:
+          type: string
+        example: example.com
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>3015 - Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/htmlinjections:
+    post:
+      tags:
+      - Site Management
+      summary: Get HTML Injection Rules
+      description: Use this operation to list all the HTML Injection rules
+      operationId: getHtmlInjectionRules
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 15
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultHtmlInjections'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/configure/htmlInjections:
+    post:
+      tags:
+      - Site Management
+      summary: Add, Replace or Remove a HTML Injection Rule
+      description: Use this operation to add a new HTML injection rule, or to replace or remove an existing rule.
+      operationId: setHtmlInjectionRule
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 15
+      - name: url
+        in: query
+        description: The URL where the content is injected
+        required: true
+        schema:
+          type: string
+        example: /home
+      - name: url_pattern
+        in: query
+        description: 'The url pattern. One of: contains | not_contains | equals | not_equals | prefix | suffix | not_prefix | not_suffix'
+        required: true
+        schema:
+          type: string
+        example: contains
+      - name: location
+        in: query
+        description: The location of the injection inside the URL ('head' or 'body_end')
+        required: true
+        schema:
+          type: string
+        example: head
+      - name: content
+        in: query
+        description: The injected HTML snippet, Base64-encoded
+        schema:
+          type: string
+        example: SGVsbG8gV29ybGQh
+      - name: delete_content
+        in: query
+        description: 'Whether or not to delete existing HTML content.<br/>Possible values: true/false'
+        schema:
+          type: boolean
+        example: false
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultHtmlInjections'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/customCertificate/upload:
+    post:
+      tags:
+      - Site Management
+      summary: Upload Custom Certificate
+      description: 'Use this operation to upload custom certificate for your site. The following SSL certificate file formats are supported: PFX, PEM, CER.'
+      operationId: uploadCustomCertificate
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: certificate
+        in: query
+        description: The certificate file in base64 format
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: The private key of the certificate in base64 format. Optional in case of PFX certificate file format
+        required: true
+        schema:
+          type: string
+      - name: passphrase
+        in: query
+        description: "The passphrase used to protect your SSL certificate\t"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>4205 - Site does not have SSL<br/>9414 - Feature not permitted<br/>9414 - Feature not permitted</br>3015 - Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/customCertificate/remove:
+    post:
+      tags:
+      - Site Management
+      summary: Remove Custom Certificate
+      description: Use this operation to remove custom certificate.
+      operationId: removeCustomCertificate
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        schema:
+          type: integer
+          format: int64
+        example: 5437773
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>4205 - Site does not have SSL<br/>9414 - Feature not permitted<br/>9414 - Feature not permitted</br>3015 - Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/customCertificate/csr:
+    post:
+      tags:
+      - Site Management
+      summary: Create New CSR
+      description: Use this operation to create a certificate signing request (CSR) for your site.
+      operationId: createNewCSR
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: email
+        in: query
+        description: 'Email address. For example: joe@example.com'
+        schema:
+          type: string
+        example: joe@example.com
+      - name: country
+        in: query
+        description: The two-letter ISO code for the country where your organization is located
+        schema:
+          type: string
+        example: IL
+      - name: state
+        in: query
+        description: The state/region where your organization is located. This should not be abbreviated
+        schema:
+          type: string
+        example: IL
+      - name: city
+        in: query
+        description: The city where your organization is located
+        schema:
+          type: string
+        example: JER
+      - name: organization
+        in: query
+        description: The legal name of your organization. This should not be abbreviated or include suffixes such as Inc., Corp., or LLC
+        schema:
+          type: string
+        example: imperva
+      - name: organization_unit
+        in: query
+        description: The division of your organization handling the certificate. For example, IT Department
+        schema:
+          type: string
+        example: IT Department
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>4205 - Site does not have SSL<br/>9414 - Feature not permitted<br/>9414 - Feature not permitted</br>3015 - Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/data-privacy/region-change:
+    post:
+      tags:
+      - Site Management
+      summary: Set Site Data Storage Region
+      description: Use this operation to set the site data region.
+      operationId: setDataRegion
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: data_storage_region
+        in: query
+        description: The data region to use.
+        required: true
+        schema:
+          type: string
+        example: US
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultSetDataRegion'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/data-privacy/show-override-by-geo:
+    post:
+      tags:
+      - Site Management
+      summary: List Available PoPs for Denylist/Allowlist
+      description: Use this operation to list all PoPs that are available to add to a site’s blacklist or allowlist.
+      operationId: getOverrideSiteRegionsByGeo
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/data-privacy/override-by-geo:
+    post:
+      tags:
+      - Site Management
+      summary: Set Site Regions by Origin Geolocation
+      description: Use this operation to set the data storage region for each new site based on the geolocation of the origin server.
+      operationId: setOverrideSiteRegionsByGeo
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: override_site_regions_by_geo
+        in: query
+        description: A boolean parameter. If it is set to "true", the data storage region for each new site will be based on the geolocation of the origin server.
+        required: true
+        schema:
+          type: boolean
+        example: 10
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/caa/check-compliance:
+    post:
+      tags:
+      - Site Management
+      summary: Check CAA compliance
+      description: Check site’s associated SANs for CAA compliance. If a given SAN is compliant, its SSL domain validation status is updated accordingly.This operation returns an updated list of the site’s associated SANs that are not compliant. An empty list indicates that all SANs are compliant.
+      operationId: checkCAACompliance
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaaComplianceCheckResult'
+  /api/prov/v1/sites/moveSite:
+    post:
+      tags:
+      - Site Management
+      summary: Move site
+      description: Use this operation to move a site from its account to another account.
+      operationId: moveSite
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to move
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: destination_account_id
+        in: query
+        description: The numeric identifier of the account which the site will be moved to
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 15
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9415 - Operation not allowed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultMoveSite'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/incapRules/priority/set:
+    post:
+      tags:
+      - Site Management
+      summary: Set Rule Priority
+      description: Use this operation to change delivery rule's priority.
+      operationId: setPriority
+      parameters:
+      - name: rule_id
+        in: query
+        description: Rule ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 534663
+      - name: priority
+        in: query
+        description: New priority for the selected rule
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>2 - Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetPriorityResponse'
+  /api/prov/v1/sites/incapRules/edit:
+    post:
+      tags:
+      - Site Management
+      summary: Edit Rule
+      description: Use this operation to edit an existing rule (Delivery, Security or Rate).
+      operationId: editCustomRule
+      parameters:
+      - name: action
+        in: query
+        description: Rule action.<br/><br/>Possible action parameter values for Delivery Rules:<br/><ul><li><b>RULE_ACTION_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_SIMPLIFIED_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_REWRITE_URL</b> Modify the path to which a specific request is targeted.</li><li><b>RULE_ACTION_REWRITE_HEADER</b> Modify or add a request header before passing traffic to the origin server.</li><li><b>RULE_ACTION_REWRITE_COOKIE</b> Modify or add cookies that are sent by the client to the origin server. The cookie name and value should be indicated.</li><li><b>RULE_ACTION_DELETE_HEADER</b> Remove a specific request header, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_DELETE_COOKIE</b> Remove a specific cookie set on the client, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_FORWARD_TO_DC</b> Define the data center to which a specific request will be sent.</li><li><b>RULE_ACTION_FORWARD_TO_PORT</b> Define the port to which a specific request will be sent.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_HEADER</b> Modify or add a header to the response received from the origin server.</li><li><b>RULE_ACTION_RESPONSE_DELETE_HEADER</b> Remove a specific response header, which means that it won't be returned to the client.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_RESPONSE_CODE</b> Modify the response code received from the origin server.</li></ul><br/>Possible action parameter values for security rules:<br/><ul><li><b>RULE_ACTION_ALERT</b> Generate a non blocking alert for this event.</li><li><b>RULE_ACTION_BLOCK</b> Block the current request and generate an alert for this event.</li><li><b>RULE_ACTION_BLOCK_USER</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_BLOCK_IP</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_RETRY</b> Require any client matching the rule filters to support cookies in order to complete the request.</li><li><b>RULE_ACTION_INTRUSIVE_HTML</b> Require any client matching the rule filters to support javascript in order to complete the request. Since the Javascript test is embedded in an HTML page, this action should only be enabled for HTML resources.</li><li><b>RULE_ACTION_CAPTCHA</b> Require any client matching the rule filters to pass a CAPTCHA test in order to complete the request. Since the CAPTCHA test is embedded in an HTML page, this action should only be enabled for HTML resources.</li></ul><br/>Possible action parameter values for counter (rate) rules:<br/><ul><li><b>RULE_ACTION_RATE</b> Count the number of requests received that match the rule filter.</li></ul>
+        schema:
+          type: string
+        example: RULE_ACTION_EXCLUDE
+      - name: rule_id
+        in: query
+        description: Rule ID.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: name
+        in: query
+        description: Rule name.
+        schema:
+          type: string
+        example: rule1
+      - name: filter
+        in: query
+        description: Rule will trigger only a request that matches this filter. For more details on filter guidelines, see <a href="https://docs.imperva.com/csh?context=rule_syntax">Syntax Guide</a>.
+        schema:
+          type: string
+        example: ==
+      - name: response_code
+        in: query
+        description: Redirect rule's response code. Valid values are 302, 301, 303, 307, 308.
+        schema:
+          type: integer
+          format: int32
+        example: 1
+      - name: protocol
+        in: query
+        schema:
+          type: string
+        example: 10
+      - name: add_missing
+        in: query
+        description: Add cookie or header if it doesn't exist (Rewrite cookie rule only)
+        schema:
+          type: boolean
+        example: true
+      - name: from
+        in: query
+        description: The pattern to rewrite.<br/>For RULE_ACTION_REWRITE_URL - The URL to rewrite.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to rewrite.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to rewrite.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response.
+        schema:
+          type: string
+        example: /home.php
+      - name: to
+        in: query
+        description: The pattern to change to.<br/>For RULE_ACTION_REWRITE_URL - The URL to change to.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to change to.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to change to.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response.
+        schema:
+          type: string
+        example: '*/home.html'
+      - name: rewrite_name
+        in: query
+        description: Name of cookie or header to rewrite. Applies only for RULE_ACTION_REWRITE_COOKIE and RULE_ACTION_REWRITE_HEADER.
+        schema:
+          type: string
+        example: rule2
+      - name: dc_id
+        in: query
+        description: Data center to forward request to. Applies only for RULE_ACTION_FORWARD_TO_DC.
+        schema:
+          type: integer
+          format: int64
+        example: 54313
+      - name: allow_caching
+        in: query
+        schema:
+          type: boolean
+        example: true
+      - name: rate_context
+        in: query
+        description: 'The context of the rate counter. Possible values: IP / Session. Applies only to rules using RULE_ACTION_RATE.'
+        schema:
+          type: string
+        example: IP
+      - name: rate_interval
+        in: query
+        description: 'The interval (in seconds) of the rate counter. Possible values: A multiple of 10 from 10-300. Applies only to rules using RULE_ACTION_RATE.'
+        schema:
+          type: integer
+          format: int32
+        example: 5
+      - name: is_test_mode
+        in: query
+        description: Make rule apply only for IP address the API request was sent from.<br/>This option is not available for Simplified Redirect rules.
+        schema:
+          type: boolean
+        example: true
+      - name: port_forwarding_context
+        in: query
+        description: Context for port forwarding. "Use Port Value" or "Use Header Name". Applies only for RULE_ACTION_FORWARD_TO_PORT.
+        schema:
+          type: string
+      - name: port_forwarding_value
+        in: query
+        description: Port number or header name for port forwarding. Applies only for RULE_ACTION_FORWARD_TO_PORT.
+        schema:
+          type: string
+        example: 20
+      - name: multiple_deletions
+        in: query
+        description: Delete multiple header occurrences. Applies only to rules using RULE_ACTION_DELETE_HEADER and RULE_ACTION_RESPONSE_DELETE_HEADER.
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/> 2 - Timerange invalid, 9413 - Unknown/unauthorized site_id<br/> 9415 - Operation not allowed<br/> 3015 - Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/incapRules/add:
+    post:
+      tags:
+      - Site Management
+      summary: Add Rule
+      description: Use this operation to add a rule (Delivery, Security or Rate).
+      operationId: addCustomRule
+      parameters:
+      - name: action
+        in: query
+        description: Rule action. See the possible values in the table below.<br/>Possible action parameter values for Delivery Rules:<br/><ul><li><b>RULE_ACTION_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_SIMPLIFIED_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_REWRITE_URL</b> Modify the path to which a specific request is targeted.</li><li><b>RULE_ACTION_REWRITE_HEADER</b> Modify or add a request header before passing traffic to the origin server.</li><li><b>RULE_ACTION_REWRITE_COOKIE</b> Modify or add cookies that are sent by the client to the origin server. The cookie name and value should be indicated.</li><li><b>RULE_ACTION_DELETE_HEADER</b> Remove a specific request header, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_DELETE_COOKIE</b> Remove a specific cookie set on the client, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_FORWARD_TO_DC</b> Define the data center to which a specific request will be sent.</li><li><b>RULE_ACTION_FORWARD_TO_PORT</b> Define the port to which a specific request will be sent.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_HEADER</b> Modify or add a header to the response received from the origin server.</li><li><b>RULE_ACTION_RESPONSE_DELETE_HEADER</b> Remove a specific response header, which means that it won't be returned to the client.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_RESPONSE_CODE</b> Modify the response code received from the origin server.</li></ul><br/>Possible action parameter values for security rules:<br/><ul><li><b>RULE_ACTION_ALERT</b> Generate a non blocking alert for this event.</li><li><b>RULE_ACTION_BLOCK</b> Block the current request and generate an alert for this event.</li><li><b>RULE_ACTION_BLOCK_USER</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_BLOCK_IP</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_RETRY</b> Require any client matching the rule filters to support cookies in order to complete the request.</li><li><b>RULE_ACTION_INTRUSIVE_HTML</b> Require any client matching the rule filters to support javascript in order to complete the request. Since the Javascript test is embedded in an HTML page, this action should only be enabled for HTML resources.</li><li><b>RULE_ACTION_CAPTCHA</b> Require any client matching the rule filters to pass a CAPTCHA test in order to complete the request. Since the CAPTCHA test is embedded in an HTML page, this action should only be enabled for HTML resources.</li></ul><br/>Possible action parameter values for counter (rate) rules:<br/><ul><li><b>RULE_ACTION_RATE</b> Count the number of requests received that match the rule filter.</li></ul>
+        required: true
+        schema:
+          type: string
+        example: RULE_ACTION_EXCLUDE
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on.
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: name
+        in: query
+        description: Rule name.
+        required: true
+        schema:
+          type: string
+        example: rule1
+      - name: filter
+        in: query
+        description: Rule will trigger only a request that matches this filter. For more details on filter guidelines, see <a href="https://docs.imperva.com/csh?context=rule_syntax">Syntax Guide</a>.<br/>The filter may contain up to 400 characters.
+        required: true
+        schema:
+          type: string
+        example: ==
+      - name: response_code
+        in: query
+        description: Redirect rule's response code. Valid values are 302, 301, 303, 307, 308.
+        schema:
+          type: integer
+          format: int32
+        example: 1
+      - name: protocol
+        in: query
+        schema:
+          type: string
+        example: 10
+      - name: add_missing
+        in: query
+        description: Add cookie or header if it doesn't exist (Rewrite cookie rule only)
+        schema:
+          type: boolean
+        example: true
+      - name: from
+        in: query
+        description: The pattern to rewrite.<br/>For RULE_ACTION_REWRITE_URL - The URL to rewrite.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to rewrite.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to rewrite.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response.
+        schema:
+          type: string
+        example: /home.php
+      - name: to
+        in: query
+        description: The pattern to change to.<br/>For RULE_ACTION_REWRITE_URL - The URL to change to.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to change to.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to change to.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response.
+        schema:
+          type: string
+        example: '*/home.html'
+      - name: rewrite_name
+        in: query
+        description: Name of cookie or header to rewrite. Applies only for RULE_ACTION_REWRITE_COOKIE and RULE_ACTION_REWRITE_HEADER.
+        schema:
+          type: string
+        example: rule2
+      - name: dc_id
+        in: query
+        description: Data center to forward request to. Applies only for RULE_ACTION_FORWARD_TO_DC.
+        schema:
+          type: integer
+          format: int64
+        example: 54313
+      - name: allow_caching
+        in: query
+        schema:
+          type: boolean
+        example: true
+      - name: is_test_mode
+        in: query
+        description: Apply the rule only to the IP address the API request was sent from.<br/>This option is not available for Simplified Redirect rules.
+        schema:
+          type: boolean
+        example: true
+      - name: rate_context
+        in: query
+        description: 'The context of the rate counter. Possible values: IP / Session. Applies only to rules using RULE_ACTION_RATE.'
+        schema:
+          type: string
+        example: Session
+      - name: rate_interval
+        in: query
+        description: 'The interval (in seconds) of the rate counter. Possible values: A multiple of 10 from 10-300. Applies only to rules using RULE_ACTION_RATE.'
+        schema:
+          type: integer
+          format: int32
+        example: 10
+      - name: port_forwarding_context
+        in: query
+        description: Context for port forwarding. "Use Port Value" or "Use Header Name". Applies only for RULE_ACTION_FORWARD_TO_PORT.
+        schema:
+          type: string
+      - name: port_forwarding_value
+        in: query
+        description: Port number or header name for port forwarding. Applies only for RULE_ACTION_FORWARD_TO_PORT.
+        schema:
+          type: string
+        example: 20
+      - name: multiple_deletions
+        in: query
+        description: Delete multiple header occurrences. Applies only to rules using RULE_ACTION_DELETE_HEADER and RULE_ACTION_RESPONSE_DELETE_HEADER.
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input, 3015 - Granularity invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomRuleResponse'
+  /api/prov/v1/sites/incapRules/enableDisable:
+    post:
+      tags:
+      - Site Management
+      summary: Enable or Disable Rule
+      description: Use this operation to enable or disable a rule (Delivery, Security or Rate).
+      operationId: enableDisableCustomRule
+      parameters:
+      - name: rule_id
+        in: query
+        description: Rule id
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: enable
+        in: query
+        description: When true, the rule will be enabled. Set to false to disable
+        required: true
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/> 2 - Timerange invalid, 9413 - Unknown/unauthorized site_id<br/> 9415 - Operation not allowed<br/> 3015 - Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/sites/incapRules/delete:
+    post:
+      tags:
+      - Site Management
+      summary: Delete Data Center
+      description: Use this operation to delete site datacenter.
+      operationId: deleteCustomRule
+      parameters:
+      - name: rule_id
+        in: query
+        description: Rule id
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 4356
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/> 2 - Timerange invalid, 9413 - Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCustomRuleResponse'
+  /api/prov/v1/sites/incapRules/list:
+    post:
+      tags:
+      - Site Management
+      summary: List Rules
+      description: Use this operation to list security, delivery, and rate rules for a given site.
+      operationId: listCustomRules
+      parameters:
+      - name: site_id
+        in: query
+        description: Numeric identifier of the site to operate on
+        required: true
+        schema:
+          type: string
+        example: 10
+      - name: include_incap_rules
+        in: query
+        description: Whether or not security rules be included. Defaults to "Yes".
+        schema:
+          type: string
+        example: true
+      - name: include_ad_rules
+        in: query
+        description: Whether or not delivery rules should be included. Defaults to Yes
+        schema:
+          type: string
+        example: true
+      - name: pageSize
+        in: query
+        description: The number of objects to return in the response. Defaults to 50. Maximum is 100
+        schema:
+          type: string
+        example: 10
+      - name: pageNum
+        in: query
+        description: The page to return starting from 0. Default to 0
+        schema:
+          type: string
+        example: 1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>2 - Invalid input, 9413 - Unknown/unauthorized site_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomRulesResponse'
+  /api/prov/v1/sites/incapRules/account/list:
+    post:
+      tags:
+      - Site Management
+      summary: List Account Rules
+      description: Use this operation to list rules (Delivery, Security or Rate) for all sites under a given account.
+      operationId: listAccountCustomRules
+      parameters:
+      - name: account_id
+        in: query
+        description: Numeric identifier of the account to operate on
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 10
+      - name: include_incap_rules
+        in: query
+        description: Whether or not security rules be included. Defaults to "Yes".
+        schema:
+          type: boolean
+        example: true
+      - name: include_ad_rules
+        in: query
+        description: Whether or not delivery rules should be included. Defaults to "Yes".
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>405 - Api is disabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomRulesResponse'
+components:
+  schemas:
+    ApiResultGetResponseHeaderSettings:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        enabled:
+          type: boolean
+          example: true
+        mode:
+          type: string
+          example: CUSTOM
+        custom_headers:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            example: Header1
+    PerformanceConfigurationApiResult:
+      type: object
+      properties:
+        advanced_caching_rules:
+          type: array
+          example:
+            never_cache_resources:
+            - pattern: SUFFIX
+              url: /test.html
+            always_cache_resources:
+            - pattern: NOT_EQUALS
+              url: /index.html
+              ttl: '5'
+              ttlUnits: SECONDS
+            - pattern: EQUALS
+              url: /home.html
+              ttl: '6'
+              ttlUnits: DAYS
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        acceleration_level:
+          type: string
+          example: advanced
+        async_validation:
+          type: boolean
+          example: true
+        minify_javascript:
+          type: boolean
+          example: true
+        minify_css:
+          type: boolean
+          example: true
+        minify_static_html:
+          type: boolean
+          example: true
+        compress_jpeg:
+          type: boolean
+          example: true
+        compress_jepg:
+          type: boolean
+          example: true
+        progressive_image_rendering:
+          type: boolean
+          example: true
+        aggressive_compression:
+          type: boolean
+          example: true
+        compress_png:
+          type: boolean
+          example: true
+        on_the_fly_compression:
+          type: boolean
+          example: true
+        tcp_pre_pooling:
+          type: boolean
+          example: true
+        comply_no_cache:
+          type: boolean
+          example: true
+        comply_vary:
+          type: boolean
+          example: true
+        use_shortest_caching:
+          type: boolean
+          example: true
+        perfer_last_modified:
+          type: boolean
+          example: true
+        prefer_last_modified:
+          type: boolean
+          example: true
+        disable_client_side_caching:
+          type: boolean
+          example: true
+        cache300x:
+          type: boolean
+          example: true
+        cache_headers:
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+    ListCustomRulesResponse:
+      type: object
+      properties:
+        incap_rules:
+          type: array
+          example:
+            All:
+            - id: '3660'
+              last_7_days_requests_count: '0'
+              name: Ortal
+              action: RULE_ACTION_ALERT
+              filter: ''
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        delivery_rules:
+          type: array
+          example:
+            Redirect:
+            - to: /home.php
+              id: '3648'
+              priority: '1'
+              last_7_days_requests_count: '0'
+              name: Test new
+              action: RULE_ACTION_REWRITE_URL
+              from: '*/home.html'
+              filter: ASN == 1
+            Forward:
+            - id: '3628'
+              priority: '2'
+              last_7_days_requests_count: '0'
+              name: move to rewrite
+              dc_id: '54313'
+              action: RULE_ACTION_FORWARD_TO_DC
+              filter: ''
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        rate_rules:
+          type: array
+          example:
+            Rates:
+            - id: '4723'
+              enabled: 'true'
+              interval: '120'
+              name: Test Rate IP
+              context: IP
+              action: RULE_ACTION_RATE
+              internal_name: test-rate-ip
+              filter: ASN == 2
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    DnsInstructionItem:
+      type: object
+      properties:
+        dns_record_name:
+          type: string
+          example: loginprotectapi1610396334653.incaptest.info
+        set_type_to:
+          type: string
+          example: CNAME
+          enum:
+          - CNAME
+          - A
+          - AAAA
+          - MX
+          - NS
+          - TXT
+          - Unkown
+          - CAA
+        set_data_to:
+          type: array
+          items:
+            type: object
+            example: 67eufzur3g.dev.impervadns.net
+    specific_users_list:
+      type: object
+      properties:
+        email:
+          type: string
+          description: email
+          example: John@example.com
+        name:
+          type: string
+          description: name
+          example: John Doe
+        status:
+          type: string
+          description: status
+          example: INVITATION_SENT
+    ApiResultReport:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        format:
+          type: string
+          example: pdf
+          enum:
+          - html
+          - xml
+          - amf
+          - pdf
+          - flash
+          - json
+          - mail
+          - csv
+          - statistics
+          - syslog
+        report:
+          type: string
+          example: JVBERi0xLjUNCiXvv73vv73vv73vv70NCjEgMCBvYmoNCjw8L1R5cGUvQ2F0YWxvZy9QYWdlcyAyIDAgUi9MYW5nKGVuLVVT ...
+    IncapRuleApiResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        name:
+          type: string
+          example: Block Click Worms
+        action:
+          type: string
+          example: api.rule_action_type.rule_action_block
+        rule:
+          type: string
+          example: ClientIP == 1.2.3.4
+        creation_date:
+          type: integer
+          format: int64
+        updated_by:
+          type: string
+          example: John
+        updated_at:
+          type: integer
+          format: int64
+          example: 1611228121241
+        comment:
+          type: string
+          example: rule comment
+    ApiResultAddCacheRule:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        rule_id:
+          type: integer
+          format: int64
+          example: 10
+    GetPopLevelCacheSettingsApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        enabled:
+          type: boolean
+          example: true
+    ApiResultHtmlInjections:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        html_injections:
+          type: array
+          items:
+            $ref: '#/components/schemas/HtmlInjectionItem'
+    CaaComplianceCheckResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          format: int32
+        res_message:
+          type: string
+        non_compliant_sans:
+          type: array
+          items:
+            type: object
+            example: '*.caa.incaptest.co'
+    RewritePort:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string
+    HtmlInjectionItem:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /
+        url_pattern:
+          type: string
+          example: prefix
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        location:
+          type: string
+          example: head
+        content:
+          type: string
+          example: Some content
+    ApiResultGetCacheMode:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        cache_mode:
+          type: string
+          example: static_and_dynamic
+    ApiResultDomainEmails:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        domain_emails:
+          type: array
+          items:
+            type: object
+            example: admin.example.com
+    SiteConfigurationWarning:
+      type: object
+      properties:
+        type:
+          type: string
+          example: CNAME
+          enum:
+          - CNAME
+          - A
+          - AAAA
+          - MX
+          - NS
+          - TXT
+          - Unkown
+          - CAA
+        set_data_to:
+          type: array
+          items:
+            type: object
+            example: 67eufzur3g.dev.impervadns.net
+    ApiResultGetRewritePorts:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        port:
+          $ref: '#/components/schemas/RewritePort'
+        ssl_port:
+          $ref: '#/components/schemas/RewritePort'
+    IsCacheShieldEnabledApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        enabled:
+          type: boolean
+          example: true
+    customAreasExceptions:
+      type: object
+      properties:
+        pattern:
+          type: string
+          example: CONTAINS
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        url:
+          type: string
+          example: /userlist
+    ServerOperationResponse:
+      type: object
+      properties:
+        server_id:
+          type: string
+          example: '2'
+        status:
+          type: string
+          example: ok
+        res:
+          type: string
+          example: '0'
+    ApiResultGetSiteXrayLink:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        url:
+          type: string
+          example: https://
+    ApiResultGetSecureResources:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        secured_resources_mode:
+          type: string
+          example: do_not_cache (i.e. Do not cache HTTPS resources)
+    SetPriorityResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        res:
+          type: string
+          example: '0'
+    SiteCacheRuleResponse:
+      type: object
+      example:
+        HTTP_CACHE_FORCE_UNCACHEABLE:
+        - id: '3746'
+          name: rule1
+          action: HTTP_CACHE_FORCE_UNCACHEABLE
+          filter: URL ==  "/admin"
+          disabled: 'false'
+          disabledByCacheMode: 'false'
+        HTTP_CACHE_DIFFERENTIATE_BY_COOKIE:
+        - id: '3749'
+          name: rule3
+          action: HTTP_CACHE_DIFFERENTIATE_BY_COOKIE
+          filter: CookieExists == "xGroup"
+          differentiatedByValue: xGroup
+          disabled: 'false'
+          disabledByCacheMode: 'false'
+        HTTP_CACHE_CREATE_TAG:
+        - id: '3745'
+          name: rule4
+          action: HTTP_CACHE_CREATE_TAG
+          filter: User-Agent contains "Iphone" | User-Agent contains "Android"
+          tag: mobile
+          disabled: 'false'
+          disabledByCacheMode: 'false'
+        HTTP_CACHE_IGNORE_PARAMS:
+        - id: '3751'
+          name: rule7
+          action: HTTP_CACHE_IGNORE_PARAMS
+          params: oid
+          filter: ParamExists == "oid"
+          disabled: 'false'
+          disabledByCacheMode: 'false'
+        - id: '3752'
+          name: rule8
+          action: HTTP_CACHE_IGNORE_PARAMS
+          params: xid
+          filter: ParamExists == "xid"
+          disabled: 'false'
+          disabledByCacheMode: 'false'
+        HTTP_CACHE_MAKE_STATIC:
+        - id: '3744'
+          name: rule9
+          action: HTTP_CACHE_MAKE_STATIC
+          ttl: '1'
+          ttlUnit: MINUTES
+          filter: URL ==  "/admin"
+          disabled: 'false'
+          disabledByCacheMode: 'false'
+    LoginProtectApiResult:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        specific_users_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/specific_users_list'
+        send_lp_notifications:
+          type: boolean
+          example: true
+        allow_all_users:
+          type: boolean
+          example: true
+        authentication_methods:
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            example: email
+        urls:
+          type: array
+          items:
+            type: object
+            example: /userlist
+        url_patterns:
+          type: array
+          items:
+            type: object
+            example: CONTAINS
+    RecommendedPopsApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        pops:
+          type: array
+          items:
+            $ref: '#/components/schemas/PopRttResponse'
+        reason:
+          type: string
+          example: N/A
+    PopRttResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ord
+        name:
+          type: string
+          example: Chicago, IL
+        region:
+          type: string
+          example: US Central
+        rtt:
+          type: integer
+          format: int32
+          example: 8
+    ApiResultGetTagResponseHeader:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        header:
+          type: string
+          example: h1
+    ListDataCenterResponse:
+      type: object
+      example:
+      - isActive: true
+        id: '54313'
+        enabled: 'false'
+        isStandBy: 'false'
+        servers:
+        - id: '1034487'
+          enabled: 'true'
+          address: 69.61.27.182
+          isStandby: 'true'
+        contentOnly: 'true'
+    DeleteCustomRuleResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        res:
+          type: integer
+          format: int32
+          example: 0
+    customAreas:
+      type: object
+      properties:
+        pattern:
+          type: string
+          example: CONTAINS
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        url:
+          type: string
+          example: /userlist
+    ApiResultMoveSite:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        status:
+          type: string
+          writeOnly: true
+          enum:
+          - MOVED
+          - PENDING_CA_APPROVAL
+          - FAILED
+    ApiResultSiteStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        site_id:
+          type: integer
+          format: int64
+          example: 10
+        statusEnum:
+          type: string
+          example: pending-dns-changes
+          enum:
+          - pending-dns-changes
+          - fully-configured
+          - pending-select-approver
+          - pending-certificate
+          - unknown
+        status:
+          type: string
+          example: pending-dns-changes
+        domain:
+          type: string
+          example: admin@example.com
+        account_id:
+          type: integer
+          format: int64
+          example: 1
+        acceleration_level:
+          type: string
+          example: advanced
+        site_creation_date:
+          type: integer
+          format: int64
+          example: 1610396346000
+        ips:
+          type: array
+          items:
+            type: object
+            example: 1.2.3.4
+        dns:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnsInstructionItem'
+        original_dns:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnsInstructionItem'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteConfigurationWarning'
+        active:
+          type: string
+          example: active
+          enum:
+          - active
+          - bypass
+        support_all_tls_versions:
+          type: boolean
+          example: true
+        use_wildcard_san_instead_of_full_domain_san:
+          type: boolean
+          example: true
+        add_naked_domain_san:
+          type: boolean
+          example: true
+        set_site_cookies_without_domain:
+          type: boolean
+          example: true
+        additionalErrors:
+          type: array
+          items:
+            type: object
+            example: 1001
+        display_name:
+          type: string
+          example: loginprotectapi1610396334653.incaptest.info
+        security:
+          type: array
+          example:
+            waf:
+              rules:
+              - id: api.threats.bot_access_control
+                name: Bot Access Control
+                block_bad_bots: true
+                challenge_suspected_bots: true
+              - id: api.threats.sql_injection
+                name: SQL Injection
+                action: api.threats.action.block_request
+                action_text: Block Request
+              - id: api.threats.cross_site_scripting
+                name: Cross Site Scripting (XSS)
+                exceptions:
+                - values:
+                  - urls:
+                    - value: /gsddg
+                      pattern: EQUALS
+                    id: api.rule_exception_type.url
+                    name: URL
+                  id: 244711494
+                action: api.threats.action.alert
+                action_text: Alert Only
+              - id: api.threats.illegal_resource_access
+                name: Illegal Resource Access
+                action: api.threats.action.block_user
+                action_text: Block User
+              - id: api.threats.ddos
+                name: DDoS
+                activation_mode: api.threats.ddos.activation_mode.off
+                activation_mode_text: 'Off'
+                ddos_traffic_threshold: api.threats.ddos.ddos_trassic_threshold
+                ddos_traffic_threshold_text: '750'
+              - id: api.threats.backdoor
+                name: Backdoor Protect
+                action: api.threats.action.quarantine_url
+                action_text: Auto-Quarantine
+              - action: api.threats.action.block_ip
+                action_text: Block IP
+                id: api.threats.remote_file_inclusion
+                name: Remote File Inclusion
+            acls:
+              rules:
+              - ips:
+                - 2.3.4.5
+                exceptions:
+                - values:
+                  - id: api.rule_exception_type.url
+                    name: URL
+                    urls:
+                    - value: /home
+                      pattern: EQUALS
+                  id: 493271006
+                id: api.acl.blacklisted_ips
+                name: Visitors from denylisted IPs
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        sealLocation:
+          $ref: '#/components/schemas/APISealLocationItem'
+        ssl:
+          type: array
+          example:
+            origin_server:
+              detected: 'true'
+              detectionStatus: ok
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        siteDualFactorSettings:
+          $ref: '#/components/schemas/SiteDualFactorSettings'
+        login_protect:
+          $ref: '#/components/schemas/LoginProtectApiResult'
+        performance_configuration:
+          $ref: '#/components/schemas/PerformanceConfigurationApiResult'
+        extended_ddos:
+          type: integer
+          format: int32
+          example: 0
+        incap_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncapRuleApiResult'
+    ApiResultGetResourceMapSize:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        resource_map_size:
+          type: integer
+          format: int32
+          example: 34000
+    CustomRuleResponse:
+      type: object
+      properties:
+        rule_id:
+          type: integer
+          format: int64
+          example: 43573
+        status:
+          type: string
+          example: ok
+        res:
+          type: integer
+          format: int32
+          example: 0
+    GetAdvancedCachingSettingsApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        value:
+          type: boolean
+          example: true
+    ApiResultGetCacheSizeLimitLargeMem:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        cache_size_limit_large_mem:
+          type: integer
+          format: int64
+          example: 500
+        unit:
+          type: string
+          example: MB
+    GetCache404SettingsApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        enabled:
+          type: boolean
+          example: true
+        time:
+          type: integer
+          format: int32
+          example: 10
+        time_unit:
+          type: string
+          example: HOURS
+    ApiResultGetMaxRespSize:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        max_resp_size:
+          type: integer
+          format: int32
+          example: 20971520
+        unit:
+          type: string
+          example: BYTES
+    DataCenterResponse:
+      type: object
+      properties:
+        datacenter_id:
+          type: integer
+          format: int32
+          example: 484377
+        status:
+          type: string
+          example: ok
+        res:
+          type: string
+          example: '0'
+    ApiResultSetDataRegion:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        region:
+          type: string
+          example: US
+    ApiResultListSites:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ApiResultSiteStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiResultSiteStatus'
+    ApiResultSetSupportDeprecatedTLSForSite:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        support_all_tls_versions:
+          type: boolean
+          example: true
+        new_A_record:
+          type: string
+          example: 1.2.3.4
+        additional_instructions:
+          type: string
+          example: After the site is moved, update the site’s 'A' records according to the information in Websites General Settings.
+    SiteDualFactorSettings:
+      type: object
+      properties:
+        specificUsers:
+          type: array
+          items:
+            type: string
+            example: lpuser1_api1610396342408@incaptest.info
+        enabled:
+          type: boolean
+          example: false
+        customAreas:
+          type: array
+          items:
+            $ref: '#/components/schemas/customAreas'
+        customAreasExceptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/customAreasExceptions'
+        allowAllUsers:
+          type: boolean
+          example: true
+        shouldSuggestApplicatons:
+          type: boolean
+          example: true
+        allowedMedia:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            example: sms
+            enum:
+            - ga
+            - sms
+            - email
+        shouldSendLoginNotifications:
+          type: boolean
+          example: true
+        application:
+          type: boolean
+          writeOnly: true
+        version:
+          type: integer
+          format: int32
+    APISealLocationItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    GetStaleContentApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        enabled:
+          type: boolean
+          example: true
+        mode:
+          type: string
+          example: ADAPTIVE
+        time:
+          type: integer
+          format: int32
+          example: 10
+        unit:
+          type: string
+          example: HOURS
+  securitySchemes:
+    api_id:
+      type: apiKey
+      name: x-API-Id
+      in: header
+    api_key:
+      type: apiKey
+      name: x-API-Key
+      in: header
+externalDocs:
+  description: Cloud Application Security API Reference
+  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm

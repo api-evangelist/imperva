@@ -1,0 +1,66 @@
+openapi: 3.0.1
+info:
+  title: Cloud Application Security Account Management API
+  license:
+    name: Imperva License Agreement.
+    url: http://www.imperva.com/other/license_agreement.asp
+  version: '1.0'
+  description: Add, delete, and modify accounts. Get account details.
+servers:
+- url: https://my.imperva.com
+  description: Imperva API server
+  variables: {}
+security:
+- api_key: []
+- api_id: []
+tags:
+- name: Management
+paths:
+  /v1/management/jobs/{JobId}/currentRun:
+    delete:
+      operationId: abortJobById
+      summary: ''
+      description: ''
+      tags:
+      - Management
+      security:
+      - basicAuth: []
+      parameters:
+      - name: JobId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ''
+      responses:
+        default:
+          description: successful operation
+  /v1/management/jobs:
+    get:
+      operationId: currentlyRunningJobs
+      summary: ''
+      description: ''
+      tags:
+      - Management
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/JobsDTO'
+components:
+  securitySchemes:
+    api_id:
+      type: apiKey
+      name: x-API-Id
+      in: header
+    api_key:
+      type: apiKey
+      name: x-API-Key
+      in: header
+externalDocs:
+  description: Cloud Application Security API Reference
+  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm

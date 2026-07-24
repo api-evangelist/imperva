@@ -1,0 +1,655 @@
+openapi: 3.0.1
+info:
+  title: Cloud Application Security Account Management DDoS Protection for Individual IPs API
+  license:
+    name: Imperva License Agreement.
+    url: http://www.imperva.com/other/license_agreement.asp
+  version: '1.0'
+  description: Add, delete, and modify accounts. Get account details.
+servers:
+- url: https://my.imperva.com
+  description: Imperva API server
+  variables: {}
+security:
+- api_key: []
+- api_id: []
+tags:
+- name: DDoS Protection for Individual IPs
+  description: Manage IP Protection over TCP/IP settings.
+paths:
+  /api/prov/v1/ddos-protection/edge-ip/add/ip:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Add by CNAME
+      description: 'Use this operation to onboard a public origin IP to the ''IP Protection over TCP'' service.
+
+        If successful, the operation will return the generated Edge IP.'
+      operationId: addSipByIp
+      parameters:
+      - name: origin_ip
+        in: query
+        description: Public origin IP to onboard to service
+        required: true
+        schema:
+          type: string
+        example: 1.2.3.4
+      - name: enable_ha_protocol
+        in: query
+        description: Provide 'true' to enable the Proxy Protocol setting (disabled by default)
+        schema:
+          type: boolean
+        example: true
+      - name: description
+        in: query
+        description: description for the generated Edge IP
+        schema:
+          type: string
+      - name: monitoring_type
+        in: query
+        description: 'Monitoring type for the Edge IP. Possible values: ''ICMP'' (default), ''TCP'' or ''NONE'''
+        schema:
+          type: string
+        example: TCP
+      - name: tcp_monitoring_port
+        in: query
+        description: Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used.
+        schema:
+          type: integer
+          format: int32
+        example: 25
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7002 - IP Protection quota exceeded<br/>7003 - IP cannot be used<br/>7007 - This entity is already protected
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipIp'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/add/cname:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Add by origin IP
+      description: 'Use this operation to onboard a CNAME record to the ''IP Protection over TCP'' service.
+
+        If successful, the operation will return the generated Edge IP.'
+      operationId: addSipByCname
+      parameters:
+      - name: cname
+        in: query
+        description: CNAME record to onboard to service
+        required: true
+        schema:
+          type: string
+        example: imperva.test.com
+      - name: enable_ha_protocol
+        in: query
+        description: Provide 'true' to enable the Proxy Protocol setting (disabled by default)
+        schema:
+          type: boolean
+        example: true
+      - name: description
+        in: query
+        description: Optional description for the generated Edge IP
+        schema:
+          type: string
+      - name: monitoring_type
+        in: query
+        description: 'Monitoring type for the Edge IP. Possible values: ''ICMP'' (default), ''TCP'' or ''NONE'''
+        schema:
+          type: string
+        example: TCP
+      - name: tcp_monitoring_port
+        in: query
+        description: Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used.
+        schema:
+          type: integer
+          format: int32
+        example: 25
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7002 - IP Protection quota exceeded<br/>7007 - This entity is already protected</br>7008 - CNAME cannot be used
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipCname'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/add/dns-with-ip:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Add by DNS and origin IP
+      description: 'Use this operation to onboard a public origin IP with an associated DNS name to the ''IP Protection over TCP'' service.
+
+        If DNS check is enabled, the response will include the list of resolved IPs for the provided domain name, and the operation will only succeed if the provided origin IP will be included in that list.
+
+        If successful, the operation will return the generated Edge IP.'
+      operationId: addSipByDnsAndIp
+      parameters:
+      - name: dns_name
+        in: query
+        description: Domain name to onboard to service
+        required: true
+        schema:
+          type: string
+        example: example.imperva.com
+      - name: origin_ip
+        in: query
+        description: Public origin IP to onboard to service
+        required: true
+        schema:
+          type: string
+        example: 1.2.3.4
+      - name: disable_dns_check
+        in: query
+        description: Provide 'true' to disable DNS resolution check (enabled by default)
+        schema:
+          type: boolean
+        example: true
+      - name: enable_ha_protocol
+        in: query
+        description: Provide 'true' to enable the Proxy Protocol setting (disabled by default)
+        schema:
+          type: boolean
+        example: true
+      - name: description
+        in: query
+        description: description for the generated Edge IP
+        schema:
+          type: string
+      - name: monitoring_type
+        in: query
+        description: 'Monitoring type for the Edge IP. Possible values: ''ICMP'' (default), ''TCP'' or ''NONE'
+        schema:
+          type: string
+        example: TCP
+      - name: tcp_monitoring_port
+        in: query
+        description: Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used.
+        schema:
+          type: integer
+          format: int32
+        example: 25
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7001 - IP not among DNS resolved records<br/>7002 - IP Protection quota exceeded<br/>7003 - IP cannot be used<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7007 - This entity is already protected
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipDnsWithIp'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/add/dns-with-cname:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Add by DNS and CNAME
+      description: 'Use this operation to onboard a CNAME record with an associated DNS name to the ''IP Protection over TCP'' service.
+
+        If DNS check is enabled, the response will include the list of resolved CNAME records for the provided domain name, and the operation will only succeed if the provided CNAME will be included in that list.
+
+        If successful, the operation will return the generated Edge IP.'
+      operationId: addSipByDnsAndCname
+      parameters:
+      - name: dns_name
+        in: query
+        description: Domain name to onboard to service
+        required: true
+        schema:
+          type: string
+        example: example.imperva.com
+      - name: cname
+        in: query
+        description: CNAME record to onboard to service
+        required: true
+        schema:
+          type: string
+        example: imperva.test.com
+      - name: disable_dns_check
+        in: query
+        description: Provide 'true' to disable DNS resolution check (enabled by default)
+        schema:
+          type: boolean
+        example: true
+      - name: enable_ha_protocol
+        in: query
+        description: Provide 'true' to enable the Proxy Protocol setting (disabled by default)
+        schema:
+          type: boolean
+        example: true
+      - name: description
+        in: query
+        description: description for the generated Edge IP
+        schema:
+          type: string
+      - name: monitoring_type
+        in: query
+        description: 'Monitoring type for the Edge IP. Possible values: ''ICMP'' (default), ''TCP'' or ''NONE'
+        schema:
+          type: string
+        example: TCP
+      - name: tcp_monitoring_port
+        in: query
+        description: Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used.
+        schema:
+          type: integer
+          format: int32
+        example: 25
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7002 - IP Protection quota exceeded<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7007 - This entity is already protected<br/>7008 - CNAME cannot be used<br/>7009 - CNAME not among DNS resolved records
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipDnsWithCname'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/edit/ip:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Edit by origin IP
+      description: 'Use this operation to assign a new origin IP to the provided Edge IP under the ''IP Protection over TCP'' service.
+
+        This operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).
+
+        If successful, the operation will return the Edge IP.
+
+        WARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.'
+      operationId: editSipByIp
+      parameters:
+      - name: edge_ip
+        in: query
+        description: Imperva generated Edge IP
+        required: true
+        schema:
+          type: string
+        example: 172.17.14.1
+      - name: origin_ip
+        in: query
+        description: Public origin IP to onboard to service
+        required: true
+        schema:
+          type: string
+        example: 1.2.3.4
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipIp'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/edit/cname:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Edit by CNAME
+      description: 'Use this operation to assign a new CNAME record to the provided Edge IP under the ''IP Protection over TCP'' service.
+
+        This operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS will be overwritten).
+
+        If successful, the operation will return the Edge IP.
+
+        WARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.'
+      operationId: editSipByCname
+      parameters:
+      - name: edge_ip
+        in: query
+        description: Imperva generated Edge IP
+        required: true
+        schema:
+          type: string
+        example: 172.17.14.1
+      - name: cname
+        in: query
+        description: CNAME to onboard to service
+        required: true
+        schema:
+          type: string
+        example: imperva.test.com
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected<br/>7008 - CNAME cannot be used
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipCname'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/edit/dns-with-ip:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Edit by DNS and origin IP
+      description: 'Use this operation to assign a new origin IP with an associated DNS name to the provided Edge IP under the ''IP Protection over TCP'' service.
+
+        This operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).
+
+        If DNS check is enabled, the response will include the list of resolved IPs for the provided domain name, and the operation will only succeed if the provided origin IP is included in that list.
+
+        If successful, the operation will return the Edge IP.
+
+        WARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.'
+      operationId: editSipByDnsAndIp
+      parameters:
+      - name: edge_ip
+        in: query
+        description: Imperva generated Edge IP
+        required: true
+        schema:
+          type: string
+        example: 172.17.14.1
+      - name: dns_name
+        in: query
+        description: Domain name to onboard to service
+        required: true
+        schema:
+          type: string
+        example: imperva.example.com
+      - name: origin_ip
+        in: query
+        description: Public origin IP to onboard to service
+        required: true
+        schema:
+          type: string
+        example: 1.2.3.4
+      - name: disable_dns_check
+        in: query
+        description: Provide 'true' to disable DNS resolution check (enabled by default)
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7001 - IP not among DNS resolved records<br/>7003 - IP cannot be used<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipDnsWithIp'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/edit/dns-with-cname:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Edit by DNS and origin IP
+      description: 'Use this operation to assign a new CNAME record with an associated DNS name to the provided Edge IP under the ''IP Protection over TCP'' service.<br/>This operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).<br/>If DNS check is enabled, the response will include the list of resolved CNAME records for the provided domain name, and the operation will only succeed if the provided CNAME is included in that list.<br/>If successful, the operation will return the Edge IP.<br/>WARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.'
+      operationId: editSipByDnsAndCname
+      parameters:
+      - name: edge_ip
+        in: query
+        description: Imperva generated Edge IP
+        required: true
+        schema:
+          type: string
+        example: 172.17.14.1
+      - name: dns_name
+        in: query
+        description: Domain name to onboard to service
+        required: true
+        schema:
+          type: string
+        example: imperva.example.com
+      - name: cname
+        in: query
+        description: CNAME to onboard to service
+        required: true
+        schema:
+          type: string
+        example: imperva.example.com
+      - name: disable_dns_check
+        in: query
+        description: Provide 'true' to disable DNS resolution check (enabled by default)
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected<br/>7008 - CNAME cannot be used<br/>7009 - CNAME not among DNS resolved records
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApiResultInfraProtectSipDnsWithCname'
+                - $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/edit/ha-protocol:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Edit HA Protocol Setting
+      description: 'Use this operation on the provided Edge IP to toggle its HA Protocol setting on or off.
+
+        By default, this setting is disabled during onboarding unless explicitly set to ''true''.
+
+        WARNING: Do not modify this setting unless you are familiar with the proxy protocol and understand the implications of enabling or disabling it for your account.'
+      operationId: editSipHaProtocol
+      parameters:
+      - name: edge_ip
+        in: query
+        description: Imperva generated Edge IP
+        required: true
+        schema:
+          type: string
+        example: 172.17.14.1
+      - name: enable_ha_protocol
+        in: query
+        description: Provide 'true' to enable the Proxy Protocol setting, 'false' to disable
+        required: true
+        schema:
+          type: boolean
+        example: true
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used</br>7006 - Edge IP not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/edit/monitoring-settings:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Edit Monitoring Settings
+      description: Use this operation on the specified Edge IP to modify its monitoring settings.
+      operationId: editSipMonitoringSettings
+      parameters:
+      - name: edge_ip
+        in: query
+        description: Imperva generated Edge IP
+        required: true
+        schema:
+          type: string
+        example: 172.17.14.1
+      - name: monitoring_type
+        in: query
+        description: 'Monitoring type for the Edge IP. Possible values: ''ICMP'' (default), ''TCP'' or ''NONE'''
+        required: true
+        schema:
+          type: string
+        example: TCP
+      - name: tcp_monitoring_port
+        in: query
+        description: Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used.
+        schema:
+          type: integer
+          format: int32
+        example: 15
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /api/prov/v1/ddos-protection/edge-ip/remove:
+    post:
+      tags:
+      - DDoS Protection for Individual IPs
+      summary: Protected IP over TCP - Remove
+      description: 'Use this operation on the provided Edge IP to remove it from the ''IP Protection over TCP'' service.<br/>WARNING: Any entity already protected by this Edge IP will no longer be protected once the operation is successful, unless duplicate protection was enabled and used.'
+      operationId: removeSip
+      parameters:
+      - name: edge_ip
+        in: query
+        description: Imperva generated Edge IP
+        required: true
+        schema:
+          type: string
+        example: 172.17.14.1
+      responses:
+        '200':
+          description: res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+components:
+  schemas:
+    ApiResultInfraProtectSipDnsWithIp:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        edge_ip:
+          type: string
+          example: 172.17.14.1
+        resolved_ips:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            example: 157.166.226.25
+        origin_ip:
+          type: string
+          example: 157.166.249.10
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    ApiResultInfraProtectSipCname:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        edge_ip:
+          type: string
+          example: 172.17.14.1
+        cname:
+          type: string
+          example: imperva.test.com
+    ApiResultInfraProtectSipDnsWithCname:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        edge_ip:
+          type: string
+          example: 172.17.14.1
+        resolved_cnames:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            example: imperva.test.com
+        cname:
+          type: string
+          example: imperva.test.com
+    ApiResultInfraProtectSipIp:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        edge_ip:
+          type: string
+          example: 172.17.14.1
+        origin_ip:
+          type: string
+          example: 1.2.3.4
+  securitySchemes:
+    api_id:
+      type: apiKey
+      name: x-API-Id
+      in: header
+    api_key:
+      type: apiKey
+      name: x-API-Key
+      in: header
+externalDocs:
+  description: Cloud Application Security API Reference
+  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm

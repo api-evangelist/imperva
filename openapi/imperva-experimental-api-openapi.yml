@@ -1,0 +1,647 @@
+openapi: 3.0.1
+info:
+  title: Cloud Application Security Account Management Experimental API
+  license:
+    name: Imperva License Agreement.
+    url: http://www.imperva.com/other/license_agreement.asp
+  version: '1.0'
+  description: Add, delete, and modify accounts. Get account details.
+servers:
+- url: https://my.imperva.com
+  description: Imperva API server
+  variables: {}
+security:
+- api_key: []
+- api_id: []
+tags:
+- name: Experimental
+paths:
+  /experimental/nav/header:
+    get:
+      operationId: getNavigationTree
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: workspace
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/HeaderDTO'
+  /experimental/fam/repository-users:
+    get:
+      operationId: findMatchingUsers
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: prefix
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/FamRepositoryUsersDTO'
+  /experimental/fam/do-users-in-group:
+    get:
+      operationId: getUsersInGroup
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: principalId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fileContext
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: recordsRange
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: sorting
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/DopUsersInGroupDTO'
+  /experimental/fam/do-file-permissions/stat/{dataOwnerId}:
+    get:
+      operationId: getProgressStatistics
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: dataOwnerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/FilePermissionsStatisticsDTO'
+  /experimental/fam/do-file-permissions/signoff/{dataOwnerId}:
+    put:
+      operationId: signOffReview
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: dataOwnerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ''
+      - name: signOffName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        default:
+          description: successful operation
+  /experimental/nav/ui-view-mode:
+    get:
+      operationId: getUIViewMode
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /experimental/gateway/gatewayAlias:
+    post:
+      operationId: createAliasesForGateway
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/KRPAliasDTO'
+  /experimental/fam/do-application-data:
+    get:
+      operationId: getPermissionContent
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/DopApplicationDataDTO'
+  /experimental/waf/certificateAuthorities:
+    post:
+      operationId: uploadCACertificate
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/SomMxCertificateDTO'
+  /experimental/nav/deployment:
+    get:
+      operationId: getDeployment
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /experimental:
+    options:
+      operationId: getOptions
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+  /experimental/nav/workspaces:
+    get:
+      operationId: getWorkspaces
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: workspace
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/definitions/WorkspaceDTO'
+                type: array
+  /experimental/waf/profilePolicies/{policyName}/disableLearningEngine:
+    put:
+      operationId: disableProfileLearning
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: policyName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ''
+      responses:
+        default:
+          description: successful operation
+  /experimental/token:
+    get:
+      operationId: getToken
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /experimental/fam/do-users/{dataOwnerName}:
+    get:
+      operationId: getAuthenticatedUser
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: dataOwnerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ''
+      - name: domain
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/FamRepositoryUserDTO'
+  /experimental/fam/do-operation-navigation:
+    post:
+      operationId: getNextUnReviewedOperation
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/DopOperationNavigationResponseDTO'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/DopOperationNavigationRequestDTO'
+  /experimental/fam/do-file-permissions/{dataOwnerId}:
+    put:
+      operationId: updateFilePermissions
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: dataOwnerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int32
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/DopUpdateOperationDTO'
+  /experimental/fam/do-tree-folder-obj:
+    get:
+      operationId: getFolderObjChildren
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: actionDoneById
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fullPath
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: folderObj
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/TreeFolderObjsDTO'
+  /experimental/fam/do-file-permissions:
+    get:
+      operationId: getPermissionContent
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: actionDoneById
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fullPathJsonStr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: objIdJsonStr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fileContextJsonStr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: filterJsonStr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: pagingJsonStr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: sortingJsonStr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/FilePermissionsDTO'
+  /experimental/flex/checkAlarms:
+    post:
+      operationId: checkFlexProtectAlarms
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        default:
+          description: successful operation
+  /experimental/fam/data-owner-folder/file_path_info:
+    get:
+      operationId: getFileObjectPathInfo
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: objectId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fileContext
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/DopFileObjPathInfoDTO'
+  /experimental/fam/data-owner-folder:
+    get:
+      operationId: getObjectsInFolder
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      parameters:
+      - name: actionDoneById
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: folderObjectId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fileType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fullPath
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: fileContext
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: recordsRange
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/DOFileObjectsDTO'
+  /experimental/fam/do-tree-folder-obj/todo:
+    put:
+      operationId: getNodesTodoStatus
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/DOFolderWithUpdatedToDoDTO'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/DOFoldersToCheckTodoDTO'
+  /experimental/nav/about:
+    get:
+      operationId: getAboutInfo
+      summary: ''
+      description: ''
+      tags:
+      - Experimental
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/FooterDTO'
+components:
+  securitySchemes:
+    api_id:
+      type: apiKey
+      name: x-API-Id
+      in: header
+    api_key:
+      type: apiKey
+      name: x-API-Key
+      in: header
+externalDocs:
+  description: Cloud Application Security API Reference
+  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm
