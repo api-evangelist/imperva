@@ -9,7 +9,20 @@ description: Imperva (a Thales company) is a cybersecurity company providing clo
   for the SecureSphere on-premises MX platform, a Terraform provider for infrastructure-as-code
   provisioning, and a CLI for orchestration and automation workflows.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/imperva.png
 tags:
 - Security
 - Cybersecurity
@@ -24,54 +37,12 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-- aid: imperva:cloud-application-security-api
-  name: Imperva Cloud Application Security API
-  description: REST API for managing Imperva cloud WAF, DDoS protection, CDN, bot
-    management, and API security policies. Enables programmatic site provisioning,
-    security policy configuration, traffic analytics, and account management. Authenticated
-    via API ID and API key obtained from the Imperva management console.
-  humanURL: https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  baseURL: https://api.imperva.com
-  tags:
-  - WAF
-  - DDoS Protection
-  - CDN
-  - Bot Management
-  - Cloud Security
-  properties:
-  - type: Documentation
-    url: https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: OpenAPI
-    url: https://github.com/imperva/imperva-web-api-composer/blob/master/src/assets/cwaf/cwaf-v1-swagger-3.json
-  - type: OpenAPI
-    url: openapi/imperva-cloud-application-security-openapi.yml
-  - url: graphql/imperva-graphql.md
-    type: GraphQL
-- aid: imperva:securesphere-open-api
-  name: Imperva SecureSphere Open API
-  description: REST API for managing on-premises Imperva SecureSphere MX appliances,
-    including site configuration, security policies, server groups, web services,
-    and threat mitigation rules. Authenticated via username and password credentials
-    against the SecureSphere management server host.
-  humanURL: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
-  tags:
-  - On-Premises
-  - SecureSphere
-  - WAF
-  - Security Management
-  properties:
-  - type: Documentation
-    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
-  - type: OpenAPI
-    url: https://github.com/imperva-dev/securesphere-swagger
-  - type: OpenAPI
-    url: openapi/imperva-securesphere-openapi.yml
 - aid: imperva:api-security
   name: Imperva API Security
-  description: API for managing Imperva's API security product, providing visibility
-    into API traffic, detection of API vulnerabilities and threats, and enforcement
-    of API access policies. Integrates with cloud WAF and gateway environments to
-    protect REST, GraphQL, and other API endpoints from attacks.
+  description: >-
+    API for managing Imperva's API security product, providing visibility into API traffic, detection
+    of API vulnerabilities and threats, and enforcement of API access policies. Integrates with cloud
+    WAF and gateway environments to protect REST, GraphQL, and other API endpoints from attacks.
   humanURL: https://docs-cybersec.thalesgroup.com/bundle/basic-api-security/page/80414.htm
   tags:
   - API Security
@@ -82,16 +53,250 @@ apis:
     url: https://docs-cybersec.thalesgroup.com/bundle/basic-api-security/page/80414.htm
 - aid: imperva:data-security-fabric-api
   name: Imperva Data Security Fabric API
-  description: API for managing Imperva's Data Security Fabric (DSF) product, enabling
-    automated deployment and configuration of data security monitoring, auditing,
-    and analytics across cloud and on-premises data repositories including databases
-    and data lakes.
+  description: >-
+    API for managing Imperva's Data Security Fabric (DSF) product, enabling automated deployment and configuration
+    of data security monitoring, auditing, and analytics across cloud and on-premises data repositories
+    including databases and data lakes.
   humanURL: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
   tags:
   - Data Security
   - Database Auditing
   - Compliance
   properties:
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-account-management-api
+  name: Imperva Account Management API
+  description: Add, delete, and modify accounts. Get account details.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Account Management
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-account-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-administration-api
+  name: Imperva Administration API
+  description: The Administration API from Imperva — 8 operation(s) for administration.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Administration
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-administration-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-auth-api
+  name: Imperva Auth API
+  description: The Auth API from Imperva — 2 operation(s) for auth.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-auth-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-conf-api
+  name: Imperva Conf API
+  description: The Conf API from Imperva — 126 operation(s) for conf.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Conf
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-conf-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-ddos-for-networks-test-alerts-api
+  name: Imperva DDoS for Networks Test Alerts API
+  description: Generate dummy notifications to test system alerts.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - DDoS for Networks Test Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-ddos-for-networks-test-alerts-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-ddos-protection-for-individual-ips-api
+  name: Imperva DDoS Protection for Individual IPs API
+  description: Manage IP Protection over TCP/IP settings.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - DDoS Protection for Individual IPs
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-ddos-protection-for-individual-ips-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-experimental-api
+  name: Imperva Experimental API
+  description: The Experimental API from Imperva — 24 operation(s) for experimental.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Experimental
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-experimental-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-integrations-api
+  name: Imperva Integrations API
+  description: Implement integrations with the Imperva service.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-integrations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-login-protect-api
+  name: Imperva Login Protect API
+  description: Provision Login Protect users and configure protected pages.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Login Protect
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-login-protect-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-management-api
+  name: Imperva Management API
+  description: The Management API from Imperva — 2 operation(s) for management.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Management
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-site-management-api
+  name: Imperva Site Management API
+  description: Add, remove, and update sites.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Site Management
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-site-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-status-api
+  name: Imperva Status API
+  description: The Status API from Imperva — 1 operation(s) for status.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-status-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
+  - type: Documentation
+    url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
+- aid: imperva:imperva-traffic-statistics-and-logs-api
+  name: Imperva Traffic Statistics and Logs API
+  description: Retrieve traffic statistics and logs for sites or accounts.
+  humanURL: >-
+    https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  baseURL: https://api.imperva.com
+  tags:
+  - Traffic Statistics and Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/imperva-traffic-statistics-and-logs-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
+  - type: GraphQL
+    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 common:
