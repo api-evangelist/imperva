@@ -5,7 +5,7 @@
       "source": "https://www.imperva.com/blog/feed/",
       "feed_url": "https://www.imperva.com/blog/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 7,
       "method": "feed"
     },
     {
@@ -13,9 +13,10 @@
       "feed_url": "https://x.com/imperva",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
-  "post_count": 19,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 26,
+  "fetched": "2026-08-15T12:11:08Z"
 }
