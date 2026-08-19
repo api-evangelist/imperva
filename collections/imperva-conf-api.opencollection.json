@@ -1,0 +1,5946 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management Conf API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conf",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getWebServiceDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createWebService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateWebService",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteWebService",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllServices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getTagObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/tags/:tagName/taggedObjects",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "purpose",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "tagObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/tags/:tagName/taggedObjects",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "unTagObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/tags/:tagName/taggedObjects",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAllKrpAliases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/aliases",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDatasetRecords",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dataSets/:dataSetName/data",
+            "params": [
+              {
+                "name": "dataSetName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateDatasetRecords",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dataSets/:dataSetName/data",
+            "params": [
+              {
+                "name": "dataSetName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "incrementalOperationsOnDataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/dataSets/:dataSetName/data",
+            "params": [
+              {
+                "name": "dataSetName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteAllDatasetRecords",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dataSets/:dataSetName/data",
+            "params": [
+              {
+                "name": "dataSetName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDirectoriesLock",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webProfile/:siteName/:serverGroupName/:webServiceName/:webApplicationName/directories",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "setDirectoriesLock",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webProfile/:siteName/:serverGroupName/:webServiceName/:webApplicationName/directories",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getDBSecurityPoliciesAppliedToApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName/dbSecurityPolicies",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAuditPoliciesAppliedToApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/auditPolicies",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getTrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/trpRules/:serverIp/:listenerPortList",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverIp",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "listenerPortList",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createTrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/trpRules/:serverIp/:listenerPortList",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverIp",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "listenerPortList",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateTrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/trpRules/:serverIp/:listenerPortList",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverIp",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "listenerPortList",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteTrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/trpRules/:serverIp/:listenerPortList",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverIp",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "listenerPortList",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getLogCollectorsByService",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/logCollectors",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createLogCollector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/logCollectors",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAllDBSecurityPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbSecurityPolicies",
+            "params": [
+              {
+                "name": "apply-level",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getLogCollectorByName",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/logCollectors/:logCollectorName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "logCollectorName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateLogCollector",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/logCollectors/:logCollectorName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "logCollectorName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteLogCollector",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/logCollectors/:logCollectorName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "logCollectorName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createDataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dataSets/createDataset",
+            "params": [
+              {
+                "name": "caseSensitive",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getCertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/sslCertificates/:sslKeyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sslKeyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "uploadCertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/sslCertificates/:sslKeyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sslKeyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "removeCertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/sslCertificates/:sslKeyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sslKeyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "applyDataInterfaceToService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName/agents/:agentName/dataInterfaces/:dataInterfaceID",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dataInterfaceID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "unapplyDataInterfaceToService",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName/agents/:agentName/dataInterfaces/:dataInterfaceID",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dataInterfaceID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllDataInterfaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/dataInterfaces",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationCustomPolicies"
+          }
+        },
+        {
+          "info": {
+            "name": "scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/scans"
+          }
+        },
+        {
+          "info": {
+            "name": "createApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:parentApplicationGroupName/applicationGroups/:childApplicationGroupName",
+            "params": [
+              {
+                "name": "parentApplicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "childApplicationGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "scanRecords",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/scanRecords",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getServerGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createServerGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateServerGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteServerGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDBSecurityPoliciesAppliedToApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/dbSecurityPolicies",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getProtectedIPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/protectedIPs",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createAuditPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteAuditPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getURL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webProfile/:siteName/:serverGroupName/:webServiceName/:webApplicationName/url/:urlName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "urlName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "putURL",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webProfile/:siteName/:serverGroupName/:webServiceName/:webApplicationName/url/:urlName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "urlName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteURL",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webProfile/:siteName/:serverGroupName/:webServiceName/:webApplicationName/url/:urlName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "urlName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllTrpRules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/trpRules",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getWebApplicationSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createWebApplicationSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateWebApplicationSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteWebApplicationSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "scanResults",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/scanResults",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/tags/:tagName",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/tags/:tagName",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/tags/:tagName",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "remove",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "delete",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "tagAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/tags/:tagName",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeTagFromAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/tags/:tagName",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webServiceCustomPolicies"
+          }
+        },
+        {
+          "info": {
+            "name": "getAllKrpItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getWebServiceCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webServiceCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createWebServiceCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webServiceCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateWebServiceCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webServiceCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteWebServiceCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webServiceCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createGatewayGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/gatewayGroups/:gatewayGroupName",
+            "params": [
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteGatewayGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/gatewayGroups/:gatewayGroupName",
+            "params": [
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "addAppToAppGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/applications/:siteName/:serverGroupName/:serviceName/:applicationName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeAppFromAppGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/applications/:siteName/:serverGroupName/:serviceName/:applicationName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getService",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createDbService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateDbService",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteService",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getProfile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webProfile/:siteName/:serverGroupName/:webServiceName/:webApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "setProfile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webProfile/:siteName/:serverGroupName/:webServiceName/:webApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "removeAllInIpGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/ipGroups/:ipGroupName/clear",
+            "params": [
+              {
+                "name": "ipGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "exportEnvironment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/envExport",
+            "params": [
+              {
+                "name": "should-fail-on-unsupported-dependency",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAllStreamSignaturesPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/streamSignaturesPolicies"
+          }
+        },
+        {
+          "info": {
+            "name": "getHostToApplicationMappings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/hostToAppMappings",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDatasetColumns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dataSets/:dataSetName/columns",
+            "params": [
+              {
+                "name": "dataSetName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeTableGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/tableGroups/:tableGroupName",
+            "params": [
+              {
+                "name": "tableGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAgentTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/tags",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "setAgentTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/tags",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "addTagsToAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/tags",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "untagAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/tags",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllParameterTypeConfigurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/parameterTypeConfiguration"
+          }
+        },
+        {
+          "info": {
+            "name": "getGateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createSite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/sites/:siteName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateSite",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/sites/:siteName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteSite",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/sites/:siteName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDBConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/dbConnections/:connectionName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createDBConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/dbConnections/:connectionName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateDBConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/dbConnections/:connectionName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteDBConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/dbConnections/:connectionName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllWebServices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "applyAndLockDBSecurityPolicyToApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeAndUnlockDBSecurityPolicyFromApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getServerGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getHttpProtocolSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/httpProtocolSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createHttpProtocolSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/policies/security/httpProtocolSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateHttpProtocolSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/policies/security/httpProtocolSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteHttpProtocolSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/policies/security/httpProtocolSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDBSecurityPoliciesAppliedToService",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/dbSecurityPolicies",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getCPUUsageRestraining",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/Settings/CPUUsageRestraining",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "setCPUUsageRestraining",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/Settings/CPUUsageRestraining",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "moveGatewayToGatewayGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/move/:targetGatewayGroupName",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "targetGatewayGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getActionInActionSet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/actionSets/:actionSetName/:actionName",
+            "params": [
+              {
+                "name": "actionSetName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createActionInActionSet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/actionSets/:actionSetName/:actionName",
+            "params": [
+              {
+                "name": "actionSetName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateActionInActionSet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/actionSets/:actionSetName/:actionName",
+            "params": [
+              {
+                "name": "actionSetName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteActionInActionSet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/actionSets/:actionSetName/:actionName",
+            "params": [
+              {
+                "name": "actionSetName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDBConnectionsByService",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/dbConnections",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getKrpRules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort/krpOutboundRules",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "internalIpHost",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "serverPort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getTableGroupRecords",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/tableGroups/:tableGroupName/data",
+            "params": [
+              {
+                "name": "tableGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateTableGroupRecords",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/tableGroups/:tableGroupName/data",
+            "params": [
+              {
+                "name": "tableGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "incrementalOperationsOnTableGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/tableGroups/:tableGroupName/data",
+            "params": [
+              {
+                "name": "tableGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteAllTableGroupRecords",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/tableGroups/:tableGroupName/data",
+            "params": [
+              {
+                "name": "tableGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllAgents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/agents",
+            "params": [
+              {
+                "name": "taglist",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getFirewallPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/firewallPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createFirewallPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/policies/security/firewallPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateFirewallPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/policies/security/firewallPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteFirewallPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/policies/security/firewallPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getOSConnectionsByServerGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/servers",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createKrpItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPorts",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPorts",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getCertificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/sslCertificates",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getErrorPage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/errorPage",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateErrorPage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/errorPage",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/policies"
+          }
+        },
+        {
+          "info": {
+            "name": "getKrpItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateKrpItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteKrpItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllMxs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/mxs"
+          }
+        },
+        {
+          "info": {
+            "name": "getHostToApplicationMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/hostToAppMappings/:priority",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeHostToApplicationMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/hostToAppMappings/:priority",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/tags",
+            "params": [
+              {
+                "name": "tagPrefix",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "purpose",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllEntriesInGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/ipGroups/:ipGroupName/data",
+            "params": [
+              {
+                "name": "ipGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateIpGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/ipGroups/:ipGroupName/data",
+            "params": [
+              {
+                "name": "ipGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAllHttpProtocolSignaturesPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/httpProtocolSignaturesPolicies"
+          }
+        },
+        {
+          "info": {
+            "name": "getAllGateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/gatewayGroups/:gatewayGroupName/gateways",
+            "params": [
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fullDepth",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createApplicationGroupAsRoot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "scanInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/scanInfo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAllKrpIpAddresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/addresses",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getSystemDefinition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/systemDefinitions/:paramName",
+            "params": [
+              {
+                "name": "paramName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateSystemDefinition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/systemDefinitions/:paramName",
+            "params": [
+              {
+                "name": "paramName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteDataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dataSets/:dataSetName/deleteDataset",
+            "params": [
+              {
+                "name": "dataSetName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getSSLSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/sslSettings/:sslSettingsName",
+            "params": [
+              {
+                "name": "sslSettingsName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createSSLSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/sslSettings/:sslSettingsName",
+            "params": [
+              {
+                "name": "sslSettingsName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateSSLSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/sslSettings/:sslSettingsName",
+            "params": [
+              {
+                "name": "sslSettingsName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteSSLSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/sslSettings/:sslSettingsName",
+            "params": [
+              {
+                "name": "sslSettingsName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "applyAuditPolicyToService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeAuditPolicyFromService",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "apply",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webApplications/:siteName/:serverGroupName/:webServiceName/:webApplicationName/webApplicationCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getGeneralDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/GeneralDetails",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getKrpIpAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/addresses/:ip",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createKrpIpAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/addresses/:ip",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateKrpIpAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/addresses/:ip",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteKrpIpAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/addresses/:ip",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getKrpAlias",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/aliases/:aliasName",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createKrpAlias",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/aliases/:aliasName",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateKrpAlias",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/aliases/:aliasName",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteKrpAlias",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/gateways/:gatewayName/reverseProxy/aliases/:aliasName",
+            "params": [
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllApplicationGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups",
+            "params": [
+              {
+                "name": "fullDepth",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllAuditPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/auditPolicies",
+            "params": [
+              {
+                "name": "apply-level",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllWebApplicationSignaturesPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationSignaturesPolicies"
+          }
+        },
+        {
+          "info": {
+            "name": "getStreamSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/streamSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createStreamSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/policies/security/streamSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateStreamSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/policies/security/streamSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteStreamSignaturesPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/policies/security/streamSignaturesPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "applyWebCustomPolicyToWebService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/webServiceCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getFirewallPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/firewallPolicies"
+          }
+        },
+        {
+          "info": {
+            "name": "testDBConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:serviceName/dbConnections/:connectionName/connectivityStatus",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "runFields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/runFields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAllGatewayGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/gatewayGroups"
+          }
+        },
+        {
+          "info": {
+            "name": "getWebApplicationCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createWebApplicationCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateWebApplicationCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteWebApplicationCustomPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/policies/security/webApplicationCustomPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllSites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/sites"
+          }
+        },
+        {
+          "info": {
+            "name": "restartAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/restart",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllActionSets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/actionSets"
+          }
+        },
+        {
+          "info": {
+            "name": "runTargetDbs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/runDbs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/tests"
+          }
+        },
+        {
+          "info": {
+            "name": "getAllWebApplications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webApplications/:siteName/:serverGroupName/:webServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getKrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort/krpOutboundRules/:priority",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createKrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort/krpOutboundRules/:priority",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateKrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort/krpOutboundRules/:priority",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteKrpRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/krpInboundRules/:gatewayGroupName/:aliasName/:gatewayPort/krpOutboundRules/:priority",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "aliasName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayPort",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAuditPoliciesAppliedToApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName/auditPolicies",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getForwardedConnections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/forwardedConnections",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateForwardedConnections",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/forwardedConnections",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createProtectedIP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/protectedIPs/:IPAddress",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "IPAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroup",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateProtectedIP",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/protectedIPs/:IPAddress",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "IPAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroup",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteProtectedIP",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/protectedIPs/:IPAddress",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "IPAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayGroup",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getDiscoverytSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/Settings/DiscoverySettings",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateDiscoverytSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/Settings/DiscoverySettings",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createHostToApplicationMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/hostToAppMappings/:webApplicationName/:priority",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "applyDBSecurityPolicyToService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeDBSecurityPolicyFromService",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "applyAuditPolicyToApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeAuditPolicyFromApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getWebApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webApplications/:siteName/:serverGroupName/:webServiceName/:webApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createWebApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/webApplications/:siteName/:serverGroupName/:webServiceName/:webApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateWebApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webApplications/:siteName/:serverGroupName/:webServiceName/:webApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteWebApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/webApplications/:siteName/:serverGroupName/:webServiceName/:webApplicationName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webApplicationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "applyAndLockAuditPolicyToApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeAndUnlockAuditPolicyFromApplicationGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/applicationGroups/:applicationGroupName/auditPolicies/:policyName",
+            "params": [
+              {
+                "name": "applicationGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getActionSet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/actionSets/:actionSetName",
+            "params": [
+              {
+                "name": "actionSetName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createActionSet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/actionSets/:actionSetName",
+            "params": [
+              {
+                "name": "actionSetName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteActionSet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/actionSets/:actionSetName",
+            "params": [
+              {
+                "name": "actionSetName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "testOSConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/servers/:ip/connectivityStatus",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "moveAgentToGateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/gateway/:gatewayName",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllSSLSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/sslSettings"
+          }
+        },
+        {
+          "info": {
+            "name": "getSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/Settings/AdvancedConfiguration",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/Settings/AdvancedConfiguration",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteFromAdvancedConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/agents/:agentName/Settings/AdvancedConfiguration",
+            "params": [
+              {
+                "name": "agentName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getParameterTypeConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/parameterTypeConfiguration/:parameterTypeConfigurationName",
+            "params": [
+              {
+                "name": "parameterTypeConfigurationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createParameterTypeConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/parameterTypeConfiguration/:parameterTypeConfigurationName",
+            "params": [
+              {
+                "name": "parameterTypeConfigurationName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateParameterTypeConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/parameterTypeConfiguration/:parameterTypeConfigurationName",
+            "params": [
+              {
+                "name": "parameterTypeConfigurationName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteParameterTypeConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/globalObjects/parameterTypeConfiguration/:parameterTypeConfigurationName",
+            "params": [
+              {
+                "name": "parameterTypeConfigurationName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAuditPoliciesAppliedToService",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbServices/:siteName/:serverGroupName/:dbServiceName/auditPolicies",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getKrpForwardedClientIp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/forwardedClientIp",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateKrpForwardedClientIp",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/forwardedClientIp",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dasAssessment/runs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "applyDBSecurityPolicyToApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "removeDBSecurityPolicyFromApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName/:dbApplicationName/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbApplicationName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createDBSecurityPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteDBSecurityPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/dbSecurityPolicies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getPlugins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/plugins",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updatePlugins",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/webServices/:siteName/:serverGroupName/:webServiceName/plugins",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getTableGroupList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/tableGroups"
+          }
+        },
+        {
+          "info": {
+            "name": "createTableGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/tableGroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getOSConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/servers/:ip",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createOSConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/servers/:ip",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateOSConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/servers/:ip",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteOSConnection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/conf/serverGroups/:siteName/:serverGroupName/servers/:ip",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAllApplications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/conf/dbApplications/:siteName/:serverGroupName/:dbServiceName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dbServiceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

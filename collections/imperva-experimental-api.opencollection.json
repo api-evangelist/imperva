@@ -1,0 +1,487 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management Experimental API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experimental",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getNavigationTree",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/nav/header",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "findMatchingUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/repository-users",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getUsersInGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/do-users-in-group",
+            "params": [
+              {
+                "name": "principalId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fileContext",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recordsRange",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sorting",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getProgressStatistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/do-file-permissions/stat/:dataOwnerId",
+            "params": [
+              {
+                "name": "dataOwnerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "signOffReview",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/experimental/fam/do-file-permissions/signoff/:dataOwnerId",
+            "params": [
+              {
+                "name": "dataOwnerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "signOffName",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getUIViewMode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/nav/ui-view-mode"
+          }
+        },
+        {
+          "info": {
+            "name": "createAliasesForGateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/experimental/gateway/gatewayAlias",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getPermissionContent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/do-application-data"
+          }
+        },
+        {
+          "info": {
+            "name": "uploadCACertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/experimental/waf/certificateAuthorities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getDeployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/nav/deployment"
+          }
+        },
+        {
+          "info": {
+            "name": "getOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://my.imperva.com/experimental"
+          }
+        },
+        {
+          "info": {
+            "name": "getWorkspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/nav/workspaces",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "disableProfileLearning",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/experimental/waf/profilePolicies/:policyName/disableLearningEngine",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/token"
+          }
+        },
+        {
+          "info": {
+            "name": "getAuthenticatedUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/do-users/:dataOwnerName",
+            "params": [
+              {
+                "name": "dataOwnerName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getNextUnReviewedOperation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/experimental/fam/do-operation-navigation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateFilePermissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/experimental/fam/do-file-permissions/:dataOwnerId",
+            "params": [
+              {
+                "name": "dataOwnerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getFolderObjChildren",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/do-tree-folder-obj",
+            "params": [
+              {
+                "name": "actionDoneById",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fullPath",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folderObj",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getPermissionContent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/do-file-permissions",
+            "params": [
+              {
+                "name": "actionDoneById",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fullPathJsonStr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "objIdJsonStr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fileContextJsonStr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filterJsonStr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pagingJsonStr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortingJsonStr",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "checkFlexProtectAlarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/experimental/flex/checkAlarms"
+          }
+        },
+        {
+          "info": {
+            "name": "getFileObjectPathInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/data-owner-folder/file_path_info",
+            "params": [
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fileContext",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getObjectsInFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/fam/data-owner-folder",
+            "params": [
+              {
+                "name": "actionDoneById",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folderObjectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fileType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fullPath",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fileContext",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recordsRange",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getNodesTodoStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/experimental/fam/do-tree-folder-obj/todo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAboutInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/experimental/nav/about"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

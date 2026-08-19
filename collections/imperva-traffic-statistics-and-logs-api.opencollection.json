@@ -1,0 +1,539 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management Traffic Statistics and Logs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Traffic Statistics and Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Infrastructure Protection Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra/stats",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "ip_prefix",
+                "value": "1.1.1.0/24",
+                "type": "query",
+                "description": "Specific Protected IP or IP range. For example, 1.1.1.0/24."
+              },
+              {
+                "name": "traffic",
+                "value": "Blocked",
+                "type": "query",
+                "description": "Specific traffic. One of: Total, Passed, Blocked."
+              },
+              {
+                "name": "traffic_type",
+                "value": "TCP",
+                "type": "query",
+                "description": "A comma separated list of specific traffic types. Any of: UDP, TCP, DNS, DNS_RESPONSE, ICMP, SYN, FRAG, LARGE_SYN, NTP, NETFLOW, SSDP, GENERAL. Cannot be used together with the pop parameter."
+              },
+              {
+                "name": "pop",
+                "value": "tko",
+                "type": "query",
+                "description": "A comma separated list of specific PoP names. For example: iad, tko. Cannot be used together with the traffic_type parameter. For the list of PoP codes and locations, see <a href=\"https://docs.imperva.com/csh?context=pops\">Imperva Data Centers (PoPs)</a>."
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "directionTypes",
+                "value": "INGRESS",
+                "type": "query",
+                "description": "The type of direction(INGRESS/EGRESS) to filter the data"
+              },
+              {
+                "name": "range_type",
+                "value": "INCAPSULA_IP",
+                "type": "query",
+                "description": "Can be one of the following: BGP, PROTECTED_IP"
+              }
+            ]
+          },
+          "docs": "Use this operation to get Infrastructure Protection event information for an account."
+        },
+        {
+          "info": {
+            "name": "Get statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/stats/v1",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to fetch data for.<br/>Note: You must specify either account_id or site_id."
+              },
+              {
+                "name": "time_range",
+                "value": "last_7_days",
+                "type": "query",
+                "description": "Time range to fetch data for.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "Start date in milliseconds since 1970. Used together with the time_range parameter to specify a custom time range.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "End date in milliseconds since 1970. Used together with the time_range parameter to specify a custom time range.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "site_id",
+                "value": "123",
+                "type": "query",
+                "description": "Numeric identifier of the site to fetch data for. Multiple sites can be specified in a comma separated list. For example: 123,124,125.<br/>Note: You must specify either account_id or site_id."
+              },
+              {
+                "name": "stats",
+                "value": "threats",
+                "type": "query",
+                "description": "Statistics to fetch, as specified in the table below. Multiple statistics can be specified in a comma separated list.<br/>Values for the stats parameters:<br/><ul><li><b>visits_timeseries</b> Number of visits by type (Humans/Bots) over time.</li><li><b>hits_timeseries</b> Number of hits by type (Humans/Bots/Blocked) over time and per second.</li><li><b>bandwidth_timeseries</b> Amount of bytes (bandwidth) and bits per second (throughput) transferred via the Imperva network from clients to proxy servers and vice-versa over time.</li><li><b>requests_geo_dist_summary</b> Total number of requests routed via the Imperva network by data center location.</li><li><b>visits_dist_summary</b> Total number of visits per client application and country.</li><li><b>caching</b> Total number of requests and bytes that were cached by the Imperva network.</li><li><b>caching_timeseries</b> Number of requests and bytes that were cached by the Imperva network, with one day resolution, with info regarding the caching mode (standard or advanced).</li><li><b>threats</b> Total number of threats by type with additional information regarding the security rules configuration.</li><li><b>incap_rules</b> List of security rules with total number of reported incidents for each rule.</li><li><b>incap_rules_timeseries</b> List of security rules with a series of reported incidents for each rule with the specified granularity.</li><li><b>delivery_rules</b> List of delivery rules with total number of hits for each rule.</li><li><b>delivery_rules_timeseries</b> List of delivery rules with a series of hits for each rule with the specified granularity.</li></ul>"
+              },
+              {
+                "name": "granularity",
+                "value": "7200000",
+                "type": "query",
+                "description": "Time interval in milliseconds between data points for time series statistics. (See the timeseries values in the table below.)<br/>The default granularity depends on the specified time range, as follows:<br/><ul><li>Time range of less than 24 hours: Default granularity is 7200000 (2 hours).</li><li>Time range of between 24 hours and 30 days: Default granularity is 86400000 (1 day).</li><li>Time range of more than 30 days: Default granularity is 259200000 (3 days).</li></ul>The response includes one result for each interval. For example, if you specify a time range value of last_7_days, the default granularity is 1 day, and the response will return 7 results."
+              }
+            ]
+          },
+          "docs": "Get site statistics for one or more sites. This operation may return multiple statistics, as specified in the stats parameter."
+        },
+        {
+          "info": {
+            "name": "Get Infrastructure Protection Top Items (Table View)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra/top-table",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "ip_range",
+                "value": "INCAPSULA_IP",
+                "type": "query",
+                "description": "The customer's IP range."
+              },
+              {
+                "name": "range_type",
+                "value": "PROTECTED_IP",
+                "type": "query",
+                "description": "One of the following: BGP, PROTECTED_IP"
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "data_type",
+                "value": "SRC_IP",
+                "type": "query",
+                "description": "One of the following: SRC_IP, DST_IP, SRC_PORT_PROTOCOL, DST_PORT_PROTOCOL"
+              },
+              {
+                "name": "metric_type",
+                "value": "BPS",
+                "type": "query",
+                "description": "One of the following: SRC_IP, DST_IP, SRC_PORT_PROTOCOL, DST_PORT_PROTOCOL"
+              },
+              {
+                "name": "mitigation_type",
+                "value": "BLOCK",
+                "type": "query",
+                "description": "One of the following: BLOCK, PASS"
+              },
+              {
+                "name": "aggregation_type",
+                "value": "AVERAGE",
+                "type": "query",
+                "description": "One of the following: PEAK, AVERAGE"
+              },
+              {
+                "name": "data_storage_region",
+                "value": "EU",
+                "type": "query",
+                "description": "The data region to use. If not specified, account's default data region will be used."
+              }
+            ]
+          },
+          "docs": "Use this operation to view the highest peak values and highest average values for a protected IP range during a selected time period."
+        },
+        {
+          "info": {
+            "name": "Get Infrastructure Protection Top Items (Graph View)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra/top-graph",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "ip_range",
+                "value": "INCAPSULA_IP",
+                "type": "query",
+                "description": "The customer's IP range."
+              },
+              {
+                "name": "range_type",
+                "value": "PROTECTED_IP",
+                "type": "query",
+                "description": "One of the following: BGP, PROTECTED_IP"
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "data_type",
+                "value": "SRC_IP",
+                "type": "query",
+                "description": "One of the following: SRC_IP, DST_IP, SRC_PORT_PROTOCOL, DST_PORT_PROTOCOL"
+              },
+              {
+                "name": "metric_type",
+                "value": "BPS",
+                "type": "query",
+                "description": "One of the following: BW, PPS"
+              },
+              {
+                "name": "mitigation_type",
+                "value": "BLOCK",
+                "type": "query",
+                "description": "One of the following: BLOCK, PASS"
+              },
+              {
+                "name": "data_storage_region",
+                "value": "EU",
+                "type": "query",
+                "description": "The data region to use. If not specified, account's default data region will be used."
+              },
+              {
+                "name": "objects",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "A comma separated list of items to fetch data for. e.g., 10.10.10.10, 2.2.2.2. If not specified, top items are automatically fetched."
+              }
+            ]
+          },
+          "docs": "Use this operation to view the highest peak values and highest average values for a protected IP range during a selected time period."
+        },
+        {
+          "info": {
+            "name": "Get Infrastructure Protection Histogram",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra/histogram",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "ip_range",
+                "value": "INCAPSULA_IP",
+                "type": "query",
+                "description": "The customer's IP range."
+              },
+              {
+                "name": "range_type",
+                "value": "PROTECTED_IP",
+                "type": "query",
+                "description": "One of the following: BGP, PROTECTED_IP"
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "mitigation_type",
+                "value": "BLOCK",
+                "type": "query",
+                "description": "One of the following: BLOCK, PASS"
+              },
+              {
+                "name": "data_storage_region",
+                "value": "EU",
+                "type": "query",
+                "description": "The data region to use. If not specified, account's default data region will be used."
+              }
+            ]
+          },
+          "docs": "Use this operation to view the highest packet size values for a protected IP range during a selected time period."
+        },
+        {
+          "info": {
+            "name": "Get visits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/visits/v1",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "time_range",
+                "value": "last_7_days",
+                "type": "query",
+                "description": "Time range to fetch data for. Default is last_7_days.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "Start date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "End date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "page_size",
+                "value": "15",
+                "type": "query",
+                "description": "The number of objects to return in the response. Defaults to 10. Maximum is 100."
+              },
+              {
+                "name": "page_num",
+                "value": "1",
+                "type": "query",
+                "description": "The page to return starting from 0. Default to 0."
+              },
+              {
+                "name": "security",
+                "value": "api.threats.action.block_ip",
+                "type": "query",
+                "description": "Filter the sessions that were handled according to the security-related specifications. Multiple values are supported, e.g.: \"api.threats.action.block_ip, api.threats.sql_injection\"."
+              },
+              {
+                "name": "country",
+                "value": "SE",
+                "type": "query",
+                "description": "Filter the sessions coming from the specified country."
+              },
+              {
+                "name": "ip",
+                "value": "1.2.3.4",
+                "type": "query",
+                "description": "Filter the sessions coming from the specified IP."
+              },
+              {
+                "name": "visit_id",
+                "value": "133077760038625800",
+                "type": "query",
+                "description": "Comma separated list of visit IDs to load."
+              },
+              {
+                "name": "list_live_visits",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to list visits that did not end and that may still be updated.<br/>Possible values: true, false<br/>Default: true"
+              },
+              {
+                "name": "use_previous_region",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to list visits from old region data. Valid only if a data region was changed in the last 90 days. One of: true | false. Default: false"
+              }
+            ]
+          },
+          "docs": "Use this operation to get a log of recent visits to a website."
+        },
+        {
+          "info": {
+            "name": "Upload Public Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/logscollector/upload/publickey",
+            "params": [
+              {
+                "name": "config_id",
+                "value": "5912",
+                "type": "query",
+                "description": "The Logs Collector configuration identifier."
+              },
+              {
+                "name": "public_key",
+                "value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp dkVeG9ypRTuOUq4jocTQBXupcT wqH/gmCxb5xqdp0Dxrac91VsPmmGTNw0vMrcZfXPzRM26zzkhakA9vKR9TobpML3Tv90Gb43XByHjwipYNBxN/nfjCksXigqfqLUtiUODPfSqdwoUk6PJHAUnCvp8boPGaLFiFvwlPwtjBp8lNb4jgMH3Czbbgk3Q p zXIEg024WAGnp NrjsNM1xAuP9ON T096iBJaJqX7H2heWGw/7UqR eMtv7/vGilhi9kX2/sgNe5LDdAqdcWjzeCDXVqzqk rxil kHnAkwJ7eNAi49i4f6Zl6Zyhpf69fI0KOjaCI7QrEXZ1jwLQIDAQAB",
+                "type": "query",
+                "description": "The public key file (2048bit) in base64 format (without password protection)."
+              }
+            ]
+          },
+          "docs": "Available only for Enterprise Plan customers that purchased the Security Logs Integration SKU."
+        },
+        {
+          "info": {
+            "name": "Change Logs Collector Configuration Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/logscollector/change/status",
+            "params": [
+              {
+                "name": "config_id",
+                "value": "5912",
+                "type": "query",
+                "description": "The Logs Collector configuration identifier."
+              },
+              {
+                "name": "logs_config_new_status",
+                "value": "ACTIVE",
+                "type": "query",
+                "description": "The new configuration status of the Logs Collector.\nPossible values: ACTIVE, SUSPENDED"
+              }
+            ]
+          },
+          "docs": "Change the status of the Logs Collector configuration."
+        },
+        {
+          "info": {
+            "name": "Get Infrastructure Protection Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra/events",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "event_type",
+                "value": "GRE_TUNNEL_UP",
+                "type": "query",
+                "description": "A comma separated list of specific event types. Any of: GRE_TUNNEL_UP, GRE_TUNNEL_DOWN, ORIGIN_CONNECTION_GRE_UP, ORIGIN_CONNECTION_GRE_DOWN, ORIGIN_CONNECTION_ECX_UP, ORIGIN_CONNECTION_ECX_DOWN, ORIGIN_CONNECTION_CROSS_CONNECT_UP, ORIGIN_CONNECTION_CROSS_CONNECT_DOWN, DDOS_START_IP_RANGE, DDOS_STOP_IP_RANGE, DDOS_QUIET_TIME_IP_RANGE, EXPORTER_NO_DATA, EXPORTER_BAD_DATA, EXPORTER_GOOD_DATA, MONITORING_CRITICAL_ATTACK, PROTECTED_IP_STATUS_UP, PROTECTED_IP_STATUS_DOWN, PER_IP_DDOS_START_IP_RANGE."
+              },
+              {
+                "name": "ip_prefix",
+                "value": "1.1.1.0/24",
+                "type": "query",
+                "description": "Specific Protected IP or IP range. For example, 1.1.1.0/24."
+              },
+              {
+                "name": "page_size",
+                "value": "2",
+                "type": "query",
+                "description": "The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100"
+              },
+              {
+                "name": "page_num",
+                "value": "1",
+                "type": "query",
+                "description": "The page to return starting from 0. Default: 0"
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              }
+            ]
+          },
+          "docs": "Use this operation to get Infrastructure Protection event information for an account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

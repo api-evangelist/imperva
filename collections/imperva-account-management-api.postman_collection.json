@@ -1,0 +1,1985 @@
+{
+  "item": [
+    {
+      "id": "ea9a3e31-e854-4508-a4d8-c315e438ea43",
+      "name": "Account Management",
+      "description": {
+        "content": "Add, delete, and modify accounts. Get account details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e559fb25-0f30-4786-9cc4-1b372ce41c2a",
+          "name": "Get account login token",
+          "request": {
+            "name": "Get account login token",
+            "description": {
+              "content": "Tokens are used instead of user/password based authentication to log in to the Imperva Cloud Security Console.\nUse this operation to generate a token for an account. The token is valid for 15 minutes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "gettoken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "partner_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the parent id to operate on"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9b767cd-9b9a-46d0-bfbc-ad1d1302db2f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "gettoken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partner_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"generated_token\": \"344ebcaf34dff34\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc5a62e0-9709-4ec4-bd9c-4a42ffb3ab3c",
+          "name": "List managed accounts",
+          "request": {
+            "name": "List managed accounts",
+            "description": {
+              "content": "Available for Reseller accounts only.<br/>Use this operation to get the list of accounts that are managed by account of the API client (the parent account).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>",
+                  "description": "The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_num",
+                  "value": "<string>",
+                  "description": "The page to return starting from 0. Default: '0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aaa1545f-9313-40e2-8851-64602cd06451",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_num",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"accounts\": [\n    {\n      \"email\": \"example@imperva.com\",\n      \"plan_id\": \"ent100\",\n      \"plan_name\": \"Enterprise 100\",\n      \"trial_end_date\": \"1982-08-19T20:50:45.985Z\",\n      \"account_id\": 10,\n      \"John Account\": \"Jhon\",\n      \"user_name\": \"Jhon\",\n      \"logins\": [\n        {\n          \"login_id\": \"demo_account@incapsula.com\",\n          \"email_verified\": true\n        },\n        {\n          \"login_id\": \"demo_account@incapsula.com\",\n          \"email_verified\": true\n        }\n      ],\n      \"log_level\": \"full\",\n      \"support_level\": \"Standard\",\n      \"support_all_tls_versions\": true,\n      \"wildcard_san_for_new_sites\": \"True\",\n      \"naked_domain_san_for_new_www_sites\": true\n    },\n    {\n      \"email\": \"example@imperva.com\",\n      \"plan_id\": \"ent100\",\n      \"plan_name\": \"Enterprise 100\",\n      \"trial_end_date\": \"1946-10-25T13:47:19.063Z\",\n      \"account_id\": 10,\n      \"John Account\": \"Jhon\",\n      \"user_name\": \"Jhon\",\n      \"logins\": [\n        {\n          \"login_id\": \"demo_account@incapsula.com\",\n          \"email_verified\": true\n        },\n        {\n          \"login_id\": \"demo_account@incapsula.com\",\n          \"email_verified\": true\n        }\n      ],\n      \"log_level\": \"full\",\n      \"support_level\": \"Standard\",\n      \"support_all_tls_versions\": true,\n      \"wildcard_san_for_new_sites\": \"Default\",\n      \"naked_domain_san_for_new_www_sites\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed14ad29-07fd-4788-af85-9b57e318050a",
+          "name": "Add a new sub account",
+          "request": {
+            "name": "Add a new sub account",
+            "description": {
+              "content": "Use this operation to add a new sub account to be managed by the account of the API client (the parent account).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "subaccounts",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sub_account_name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the sub account."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_id",
+                  "value": "<long>",
+                  "description": "The newly created account's parent id. If not specified, the invoking account will be assigned as the parent account."
+                },
+                {
+                  "disabled": false,
+                  "key": "ref_id",
+                  "value": "<string>",
+                  "description": "Customer specific identifier for this operation."
+                },
+                {
+                  "disabled": false,
+                  "key": "log_level",
+                  "value": "<string>",
+                  "description": "Sets the log reporting level for the site.<br/>Possible values: full, security, none, default<br/>Available only for customers that purchased the Logs Integration SKU."
+                },
+                {
+                  "disabled": false,
+                  "key": "logs_account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.<br/>Available only for customers that purchased the Logs Integration SKU."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dd4a9b8-58f4-461a-b8ec-cd9636a41e5c",
+              "name": "res - contains the specific error code:<br/>9403 - Unknown/unauthorized account_id<br/>9415 - Operation not allowed<br/>1015 - Maximum number of SubAccounts reached<br/>1003 - Plan ID invalid<br/>1010 - Account exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "subaccounts",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sub_account_name",
+                      "value": "My Sub Account"
+                    },
+                    {
+                      "key": "parent_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "ref_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "log_level",
+                      "value": "full"
+                    },
+                    {
+                      "key": "logs_account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"sub_account\": {\n    \"sub_account_id\": 10,\n    \"sub_account_name\": \"My Sub Account\",\n    \"ref_id\": \"432\",\n    \"logins\": [\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      },\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      }\n    ],\n    \"log_level\": \"full\",\n    \"support_level\": \"Standard\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "593acea1-a69a-461b-b377-e1ddb14d2abc",
+          "name": "List account's sub accounts",
+          "request": {
+            "name": "List account's sub accounts",
+            "description": {
+              "content": "Use this operation to get a list of sub accounts that are managed by the account of the API client (the parent account).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "listSubAccounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>",
+                  "description": "The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_num",
+                  "value": "<string>",
+                  "description": "The page to return starting from 0. Default: 0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10ae33b1-009a-4a66-81d5-8d11377b0c08",
+              "name": "res - contains the specific error code:<br/>9415 - Operation not allowed<br/>1002 - Account doesn't exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "listSubAccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_num",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"sub_account_id\": 10,\n    \"sub_account_name\": \"My Sub Account\",\n    \"ref_id\": \"432\",\n    \"logins\": [\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      },\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      }\n    ],\n    \"log_level\": \"full\",\n    \"support_level\": \"Standard\"\n  },\n  {\n    \"sub_account_id\": 10,\n    \"sub_account_name\": \"My Sub Account\",\n    \"ref_id\": \"432\",\n    \"logins\": [\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      },\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      }\n    ],\n    \"log_level\": \"full\",\n    \"support_level\": \"Standard\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae80c6cc-1742-4f87-b5e6-cf83c2a6cfe5",
+          "name": "Modify account configuration",
+          "request": {
+            "name": "Modify account configuration",
+            "description": {
+              "content": "Use this operation to change the configuration of the account of the API client or one of its managed accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "configure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "param",
+                  "value": "<string>",
+                  "description": "(Required) Name of the configuration parameter to set.<br/>Possible values: name | email | plan_id | error_page_template | support_all_tls_versions | naked_domain_san_for_new_www_sites | wildcard_san_for_new_sites | ref_id<br/>Note: plan_id, email, and error_page_template parameters are available for Reseller account only."
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "(Required) According to the configuration paramater used.<br/>For name - the updated name, for e-mail - the updated e-mail address.<br/>For plan_id - a plan id.<br/>For error_page_template - a Base64 encoded template for an error page.<br/>For log_level - Available only for customers that purchased the Logs Integration SKU. Sets the log reporting level for the site. Possible values: full, security, none, default<br/>For support_all_tls_versions - Use this operation to allow sites in the account to support all TLS versions for connectivity between clients (visitors) and the Imperva service. When this option is set, you can then enable the option per site to support all TLS versions. Possible values: true, false. Note: To remain PCI-compliant, do not enable this option.<br/>For naked_domain_san_for_new_www_sites - Use this option to determine if the naked domain SAN will be added to the SSL certificate for new www sites. Default value: true<br/>For wildcard_san_for_new_sites - Use this option to determine if the wildcard SAN or the full domain SAN is added to the Imperva SSL certificate for new sites. Possible values: true, false, default (determined by plan) Default value: default<br/>For ref_id - Sets the Reference ID, a free-text field that enables you to add a unique identifier to correlate an object in our service, such as a protected website, with an object on the customer side."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8390c2be-0f7d-4741-9ffb-96ef9098203e",
+              "name": "res - contains the specific error code:<br/>6001 - Invalid configuration parameter name<br/>6002 - Invalid configuration parameter value<br/>6003 - Action required<br/>2 - Invalid input<br/>9415 - Operation not allowed<br/>1 - Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "param",
+                      "value": "email"
+                    },
+                    {
+                      "key": "value",
+                      "value": "John@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aac18b08-24a8-4ea7-97ac-10f6a10ea05d",
+          "name": "Delete managed account",
+          "request": {
+            "name": "Delete managed account",
+            "description": {
+              "content": "Available for Reseller accounts only\nUse this operation to delete an account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64f1912e-d579-4ca4-89a0-b1c5b358246c",
+              "name": "res - contains the specific error code:<br/>1 - Unexpected error<br/>2 - Invalid input<br/>9415 - Operation not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aedb4d4d-0421-4567-a3b0-436a06734aa3",
+          "name": "Delete sub account",
+          "request": {
+            "name": "Delete sub account",
+            "description": {
+              "content": "Use this operation to delete a sub account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "subaccounts",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sub_account_id",
+                  "value": "<long>",
+                  "description": "(Required) Numeric identifier of the sub account to operate on."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c313ab87-82da-4a4a-b3c8-922138fccb17",
+              "name": "res - contains the specific error code:<br/>1 - Unexpected error<br/>2002 - Invalid input2001 - Object is not empty<br/>9415 - Operation not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "subaccounts",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sub_account_id",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d743a7ba-643c-40d2-9aed-b019e9d1b849",
+          "name": "Get account status",
+          "request": {
+            "name": "Get account status",
+            "description": {
+              "content": "Use this operation to get account status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "017738d1-a58d-49d0-9b15-b33f1b3fbbc2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"account\": {\n    \"email\": \"example@imperva.com\",\n    \"plan_id\": \"ent100\",\n    \"plan_name\": \"Enterprise 100\",\n    \"trial_end_date\": \"1989-12-01T02:45:09.760Z\",\n    \"account_id\": 10,\n    \"John Account\": \"Jhon\",\n    \"user_name\": \"Jhon\",\n    \"logins\": [\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      },\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      }\n    ],\n    \"log_level\": \"full\",\n    \"support_level\": \"Standard\",\n    \"support_all_tls_versions\": true,\n    \"wildcard_san_for_new_sites\": \"False\",\n    \"naked_domain_san_for_new_www_sites\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78031e73-7f08-4d74-9d67-5bf33fb3bb73",
+          "name": "Modify account log level",
+          "request": {
+            "name": "Modify account log level",
+            "description": {
+              "content": "Available for Reseller accounts only<br/>Use this operation to change the account log configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "setlog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "log_level",
+                  "value": "<string>",
+                  "description": "(Required) Sets the log reporting level for the site.<br/>Possible values: full, security, none, default<br/>Available only for customers that purchased the Log Integration SKU."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d59a5305-8014-4e61-ae43-f55b22359f59",
+              "name": "res - contains the specific error code:<br/>6001 - Invalid configuration parameter name<br/>1003 - Plan ID invalid<br/>9415 - Operation not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "setlog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "log_level",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1f499a1-9fad-4f50-be95-73d21d1d80c4",
+          "name": "Get account subscription details",
+          "request": {
+            "name": "Get account subscription details",
+            "description": {
+              "content": "Use this operation to get subscription details for an account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "subscription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<long>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1db1908a-83f2-4c0d-ba11-e600076ba220",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "subscription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"planStatus\": {\n    \"accountId\": 12345,\n    \"accountName\": \"demo_account@incapsula.com\",\n    \"websiteProtection\": [\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"infrastructureProtection\": [\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"dnsProtection\": [\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"additionalServices\": [\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"planSectionRows\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"purchased\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"used\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"bandwidthHistory\": [\n    {\n      \" billingCycle\": \"Earlier billing cycle\",\n      \"onDemandBandwidth\": \"0bps\",\n      \"alwaysOnBandwidth\": \"7.7kbps\"\n    },\n    {\n      \" billingCycle\": \"Earlier billing cycle\",\n      \"onDemandBandwidth\": \"0bps\",\n      \"alwaysOnBandwidth\": \"7.7kbps\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f11e735e-80d8-4bc7-9112-8bb3b99b5953",
+          "name": "Add a new managed account",
+          "request": {
+            "name": "Add a new managed account",
+            "description": {
+              "content": "Available for Reseller accounts only<br/>Use this operation to add a new account that should be managed by the account of the API client (the parent account). The new account will be configured according to the preferences set for the parent account by Imperva.\nDepending on these preferences, an activation e-mail will be sent to the specified e-mail address. The user responds to the activation e-mail, selects a password, and can then log directly into the Imperva console. The same e-mail address can also be used to send system notifications to the account. The new account is identified by a numeric value as provided by Imperva in the response in the field account_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) Email address. For example: \"joe@example.com\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_id",
+                  "value": "<long>",
+                  "description": "The newly created account's parent id. If not specified, the invoking account will be assigned as the parent."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "The account owner's name. For example: \"John Doe\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<string>",
+                  "description": "An identifier of the plan to assign to the new account. For example, ent100 for the Enterprise 100 plan."
+                },
+                {
+                  "disabled": false,
+                  "key": "ref_id",
+                  "value": "<string>",
+                  "description": "Customer specific identifier for this operation."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_name",
+                  "value": "<string>",
+                  "description": "Account name."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_description",
+                  "value": "<string>",
+                  "description": "The account description"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_name",
+                  "value": "<string>",
+                  "description": "The account owner's name. For example: \"John Doe\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "log_level",
+                  "value": "<string>",
+                  "description": "Sets the log reporting level for the site.Possible values: full, security, none, default<br/>Available only for customers that purchased the Logs Integration SKU."
+                },
+                {
+                  "disabled": false,
+                  "key": "logs_account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.\nAvailable only for customers that purchased the Logs Integration SKU."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a9f570f-0103-4846-aa3a-6a5634ada608",
+              "name": "res - contains the specific error code:<br/>1003 - Plan ID invalid<br/>1001 - Email invalid<br/>1010 - Account exists<br/>9403 - Unknown/unauthorized account_id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "email",
+                      "value": "example@imperva.com"
+                    },
+                    {
+                      "key": "parent_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Jhon"
+                    },
+                    {
+                      "key": "plan_id",
+                      "value": "ent100"
+                    },
+                    {
+                      "key": "ref_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_name",
+                      "value": "John Account"
+                    },
+                    {
+                      "key": "account_description",
+                      "value": "Demo account"
+                    },
+                    {
+                      "key": "user_name",
+                      "value": "Jhon"
+                    },
+                    {
+                      "key": "log_level",
+                      "value": "full"
+                    },
+                    {
+                      "key": "logs_account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"account\": {\n    \"email\": \"example@imperva.com\",\n    \"plan_id\": \"ent100\",\n    \"plan_name\": \"Enterprise 100\",\n    \"trial_end_date\": \"1972-03-18T20:15:37.063Z\",\n    \"account_id\": 10,\n    \"John Account\": \"Jhon\",\n    \"user_name\": \"Jhon\",\n    \"logins\": [\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      },\n      {\n        \"login_id\": \"demo_account@incapsula.com\",\n        \"email_verified\": true\n      }\n    ],\n    \"log_level\": \"full\",\n    \"support_level\": \"Standard\",\n    \"support_all_tls_versions\": true,\n    \"wildcard_san_for_new_sites\": \"Default\",\n    \"naked_domain_san_for_new_www_sites\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b816eb6b-063a-44d4-a642-058ad66a56f0",
+          "name": "Test connection with S3 bucket",
+          "request": {
+            "name": "Test connection with S3 bucket",
+            "description": {
+              "content": "Use this operation to check that a connection can be created with your Amazon S3 bucket.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "testS3Connection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on"
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket_name",
+                  "value": "<string>",
+                  "description": "(Required) S3 bucket name"
+                },
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) S3 access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "secret_key",
+                  "value": "<string>",
+                  "description": "(Required) S3 secret key"
+                },
+                {
+                  "disabled": false,
+                  "key": "save_on_success",
+                  "value": "<boolean>",
+                  "description": "Save this configuration if the test connection was successful. Default value:false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ca8af22-511a-4f53-86f6-e17312181922",
+              "name": "res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error<br/>6002- Invalid configuration parameter value",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "testS3Connection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bucket_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "secret_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "save_on_success",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ee23678-c113-4651-b71a-765fc04b9dbd",
+          "name": "Test connection with SFTP server",
+          "request": {
+            "name": "Test connection with SFTP server",
+            "description": {
+              "content": "Use this operation to check that a connection can be created with your SFTP storage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "testSftpConnection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "(Required) The IP address of your SFTP server"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_name",
+                  "value": "<string>",
+                  "description": "(Required) A user name that will be used to log in to the SFTP server"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "(Required) A corresponding password for the user account used to log in to the SFTP server"
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_folder",
+                  "value": "<string>",
+                  "description": "(Required) The path to the directory on the SFTP server"
+                },
+                {
+                  "disabled": false,
+                  "key": "save_on_success",
+                  "value": "<boolean>",
+                  "description": "Save this configuration if the test connection was successful. Default value: false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6259e77c-4eef-4f31-a143-2eb977ce7843",
+              "name": "res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error<br/>6002- Invalid configuration parameter value",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "testSftpConnection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "10.1.1.1"
+                    },
+                    {
+                      "key": "user_name",
+                      "value": "John Doe"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_folder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "save_on_success",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2413365-eb33-4052-859f-ce3141c68ece",
+          "name": "Set Imperva servers for log storage",
+          "request": {
+            "name": "Set Imperva servers for log storage",
+            "description": {
+              "content": "Use this operation to have your logs saved on Incapsula servers. Once configured, the logs can be retrieved by API calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "setDefaultSiemStorage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8c0eb5f-877d-4483-a9db-37e805b79d3e",
+              "name": "res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "setDefaultSiemStorage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba73bb2a-31b6-4177-9e69-906aaae5c729",
+          "name": "Set S3 configuration for log storage",
+          "request": {
+            "name": "Set S3 configuration for log storage",
+            "description": {
+              "content": "Use this operation to configure your Amazon cloud storage. Once configured, Imperva logs will be uploaded to the selected location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "setAmazonSiemStorage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on"
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket_name",
+                  "value": "<string>",
+                  "description": "(Required) S3 bucket name"
+                },
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) S3 access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "secret_key",
+                  "value": "<string>",
+                  "description": "(Required) S3 secret key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3344e45-429d-40b7-9b98-9e425e433639",
+              "name": "res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "setAmazonSiemStorage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bucket_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "secret_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe730953-90ee-4dc7-ae21-44a06265ff8f",
+          "name": "Set SFTP server configuration for log storage",
+          "request": {
+            "name": "Set SFTP server configuration for log storage",
+            "description": {
+              "content": "Use this operation to configure your SFTP server storage. Once configured, Incapsula logs will be uploaded to the selected location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "accounts",
+                "setSftpSiemStorage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "(Required) The IP address of your SFTP server"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_name",
+                  "value": "<string>",
+                  "description": "(Required) A user name that will be used to log in to the SFTP server"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "(Required) A corresponding password for the user account used to log in to the SFTP server"
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_folder",
+                  "value": "<string>",
+                  "description": "(Required) The path to the directory on the SFTP server"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2509cf8-f4fd-48ba-bc74-7676d0412470",
+              "name": "res - contains the specific error code:<br/>9403 - Unknown/unauthorized account id<br/>9414 - Feature not permitted<br/>1- Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "accounts",
+                    "setSftpSiemStorage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "10.1.1.1"
+                    },
+                    {
+                      "key": "user_name",
+                      "value": "John Doe"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_folder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.imperva.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "310907c3-0cc3-46e3-9373-2f6b1b2d7056",
+    "name": "Cloud Application Security Account Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Add, delete, and modify accounts. Get account details.",
+      "type": "text/plain"
+    }
+  }
+}

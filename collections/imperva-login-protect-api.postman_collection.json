@@ -1,0 +1,979 @@
+{
+  "item": [
+    {
+      "id": "7c35630b-cfd8-4390-9f7d-cd9cfd28ede1",
+      "name": "Login Protect",
+      "description": {
+        "content": "Provision Login Protect users and configure protected pages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "821639d4-49fa-4ce9-b0b4-e917542b359b",
+          "name": "Add Login Protect User",
+          "request": {
+            "name": "Add Login Protect User",
+            "description": {
+              "content": "Use this operation to change Login Protect settings for a site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "sites",
+                "lp",
+                "configure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "site_id",
+                  "value": "<long>",
+                  "description": "(Required) Numeric identifier of the site to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "Pass true to enable login protect on site, and false to disable it.<br/>Default: true"
+                },
+                {
+                  "disabled": false,
+                  "key": "specific_users_list",
+                  "value": "<string>",
+                  "description": "Comma separated email list to set login protect users for the site. If the list is empty all users will be allowed to access the site using Login Protect."
+                },
+                {
+                  "disabled": false,
+                  "key": "send_lp_notifications",
+                  "value": "<boolean>",
+                  "description": "Pass true to send notification on successful login using login protect.<br/>Default: false"
+                },
+                {
+                  "disabled": false,
+                  "key": "allow_all_users",
+                  "value": "<boolean>",
+                  "description": "Pass true to allow all login protect users to access the site. If you want to allow only a specific list of users to access the site using Login Protect set this to false, and add the list to specific_user_list.<br/>Default: true"
+                },
+                {
+                  "disabled": false,
+                  "key": "authentication_methods",
+                  "value": "<string>",
+                  "description": "Comma separated list of allowed authentication methods: sms | email | ga"
+                },
+                {
+                  "disabled": false,
+                  "key": "urls",
+                  "value": "<string>",
+                  "description": "A comma separated list of resource paths. For example, /home and /admin/index.html are resource paths, while <a href=\"http://www.example.com/home\">http://www.example.com/home</a> is not. Each URL should be encoded separately using percent encoding as specified by RFC 3986 (<a href=\"http://tools.ietf.org/html/rfc3986#section-2.1\">http://tools.ietf.org/html/rfc3986#section-2.1</a>). An empty URL list will remove all URLs."
+                },
+                {
+                  "disabled": false,
+                  "key": "url_patterns",
+                  "value": "<string>",
+                  "description": "A comma separated list of url patterns. Possible values: contains | equals | prefix | suffix | not_equals | not_contain | not_prefix | not_suffix. The patterns should be in accordance with the matching urls sent by the urls parameter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3c9273d-db83-4081-a7d4-2a008a139d5f",
+              "name": "res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id</br>18001 - Format invalid<br/>18002 - Application invalid<br/>18011 - Invalid SMS Text<br/>9403 - Unknown/unauthorized account_id<br/>1001 - E-mail invalid<br/>18003 - Invalid phone number",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "sites",
+                    "lp",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "site_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "true"
+                    },
+                    {
+                      "key": "specific_users_list",
+                      "value": "admin@example.com"
+                    },
+                    {
+                      "key": "send_lp_notifications",
+                      "value": "true"
+                    },
+                    {
+                      "key": "allow_all_users",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication_methods",
+                      "value": "sms"
+                    },
+                    {
+                      "key": "urls",
+                      "value": "/home"
+                    },
+                    {
+                      "key": "url_patterns",
+                      "value": "prefix"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"site_id\": 10,\n  \"statusEnum\": \"pending-dns-changes\",\n  \"status\": \"pending-dns-changes\",\n  \"domain\": \"admin@example.com\",\n  \"account_id\": 1,\n  \"acceleration_level\": \"advanced\",\n  \"site_creation_date\": 1610396346000,\n  \"dns\": [\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    },\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    }\n  ],\n  \"original_dns\": [\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    },\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"type\": \"CNAME\"\n    },\n    {\n      \"type\": \"CNAME\"\n    }\n  ],\n  \"active\": \"active\",\n  \"support_all_tls_versions\": true,\n  \"use_wildcard_san_instead_of_full_domain_san\": true,\n  \"add_naked_domain_san\": true,\n  \"set_site_cookies_without_domain\": true,\n  \"display_name\": \"loginprotectapi1610396334653.incaptest.info\",\n  \"security\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ],\n  \"sealLocation\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"ssl\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ],\n  \"siteDualFactorSettings\": {\n    \"specificUsers\": [\n      \"lpuser1_api1610396342408@incaptest.info\",\n      \"lpuser1_api1610396342408@incaptest.info\"\n    ],\n    \"enabled\": false,\n    \"customAreas\": [\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      },\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      }\n    ],\n    \"customAreasExceptions\": [\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      },\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      }\n    ],\n    \"allowAllUsers\": true,\n    \"shouldSuggestApplicatons\": true,\n    \"allowedMedia\": [\n      \"sms\"\n    ],\n    \"shouldSendLoginNotifications\": true,\n    \"version\": 8478\n  },\n  \"login_protect\": {\n    \"enabled\": true,\n    \"specific_users_list\": [\n      {\n        \"email\": \"John@example.com\",\n        \"name\": \"John Doe\",\n        \"status\": \"INVITATION_SENT\"\n      },\n      {\n        \"email\": \"John@example.com\",\n        \"name\": \"John Doe\",\n        \"status\": \"INVITATION_SENT\"\n      }\n    ],\n    \"send_lp_notifications\": true,\n    \"allow_all_users\": true\n  },\n  \"performance_configuration\": {\n    \"advanced_caching_rules\": [\n      {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    ],\n    \"acceleration_level\": \"advanced\",\n    \"async_validation\": true,\n    \"minify_javascript\": true,\n    \"minify_css\": true,\n    \"minify_static_html\": true,\n    \"compress_jpeg\": true,\n    \"compress_jepg\": true,\n    \"progressive_image_rendering\": true,\n    \"aggressive_compression\": true,\n    \"compress_png\": true,\n    \"on_the_fly_compression\": true,\n    \"tcp_pre_pooling\": true,\n    \"comply_no_cache\": true,\n    \"comply_vary\": true,\n    \"use_shortest_caching\": true,\n    \"perfer_last_modified\": true,\n    \"prefer_last_modified\": true,\n    \"disable_client_side_caching\": true,\n    \"cache300x\": true\n  },\n  \"extended_ddos\": 0,\n  \"incap_rules\": [\n    {\n      \"id\": 123,\n      \"name\": \"Block Click Worms\",\n      \"action\": \"api.rule_action_type.rule_action_block\",\n      \"rule\": \"ClientIP == 1.2.3.4\",\n      \"creation_date\": 5057,\n      \"updated_by\": \"John\",\n      \"updated_at\": 1611228121241,\n      \"comment\": \"rule comment\"\n    },\n    {\n      \"id\": 123,\n      \"name\": \"Block Click Worms\",\n      \"action\": \"api.rule_action_type.rule_action_block\",\n      \"rule\": \"ClientIP == 1.2.3.4\",\n      \"creation_date\": 8206,\n      \"updated_by\": \"John\",\n      \"updated_at\": 1611228121241,\n      \"comment\": \"rule comment\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df77a6c3-b658-4b88-b594-3a44eb62a010",
+          "name": "Configure Login Protect on Admin Areas",
+          "request": {
+            "name": "Configure Login Protect on Admin Areas",
+            "description": {
+              "content": "Use this operation to configure Login Protect on wordpress | joomla | phpbb admin areas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "sites",
+                "lp",
+                "configure-app"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "site_id",
+                  "value": "<long>",
+                  "description": "(Required) Numeric identifier of the site to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "protected_app",
+                  "value": "<string>",
+                  "description": "Protect admin areas of joomla | wordpress | phpBB."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62df9d7b-f033-4068-9a9a-9403c0797c74",
+              "name": "res - contains the specific error code:<br/>9413 - Unknown/unauthorized site_id<br/>18001 - Format invalid<br/>18002 - Application invalid<br/>18011 - Invalid SMS Text<br/>9403 - Unknown/unauthorized account_id<br/>1001 - E-mail invalid<br/>18003 - Invalid phone number",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "sites",
+                    "lp",
+                    "configure-app"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "site_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protected_app",
+                      "value": "wordpress"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"site_id\": 10,\n  \"statusEnum\": \"pending-dns-changes\",\n  \"status\": \"pending-dns-changes\",\n  \"domain\": \"admin@example.com\",\n  \"account_id\": 1,\n  \"acceleration_level\": \"advanced\",\n  \"site_creation_date\": 1610396346000,\n  \"dns\": [\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    },\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    }\n  ],\n  \"original_dns\": [\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    },\n    {\n      \"dns_record_name\": \"loginprotectapi1610396334653.incaptest.info\",\n      \"set_type_to\": \"CNAME\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"type\": \"CNAME\"\n    },\n    {\n      \"type\": \"CNAME\"\n    }\n  ],\n  \"active\": \"active\",\n  \"support_all_tls_versions\": true,\n  \"use_wildcard_san_instead_of_full_domain_san\": true,\n  \"add_naked_domain_san\": true,\n  \"set_site_cookies_without_domain\": true,\n  \"display_name\": \"loginprotectapi1610396334653.incaptest.info\",\n  \"security\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  ],\n  \"sealLocation\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"ssl\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ],\n  \"siteDualFactorSettings\": {\n    \"specificUsers\": [\n      \"lpuser1_api1610396342408@incaptest.info\",\n      \"lpuser1_api1610396342408@incaptest.info\"\n    ],\n    \"enabled\": false,\n    \"customAreas\": [\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      },\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      }\n    ],\n    \"customAreasExceptions\": [\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      },\n      {\n        \"pattern\": \"CONTAINS\",\n        \"url\": \"/userlist\"\n      }\n    ],\n    \"allowAllUsers\": true,\n    \"shouldSuggestApplicatons\": true,\n    \"allowedMedia\": [\n      \"sms\"\n    ],\n    \"shouldSendLoginNotifications\": true,\n    \"version\": 605\n  },\n  \"login_protect\": {\n    \"enabled\": true,\n    \"specific_users_list\": [\n      {\n        \"email\": \"John@example.com\",\n        \"name\": \"John Doe\",\n        \"status\": \"INVITATION_SENT\"\n      },\n      {\n        \"email\": \"John@example.com\",\n        \"name\": \"John Doe\",\n        \"status\": \"INVITATION_SENT\"\n      }\n    ],\n    \"send_lp_notifications\": true,\n    \"allow_all_users\": true\n  },\n  \"performance_configuration\": {\n    \"advanced_caching_rules\": [\n      {\n        \"key_0\": {}\n      },\n      {\n        \"key_0\": {}\n      }\n    ],\n    \"acceleration_level\": \"advanced\",\n    \"async_validation\": true,\n    \"minify_javascript\": true,\n    \"minify_css\": true,\n    \"minify_static_html\": true,\n    \"compress_jpeg\": true,\n    \"compress_jepg\": true,\n    \"progressive_image_rendering\": true,\n    \"aggressive_compression\": true,\n    \"compress_png\": true,\n    \"on_the_fly_compression\": true,\n    \"tcp_pre_pooling\": true,\n    \"comply_no_cache\": true,\n    \"comply_vary\": true,\n    \"use_shortest_caching\": true,\n    \"perfer_last_modified\": true,\n    \"prefer_last_modified\": true,\n    \"disable_client_side_caching\": true,\n    \"cache300x\": true\n  },\n  \"extended_ddos\": 0,\n  \"incap_rules\": [\n    {\n      \"id\": 123,\n      \"name\": \"Block Click Worms\",\n      \"action\": \"api.rule_action_type.rule_action_block\",\n      \"rule\": \"ClientIP == 1.2.3.4\",\n      \"creation_date\": 3450,\n      \"updated_by\": \"John\",\n      \"updated_at\": 1611228121241,\n      \"comment\": \"rule comment\"\n    },\n    {\n      \"id\": 123,\n      \"name\": \"Block Click Worms\",\n      \"action\": \"api.rule_action_type.rule_action_block\",\n      \"rule\": \"ClientIP == 1.2.3.4\",\n      \"creation_date\": 2938,\n      \"updated_by\": \"John\",\n      \"updated_at\": 1611228121241,\n      \"comment\": \"rule comment\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19c3bc1c-3032-4914-9c0f-0ae1f5ea7cc3",
+          "name": "Add Login Protect User",
+          "request": {
+            "name": "Add Login Protect User",
+            "description": {
+              "content": "Use this operation to add a Login Protect user for a site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "sites",
+                "lp",
+                "add-user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) Email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Example: John Smith"
+                },
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "Phone number. For example: \"1-8662507659\""
+                },
+                {
+                  "disabled": false,
+                  "key": "is_phone_verified",
+                  "value": "<boolean>",
+                  "description": "Whether or not to skip phone verification."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_email_verified",
+                  "value": "<boolean>",
+                  "description": "Whether or not to skip email address verification."
+                },
+                {
+                  "disabled": false,
+                  "key": "should_send_activation_email",
+                  "value": "<boolean>",
+                  "description": "Whether or not to send activation email to user."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad003a5c-506e-4f8a-9a80-595b32d0c7f4",
+              "name": "res - contains the specific error code:</br>9403 - Unknown/unauthorized account_id<br/>1001 - E-mail invalid</br>18005 - Login Protect User Exists</br>18006 - Operation Not Allowed</br>18009 - Not Supported Action<br/>18004 - Failed to Send E-Mail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "sites",
+                    "lp",
+                    "add-user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "admin@example.com"
+                    },
+                    {
+                      "key": "name",
+                      "value": "John Smith"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "1-8662507659"
+                    },
+                    {
+                      "key": "is_phone_verified",
+                      "value": "true"
+                    },
+                    {
+                      "key": "is_email_verified",
+                      "value": "true"
+                    },
+                    {
+                      "key": "should_send_activation_email",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db55cadd-5ab2-4915-8d61-46d7d34e2e18",
+          "name": "Get Login Protect Users",
+          "request": {
+            "name": "Get Login Protect Users",
+            "description": {
+              "content": "Use this operation to get the account's login protect user list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "sites",
+                "lp",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db8f960e-cac1-4a88-849b-4fc6015c8d5f",
+              "name": "res - contains the specific error code:<br/>18003 - Invalid phone number</br>18004 - Failed to Send E-Mail<br/>9403 - Unknown/unauthorized account_id<br/>1001 - E-mail invalid</br>18005 - Login Protect User Exists<br/>18006 - Operation Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "sites",
+                    "lp",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"email\": \"John@example.com\",\n      \"name\": \"John Doe\",\n      \"status\": \"INVITATION_SENT\",\n      \"phone\": \"1-8662507658\",\n      \"creation_date\": \"1980-07-20T08:09:40.755Z\"\n    },\n    {\n      \"email\": \"John@example.com\",\n      \"name\": \"John Doe\",\n      \"status\": \"INVITATION_SENT\",\n      \"phone\": \"1-8662507658\",\n      \"creation_date\": \"1951-11-22T01:49:24.411Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c8d9b6c-b377-4126-9b05-363676201243",
+          "name": "Edit Login Protect User",
+          "request": {
+            "name": "Edit Login Protect User",
+            "description": {
+              "content": "Edit Login Protect user's settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "sites",
+                "lp",
+                "edit-user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) Email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Example: John Smith"
+                },
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "Phone number. For example: \"1-8662507659\""
+                },
+                {
+                  "disabled": false,
+                  "key": "is_phone_verified",
+                  "value": "<boolean>",
+                  "description": "Whether or not to skip phone verification."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_email_verified",
+                  "value": "<boolean>",
+                  "description": "Whether or not to skip email address verification."
+                },
+                {
+                  "disabled": false,
+                  "key": "should_send_activation_email",
+                  "value": "<boolean>",
+                  "description": "Whether or not to send activation email to user."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08a5293f-7039-4761-93b7-48239e30741f",
+              "name": "res - contains the specific error code:<br/>9403 - Unknown/unauthorized account_id<br/>1001 - E-mail invalid<br/>18005 - Login Protect User Exists<br/>18006 - Operation Not Allowed<br/>18009  - Not Supported Action</br>18004 - Failed to Send E-Mail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "sites",
+                    "lp",
+                    "edit-user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "admin@example.com"
+                    },
+                    {
+                      "key": "name",
+                      "value": "John Smith"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "1-8662507659"
+                    },
+                    {
+                      "key": "is_phone_verified",
+                      "value": "true"
+                    },
+                    {
+                      "key": "is_email_verified",
+                      "value": "true"
+                    },
+                    {
+                      "key": "should_send_activation_email",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c114ce0-eb88-4547-8bfa-86f13bf81591",
+          "name": "Send SMS to User",
+          "request": {
+            "name": "Send SMS to User",
+            "description": {
+              "content": "Use this operation to send an SMS to a login protect user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "sites",
+                "lp",
+                "send-sms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) Email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "sms_text",
+                  "value": "<string>",
+                  "description": "(Required) Text that will be sent in SMS."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ee488c2-2c13-4c50-9640-0bea5d6f93ba",
+              "name": "res - contains the specific error code:<br/>18003 -Invalid phone number<br/>18011 - Invalid SMS Text<br/>9403 - Unknown/unauthorized account_id<br/>18010 - Invalid User<br/>18007 - Exceeded Allowed SMS<br/>18008 - Failed to Send SMS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "sites",
+                    "lp",
+                    "send-sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "admin@example.com"
+                    },
+                    {
+                      "key": "sms_text",
+                      "value": "hello"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83aa0762-cf63-4f67-841f-e876bf435a4f",
+          "name": "Remove Login Protect User",
+          "request": {
+            "name": "Remove Login Protect User",
+            "description": {
+              "content": "Use this operation to remove a login protect user from an account's user list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "sites",
+                "lp",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the account to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) Email address."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1ca9b4d-60ca-425e-90a7-c69b19f5da2c",
+              "name": "res - contains the specific error code:<br/>18003 - Invalid phone number<br/>18004 - Failed to Send E-Mail<br/>9403 - Unknown/unauthorized account_id<br/>1001 - E-mail invalid<br/>18005 - Login Protect User Exists<br/>18006 - Operation Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "sites",
+                    "lp",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "admin@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.imperva.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6be8e794-bd48-4988-acf5-e0bc0514b3ad",
+    "name": "Cloud Application Security Account Management Login Protect API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Add, delete, and modify accounts. Get account details.",
+      "type": "text/plain"
+    }
+  }
+}

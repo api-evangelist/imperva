@@ -1,0 +1,1479 @@
+{
+  "item": [
+    {
+      "id": "5977c7f0-9468-417d-954b-33f4a0debbac",
+      "name": "DDoS Protection for Individual IPs",
+      "description": {
+        "content": "Manage IP Protection over TCP/IP settings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1426aef6-dc82-4d43-bf9d-cacb48b4ae5b",
+          "name": "Protected IP over TCP - Add by CNAME",
+          "request": {
+            "name": "Protected IP over TCP - Add by CNAME",
+            "description": {
+              "content": "Use this operation to onboard a public origin IP to the 'IP Protection over TCP' service.\nIf successful, the operation will return the generated Edge IP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "add",
+                "ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "origin_ip",
+                  "value": "<string>",
+                  "description": "(Required) Public origin IP to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_ha_protocol",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "description for the generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoring_type",
+                  "value": "<string>",
+                  "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE'"
+                },
+                {
+                  "disabled": false,
+                  "key": "tcp_monitoring_port",
+                  "value": "<integer>",
+                  "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff205a51-3176-4c88-8dc8-ae3f34969a61",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7002 - IP Protection quota exceeded<br/>7003 - IP cannot be used<br/>7007 - This entity is already protected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "add",
+                    "ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin_ip",
+                      "value": "1.2.3.4"
+                    },
+                    {
+                      "key": "enable_ha_protocol",
+                      "value": "true"
+                    },
+                    {
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoring_type",
+                      "value": "TCP"
+                    },
+                    {
+                      "key": "tcp_monitoring_port",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"origin_ip\": \"1.2.3.4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3893e38-d4ed-4b9a-8580-b49cb30b951a",
+          "name": "Protected IP over TCP - Add by origin IP",
+          "request": {
+            "name": "Protected IP over TCP - Add by origin IP",
+            "description": {
+              "content": "Use this operation to onboard a CNAME record to the 'IP Protection over TCP' service.\nIf successful, the operation will return the generated Edge IP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "add",
+                "cname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cname",
+                  "value": "<string>",
+                  "description": "(Required) CNAME record to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_ha_protocol",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "Optional description for the generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoring_type",
+                  "value": "<string>",
+                  "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE'"
+                },
+                {
+                  "disabled": false,
+                  "key": "tcp_monitoring_port",
+                  "value": "<integer>",
+                  "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5290109d-67ec-43da-ba46-4b760b07274a",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7002 - IP Protection quota exceeded<br/>7007 - This entity is already protected</br>7008 - CNAME cannot be used",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "add",
+                    "cname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cname",
+                      "value": "imperva.test.com"
+                    },
+                    {
+                      "key": "enable_ha_protocol",
+                      "value": "true"
+                    },
+                    {
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoring_type",
+                      "value": "TCP"
+                    },
+                    {
+                      "key": "tcp_monitoring_port",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"cname\": \"imperva.test.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9caa0168-ef19-45f0-8011-13a74f4450b3",
+          "name": "Protected IP over TCP - Add by DNS and origin IP",
+          "request": {
+            "name": "Protected IP over TCP - Add by DNS and origin IP",
+            "description": {
+              "content": "Use this operation to onboard a public origin IP with an associated DNS name to the 'IP Protection over TCP' service.\nIf DNS check is enabled, the response will include the list of resolved IPs for the provided domain name, and the operation will only succeed if the provided origin IP will be included in that list.\nIf successful, the operation will return the generated Edge IP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "add",
+                "dns-with-ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dns_name",
+                  "value": "<string>",
+                  "description": "(Required) Domain name to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "origin_ip",
+                  "value": "<string>",
+                  "description": "(Required) Public origin IP to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "disable_dns_check",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_ha_protocol",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "description for the generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoring_type",
+                  "value": "<string>",
+                  "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE"
+                },
+                {
+                  "disabled": false,
+                  "key": "tcp_monitoring_port",
+                  "value": "<integer>",
+                  "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9987c7ee-dbe3-427b-99a5-7cc523986bd8",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7001 - IP not among DNS resolved records<br/>7002 - IP Protection quota exceeded<br/>7003 - IP cannot be used<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7007 - This entity is already protected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "add",
+                    "dns-with-ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dns_name",
+                      "value": "example.imperva.com"
+                    },
+                    {
+                      "key": "origin_ip",
+                      "value": "1.2.3.4"
+                    },
+                    {
+                      "key": "disable_dns_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "enable_ha_protocol",
+                      "value": "true"
+                    },
+                    {
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoring_type",
+                      "value": "TCP"
+                    },
+                    {
+                      "key": "tcp_monitoring_port",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"resolved_ips\": [\n    \"157.166.226.25\"\n  ],\n  \"origin_ip\": \"157.166.249.10\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55634b48-c693-43dc-b90a-e34b87ff65b0",
+          "name": "Protected IP over TCP - Add by DNS and CNAME",
+          "request": {
+            "name": "Protected IP over TCP - Add by DNS and CNAME",
+            "description": {
+              "content": "Use this operation to onboard a CNAME record with an associated DNS name to the 'IP Protection over TCP' service.\nIf DNS check is enabled, the response will include the list of resolved CNAME records for the provided domain name, and the operation will only succeed if the provided CNAME will be included in that list.\nIf successful, the operation will return the generated Edge IP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "add",
+                "dns-with-cname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dns_name",
+                  "value": "<string>",
+                  "description": "(Required) Domain name to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "cname",
+                  "value": "<string>",
+                  "description": "(Required) CNAME record to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "disable_dns_check",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_ha_protocol",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "description for the generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoring_type",
+                  "value": "<string>",
+                  "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE"
+                },
+                {
+                  "disabled": false,
+                  "key": "tcp_monitoring_port",
+                  "value": "<integer>",
+                  "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73d4c1d4-dd5c-4252-9fa1-302cbcd0ca4c",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7002 - IP Protection quota exceeded<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7007 - This entity is already protected<br/>7008 - CNAME cannot be used<br/>7009 - CNAME not among DNS resolved records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "add",
+                    "dns-with-cname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dns_name",
+                      "value": "example.imperva.com"
+                    },
+                    {
+                      "key": "cname",
+                      "value": "imperva.test.com"
+                    },
+                    {
+                      "key": "disable_dns_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "enable_ha_protocol",
+                      "value": "true"
+                    },
+                    {
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoring_type",
+                      "value": "TCP"
+                    },
+                    {
+                      "key": "tcp_monitoring_port",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"resolved_cnames\": [\n    \"imperva.test.com\"\n  ],\n  \"cname\": \"imperva.test.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed75d62a-bff5-4f9c-97c8-5631949310a3",
+          "name": "Protected IP over TCP - Edit by origin IP",
+          "request": {
+            "name": "Protected IP over TCP - Edit by origin IP",
+            "description": {
+              "content": "Use this operation to assign a new origin IP to the provided Edge IP under the 'IP Protection over TCP' service.\nThis operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).\nIf successful, the operation will return the Edge IP.\nWARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "edit",
+                "ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "edge_ip",
+                  "value": "<string>",
+                  "description": "(Required) Imperva generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "origin_ip",
+                  "value": "<string>",
+                  "description": "(Required) Public origin IP to onboard to service"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6b08bd6-46b7-4603-81fb-e7db617ecfa0",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "edit",
+                    "ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "edge_ip",
+                      "value": "172.17.14.1"
+                    },
+                    {
+                      "key": "origin_ip",
+                      "value": "1.2.3.4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"origin_ip\": \"1.2.3.4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39d571c7-8270-45ea-8606-87ea87ee81c4",
+          "name": "Protected IP over TCP - Edit by CNAME",
+          "request": {
+            "name": "Protected IP over TCP - Edit by CNAME",
+            "description": {
+              "content": "Use this operation to assign a new CNAME record to the provided Edge IP under the 'IP Protection over TCP' service.\nThis operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS will be overwritten).\nIf successful, the operation will return the Edge IP.\nWARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "edit",
+                "cname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "edge_ip",
+                  "value": "<string>",
+                  "description": "(Required) Imperva generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "cname",
+                  "value": "<string>",
+                  "description": "(Required) CNAME to onboard to service"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1da33014-8a89-4265-a8e3-b2101b59ab39",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected<br/>7008 - CNAME cannot be used",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "edit",
+                    "cname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "edge_ip",
+                      "value": "172.17.14.1"
+                    },
+                    {
+                      "key": "cname",
+                      "value": "imperva.test.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"cname\": \"imperva.test.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9952751d-060f-4f3b-b019-36de70037053",
+          "name": "Protected IP over TCP - Edit by DNS and origin IP",
+          "request": {
+            "name": "Protected IP over TCP - Edit by DNS and origin IP",
+            "description": {
+              "content": "Use this operation to assign a new origin IP with an associated DNS name to the provided Edge IP under the 'IP Protection over TCP' service.\nThis operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).\nIf DNS check is enabled, the response will include the list of resolved IPs for the provided domain name, and the operation will only succeed if the provided origin IP is included in that list.\nIf successful, the operation will return the Edge IP.\nWARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "edit",
+                "dns-with-ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "edge_ip",
+                  "value": "<string>",
+                  "description": "(Required) Imperva generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "dns_name",
+                  "value": "<string>",
+                  "description": "(Required) Domain name to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "origin_ip",
+                  "value": "<string>",
+                  "description": "(Required) Public origin IP to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "disable_dns_check",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79e0930f-b3ee-4279-b2ad-e27f428381ac",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7001 - IP not among DNS resolved records<br/>7003 - IP cannot be used<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "edit",
+                    "dns-with-ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "edge_ip",
+                      "value": "172.17.14.1"
+                    },
+                    {
+                      "key": "dns_name",
+                      "value": "imperva.example.com"
+                    },
+                    {
+                      "key": "origin_ip",
+                      "value": "1.2.3.4"
+                    },
+                    {
+                      "key": "disable_dns_check",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"resolved_ips\": [\n    \"157.166.226.25\"\n  ],\n  \"origin_ip\": \"157.166.249.10\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d6a5677-a759-4ff3-bbfe-26faac5e9aa3",
+          "name": "Protected IP over TCP - Edit by DNS and origin IP",
+          "request": {
+            "name": "Protected IP over TCP - Edit by DNS and origin IP",
+            "description": {
+              "content": "Use this operation to assign a new CNAME record with an associated DNS name to the provided Edge IP under the 'IP Protection over TCP' service.<br/>This operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).<br/>If DNS check is enabled, the response will include the list of resolved CNAME records for the provided domain name, and the operation will only succeed if the provided CNAME is included in that list.<br/>If successful, the operation will return the Edge IP.<br/>WARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protection is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "edit",
+                "dns-with-cname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "edge_ip",
+                  "value": "<string>",
+                  "description": "(Required) Imperva generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "dns_name",
+                  "value": "<string>",
+                  "description": "(Required) Domain name to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "cname",
+                  "value": "<string>",
+                  "description": "(Required) CNAME to onboard to service"
+                },
+                {
+                  "disabled": false,
+                  "key": "disable_dns_check",
+                  "value": "<boolean>",
+                  "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8bfcbd7b-bb9d-4ce0-8d6e-e187a7f8ac85",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7004 - Domain name cannot be used<br/>7005 - No DNS records found<br/>7006 - Edge IP not found<br/>7007 - This entity is already protected<br/>7008 - CNAME cannot be used<br/>7009 - CNAME not among DNS resolved records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "edit",
+                    "dns-with-cname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "edge_ip",
+                      "value": "172.17.14.1"
+                    },
+                    {
+                      "key": "dns_name",
+                      "value": "imperva.example.com"
+                    },
+                    {
+                      "key": "cname",
+                      "value": "imperva.example.com"
+                    },
+                    {
+                      "key": "disable_dns_check",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"edge_ip\": \"172.17.14.1\",\n  \"resolved_cnames\": [\n    \"imperva.test.com\"\n  ],\n  \"cname\": \"imperva.test.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "585a5e0d-8044-4df8-a036-4d1400bbdb96",
+          "name": "Protected IP over TCP - Edit HA Protocol Setting",
+          "request": {
+            "name": "Protected IP over TCP - Edit HA Protocol Setting",
+            "description": {
+              "content": "Use this operation on the provided Edge IP to toggle its HA Protocol setting on or off.\nBy default, this setting is disabled during onboarding unless explicitly set to 'true'.\nWARNING: Do not modify this setting unless you are familiar with the proxy protocol and understand the implications of enabling or disabling it for your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "edit",
+                "ha-protocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "edge_ip",
+                  "value": "<string>",
+                  "description": "(Required) Imperva generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_ha_protocol",
+                  "value": "<boolean>",
+                  "description": "(Required) Provide 'true' to enable the Proxy Protocol setting, 'false' to disable"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56f942c4-f2ba-42da-8a88-1a60d1d62a05",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used</br>7006 - Edge IP not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "edit",
+                    "ha-protocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "edge_ip",
+                      "value": "172.17.14.1"
+                    },
+                    {
+                      "key": "enable_ha_protocol",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71d05a06-a36e-4318-a090-f3f853f344a0",
+          "name": "Protected IP over TCP - Edit Monitoring Settings",
+          "request": {
+            "name": "Protected IP over TCP - Edit Monitoring Settings",
+            "description": {
+              "content": "Use this operation on the specified Edge IP to modify its monitoring settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "edit",
+                "monitoring-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "edge_ip",
+                  "value": "<string>",
+                  "description": "(Required) Imperva generated Edge IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoring_type",
+                  "value": "<string>",
+                  "description": "(Required) Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE'"
+                },
+                {
+                  "disabled": false,
+                  "key": "tcp_monitoring_port",
+                  "value": "<integer>",
+                  "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4d4c021-3f4f-45e9-af0b-856e813b77e5",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "edit",
+                    "monitoring-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "edge_ip",
+                      "value": "172.17.14.1"
+                    },
+                    {
+                      "key": "monitoring_type",
+                      "value": "TCP"
+                    },
+                    {
+                      "key": "tcp_monitoring_port",
+                      "value": "15"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff230c50-3e77-4a16-906c-e53009dcf3bf",
+          "name": "Protected IP over TCP - Remove",
+          "request": {
+            "name": "Protected IP over TCP - Remove",
+            "description": {
+              "content": "Use this operation on the provided Edge IP to remove it from the 'IP Protection over TCP' service.<br/>WARNING: Any entity already protected by this Edge IP will no longer be protected once the operation is successful, unless duplicate protection was enabled and used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov",
+                "v1",
+                "ddos-protection",
+                "edge-ip",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "edge_ip",
+                  "value": "<string>",
+                  "description": "(Required) Imperva generated Edge IP"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "409a6aba-51f7-4bae-974f-882f0ebdcab1",
+              "name": "res - contains the specific error code:<br/>3015 - Internal error<br/>7003 - IP cannot be used<br/>7006 - Edge IP not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov",
+                    "v1",
+                    "ddos-protection",
+                    "edge-ip",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "edge_ip",
+                      "value": "172.17.14.1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.imperva.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a4fc9b71-bc0f-40c0-b4f7-320e857860ea",
+    "name": "Cloud Application Security Account Management DDoS Protection for Individual IPs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Add, delete, and modify accounts. Get account details.",
+      "type": "text/plain"
+    }
+  }
+}

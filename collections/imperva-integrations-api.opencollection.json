@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management Integrations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Imperva IP Ranges",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/integration/v1/ips",
+            "params": [
+              {
+                "name": "resp_format",
+                "value": "json",
+                "type": "query",
+                "description": "Response format.<br/>Possible values: json | apache | nginx | iptables | text<br/>Default: json"
+              }
+            ]
+          },
+          "docs": "Use this operation to get the updated list of Imperva IP ranges. This list may be used to define firewall rules that restrict access to customers sites from non-Imperva IPs."
+        },
+        {
+          "info": {
+            "name": "Get Texts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/integration/v1/texts"
+          },
+          "docs": "Use this operation to retrieve a list of all text messages that may be part of API responses. For each message a key and a value are provided. The key is the unique identifier of the message and the value is the message text itself, in the API's default locale (English)."
+        },
+        {
+          "info": {
+            "name": "Get Geographical Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/integration/v1/geo"
+          },
+          "docs": "Use this operation to retrieve a list of all the countries and continents codes."
+        },
+        {
+          "info": {
+            "name": "Get Client Applications Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/integration/v1/clapps"
+          },
+          "docs": "Use this operation to retrieve a list of all the client applications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

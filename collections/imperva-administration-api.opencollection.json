@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management Administration API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Administration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "setLogLevel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/administration/log/level",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getGatewayRegistrationToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/administration/gatewayRegistrationToken"
+          }
+        },
+        {
+          "info": {
+            "name": "getVersion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/administration/version"
+          }
+        },
+        {
+          "info": {
+            "name": "setStrictMode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://my.imperva.com/v1/administration/strict",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getChallenge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/administration/challenge"
+          }
+        },
+        {
+          "info": {
+            "name": "getSessionId",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/administration/user/password/firsttime",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "uploadFlexProtectCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/administration/flex_protect",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uploadLicenseFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/v1/administration/license",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

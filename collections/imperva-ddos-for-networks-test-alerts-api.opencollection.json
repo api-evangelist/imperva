@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management DDoS for Networks Test Alerts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DDoS for Networks Test Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "DDoS Start",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/ddos/start",
+            "params": [
+              {
+                "name": "ip_prefix",
+                "value": "100.1.2.0/24",
+                "type": "query",
+                "description": "The IP prefix to send a notification for. For example, 10.10.10.10"
+              },
+              {
+                "name": "bps",
+                "value": "8",
+                "type": "query",
+                "description": "Number of bits per second"
+              },
+              {
+                "name": "pps",
+                "value": "16",
+                "type": "query",
+                "description": "Number of packets per second"
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has started.<br/>You can optionally provide additional parameters to determine the magnitude of the attack."
+        },
+        {
+          "info": {
+            "name": "DDoS Stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/ddos/stop",
+            "params": [
+              {
+                "name": "ip_prefix",
+                "value": "100.1.2.0/24",
+                "type": "query",
+                "description": "The IP prefix to send a notification for. For example, 10.10.10.10"
+              },
+              {
+                "name": "bps",
+                "value": "8",
+                "type": "query",
+                "description": "Number of bits per second"
+              },
+              {
+                "name": "pps",
+                "value": "16",
+                "type": "query",
+                "description": "Number of packets per second"
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has ended.<br/>You can optionally provide additional parameters to determine the magnitude of the attack."
+        },
+        {
+          "info": {
+            "name": "Connection Down",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/connection/down",
+            "params": [
+              {
+                "name": "connection_name",
+                "value": "CONNECTION_NAME",
+                "type": "query",
+                "description": "The connection to send a notification for.<br/>Enter the connection name as it appears in the Cloud Security Console’s Protection Settings page. For example, Test_GRE_Tunnel."
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that the Infrastructure Protection connection is down.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page."
+        },
+        {
+          "info": {
+            "name": "Connection UP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/connection/up",
+            "params": [
+              {
+                "name": "connection_name",
+                "value": "CONNECTION_NAME",
+                "type": "query",
+                "description": "The connection to send a notification for.<br/>Enter the connection name as it appears in the Cloud Security Console’s Protection Settings page. For example, Test_GRE_Tunnel."
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that the Infrastructure Protection connection is up.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page."
+        },
+        {
+          "info": {
+            "name": "IP Protection Status Up",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/ip-protection-status/up",
+            "params": [
+              {
+                "name": "ip_protection",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "The IP to send a notification for. For example, 10.10.10.10"
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that the IP Protection status is up."
+        },
+        {
+          "info": {
+            "name": "IP Protection Status Down",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/ip-protection-status/down",
+            "params": [
+              {
+                "name": "ip_protection",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "The IP to send a notification for. For example, 10.10.10.10"
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that the IP Protection status is down."
+        },
+        {
+          "info": {
+            "name": "Monitoring Start",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/monitoring/start",
+            "params": [
+              {
+                "name": "exporter_ip",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page."
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that flow monitoring has started.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page."
+        },
+        {
+          "info": {
+            "name": "Monitoring Stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/monitoring/stop",
+            "params": [
+              {
+                "name": "exporter_ip",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page."
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that NetFlow monitoring has stopped."
+        },
+        {
+          "info": {
+            "name": "Monitoring Bad Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/monitoring/bad-data",
+            "params": [
+              {
+                "name": "exporter_ip",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page."
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that the monitoring service is receiving messages that do not conform to the accepted format.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page."
+        },
+        {
+          "info": {
+            "name": "Monitoring Attack Start",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/v1/infra-protect/test-alerts/monitoring/attack-start",
+            "params": [
+              {
+                "name": "ip_prefix",
+                "value": "100.1.2.1",
+                "type": "query",
+                "description": "The IP range to send a notification for. For example, 1.1.1.0/24"
+              },
+              {
+                "name": "bps",
+                "value": "8",
+                "type": "query",
+                "description": "Number of bits per second"
+              },
+              {
+                "name": "pps",
+                "value": "16",
+                "type": "query",
+                "description": "Number of packets per second"
+              },
+              {
+                "name": "packet_type",
+                "value": "TCP",
+                "type": "query",
+                "description": "Packet type. (UDP, TCP, DNS, DNS_RESPONSE, ICMP, SYN, FRAG, LARGE_SYN, NTP, NETFLOW, SSDP, GENERAL)"
+              }
+            ]
+          },
+          "docs": "Use this operation to send a test notification informing you that the monitoring service has detected a DDoS attack.<br/>You can optionally provide additional parameters to determine the magnitude of the attack."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

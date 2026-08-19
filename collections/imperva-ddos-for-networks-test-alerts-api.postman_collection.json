@@ -1,0 +1,1119 @@
+{
+  "item": [
+    {
+      "id": "f2ac5dd4-0e0d-49b6-9672-a8fe896061bc",
+      "name": "DDoS for Networks Test Alerts",
+      "description": {
+        "content": "Generate dummy notifications to test system alerts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f675925-a32f-44cd-adad-fb2bc2c6af2c",
+          "name": "DDoS Start",
+          "request": {
+            "name": "DDoS Start",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has started.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "ddos",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ip_prefix",
+                  "value": "<string>",
+                  "description": "The IP prefix to send a notification for. For example, 10.10.10.10"
+                },
+                {
+                  "disabled": false,
+                  "key": "bps",
+                  "value": "<integer>",
+                  "description": "Number of bits per second"
+                },
+                {
+                  "disabled": false,
+                  "key": "pps",
+                  "value": "<long>",
+                  "description": "Number of packets per second"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57120782-6662-4709-b8bb-0b10a9ea6ac5",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "ddos",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip_prefix",
+                      "value": "100.1.2.0/24"
+                    },
+                    {
+                      "key": "bps",
+                      "value": "8"
+                    },
+                    {
+                      "key": "pps",
+                      "value": "16"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "004d63d7-f240-4938-9f35-1e60ebc78deb",
+          "name": "DDoS Stop",
+          "request": {
+            "name": "DDoS Stop",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has ended.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "ddos",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ip_prefix",
+                  "value": "<string>",
+                  "description": "The IP prefix to send a notification for. For example, 10.10.10.10"
+                },
+                {
+                  "disabled": false,
+                  "key": "bps",
+                  "value": "<integer>",
+                  "description": "Number of bits per second"
+                },
+                {
+                  "disabled": false,
+                  "key": "pps",
+                  "value": "<long>",
+                  "description": "Number of packets per second"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be4ffd08-2752-4032-8b9f-40f38e88391a",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "ddos",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip_prefix",
+                      "value": "100.1.2.0/24"
+                    },
+                    {
+                      "key": "bps",
+                      "value": "8"
+                    },
+                    {
+                      "key": "pps",
+                      "value": "16"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "617d8266-b62e-439a-9ab7-29b0fb0073c6",
+          "name": "Connection Down",
+          "request": {
+            "name": "Connection Down",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that the Infrastructure Protection connection is down.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "connection",
+                "down"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connection_name",
+                  "value": "<string>",
+                  "description": "The connection to send a notification for.<br/>Enter the connection name as it appears in the Cloud Security Console’s Protection Settings page. For example, Test_GRE_Tunnel."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66da465a-ddc7-40ad-8ed8-d163077a5380",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "connection",
+                    "down"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connection_name",
+                      "value": "CONNECTION_NAME"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\",\n  \"connection_name\": \"CONNECTION_NAME\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1c30f41-9e52-4b11-86b7-5b9fde699c69",
+          "name": "Connection UP",
+          "request": {
+            "name": "Connection UP",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that the Infrastructure Protection connection is up.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "connection",
+                "up"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connection_name",
+                  "value": "<string>",
+                  "description": "The connection to send a notification for.<br/>Enter the connection name as it appears in the Cloud Security Console’s Protection Settings page. For example, Test_GRE_Tunnel."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48a64950-c310-4334-a19b-793c5e195fc1",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "connection",
+                    "up"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connection_name",
+                      "value": "CONNECTION_NAME"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\",\n  \"connection_name\": \"CONNECTION_NAME\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c23de2eb-4f81-49fa-aea8-5833d9b13adc",
+          "name": "IP Protection Status Up",
+          "request": {
+            "name": "IP Protection Status Up",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that the IP Protection status is up.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "ip-protection-status",
+                "up"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ip_protection",
+                  "value": "<string>",
+                  "description": "The IP to send a notification for. For example, 10.10.10.10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b694624f-8445-44f1-a158-935ee7c66180",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "ip-protection-status",
+                    "up"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip_protection",
+                      "value": "1.1.1.1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0926ab6a-c24f-4ec9-834c-d95ed7ac0aad",
+          "name": "IP Protection Status Down",
+          "request": {
+            "name": "IP Protection Status Down",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that the IP Protection status is down.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "ip-protection-status",
+                "down"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ip_protection",
+                  "value": "<string>",
+                  "description": "The IP to send a notification for. For example, 10.10.10.10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "166ce622-4649-4c7b-bee4-1c64826fece4",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "ip-protection-status",
+                    "down"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip_protection",
+                      "value": "1.1.1.1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\",\n  \"ip\": \"1.2.3.4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77058030-3e33-46af-8540-6007406c577a",
+          "name": "Monitoring Start",
+          "request": {
+            "name": "Monitoring Start",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that flow monitoring has started.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "monitoring",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exporter_ip",
+                  "value": "<string>",
+                  "description": "The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92cd1f7f-f44a-424c-8dda-2c18f571f8cd",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "monitoring",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exporter_ip",
+                      "value": "1.1.1.1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fbd8e1a-a469-48d0-ab60-1816c2b39149",
+          "name": "Monitoring Stop",
+          "request": {
+            "name": "Monitoring Stop",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that NetFlow monitoring has stopped.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "monitoring",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exporter_ip",
+                  "value": "<string>",
+                  "description": "The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df893046-5505-4e5a-ac81-6df489bbe91a",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "monitoring",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exporter_ip",
+                      "value": "1.1.1.1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a3dc6f0-f6a9-46b5-877f-9d80d74d8dfa",
+          "name": "Monitoring Bad Data",
+          "request": {
+            "name": "Monitoring Bad Data",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that the monitoring service is receiving messages that do not conform to the accepted format.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "monitoring",
+                "bad-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exporter_ip",
+                  "value": "<string>",
+                  "description": "The exporter IP to send a notification for. For example, 10.10.10.10.<br/>The exporter IP can be found in the Cloud Security Console’s Monitoring Settings page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c285c66-f24c-4bbf-86f9-6a5d894a8d22",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "monitoring",
+                    "bad-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exporter_ip",
+                      "value": "1.1.1.1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dac3b48-20ab-4a27-8e1c-e67319dc2a75",
+          "name": "Monitoring Attack Start",
+          "request": {
+            "name": "Monitoring Attack Start",
+            "description": {
+              "content": "Use this operation to send a test notification informing you that the monitoring service has detected a DDoS attack.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra-protect",
+                "test-alerts",
+                "monitoring",
+                "attack-start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ip_prefix",
+                  "value": "<string>",
+                  "description": "The IP range to send a notification for. For example, 1.1.1.0/24"
+                },
+                {
+                  "disabled": false,
+                  "key": "bps",
+                  "value": "<integer>",
+                  "description": "Number of bits per second"
+                },
+                {
+                  "disabled": false,
+                  "key": "pps",
+                  "value": "<long>",
+                  "description": "Number of packets per second"
+                },
+                {
+                  "disabled": false,
+                  "key": "packet_type",
+                  "value": "<string>",
+                  "description": "Packet type. (UDP, TCP, DNS, DNS_RESPONSE, ICMP, SYN, FRAG, LARGE_SYN, NTP, NETFLOW, SSDP, GENERAL)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "faacba39-b671-47b4-8c07-f60a84230e27",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>9414 - Feature not permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra-protect",
+                    "test-alerts",
+                    "monitoring",
+                    "attack-start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip_prefix",
+                      "value": "100.1.2.1"
+                    },
+                    {
+                      "key": "bps",
+                      "value": "8"
+                    },
+                    {
+                      "key": "pps",
+                      "value": "16"
+                    },
+                    {
+                      "key": "packet_type",
+                      "value": "TCP"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"ip_prefix\": \"100.1.2.0/24\",\n  \"status\": \"DDoS start notification sent successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.imperva.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d93cf8dd-1c59-429f-92fd-236cf232838e",
+    "name": "Cloud Application Security Account Management DDoS for Networks Test Alerts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Add, delete, and modify accounts. Get account details.",
+      "type": "text/plain"
+    }
+  }
+}

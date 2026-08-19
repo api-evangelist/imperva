@@ -1,0 +1,552 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account login token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/gettoken",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "partner_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the parent id to operate on"
+              }
+            ]
+          },
+          "docs": "Tokens are used instead of user/password based authentication to log in to the Imperva Cloud Security Console.\nUse this operation to generate a token for an account. The token is valid for 15 minutes."
+        },
+        {
+          "info": {
+            "name": "List managed accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/list",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "page_size",
+                "value": "75",
+                "type": "query",
+                "description": "The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100"
+              },
+              {
+                "name": "page_num",
+                "value": "0",
+                "type": "query",
+                "description": "The page to return starting from 0. Default: '0"
+              }
+            ]
+          },
+          "docs": "Available for Reseller accounts only.<br/>Use this operation to get the list of accounts that are managed by account of the API client (the parent account)."
+        },
+        {
+          "info": {
+            "name": "Add a new sub account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/subaccounts/add",
+            "params": [
+              {
+                "name": "sub_account_name",
+                "value": "My Sub Account",
+                "type": "query",
+                "description": "The name of the sub account."
+              },
+              {
+                "name": "parent_id",
+                "value": "10",
+                "type": "query",
+                "description": "The newly created account's parent id. If not specified, the invoking account will be assigned as the parent account."
+              },
+              {
+                "name": "ref_id",
+                "value": "1",
+                "type": "query",
+                "description": "Customer specific identifier for this operation."
+              },
+              {
+                "name": "log_level",
+                "value": "full",
+                "type": "query",
+                "description": "Sets the log reporting level for the site.<br/>Possible values: full, security, none, default<br/>Available only for customers that purchased the Logs Integration SKU."
+              },
+              {
+                "name": "logs_account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.<br/>Available only for customers that purchased the Logs Integration SKU."
+              }
+            ]
+          },
+          "docs": "Use this operation to add a new sub account to be managed by the account of the API client (the parent account)."
+        },
+        {
+          "info": {
+            "name": "List account's sub accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/listSubAccounts",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "page_size",
+                "value": "75",
+                "type": "query",
+                "description": "The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100"
+              },
+              {
+                "name": "page_num",
+                "value": "0",
+                "type": "query",
+                "description": "The page to return starting from 0. Default: 0"
+              }
+            ]
+          },
+          "docs": "Use this operation to get a list of sub accounts that are managed by the account of the API client (the parent account)."
+        },
+        {
+          "info": {
+            "name": "Modify account configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/configure",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "param",
+                "value": "email",
+                "type": "query",
+                "description": "Name of the configuration parameter to set.<br/>Possible values: name | email | plan_id | error_page_template | support_all_tls_versions | naked_domain_san_for_new_www_sites | wildcard_san_for_new_sites | ref_id<br/>Note: plan_id, email, and error_page_template parameters are available for Reseller account only."
+              },
+              {
+                "name": "value",
+                "value": "John@example.com",
+                "type": "query",
+                "description": "According to the configuration paramater used.<br/>For name - the updated name, for e-mail - the updated e-mail address.<br/>For plan_id - a plan id.<br/>For error_page_template - a Base64 encoded template for an error page.<br/>For log_level - Available only for customers that purchased the Logs Integration SKU. Sets the log reporting level for the site. Possible values: full, security, none, default<br/>For support_all_tls_versions - Use this operation to allow sites in the account to support all TLS versions for connectivity between clients (visitors) and the Imperva service. When this option is set, you can then enable the option per site to support all TLS versions. Possible values: true, false. Note: To remain PCI-compliant, do not enable this option.<br/>For naked_domain_san_for_new_www_sites - Use this option to determine if the naked domain SAN will be added to the SSL certificate for new www sites. Default value: true<br/>For wildcard_san_for_new_sites - Use this option to determine if the wildcard SAN or the full domain SAN is added to the Imperva SSL certificate for new sites. Possible values: true, false, default (determined by plan) Default value: default<br/>For ref_id - Sets the Reference ID, a free-text field that enables you to add a unique identifier to correlate an object in our service, such as a protected website, with an object on the customer side."
+              }
+            ]
+          },
+          "docs": "Use this operation to change the configuration of the account of the API client or one of its managed accounts."
+        },
+        {
+          "info": {
+            "name": "Delete managed account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/delete",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on."
+              }
+            ]
+          },
+          "docs": "Available for Reseller accounts only\nUse this operation to delete an account."
+        },
+        {
+          "info": {
+            "name": "Delete sub account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/subaccounts/delete",
+            "params": [
+              {
+                "name": "sub_account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the sub account to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to delete a sub account."
+        },
+        {
+          "info": {
+            "name": "Get account status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              }
+            ]
+          },
+          "docs": "Use this operation to get account status"
+        },
+        {
+          "info": {
+            "name": "Modify account log level",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/setlog",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "log_level",
+                "value": "full",
+                "type": "query",
+                "description": "Sets the log reporting level for the site.<br/>Possible values: full, security, none, default<br/>Available only for customers that purchased the Log Integration SKU."
+              }
+            ]
+          },
+          "docs": "Available for Reseller accounts only<br/>Use this operation to change the account log configuration."
+        },
+        {
+          "info": {
+            "name": "Get account subscription details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/subscription",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              }
+            ]
+          },
+          "docs": "Use this operation to get subscription details for an account."
+        },
+        {
+          "info": {
+            "name": "Add a new managed account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/add",
+            "params": [
+              {
+                "name": "email",
+                "value": "example@imperva.com",
+                "type": "query",
+                "description": "Email address. For example: \"joe@example.com\"."
+              },
+              {
+                "name": "parent_id",
+                "value": "10",
+                "type": "query",
+                "description": "The newly created account's parent id. If not specified, the invoking account will be assigned as the parent."
+              },
+              {
+                "name": "name",
+                "value": "Jhon",
+                "type": "query",
+                "description": "The account owner's name. For example: \"John Doe\"."
+              },
+              {
+                "name": "plan_id",
+                "value": "ent100",
+                "type": "query",
+                "description": "An identifier of the plan to assign to the new account. For example, ent100 for the Enterprise 100 plan."
+              },
+              {
+                "name": "ref_id",
+                "value": "324",
+                "type": "query",
+                "description": "Customer specific identifier for this operation."
+              },
+              {
+                "name": "account_name",
+                "value": "John Account",
+                "type": "query",
+                "description": "Account name."
+              },
+              {
+                "name": "account_description",
+                "value": "Demo account",
+                "type": "query",
+                "description": "The account description"
+              },
+              {
+                "name": "user_name",
+                "value": "Jhon",
+                "type": "query",
+                "description": "The account owner's name. For example: \"John Doe\"."
+              },
+              {
+                "name": "log_level",
+                "value": "full",
+                "type": "query",
+                "description": "Sets the log reporting level for the site.Possible values: full, security, none, default<br/>Available only for customers that purchased the Logs Integration SKU."
+              },
+              {
+                "name": "logs_account_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.\nAvailable only for customers that purchased the Logs Integration SKU."
+              }
+            ]
+          },
+          "docs": "Available for Reseller accounts only<br/>Use this operation to add a new account that should be managed by the account of the API client (the parent account). The new account will be configured according to the preferences set for the parent account by Imperva.\nDepending on these preferences, an activation e-mail will be sent to the specified e-mail address. The user responds to the activation e-mail, selects a password, and can then log directly into the Imperva console. The same e-mail address"
+        },
+        {
+          "info": {
+            "name": "Test connection with S3 bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/testS3Connection",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "query",
+                "description": "S3 bucket name"
+              },
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "S3 access key"
+              },
+              {
+                "name": "secret_key",
+                "value": "",
+                "type": "query",
+                "description": "S3 secret key"
+              },
+              {
+                "name": "save_on_success",
+                "value": "true",
+                "type": "query",
+                "description": "Save this configuration if the test connection was successful. Default value:false"
+              }
+            ]
+          },
+          "docs": "Use this operation to check that a connection can be created with your Amazon S3 bucket."
+        },
+        {
+          "info": {
+            "name": "Test connection with SFTP server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/testSftpConnection",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on."
+              },
+              {
+                "name": "host",
+                "value": "10.1.1.1",
+                "type": "query",
+                "description": "The IP address of your SFTP server"
+              },
+              {
+                "name": "user_name",
+                "value": "John Doe",
+                "type": "query",
+                "description": "A user name that will be used to log in to the SFTP server"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "A corresponding password for the user account used to log in to the SFTP server"
+              },
+              {
+                "name": "destination_folder",
+                "value": "",
+                "type": "query",
+                "description": "The path to the directory on the SFTP server"
+              },
+              {
+                "name": "save_on_success",
+                "value": "true",
+                "type": "query",
+                "description": "Save this configuration if the test connection was successful. Default value: false"
+              }
+            ]
+          },
+          "docs": "Use this operation to check that a connection can be created with your SFTP storage."
+        },
+        {
+          "info": {
+            "name": "Set Imperva servers for log storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/setDefaultSiemStorage",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on"
+              }
+            ]
+          },
+          "docs": "Use this operation to have your logs saved on Incapsula servers. Once configured, the logs can be retrieved by API calls."
+        },
+        {
+          "info": {
+            "name": "Set S3 configuration for log storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/setAmazonSiemStorage",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "query",
+                "description": "S3 bucket name"
+              },
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "S3 access key"
+              },
+              {
+                "name": "secret_key",
+                "value": "",
+                "type": "query",
+                "description": "S3 secret key"
+              }
+            ]
+          },
+          "docs": "Use this operation to configure your Amazon cloud storage. Once configured, Imperva logs will be uploaded to the selected location."
+        },
+        {
+          "info": {
+            "name": "Set SFTP server configuration for log storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/accounts/setSftpSiemStorage",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on"
+              },
+              {
+                "name": "host",
+                "value": "10.1.1.1",
+                "type": "query",
+                "description": "The IP address of your SFTP server"
+              },
+              {
+                "name": "user_name",
+                "value": "John Doe",
+                "type": "query",
+                "description": "A user name that will be used to log in to the SFTP server"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "A corresponding password for the user account used to log in to the SFTP server"
+              },
+              {
+                "name": "destination_folder",
+                "value": "",
+                "type": "query",
+                "description": "The path to the directory on the SFTP server"
+              }
+            ]
+          },
+          "docs": "Use this operation to configure your SFTP server storage. Once configured, Incapsula logs will be uploaded to the selected location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

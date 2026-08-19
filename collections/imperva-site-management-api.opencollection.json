@@ -1,0 +1,2569 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management Site Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Site Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a cache rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/caching-rules/add",
+            "params": [
+              {
+                "name": "action",
+                "value": "HTTP_CACHE_CREATE_TAG",
+                "type": "query",
+                "description": "Rule action. See Possible action parameter values.<br/>Possible action parameter values:<br/><ul><li><b>HTTP_CACHE_MAKE_STATIC</b> Cache Resource</li><li><b>HTTP_CACHE_CLIENT_CACHE_CTL</b> Cache Resource on Client</li><li><b>HTTP_CACHE_FORCE_UNCACHEABLE</b> Don't Cache Resource</li><li><b>HTTP_CACHE_DIFFERENTIATE_SSL</b> Differentiate Cache Key by HTTP/HTTPS Scheme</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_HEADER</b> Differentiate Cache Key by Header</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_COOKIE</b> Differentiate Cache Key by Cookie</li><li><b>HTTP_CACHE_IGNORE_PARAMS</b> Ignore Parameters in Cache Key</li><li><b>HTTP_CACHE_IGNORE_AUTH_HEADER</b> CacheRuleAction.HTTP_CACHE_IGNORE_AUTH_HEADER</li><li><b>HTTP_CACHE_FORCE_VALIDATION</b> Force User Authentication</li><li><b>HTTP_CACHE_ADD_TAG</b> Create Tag</li><li><b>HTTP_CACHE_ENRICH_CACHE_KEY</b> Enrich Cache Key</li></ul>"
+              },
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "name",
+                "value": "rule1",
+                "type": "query",
+                "description": "Rule name."
+              },
+              {
+                "name": "filter",
+                "value": "URL ==  /admin",
+                "type": "query",
+                "description": "Rule will trigger only a request that matches this filter. For more details on filters, see <a href=\"https://docs.imperva.com/csh?context=rule_syntax\">Syntax Guide</a>."
+              },
+              {
+                "name": "ttl",
+                "value": "TTL value",
+                "type": "query",
+                "description": "Rule TTL. Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL"
+              },
+              {
+                "name": "ttl_unit",
+                "value": "SECONDS",
+                "type": "query",
+                "description": "Rule TTL time unit.<br/>Must be one of SECONDS, MINUTES, HOURS, DAYS or WEEKS. If no time unit is provided, SECONDS is used.<br/>Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL"
+              },
+              {
+                "name": "differentiated_by_value",
+                "value": "cookie name",
+                "type": "query",
+                "description": "Value to differentiate by. HTTP_CACHE_DIFFERENTIATE_BY_HEADER - header name, HTTP_CACHE_DIFFERENTIATE_BY_COOKIE - cookie name, HTTP_CACHE_DIFFERENTIATE_BY_GEO - geo location <br/>(ISO 3166-1 alpha-2 country codes ), otherwise irrelevant."
+              },
+              {
+                "name": "params",
+                "value": "{a,b,c}",
+                "type": "query",
+                "description": "Comma separated list of parameters to ignore."
+              },
+              {
+                "name": "all_params",
+                "value": "true",
+                "type": "query",
+                "description": "When set to <b>true</b>: all parameters in cache key will be ignored.<br/>Default: false.<br/>Relevant for HTTP_CACHE_IGNORE_PARAMS action"
+              },
+              {
+                "name": "tag_name",
+                "value": "tag example",
+                "type": "query",
+                "description": "The name of the tag to add."
+              },
+              {
+                "name": "text",
+                "value": "suffix",
+                "type": "query",
+                "description": "Add text to the cache key as suffix. Relevant for the HTTP_CACHE_ENRICH_CACHE_KEY action"
+              }
+            ]
+          },
+          "docs": "Use this operation for adding a cache rule"
+        },
+        {
+          "info": {
+            "name": "Delete a cache rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/caching-rules/delete",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "rule_id",
+                "value": "3746",
+                "type": "query",
+                "description": "ID of the rule to change."
+              }
+            ]
+          },
+          "docs": "Use this operation for deleting a cache rule"
+        },
+        {
+          "info": {
+            "name": "Enable or disable cache rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/caching-rules/enable",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "rule_id",
+                "value": "3746",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "enable",
+                "value": "true",
+                "type": "query",
+                "description": "When true, the rule will be enabled. Set to false to disable."
+              }
+            ]
+          },
+          "docs": "Use this operation for enabling or disable cache rule"
+        },
+        {
+          "info": {
+            "name": "List cache rules for a given site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/caching-rules/list",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "page_size",
+                "value": "75",
+                "type": "query",
+                "description": "The number of objects to return in the response.<br/>Default is 50.<br/>Maximum: 100"
+              },
+              {
+                "name": "page_num",
+                "value": "0",
+                "type": "query",
+                "description": "The page to return starting from 0. Default is 0."
+              }
+            ]
+          },
+          "docs": "Use this operation for representing cache rules for a given site"
+        },
+        {
+          "info": {
+            "name": "Edit a cache rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/caching-rules/edit",
+            "params": [
+              {
+                "name": "action",
+                "value": "HTTP_CACHE_CREATE_TAG",
+                "type": "query",
+                "description": "Rule action. See Possible action parameter values.<br/>Possible action parameter values:<br/><ul><li><b>HTTP_CACHE_MAKE_STATIC</b> Cache Resource</li><li><b>HTTP_CACHE_CLIENT_CACHE_CTL</b> Cache Resource on Client</li><li><b>HTTP_CACHE_FORCE_UNCACHEABLE</b> Don't Cache Resource</li><li><b>HTTP_CACHE_DIFFERENTIATE_SSL</b> Differentiate Cache Key by HTTP/HTTPS Scheme</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_HEADER</b> Differentiate Cache Key by Header</li><li><b>HTTP_CACHE_DIFFERENTIATE_BY_COOKIE</b> Differentiate Cache Key by Cookie</li><li><b>HTTP_CACHE_IGNORE_PARAMS</b> Ignore Parameters in Cache Key</li><li><b>HTTP_CACHE_IGNORE_AUTH_HEADER</b> CacheRuleAction.HTTP_CACHE_IGNORE_AUTH_HEADER</li><li><b>HTTP_CACHE_FORCE_VALIDATION</b> Force User Authentication</li><li><b>HTTP_CACHE_ADD_TAG</b> Create Tag</li><li><b>HTTP_CACHE_ENRICH_CACHE_KEY</b> Enrich Cache Key</li></ul>"
+              },
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "rule_id",
+                "value": "3746",
+                "type": "query",
+                "description": "ID of the rule to change."
+              },
+              {
+                "name": "name",
+                "value": "rule1",
+                "type": "query",
+                "description": "Rule name."
+              },
+              {
+                "name": "filter",
+                "value": "URL ==  /admin",
+                "type": "query",
+                "description": "Rule will trigger only a request that matches this filter. For more details on filters, see <a href=\"https://docs.imperva.com/csh?context=rule_syntax\">Syntax Guide</a>."
+              },
+              {
+                "name": "ttl",
+                "value": "TTL value",
+                "type": "query",
+                "description": "Rule TTL. Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL"
+              },
+              {
+                "name": "ttl_unit",
+                "value": "SECONDS",
+                "type": "query",
+                "description": "Rule TTL time unit.<br/>Must be one of SECONDS, MINUTES, HOURS, DAYS or WEEKS. If no time unit is provided, SECONDS is used.<br/>Only relevant when action is HTTP_CACHE_MAKE_STATIC or HTTP_CACHE_CLIENT_CACHE_CTL"
+              },
+              {
+                "name": "differentiated_by_value",
+                "value": "cookie name",
+                "type": "query",
+                "description": "Value to differentiate by. HTTP_CACHE_DIFFERENTIATE_BY_HEADER - header name, HTTP_CACHE_DIFFERENTIATE_BY_COOKIE - cookie name, HTTP_CACHE_DIFFERENTIATE_BY_GEO - geo location<br/> (ISO 3166-1 alpha-2 country codes ), otherwise irrelevant."
+              },
+              {
+                "name": "params",
+                "value": "{a,b,c}",
+                "type": "query",
+                "description": "Comma separated list of parameters to ignore."
+              },
+              {
+                "name": "all_params",
+                "value": "true",
+                "type": "query",
+                "description": "When set to <b>true</b>: all parameters in cache key will be ignored.<br/>Default: false.<br/>Relevant for HTTP_CACHE_IGNORE_PARAMS action"
+              },
+              {
+                "name": "tag_name",
+                "value": "tag1",
+                "type": "query",
+                "description": "The name of the tag to add."
+              },
+              {
+                "name": "text",
+                "value": "cache",
+                "type": "query",
+                "description": "Add text to the cache key as suffix. Relevant for the HTTP_CACHE_ENRICH_CACHE_KEY action"
+              }
+            ]
+          },
+          "docs": "Use this operation for editing a cache rule"
+        },
+        {
+          "info": {
+            "name": "Add data center",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/add",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "name",
+                "value": "DataCenter",
+                "type": "query",
+                "description": "The new data center's name."
+              },
+              {
+                "name": "server_address",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "The server's address. Possible values: IP, CNAME"
+              },
+              {
+                "name": "lb_algorithm",
+                "value": "LB_LEAST_PENDING_REQUESTS",
+                "type": "query",
+                "description": "Data center load balancing algorithm. Possible values are:<br/>LB_LEAST_PENDING_REQUESTS - Server with least pending requests<br/>LB_LEAST_OPEN_CONNECTIONS - Server with least open connections<br/>LB_SOURCE_IP_HASH - Server by IP hash<br/>RANDOM - Random server<br/>WEIGHTED - Server by weight"
+              },
+              {
+                "name": "is_enabled",
+                "value": "true",
+                "type": "query",
+                "description": "Enables the data center."
+              },
+              {
+                "name": "is_content",
+                "value": "true",
+                "type": "query",
+                "description": "The data center will be available for specific resources (<b>Forward</b> Delivery Rules)."
+              }
+            ]
+          },
+          "docs": "Use this operation for adding data center to site."
+        },
+        {
+          "info": {
+            "name": "Edit site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/edit",
+            "params": [
+              {
+                "name": "dc_id",
+                "value": "10",
+                "type": "query",
+                "description": "The data center's ID."
+              },
+              {
+                "name": "name",
+                "value": "DataCenter",
+                "type": "query",
+                "description": "The new data center's name."
+              },
+              {
+                "name": "is_enabled",
+                "value": "true",
+                "type": "query",
+                "description": "Enables the data center."
+              },
+              {
+                "name": "is_standby",
+                "value": "true",
+                "type": "query",
+                "description": "Defines the data center as <b>standby</b> for failover."
+              },
+              {
+                "name": "is_content",
+                "value": "true",
+                "type": "query",
+                "description": "The data center will be available for specific resources (<b>Forward</b> Delivery Rules)."
+              }
+            ]
+          },
+          "docs": "Use this operation to editing site's data center"
+        },
+        {
+          "info": {
+            "name": "Resume traffic to your active data centers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/resume",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "When at least one active data center is back up, you have to manually reroute your traffic back to the active data center.<br/>Traffic does not revert automatically to your active data centers."
+        },
+        {
+          "info": {
+            "name": "delete site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/delete",
+            "params": [
+              {
+                "name": "dc_id",
+                "value": "10",
+                "type": "query",
+                "description": "The data center's ID."
+              }
+            ]
+          },
+          "docs": "Use this operation for deleting site datacenter."
+        },
+        {
+          "info": {
+            "name": "Add datacenter ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/servers/add",
+            "params": [
+              {
+                "name": "dc_id",
+                "value": "10",
+                "type": "query",
+                "description": "The data center's ID."
+              },
+              {
+                "name": "server_address",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "Server IP address."
+              },
+              {
+                "name": "is_disabled",
+                "value": "true",
+                "type": "query",
+                "description": "Enables the data center"
+              },
+              {
+                "name": "is_standby",
+                "value": "true",
+                "type": "query",
+                "description": "Set the server as Active (P0) or Standby (P1) (Boolean)."
+              }
+            ]
+          },
+          "docs": "Use this operation to adding datacenter server."
+        },
+        {
+          "info": {
+            "name": "Delete datacenter ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/servers/delete",
+            "params": [
+              {
+                "name": "server_id",
+                "value": "10",
+                "type": "query",
+                "description": "Server ID."
+              }
+            ]
+          },
+          "docs": "Use this operation to deleting datacenter server."
+        },
+        {
+          "info": {
+            "name": "Edit datacenter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/servers/edit",
+            "params": [
+              {
+                "name": "server_id",
+                "value": "10",
+                "type": "query",
+                "description": "Server ID."
+              },
+              {
+                "name": "server_address",
+                "value": "1.1.1.1",
+                "type": "query",
+                "description": "The IP address of the server to modify."
+              },
+              {
+                "name": "is_enabled",
+                "value": "true",
+                "type": "query",
+                "description": "Enable or disable the server (Boolean)."
+              },
+              {
+                "name": "is_standby",
+                "value": "true",
+                "type": "query",
+                "description": "Set the server as Active (P0) or Standby (P1) (Boolean)."
+              }
+            ]
+          },
+          "docs": "Use this operation to editing datacenter server."
+        },
+        {
+          "info": {
+            "name": "List site's data centers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/dataCenters/list",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation for listing site's data centers including datacenters servers."
+        },
+        {
+          "info": {
+            "name": "Set Data Center Origin PoP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/datacenter/origin-pop/modify",
+            "params": [
+              {
+                "name": "dc_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the data center to operate on."
+              },
+              {
+                "name": "origin_pop",
+                "value": "lax, for Los Angeles",
+                "type": "query",
+                "description": "The ID of the PoP that serves as an access point between Imperva and the customer’s origin server. For example: “lax”, for Los Angeles."
+              }
+            ]
+          },
+          "docs": "Set an origin PoP for a given data center."
+        },
+        {
+          "info": {
+            "name": "Get Data Center Recommended Origin PoPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/datacenter/origin-pop/recommend",
+            "params": [
+              {
+                "name": "dc_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the data center to operate on."
+              }
+            ]
+          },
+          "docs": "Get a list of recommended origin PoPs for a given data center."
+        },
+        {
+          "info": {
+            "name": "Modify Caching Mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache-mode",
+            "params": [
+              {
+                "name": "cache_mode",
+                "value": "static_and_dynamic",
+                "type": "query",
+                "description": "Possible values:<br/><ul/><li>disable</li><li>custom_cache_rules_only</li><li>static_only</li><li>static_and_dynamic</li><li>aggressive</li>Default value: static_only</ul>"
+              },
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "dynamic_cache_duration",
+                "value": "5_min",
+                "type": "query",
+                "description": "Profile dynamic pages and cache duration. Pass a number followed by '_' and one of: hr | min | sec | days | weeks.</br>Default: 5_min"
+              },
+              {
+                "name": "aggressive_cache_duration",
+                "value": "1_hr",
+                "type": "query",
+                "description": "Cache resource duration. Pass a number followed by '_' and one of: hr | min | sec | days | weeks</br>Default: 1_hr"
+              }
+            ]
+          },
+          "docs": "Use this operation to edit basic site caching settings."
+        },
+        {
+          "info": {
+            "name": "Get Caching Mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache-mode/get",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get a site's caching mode."
+        },
+        {
+          "info": {
+            "name": "Purge Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/purge",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "resource_url",
+                "value": "/home",
+                "type": "query",
+                "description": "Comma separated list of URLs where the resource is located."
+              },
+              {
+                "name": "resource_pattern",
+                "value": "prefix",
+                "type": "query",
+                "description": "Comma separated list of pattern. One of: contains | equals | prefix | suffix | not_equals | not_contains | not_prefix | not_suffix"
+              },
+              {
+                "name": "should_purge_all_site_resources",
+                "value": "true",
+                "type": "query",
+                "description": "Should purge all cached resources on site.</br>Possible values:</br>If the parameter does not exist, is null, or an empty string, it is ignored and only specific resources defined by the resource_pattern and resource_url parameters are purged.</br><b>true</b> or <b>TRUE</b>: All site resources are purged.</br><b>false</b> or <b>FALSE</b>: Nothing is done.</br>Any other string: An error is returned."
+              }
+            ]
+          },
+          "docs": "Use this operation to purge site resources."
+        },
+        {
+          "info": {
+            "name": "Purge Site Cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/cache/purge",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "purge_pattern",
+                "value": "",
+                "type": "query",
+                "description": "The pattern of the resource to be purged from the cache. For example:</br><ul/><li><b>Resource_name</b> - Resources that contain Resource_name will be purged</li><li><b>^Resource_name</b> - Resources that start with Resource_name will be purged</li><li><b>Resource_name$</b> - Resources that end with Resource_name will be purged.</li></ul>"
+              },
+              {
+                "name": "purge_tag_names",
+                "value": "",
+                "type": "query",
+                "description": "A comma separated list of tag names to purge."
+              }
+            ]
+          },
+          "docs": "Use this operation to purge all cached content on our proxy servers for a specific site.<br/>Our Proxy servers keep cached content of your sites in order to accelerate page load times for your users.<br/>When you want this cached content to be refreshed (for example, after making adjustments in your site) you can use this API call.<br/>In order to purge the entire cached content for this site just use the API call with no parameters.<br/>If you want to purge a specific resource add the resource "
+        },
+        {
+          "info": {
+            "name": "Modify Cached Response Headers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/response-headers",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "cache_headers",
+                "value": "h1",
+                "type": "query",
+                "description": "Comma separated list of header names to be cached"
+              },
+              {
+                "name": "cache_all_headers",
+                "value": "true",
+                "type": "query",
+                "description": "Cache all response headers. Pass \"true\" or \"false\" in the value parameter. Cannot be selected together with cache_headers. Default:false"
+              }
+            ]
+          },
+          "docs": "Use this operation to modify cached response headers."
+        },
+        {
+          "info": {
+            "name": "Get Cached Response Headers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/response-headers/get",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get a site's cached response headers."
+        },
+        {
+          "info": {
+            "name": "Tag the Response According to the Value of a Header",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/tag-response",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "header",
+                "value": "cache",
+                "type": "query",
+                "description": "Specify which origin response header contains the cache tags in your resources. default: \"\"."
+              }
+            ]
+          },
+          "docs": "Specify which origin response header contains the cache tags in your resources."
+        },
+        {
+          "info": {
+            "name": "Get Header to Tag Responses By",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/tag-response/get",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Get the origin response header containing the cache tags in your resources"
+        },
+        {
+          "info": {
+            "name": "Modify Cache 404 Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache404/modify",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "enable",
+                "value": "true",
+                "type": "query",
+                "description": "Pass 'true' to cache 404 responses, 'false' to disable the option."
+              },
+              {
+                "name": "time",
+                "value": "10",
+                "type": "query",
+                "description": "A positive number representing the amount of time to cache 404 responses. Default value: 10"
+              },
+              {
+                "name": "time_unit",
+                "value": "HOURS",
+                "type": "query",
+                "description": "Unit of time for caching 404 responses. One of MINUTES, HOURS, DAYS, WEEKS. Default value: HOURS"
+              }
+            ]
+          },
+          "docs": "Use this operation to modify the caching settings of 404 responses for a site."
+        },
+        {
+          "info": {
+            "name": "Get Cache 404 Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache404",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get the caching settings of 404 responses for a site."
+        },
+        {
+          "info": {
+            "name": "Modify PoP Level Cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/pop-level-cache/modify",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "enable",
+                "value": "true",
+                "type": "query",
+                "description": "Pass 'true' to enable pop level cache, 'false' to disable the option."
+              }
+            ]
+          },
+          "docs": "Use this operation to modify the PoP level cache status for a site."
+        },
+        {
+          "info": {
+            "name": "Get PoP Level Cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/pop-level-cache",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get the PoP level cache status for a site."
+        },
+        {
+          "info": {
+            "name": "Set Resource Map Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/resource-map-size/modify",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "resource_map_size",
+                "value": "34000",
+                "type": "query",
+                "description": "Limit for the amount of cached resources."
+              }
+            ]
+          },
+          "docs": "Set the site's maximum number of cached resources."
+        },
+        {
+          "info": {
+            "name": "Get Resource Map Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/resource-map-size",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Get the site's maximum number of cached resources."
+        },
+        {
+          "info": {
+            "name": "Set Total Cache Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache-size-limit-large-mem/modify",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "cache_size_limit_large_mem",
+                "value": "500",
+                "type": "query",
+                "description": "A positive number representing limit for total size of cached resources."
+              },
+              {
+                "name": "cache_size_limit_large_mem_unit",
+                "value": "BYTES",
+                "type": "query",
+                "description": "Unit of the limit for total size of cached resources. One of BYTES, KB, MB."
+              }
+            ]
+          },
+          "docs": "Set the site's limit for the total size of cache."
+        },
+        {
+          "info": {
+            "name": "Get Total Cache Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache-size-limit-large-mem",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Get the site's limit for the total size of cache."
+        },
+        {
+          "info": {
+            "name": "Set Response Max Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/max-resp-size/modify",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "max_resp_size",
+                "value": "20971520",
+                "type": "query",
+                "description": "A positive number representing limit for the size of cached resources."
+              },
+              {
+                "name": "max_resp_size_unit",
+                "value": "BYTES",
+                "type": "query",
+                "description": "Unit of the limit for the size of cached resources. One of BYTES, KB, MB."
+              }
+            ]
+          },
+          "docs": "Set the site's limit for the size of a single file returned from the cache."
+        },
+        {
+          "info": {
+            "name": "Get Response Max Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/max-resp-size",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Get the site's limit for the size of a single file returned from the cache."
+        },
+        {
+          "info": {
+            "name": "Modify Secure Resources Mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/secure-resources",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "secured_resources_mode",
+                "value": "",
+                "type": "query",
+                "description": "<b>do_not_cache</b> - Do not cache HTTPS resources<br/><b>defaults</b> - Use default HTTPS caching. Do not cache HTML pages<br/><b>defaults_with_html</b> - Use default HTTPS caching. Also cache HTML pages<br/><b>general</b> - Cache HTTPS according to general caching settings"
+              }
+            ]
+          },
+          "docs": "Use this operation to modify the Secure Resources mode for a site."
+        },
+        {
+          "info": {
+            "name": "Get Secure Resources Mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/secure-resources/get",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Use this operation to get the Secure Resources mode for a site."
+        },
+        {
+          "info": {
+            "name": "Modify Stale Content Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/stale-content",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "serve_stale_content",
+                "value": "true",
+                "type": "query",
+                "description": "Pass <b>true</b> to serve stale content, <b>false</b> to disable the option."
+              },
+              {
+                "name": "stale_content_mode",
+                "value": "ADAPTIVE",
+                "type": "query",
+                "description": "Pass <b>ADAPTIVE</b> to use Imperva's algorithm, or <b>CUSTOM</b> to specify an amount of time. When using <b>CUSTOM</b>, you must specify the time and time_unit parameters."
+              },
+              {
+                "name": "time",
+                "value": "10",
+                "type": "query",
+                "description": "A positive number representing the amount of time to serve stale content."
+              },
+              {
+                "name": "time_unit",
+                "value": "MINUTES",
+                "type": "query",
+                "description": "Stale content time unit. One of SECONDS, MINUTES, HOURS."
+              }
+            ]
+          },
+          "docs": "When Imperva can't connect to the origin server, serve stale content instead of displaying an error to end users for the specified amount of time. Expired resources are returned from cache, and refreshed asynchronously in the background."
+        },
+        {
+          "info": {
+            "name": "Get Stale Content Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/stale-content/get",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "When Imperva can't connect to the origin server, serve stale content instead of displaying an error to end users for the specified amount of time. Expired resources are returned from cache, and refreshed asynchronously in the background."
+        },
+        {
+          "info": {
+            "name": "Advanced Caching Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/advanced",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "param",
+                "value": "async_validation",
+                "type": "query",
+                "description": "Name of configuration parameter to set.<br/>Possible values for param and value parameters:<br/><ul><li><b>async_validation</b> Sets Async validation. Pass \"true\" or \"false\" in the value parameter.</li><li><b>minify_javascript</b> Sets the Minify JS. Pass \"true\" or \"false\" in the value parameter.</li><li><b>minify_css</b> Sets the Minify CSS. Pass \"true\" or \"false\" in the value parameter</li><li><b>minify_static_html</b> Sets Minify static HTML. Pass \"true\" or \"false\" in the value parameter</li><li><b>compress_jpeg</b> Sets the Compress JPEG. Pass \"true\" or \"false\" in the value parameter.</li><li><b>progressive_image_rendering</b> Sets the Progressive Image rendering flag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>aggressive_compression</b> Sets the Aggressive compression rendering flag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>compress_png</b> Sets the Compress PNG flag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>on_the_fly_compression</b> \"On the fly\" Compression. Pass \"true\" or \"false\" in the value parameter.</li><li><b>tcp_pre_pooling</b> TCP Pre-Pooling. Pass \"true\" or \"false\" in the value parameter.</li><li><b>comply_no_cache</b> Comply with no-cache and max-age directives in client requests. Pass \"true\" or \"false\" in the value parameter.</li><li><b>comply_vary</b> Comply with the <b>Vary</b> header. Pass \"true\" or \"false\" in the value parameter.</li><li><b>use_shortest_caching</b> Use shortest caching duration in case of conflicts. Pass \"true\" or \"false\" in the value parameter.</li><li><b>prefer_last_modified</b> Prefer 'last modified' over eTag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>disable_client_side_caching</b> Disable client side caching. Pass \"true\" or \"false\" in the value parameter.</li><li><b>cache_300x</b> Cache 300X responses. Pass \"true\" or \"false\" in the value parameter.</li><li><b>unite_naked_full_cache</b> Use the same cache for full and naked domains. For example, use the same cached resource for <a href=\"https://www.example.com/a\"></a> and <a href=\"https://example.com/\"></a>a.</li><li><b>cache_empty_responses</b> Cache responses that don’t have a message body.</li><li><b>cache_http_10_responses</b> Cache HTTP 1.0 type responses that don’t include the Content-Length header or chunking. Pass \"true\" or \"false\" in the value parameter.</li><li><b>send_age_header</b> Send <b>Cache-Control: max-age</b> and <b>Age</b> headers. Pass \"true\" or \"false\" in the value parameter.</li><li><b>support_non_sni_clients</b> By default, non-SNI clients are supported. Disable this option to block non-SNI clients. Pass \"true\" or \"false\" in the value parameter.</li><li><b>origin_connection_reuse</b> By default, TCP connections that are opened for a client request remain open for a short time to handle additional requests that may arrive. This option disables that behavior.. Pass \"true\" or \"false\" in the value parameter.</li><li><b>redirect_http_to_https</b> Redirect HTTP requests to HTTPS requests by sending an HTTP 301 response.</li><li><b>redirect_naked_domain_to_full</b> Redirect requests from your website's naked domain to its full domain by sending and HTTP 301 response.</li><li><b>http_2</b> Enables supporting browsers to take advantage of the performance enhancements provided by HTTP/2 for your website. Non-supporting browsers can connect via HTTP/1.0 or HTTP/1.1. HTTP/2 support requires that SSL is configured for your website. Pass \"true\" or \"false\" in the value parameter</li></ul>"
+              },
+              {
+                "name": "value",
+                "value": "true",
+                "type": "query",
+                "description": "According to the param value."
+              }
+            ]
+          },
+          "docs": "Use this operation to modify advanced caching settings."
+        },
+        {
+          "info": {
+            "name": "Get Advanced Caching Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/advanced/get",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "param",
+                "value": "async_validation",
+                "type": "query",
+                "description": "Name of configuration parameter to set.<br/>Possible values for param and value parameters:<br/><ul><li><b>async_validation</b> Sets Async validation. Pass \"true\" or \"false\" in the value parameter.</li><li><b>minify_javascript</b> Sets the Minify JS. Pass \"true\" or \"false\" in the value parameter.</li><li><b>minify_css</b> Sets the Minify CSS. Pass \"true\" or \"false\" in the value parameter</li><li><b>minify_static_html</b> Sets Minify static HTML. Pass \"true\" or \"false\" in the value parameter</li><li><b>compress_jpeg</b> Sets the Compress JPEG. Pass \"true\" or \"false\" in the value parameter.</li><li><b>progressive_image_rendering</b> Sets the Progressive Image rendering flag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>aggressive_compression</b> Sets the Aggressive compression rendering flag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>compress_png</b> Sets the Compress PNG flag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>on_the_fly_compression</b> \"On the fly\" Compression. Pass \"true\" or \"false\" in the value parameter.</li><li><b>tcp_pre_pooling</b> TCP Pre-Pooling. Pass \"true\" or \"false\" in the value parameter.</li><li><b>comply_no_cache</b> Comply with no-cache and max-age directives in client requests. Pass \"true\" or \"false\" in the value parameter.</li><li><b>comply_vary</b> Comply with the <b>Vary</b> header. Pass \"true\" or \"false\" in the value parameter.</li><li><b>use_shortest_caching</b> Use shortest caching duration in case of conflicts. Pass \"true\" or \"false\" in the value parameter.</li><li><b>prefer_last_modified</b> Prefer 'last modified' over eTag. Pass \"true\" or \"false\" in the value parameter.</li><li><b>disable_client_side_caching</b> Disable client side caching. Pass \"true\" or \"false\" in the value parameter.</li><li><b>cache_300x</b> Cache 300X responses. Pass \"true\" or \"false\" in the value parameter.</li><li><b>unite_naked_full_cache</b> Use the same cache for full and naked domains. For example, use the same cached resource for <a href=\"https://www.example.com/a\"></a> and <a href=\"https://example.com/\"></a>a.</li><li><b>cache_empty_responses</b> Cache responses that don’t have a message body.</li><li><b>cache_http_10_responses</b> Cache HTTP 1.0 type responses that don’t include the Content-Length header or chunking. Pass \"true\" or \"false\" in the value parameter.</li><li><b>send_age_header</b> Send <b>Cache-Control: max-age</b> and <b>Age</b> headers. Pass \"true\" or \"false\" in the value parameter.</li><li><b>support_non_sni_clients</b> By default, non-SNI clients are supported. Disable this option to block non-SNI clients. Pass \"true\" or \"false\" in the value parameter.</li><li><b>origin_connection_reuse</b> By default, TCP connections that are opened for a client request remain open for a short time to handle additional requests that may arrive. This option disables that behavior.. Pass \"true\" or \"false\" in the value parameter.</li><li><b>redirect_http_to_https</b> Redirect HTTP requests to HTTPS requests by sending an HTTP 301 response.</li><li><b>redirect_naked_domain_to_full</b> Redirect requests from your website's naked domain to its full domain by sending and HTTP 301 response.</li><li><b>http_2</b> Enables supporting browsers to take advantage of the performance enhancements provided by HTTP/2 for your website. Non-supporting browsers can connect via HTTP/1.0 or HTTP/1.1. HTTP/2 support requires that SSL is configured for your website. Pass \"true\" or \"false\" in the value parameter</li></ul>"
+              }
+            ]
+          },
+          "docs": "Use this operation to get advanced caching settings."
+        },
+        {
+          "info": {
+            "name": "Get XRay Access Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/xray/get-link",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get a URL that enables debug headers on the specific site. "
+        },
+        {
+          "info": {
+            "name": "Enable Cache Shield",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache-shield/enable",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "enable",
+                "value": "true",
+                "type": "query",
+                "description": "Use <b>true</b> to enable cache shield on the specified site, and <b>false</b> to disable it."
+              }
+            ]
+          },
+          "docs": "Enable Cache Shield for a given site."
+        },
+        {
+          "info": {
+            "name": "Is Cache Shield Enabled",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/cache-shield",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Get the enablement state of the Cache Shield feature for a given site."
+        },
+        {
+          "info": {
+            "name": "Modify Rewrite Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/rewrite-port/modify",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "rewrite_port_enabled",
+                "value": "true",
+                "type": "query",
+                "description": "Boolean value to indicate whether the default non-SSL port should be rewritten or not"
+              },
+              {
+                "name": "port",
+                "value": "80",
+                "type": "query",
+                "description": "The port number. If empty, rewrite port will be removed"
+              },
+              {
+                "name": "rewrite_ssl_port_enabled",
+                "value": "true",
+                "type": "query",
+                "description": "Boolean value to indicate whether the default SSL port should be rewritten or not"
+              },
+              {
+                "name": "ssl_port",
+                "value": "443",
+                "type": "query",
+                "description": "The port number to rewrite default SSL port to"
+              }
+            ]
+          },
+          "docs": "Use this operation to rewrite the port number used to access the origin server."
+        },
+        {
+          "info": {
+            "name": "Get Rewrite Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/rewrite-port",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Use this operation to get the rewritten port number used to access the origin server."
+        },
+        {
+          "info": {
+            "name": "Modify Error Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/error-page/modify",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "error_page_template",
+                "value": "",
+                "type": "query",
+                "description": "The error page html template. $TITLE$ and $BODY$ placeholders are required."
+              }
+            ]
+          },
+          "docs": "Use this operation to set a custom error page for a given site."
+        },
+        {
+          "info": {
+            "name": "Get Error Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/performance/error-page",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get the custom error page for a given site."
+        },
+        {
+          "info": {
+            "name": "Get Site Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/status",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "tests",
+                "value": "domain_validation",
+                "type": "query",
+                "description": "List of tests to run on site before returning its status.<br/>A comma separated list of one of: domain_validation, services, dns<br/>Values for the stats parameters:<br/><ul><li><b>domain_validation</b> Runs the domain validation test on the specified site. This test will check for HTML meta tag or DNS records, according to the selected domain validation method.</li><li><b>services</b> Runs the services test on the specified site. This test will check the availability of HTTP and HTTPS connections on the site.</li><li><b>dns</b> Runs the DNS test on the specified site. This test will check whether the site owner performed the DNS changes required in order to protect the site.</li></ul>"
+              }
+            ]
+          },
+          "docs": "Use this operation to get the status of a site."
+        },
+        {
+          "info": {
+            "name": "List Sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/list",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters.<br/>If the account has sub accounts, the operation returns results for the sites in the account and in all of its sub accounts."
+              },
+              {
+                "name": "page_size",
+                "value": "2",
+                "type": "query",
+                "description": "The number of objects to return in the response. Default is 50. Maximum: 100"
+              },
+              {
+                "name": "page_num",
+                "value": "1",
+                "type": "query",
+                "description": "he page to return starting from 0. Default is 0"
+              }
+            ]
+          },
+          "docs": "List sites for an account"
+        },
+        {
+          "info": {
+            "name": "Get Domain Approver E-mail Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/domain/emails",
+            "params": [
+              {
+                "name": "domain",
+                "value": "www.example.com",
+                "type": "query",
+                "description": "The domain name of the site. For example: <a href=\"www.example.com\">www.example.com</a>, <a href=\"hello.example.com\">www.example.com</a>, <a href=\"example.com\">www.example.com</a>"
+              }
+            ]
+          },
+          "docs": "Use this operation to get the list of email addresses that can be used when adding an SSL site."
+        },
+        {
+          "info": {
+            "name": "Modify Site Logs Level",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/setlog",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "log_level",
+                "value": "full",
+                "type": "query",
+                "description": "Available only for customers that purchased the Logs Integration SKU. Sets the log reporting level for the site.<br/>Possible values: full, security, none, default"
+              },
+              {
+                "name": "logs_account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Available only for customers that purchased the Logs Integration SKU. Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters"
+              }
+            ]
+          },
+          "docs": "Use this operation to change the site log configuration."
+        },
+        {
+          "info": {
+            "name": "Set support for all TLS versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/tls",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "support_all_tls_versions",
+                "value": "true",
+                "type": "query",
+                "description": "Support all TLS versions. Default value: false"
+              }
+            ]
+          },
+          "docs": "Use this operation to support all TLS versions for the site for connectivity between clients (visitors) and the Imperva service. To remain PCI-compliant, do not enable this option."
+        },
+        {
+          "info": {
+            "name": "Modify Site Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/configure",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "example.imperva.com",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "param",
+                "value": "active",
+                "type": "query",
+                "description": "Name of configuration parameter to set.<br/>Parameter values:<br/><ul><li><b>active</b> Whether the site is active or bypassed by the Imperva network. One of: active | bypass.</li><li><b>site_ip</b> Comma separated list of IPs. For example: 8.8.8.8,1.2.2.2</li><li><b>domain_validation</b> Sets the domain validation method that will be used to generate an SSL certificate. One of: email | html | dns<br/><b>Note</b>: When running domain validation on a site, you may see the following error message in the API response: Internal error - \"Add site operation hasn't finished\".<br/>After running the add site process, it may take several minutes for the database to finish updating. During this time, attempts to further configure the site are blocked.<br/>In some cases, the database is not updated even after the add site process is complete.<br/>If the issue does not resolve after a few minutes, contact Support.</li><li><b>approver</b> Sets the approver e-mail address that will be used to perform SSL domain validation.</li><li><b>ignore_ssl</b> Sets the ignore SSL flag (if the site is in pending-select-approver state). Pass \"true\" in the value parameter.</li><li><b>acceleration_level</b> Sets the acceleration level of the site, one of: none | standard | aggressive. It is advised to use the newer Modify caching mode API call instead, as it provides enhanced functionality.</li><li><b>seal_location</b> Sets the seal location, e.g. \"api.seal_location.bottom_right\".</li><li><b>domain_redirect_to_full</b> Sets the redirect naked to full flag. Pass \"true\" in the value parameter.</li><li><b>remove_ssl</b> Sets the remove SSL from site flag. Pass \"true\" in the value parameter.</li><li><b>ref_id</b> Sets the Reference ID, a free-text field that enables you to add a unique identifier to correlate an object in our service, such as a protected website, with an object on the customer side.</li></ul>"
+              },
+              {
+                "name": "value",
+                "value": "bypass",
+                "type": "query",
+                "description": "According to the param value."
+              }
+            ]
+          },
+          "docs": "Use this operation to change one of the basic configuration settings of the site."
+        },
+        {
+          "info": {
+            "name": "Delete Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/delete",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Delete the site."
+        },
+        {
+          "info": {
+            "name": "Add a Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/add",
+            "params": [
+              {
+                "name": "domain",
+                "value": "example.imperva.com",
+                "type": "query",
+                "description": "The domain name of the site. For example: <a href=\"www.example.com\">www.example.com</a>, <a href=\"hello.example.com\">www.example.com</a>, <a href=\"example.com\">www.example.com</a>"
+              },
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "ref_id",
+                "value": "11",
+                "type": "query",
+                "description": "Customer specific identifier for this operation"
+              },
+              {
+                "name": "send_site_setup_emails",
+                "value": "false",
+                "type": "query",
+                "description": "If this value is false, end users will not get emails about the add site process such as DNS instructions and SSL setup."
+              },
+              {
+                "name": "site_ip",
+                "value": "1.2.3.4",
+                "type": "query",
+                "description": "Manually set the web server IP/CNAME"
+              },
+              {
+                "name": "force_ssl",
+                "value": "true",
+                "type": "query",
+                "description": "If this value is true, manually set the site to support SSL.<br/>This option is only available for sites with manually configured IP/CNAME and for specific accounts."
+              },
+              {
+                "name": "naked_domain_san",
+                "value": "true",
+                "type": "query",
+                "description": "Use “true” to add the naked domain SAN to a www site’s SSL certificate. Default value: true"
+              },
+              {
+                "name": "wildcard_san",
+                "value": "true",
+                "type": "query",
+                "description": "Use “true” to add the wildcard SAN or “false” to add the full domain SAN to the site’s SSL certificate. Default value: true"
+              },
+              {
+                "name": "log_level",
+                "value": "full",
+                "type": "query",
+                "description": "Available only for customers that purchased the Logs Integration SKU.<br/>Sets the log reporting level for the site. Options are “full”, “security”, “none” and default"
+              },
+              {
+                "name": "logs_account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Available only for customers that purchased the Logs Integration SKU.<br/>Numeric identifier of the account that purchased the logs integration SKU and which collects the logs.<br/>If not specified, operation will be performed on the account identified by the authentication parameters"
+              }
+            ]
+          },
+          "docs": "Add a new site to an account. If the site already exists, its status is returned."
+        },
+        {
+          "info": {
+            "name": "Modify Site Access Control List (ACL) Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/configure/acl",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "rule_id",
+                "value": "548723",
+                "type": "query",
+                "description": "The id of the acl, e.g api.acl.blacklisted_ips.<br/>Values for the rule_id parameter:<br/><ul><li><b>api.acl.blacklisted_countries</b> Visitors from denylisted countries and/or continents.</li><li><b>api.acl.blacklisted_urls</b> Visitors from denylisted URLs.</li><li><b>api.acl.blacklisted_ips</b> Visitors from denylisted IPs.</li><li><b>api.acl.whitelisted_ips</b> Visitors from allowlisted IPs.</li></ul>"
+              },
+              {
+                "name": "urls",
+                "value": "/home",
+                "type": "query",
+                "description": "A comma separated list of resource paths. For example, /home and /admin/index.html are resource paths, however <a href=\"http://www.example.com/home\">http://www.example.com/home</a> is not. Each URL should be encoded separately using percent encoding as specified by RFC 3986 (<a href=\"http://tools.ietf.org/html/rfc3986#section-2.1\">http://tools.ietf.org/html/rfc3986#section-2.1</a>). An empty URL list will remove all URLs"
+              },
+              {
+                "name": "url_patterns",
+                "value": "contains",
+                "type": "query",
+                "description": "A comma separated list of url patterns, one of: contains | equals | prefix | suffix | not_equals | not_contain | not_prefix | not_suffix. The patterns should be in accordance with the matching urls sent by the urls parameter"
+              },
+              {
+                "name": "countries",
+                "value": "US",
+                "type": "query",
+                "description": "A comma separated list of country codes"
+              },
+              {
+                "name": "continents",
+                "value": "SA",
+                "type": "query",
+                "description": "A comma separated list of continent codes"
+              },
+              {
+                "name": "ips",
+                "value": "192.168.1.1/24",
+                "type": "query",
+                "description": "A comma separated list of IPs or IP ranges, e.g: 192.168.1.1, 192.168.1.1-192.168.1.100 or 192.168.1.1/24"
+              }
+            ]
+          },
+          "docs": "Use this operation to change the ACL configuration of a site. To modify the configuration for a specific ACL rule, its values are required, as documented below. To delete an entire ACL list, send an empty string as the list values."
+        },
+        {
+          "info": {
+            "name": "Get Site Data Storage Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/data-privacy/show",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get the site data region."
+        },
+        {
+          "info": {
+            "name": "Modify Allow Lists Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/configure/allowlist",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "rule_id",
+                "value": "548723",
+                "type": "query",
+                "description": "The id of the rule (either a security or an acl rule), e.g api.threats.sql_injection, api.threats.cross_site_scripting, api.threats.illegal_resource_access"
+              },
+              {
+                "name": "allowlist_id",
+                "value": "433245",
+                "type": "query",
+                "description": "The id (an integer) of the allow list to be set. This field is optional - in case no id is supplied, a new allow list will be created."
+              },
+              {
+                "name": "delete_allowlist",
+                "value": "false",
+                "type": "query",
+                "description": "An optional boolean parameter. If it is set to \"true\" and a allow list id is sent, the allow list will be deleted."
+              },
+              {
+                "name": "urls",
+                "value": "/home",
+                "type": "query",
+                "description": "A comma separated list of resource paths.</br>For example, /home and /admin/index.html are resource paths, while <a href=\"http://www.example.com/home\">http://www.example.com/home</a> is not.</br>Each URL should be encoded separately using percent encoding as specified by RFC 3986 (<a href=\"http://tools.ietf.org/html/rfc3986#section-2.1\">http://tools.ietf.org/html/rfc3986#section-2.1</a>).<br/>An empty URL list will remove all URLs."
+              },
+              {
+                "name": "countries",
+                "value": "US",
+                "type": "query",
+                "description": "A comma separated list of country codes."
+              },
+              {
+                "name": "continents",
+                "value": "SA",
+                "type": "query",
+                "description": "A comma separated list of continent codes."
+              },
+              {
+                "name": "ips",
+                "value": "192.168.1.1/24",
+                "type": "query",
+                "description": "A comma separated list of IPs or IP ranges, e.g: 192.168.1.1, 192.168.1.1-192.168.1.100 or 192.168.1.1/24"
+              },
+              {
+                "name": "client_app_types",
+                "value": "Browser",
+                "type": "query",
+                "description": "A comma separated list of client application types"
+              },
+              {
+                "name": "client_apps",
+                "value": "3",
+                "type": "query",
+                "description": "A comma separated list of client application IDs."
+              },
+              {
+                "name": "parameters",
+                "value": "",
+                "type": "query",
+                "description": "A comma separated list of encoded parameters."
+              },
+              {
+                "name": "user_agents",
+                "value": "Googlebot-2.1",
+                "type": "query",
+                "description": "A comma separated list of encoded user agents."
+              },
+              {
+                "name": "exception_id_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only the new/edited exception id."
+              }
+            ]
+          },
+          "docs": "Use this operation to set allow lists to security rules or ACLs. To update an existing allow list, send its ID in the id parameter. If the id parameter does not exist a new allow list will be created."
+        },
+        {
+          "info": {
+            "name": "Modify Site Security Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/configure/security",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "rule_id",
+                "value": "578942",
+                "type": "query",
+                "description": "ID of the security rule to change.<br/>Values for the rule_id parameter:<br/><ul><li>api.threats.bot_access_control</li><li>api.threats.sql_injection</li><li>api.threats.cross_site_scripting</li><li>api.threats.backdoor</li><li>api.threats.ddos</li><li>api.threats.remote_file_inclusion</li></ul>"
+              },
+              {
+                "name": "block_bad_bots",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to block bad bots. Possible values: true, false"
+              },
+              {
+                "name": "challenge_suspected_bots",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to send a challenge to clients that are suspected to be bad bots (CAPTCHA for example). Possible values: true, false"
+              },
+              {
+                "name": "activation_mode",
+                "value": "off",
+                "type": "query",
+                "description": "Possible values: off, auto, on<br/><ul><li><b>off</b> security measures are disabled even if site is under a DDoS attack</li><li><b>auto</b> security measures will be activated automatically when the system suspects site is under a DDoS attack</li><li><b>on</b> security measures are enabled even if site is not under a DDoS attack</li></ul>The syntax is as follows:<rule_id>.activation_mode.<value> For example, for 'off', use 'activation_mode=api.threats.ddos.activation_mode.off.<br/><b>Note:</b> This parameter is relevant and required for a DDoS rule only -- where rule_id=api.threats.ddos."
+              },
+              {
+                "name": "security_rule_action",
+                "value": "api.threats.action.alert",
+                "type": "query",
+                "description": "The action that should be taken when a threat is detected, for example:<br/>api.threats.action.block_ip. Different actions are allowed per different threats, e.g. backdoors may only be quarantined, ignored, or trigger an alert.<br/>Values for the security_rule_action parameter:<br/><ul><li><b>api.threats.action.disabled</b> Threat is not blocked, site owner is not notified.</li><li><b>api.threats.action.alert</b> Threat is not blocked, site owner is notified.</li><li><b>api.threats.action.block_request</b> Threat blocked by stopping the request, site owner is notified.</li><li><b>api.threats.action.block_user</b> Threat blocked by stopping the request. Additional requests by the client application will be automatically blocked for a duration of several minutes. Site owner is notified.</li><li><b>api.threats.action.block_ip</b> Threat blocked by stopping the request. Additional requests from the same IP addresses will be automatically blocked for a duration of several minutes. Site owner is notified.</li><li><b>api.threats.action.quarantine_url</b> Relevant only for Backdoor Protect. When detecting a backdoor, additional requests to the URL of the backdoor will be automatically blocked. Site owner is notified.</li></ul>"
+              },
+              {
+                "name": "quarantined_urls",
+                "value": "www.example.com",
+                "type": "query",
+                "description": "Removes quarantined URLs from the backdoor protection list, as defined in the Cloud Security Console Website Settings > WAF Settings > Backdoor Protect.<br/>To remove a URL from the backdoor protection list, use the following parameters with the specified values:<br/>quarantined_urls: <URL full path><br/>rule_id: api.threats.backdoor<br/>security_rule_action: api.threats.action.quarantine_url"
+              },
+              {
+                "name": "ddos_traffic_threshold",
+                "value": "1500",
+                "type": "query",
+                "description": "Consider site to be under DDoS if the request rate is above this threshold.<br/>The valid values are 10, 20, 50, 100, 200, 500, 750, 1000, 2000, 3000, 4000, 5000"
+              }
+            ]
+          },
+          "docs": "Use this operation to change the security configuration of a site. To modify the configuration for a specific rule, additional parameters may be required, as documented below."
+        },
+        {
+          "info": {
+            "name": "Get Site Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/report",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "report",
+                "value": "pci-compliance",
+                "type": "query",
+                "description": "The report to get. One of: pci-compliance"
+              },
+              {
+                "name": "format",
+                "value": "pdf",
+                "type": "query",
+                "description": "The format to get the report in. One of: pdf | html"
+              },
+              {
+                "name": "time_range",
+                "value": "last_7_days",
+                "type": "query",
+                "description": "Time range to fetch data for.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "start",
+                "value": "1610356734",
+                "type": "query",
+                "description": "Start date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              },
+              {
+                "name": "end",
+                "value": "1610356734",
+                "type": "query",
+                "description": "End date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+              }
+            ]
+          },
+          "docs": "Use this operation to get a report for a site. Reports are sent using Base64 encoding."
+        },
+        {
+          "info": {
+            "name": "Purge Hostname from Cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/hostname/purge",
+            "params": [
+              {
+                "name": "host_name",
+                "value": "example.com",
+                "type": "query",
+                "description": "The hostname to purge from the cache"
+              }
+            ]
+          },
+          "docs": "Use this operation to purge the hostname from the cache. This API is for customers who use the same CNAME provided by Imperva for multiple hostnames and would like to change the CNAME for a particular hostname. Purging the hostname is required for the CNAME change to take effect."
+        },
+        {
+          "info": {
+            "name": "Get HTML Injection Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/htmlinjections",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Use this operation to list all the HTML Injection rules"
+        },
+        {
+          "info": {
+            "name": "Add, Replace or Remove a HTML Injection Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/configure/htmlInjections",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "15",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "url",
+                "value": "/home",
+                "type": "query",
+                "description": "The URL where the content is injected"
+              },
+              {
+                "name": "url_pattern",
+                "value": "contains",
+                "type": "query",
+                "description": "The url pattern. One of: contains | not_contains | equals | not_equals | prefix | suffix | not_prefix | not_suffix"
+              },
+              {
+                "name": "location",
+                "value": "head",
+                "type": "query",
+                "description": "The location of the injection inside the URL ('head' or 'body_end')"
+              },
+              {
+                "name": "content",
+                "value": "SGVsbG8gV29ybGQh",
+                "type": "query",
+                "description": "The injected HTML snippet, Base64-encoded"
+              },
+              {
+                "name": "delete_content",
+                "value": "false",
+                "type": "query",
+                "description": "Whether or not to delete existing HTML content.<br/>Possible values: true/false"
+              }
+            ]
+          },
+          "docs": "Use this operation to add a new HTML injection rule, or to replace or remove an existing rule."
+        },
+        {
+          "info": {
+            "name": "Upload Custom Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/customCertificate/upload",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "certificate",
+                "value": "",
+                "type": "query",
+                "description": "The certificate file in base64 format"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the certificate in base64 format. Optional in case of PFX certificate file format"
+              },
+              {
+                "name": "passphrase",
+                "value": "",
+                "type": "query",
+                "description": "The passphrase used to protect your SSL certificate\t"
+              }
+            ]
+          },
+          "docs": "Use this operation to upload custom certificate for your site. The following SSL certificate file formats are supported: PFX, PEM, CER."
+        },
+        {
+          "info": {
+            "name": "Remove Custom Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/customCertificate/remove",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "5437773",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              }
+            ]
+          },
+          "docs": "Use this operation to remove custom certificate."
+        },
+        {
+          "info": {
+            "name": "Create New CSR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/customCertificate/csr",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "email",
+                "value": "joe@example.com",
+                "type": "query",
+                "description": "Email address. For example: joe@example.com"
+              },
+              {
+                "name": "country",
+                "value": "IL",
+                "type": "query",
+                "description": "The two-letter ISO code for the country where your organization is located"
+              },
+              {
+                "name": "state",
+                "value": "IL",
+                "type": "query",
+                "description": "The state/region where your organization is located. This should not be abbreviated"
+              },
+              {
+                "name": "city",
+                "value": "JER",
+                "type": "query",
+                "description": "The city where your organization is located"
+              },
+              {
+                "name": "organization",
+                "value": "imperva",
+                "type": "query",
+                "description": "The legal name of your organization. This should not be abbreviated or include suffixes such as Inc., Corp., or LLC"
+              },
+              {
+                "name": "organization_unit",
+                "value": "IT Department",
+                "type": "query",
+                "description": "The division of your organization handling the certificate. For example, IT Department"
+              }
+            ]
+          },
+          "docs": "Use this operation to create a certificate signing request (CSR) for your site."
+        },
+        {
+          "info": {
+            "name": "Set Site Data Storage Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/data-privacy/region-change",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "data_storage_region",
+                "value": "US",
+                "type": "query",
+                "description": "The data region to use."
+              }
+            ]
+          },
+          "docs": "Use this operation to set the site data region."
+        },
+        {
+          "info": {
+            "name": "List Available PoPs for Denylist/Allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/data-privacy/show-override-by-geo"
+          },
+          "docs": "Use this operation to list all PoPs that are available to add to a site’s blacklist or allowlist."
+        },
+        {
+          "info": {
+            "name": "Set Site Regions by Origin Geolocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/data-privacy/override-by-geo",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+              },
+              {
+                "name": "override_site_regions_by_geo",
+                "value": "10",
+                "type": "query",
+                "description": "A boolean parameter. If it is set to \"true\", the data storage region for each new site will be based on the geolocation of the origin server."
+              }
+            ]
+          },
+          "docs": "Use this operation to set the data storage region for each new site based on the geolocation of the origin server."
+        },
+        {
+          "info": {
+            "name": "Check CAA compliance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/caa/check-compliance",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              }
+            ]
+          },
+          "docs": "Check site’s associated SANs for CAA compliance. If a given SAN is compliant, its SSL domain validation status is updated accordingly.This operation returns an updated list of the site’s associated SANs that are not compliant. An empty list indicates that all SANs are compliant."
+        },
+        {
+          "info": {
+            "name": "Move site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/moveSite",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to move"
+              },
+              {
+                "name": "destination_account_id",
+                "value": "15",
+                "type": "query",
+                "description": "The numeric identifier of the account which the site will be moved to"
+              }
+            ]
+          },
+          "docs": "Use this operation to move a site from its account to another account."
+        },
+        {
+          "info": {
+            "name": "Set Rule Priority",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/incapRules/priority/set",
+            "params": [
+              {
+                "name": "rule_id",
+                "value": "534663",
+                "type": "query",
+                "description": "Rule ID"
+              },
+              {
+                "name": "priority",
+                "value": "1",
+                "type": "query",
+                "description": "New priority for the selected rule"
+              }
+            ]
+          },
+          "docs": "Use this operation to change delivery rule's priority."
+        },
+        {
+          "info": {
+            "name": "Edit Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/incapRules/edit",
+            "params": [
+              {
+                "name": "action",
+                "value": "RULE_ACTION_EXCLUDE",
+                "type": "query",
+                "description": "Rule action.<br/><br/>Possible action parameter values for Delivery Rules:<br/><ul><li><b>RULE_ACTION_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_SIMPLIFIED_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_REWRITE_URL</b> Modify the path to which a specific request is targeted.</li><li><b>RULE_ACTION_REWRITE_HEADER</b> Modify or add a request header before passing traffic to the origin server.</li><li><b>RULE_ACTION_REWRITE_COOKIE</b> Modify or add cookies that are sent by the client to the origin server. The cookie name and value should be indicated.</li><li><b>RULE_ACTION_DELETE_HEADER</b> Remove a specific request header, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_DELETE_COOKIE</b> Remove a specific cookie set on the client, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_FORWARD_TO_DC</b> Define the data center to which a specific request will be sent.</li><li><b>RULE_ACTION_FORWARD_TO_PORT</b> Define the port to which a specific request will be sent.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_HEADER</b> Modify or add a header to the response received from the origin server.</li><li><b>RULE_ACTION_RESPONSE_DELETE_HEADER</b> Remove a specific response header, which means that it won't be returned to the client.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_RESPONSE_CODE</b> Modify the response code received from the origin server.</li></ul><br/>Possible action parameter values for security rules:<br/><ul><li><b>RULE_ACTION_ALERT</b> Generate a non blocking alert for this event.</li><li><b>RULE_ACTION_BLOCK</b> Block the current request and generate an alert for this event.</li><li><b>RULE_ACTION_BLOCK_USER</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_BLOCK_IP</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_RETRY</b> Require any client matching the rule filters to support cookies in order to complete the request.</li><li><b>RULE_ACTION_INTRUSIVE_HTML</b> Require any client matching the rule filters to support javascript in order to complete the request. Since the Javascript test is embedded in an HTML page, this action should only be enabled for HTML resources.</li><li><b>RULE_ACTION_CAPTCHA</b> Require any client matching the rule filters to pass a CAPTCHA test in order to complete the request. Since the CAPTCHA test is embedded in an HTML page, this action should only be enabled for HTML resources.</li></ul><br/>Possible action parameter values for counter (rate) rules:<br/><ul><li><b>RULE_ACTION_RATE</b> Count the number of requests received that match the rule filter.</li></ul>"
+              },
+              {
+                "name": "rule_id",
+                "value": "10",
+                "type": "query",
+                "description": "Rule ID."
+              },
+              {
+                "name": "name",
+                "value": "rule1",
+                "type": "query",
+                "description": "Rule name."
+              },
+              {
+                "name": "filter",
+                "value": "==",
+                "type": "query",
+                "description": "Rule will trigger only a request that matches this filter. For more details on filter guidelines, see <a href=\"https://docs.imperva.com/csh?context=rule_syntax\">Syntax Guide</a>."
+              },
+              {
+                "name": "response_code",
+                "value": "1",
+                "type": "query",
+                "description": "Redirect rule's response code. Valid values are 302, 301, 303, 307, 308."
+              },
+              {
+                "name": "protocol",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "add_missing",
+                "value": "true",
+                "type": "query",
+                "description": "Add cookie or header if it doesn't exist (Rewrite cookie rule only)"
+              },
+              {
+                "name": "from",
+                "value": "/home.php",
+                "type": "query",
+                "description": "The pattern to rewrite.<br/>For RULE_ACTION_REWRITE_URL - The URL to rewrite.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to rewrite.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to rewrite.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response."
+              },
+              {
+                "name": "to",
+                "value": "*/home.html",
+                "type": "query",
+                "description": "The pattern to change to.<br/>For RULE_ACTION_REWRITE_URL - The URL to change to.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to change to.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to change to.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response."
+              },
+              {
+                "name": "rewrite_name",
+                "value": "rule2",
+                "type": "query",
+                "description": "Name of cookie or header to rewrite. Applies only for RULE_ACTION_REWRITE_COOKIE and RULE_ACTION_REWRITE_HEADER."
+              },
+              {
+                "name": "dc_id",
+                "value": "54313",
+                "type": "query",
+                "description": "Data center to forward request to. Applies only for RULE_ACTION_FORWARD_TO_DC."
+              },
+              {
+                "name": "allow_caching",
+                "value": "true",
+                "type": "query"
+              },
+              {
+                "name": "rate_context",
+                "value": "IP",
+                "type": "query",
+                "description": "The context of the rate counter. Possible values: IP / Session. Applies only to rules using RULE_ACTION_RATE."
+              },
+              {
+                "name": "rate_interval",
+                "value": "5",
+                "type": "query",
+                "description": "The interval (in seconds) of the rate counter. Possible values: A multiple of 10 from 10-300. Applies only to rules using RULE_ACTION_RATE."
+              },
+              {
+                "name": "is_test_mode",
+                "value": "true",
+                "type": "query",
+                "description": "Make rule apply only for IP address the API request was sent from.<br/>This option is not available for Simplified Redirect rules."
+              },
+              {
+                "name": "port_forwarding_context",
+                "value": "",
+                "type": "query",
+                "description": "Context for port forwarding. \"Use Port Value\" or \"Use Header Name\". Applies only for RULE_ACTION_FORWARD_TO_PORT."
+              },
+              {
+                "name": "port_forwarding_value",
+                "value": "20",
+                "type": "query",
+                "description": "Port number or header name for port forwarding. Applies only for RULE_ACTION_FORWARD_TO_PORT."
+              },
+              {
+                "name": "multiple_deletions",
+                "value": "true",
+                "type": "query",
+                "description": "Delete multiple header occurrences. Applies only to rules using RULE_ACTION_DELETE_HEADER and RULE_ACTION_RESPONSE_DELETE_HEADER."
+              }
+            ]
+          },
+          "docs": "Use this operation to edit an existing rule (Delivery, Security or Rate)."
+        },
+        {
+          "info": {
+            "name": "Add Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/incapRules/add",
+            "params": [
+              {
+                "name": "action",
+                "value": "RULE_ACTION_EXCLUDE",
+                "type": "query",
+                "description": "Rule action. See the possible values in the table below.<br/>Possible action parameter values for Delivery Rules:<br/><ul><li><b>RULE_ACTION_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_SIMPLIFIED_REDIRECT</b> Redirect the client to a different URL, responding with a 30X response.</li><li><b>RULE_ACTION_REWRITE_URL</b> Modify the path to which a specific request is targeted.</li><li><b>RULE_ACTION_REWRITE_HEADER</b> Modify or add a request header before passing traffic to the origin server.</li><li><b>RULE_ACTION_REWRITE_COOKIE</b> Modify or add cookies that are sent by the client to the origin server. The cookie name and value should be indicated.</li><li><b>RULE_ACTION_DELETE_HEADER</b> Remove a specific request header, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_DELETE_COOKIE</b> Remove a specific cookie set on the client, which means that it won’t be sent to the origin server.</li><li><b>RULE_ACTION_FORWARD_TO_DC</b> Define the data center to which a specific request will be sent.</li><li><b>RULE_ACTION_FORWARD_TO_PORT</b> Define the port to which a specific request will be sent.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_HEADER</b> Modify or add a header to the response received from the origin server.</li><li><b>RULE_ACTION_RESPONSE_DELETE_HEADER</b> Remove a specific response header, which means that it won't be returned to the client.</li><li><b>RULE_ACTION_RESPONSE_REWRITE_RESPONSE_CODE</b> Modify the response code received from the origin server.</li></ul><br/>Possible action parameter values for security rules:<br/><ul><li><b>RULE_ACTION_ALERT</b> Generate a non blocking alert for this event.</li><li><b>RULE_ACTION_BLOCK</b> Block the current request and generate an alert for this event.</li><li><b>RULE_ACTION_BLOCK_USER</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_BLOCK_IP</b> Block the current session and generate an alert for this event. Any subsequent request from the same Session will be blocked.</li><li><b>RULE_ACTION_RETRY</b> Require any client matching the rule filters to support cookies in order to complete the request.</li><li><b>RULE_ACTION_INTRUSIVE_HTML</b> Require any client matching the rule filters to support javascript in order to complete the request. Since the Javascript test is embedded in an HTML page, this action should only be enabled for HTML resources.</li><li><b>RULE_ACTION_CAPTCHA</b> Require any client matching the rule filters to pass a CAPTCHA test in order to complete the request. Since the CAPTCHA test is embedded in an HTML page, this action should only be enabled for HTML resources.</li></ul><br/>Possible action parameter values for counter (rate) rules:<br/><ul><li><b>RULE_ACTION_RATE</b> Count the number of requests received that match the rule filter.</li></ul>"
+              },
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "name",
+                "value": "rule1",
+                "type": "query",
+                "description": "Rule name."
+              },
+              {
+                "name": "filter",
+                "value": "==",
+                "type": "query",
+                "description": "Rule will trigger only a request that matches this filter. For more details on filter guidelines, see <a href=\"https://docs.imperva.com/csh?context=rule_syntax\">Syntax Guide</a>.<br/>The filter may contain up to 400 characters."
+              },
+              {
+                "name": "response_code",
+                "value": "1",
+                "type": "query",
+                "description": "Redirect rule's response code. Valid values are 302, 301, 303, 307, 308."
+              },
+              {
+                "name": "protocol",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "add_missing",
+                "value": "true",
+                "type": "query",
+                "description": "Add cookie or header if it doesn't exist (Rewrite cookie rule only)"
+              },
+              {
+                "name": "from",
+                "value": "/home.php",
+                "type": "query",
+                "description": "The pattern to rewrite.<br/>For RULE_ACTION_REWRITE_URL - The URL to rewrite.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to rewrite.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to rewrite.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response."
+              },
+              {
+                "name": "to",
+                "value": "*/home.html",
+                "type": "query",
+                "description": "The pattern to change to.<br/>For RULE_ACTION_REWRITE_URL - The URL to change to.<br/>For RULE_ACTION_REWRITE_HEADER - The header value to change to.<br/>For RULE_ACTION_REWRITE_COOKIE - The cookie value to change to.<br/>For RULE_ACTION_SIMPLIFIED_REDIRECT - Redirect the client to a different URL, responding with a 30X response."
+              },
+              {
+                "name": "rewrite_name",
+                "value": "rule2",
+                "type": "query",
+                "description": "Name of cookie or header to rewrite. Applies only for RULE_ACTION_REWRITE_COOKIE and RULE_ACTION_REWRITE_HEADER."
+              },
+              {
+                "name": "dc_id",
+                "value": "54313",
+                "type": "query",
+                "description": "Data center to forward request to. Applies only for RULE_ACTION_FORWARD_TO_DC."
+              },
+              {
+                "name": "allow_caching",
+                "value": "true",
+                "type": "query"
+              },
+              {
+                "name": "is_test_mode",
+                "value": "true",
+                "type": "query",
+                "description": "Apply the rule only to the IP address the API request was sent from.<br/>This option is not available for Simplified Redirect rules."
+              },
+              {
+                "name": "rate_context",
+                "value": "Session",
+                "type": "query",
+                "description": "The context of the rate counter. Possible values: IP / Session. Applies only to rules using RULE_ACTION_RATE."
+              },
+              {
+                "name": "rate_interval",
+                "value": "10",
+                "type": "query",
+                "description": "The interval (in seconds) of the rate counter. Possible values: A multiple of 10 from 10-300. Applies only to rules using RULE_ACTION_RATE."
+              },
+              {
+                "name": "port_forwarding_context",
+                "value": "",
+                "type": "query",
+                "description": "Context for port forwarding. \"Use Port Value\" or \"Use Header Name\". Applies only for RULE_ACTION_FORWARD_TO_PORT."
+              },
+              {
+                "name": "port_forwarding_value",
+                "value": "20",
+                "type": "query",
+                "description": "Port number or header name for port forwarding. Applies only for RULE_ACTION_FORWARD_TO_PORT."
+              },
+              {
+                "name": "multiple_deletions",
+                "value": "true",
+                "type": "query",
+                "description": "Delete multiple header occurrences. Applies only to rules using RULE_ACTION_DELETE_HEADER and RULE_ACTION_RESPONSE_DELETE_HEADER."
+              }
+            ]
+          },
+          "docs": "Use this operation to add a rule (Delivery, Security or Rate)."
+        },
+        {
+          "info": {
+            "name": "Enable or Disable Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/incapRules/enableDisable",
+            "params": [
+              {
+                "name": "rule_id",
+                "value": "10",
+                "type": "query",
+                "description": "Rule id"
+              },
+              {
+                "name": "enable",
+                "value": "true",
+                "type": "query",
+                "description": "When true, the rule will be enabled. Set to false to disable"
+              }
+            ]
+          },
+          "docs": "Use this operation to enable or disable a rule (Delivery, Security or Rate)."
+        },
+        {
+          "info": {
+            "name": "Delete Data Center",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/incapRules/delete",
+            "params": [
+              {
+                "name": "rule_id",
+                "value": "4356",
+                "type": "query",
+                "description": "Rule id"
+              }
+            ]
+          },
+          "docs": "Use this operation to delete site datacenter."
+        },
+        {
+          "info": {
+            "name": "List Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/incapRules/list",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on"
+              },
+              {
+                "name": "include_incap_rules",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not security rules be included. Defaults to \"Yes\"."
+              },
+              {
+                "name": "include_ad_rules",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not delivery rules should be included. Defaults to Yes"
+              },
+              {
+                "name": "pageSize",
+                "value": "10",
+                "type": "query",
+                "description": "The number of objects to return in the response. Defaults to 50. Maximum is 100"
+              },
+              {
+                "name": "pageNum",
+                "value": "1",
+                "type": "query",
+                "description": "The page to return starting from 0. Default to 0"
+              }
+            ]
+          },
+          "docs": "Use this operation to list security, delivery, and rate rules for a given site."
+        },
+        {
+          "info": {
+            "name": "List Account Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/incapRules/account/list",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on"
+              },
+              {
+                "name": "include_incap_rules",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not security rules be included. Defaults to \"Yes\"."
+              },
+              {
+                "name": "include_ad_rules",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not delivery rules should be included. Defaults to \"Yes\"."
+              }
+            ]
+          },
+          "docs": "Use this operation to list rules (Delivery, Security or Rate) for all sites under a given account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

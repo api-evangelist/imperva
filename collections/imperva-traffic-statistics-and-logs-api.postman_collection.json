@@ -1,0 +1,1479 @@
+{
+  "item": [
+    {
+      "id": "2e835a72-8935-4c50-a823-733a774d3a4a",
+      "name": "Traffic Statistics and Logs",
+      "description": {
+        "content": "Retrieve traffic statistics and logs for sites or accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9080bbe7-743d-46f4-af55-a5f1a2cbac26",
+          "name": "Get Infrastructure Protection Statistics",
+          "request": {
+            "name": "Get Infrastructure Protection Statistics",
+            "description": {
+              "content": "Use this operation to get Infrastructure Protection event information for an account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<long>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip_prefix",
+                  "value": "<string>",
+                  "description": "Specific Protected IP or IP range. For example, 1.1.1.0/24."
+                },
+                {
+                  "disabled": false,
+                  "key": "traffic",
+                  "value": "<string>",
+                  "description": "Specific traffic. One of: Total, Passed, Blocked."
+                },
+                {
+                  "disabled": false,
+                  "key": "traffic_type",
+                  "value": "<string>",
+                  "description": "A comma separated list of specific traffic types. Any of: UDP, TCP, DNS, DNS_RESPONSE, ICMP, SYN, FRAG, LARGE_SYN, NTP, NETFLOW, SSDP, GENERAL. Cannot be used together with the pop parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "pop",
+                  "value": "<string>",
+                  "description": "A comma separated list of specific PoP names. For example: iad, tko. Cannot be used together with the traffic_type parameter. For the list of PoP codes and locations, see <a href=\"https://docs.imperva.com/csh?context=pops\">Imperva Data Centers (PoPs)</a>."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<long>",
+                  "description": "The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<long>",
+                  "description": "The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "directionTypes",
+                  "value": "<string>",
+                  "description": "The type of direction(INGRESS/EGRESS) to filter the data"
+                },
+                {
+                  "disabled": false,
+                  "key": "range_type",
+                  "value": "<string>",
+                  "description": "Can be one of the following: BGP, PROTECTED_IP"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdee7b9c-8c8e-4069-9827-058ebc9884e5",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>3015 - Internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "ip_prefix",
+                      "value": "1.1.1.0/24"
+                    },
+                    {
+                      "key": "traffic",
+                      "value": "Blocked"
+                    },
+                    {
+                      "key": "traffic_type",
+                      "value": "TCP"
+                    },
+                    {
+                      "key": "pop",
+                      "value": "tko"
+                    },
+                    {
+                      "key": "start",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "end",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "directionTypes",
+                      "value": "INGRESS"
+                    },
+                    {
+                      "key": "range_type",
+                      "value": "INCAPSULA_IP"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71277f46-c94b-4448-be35-bcdd11b6f777",
+          "name": "Get statistics",
+          "request": {
+            "name": "Get statistics",
+            "description": {
+              "content": "Get site statistics for one or more sites. This operation may return multiple statistics, as specified in the stats parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "stats",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to fetch data for.<br/>Note: You must specify either account_id or site_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "<string>",
+                  "description": "(Required) Time range to fetch data for.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Start date in milliseconds since 1970. Used together with the time_range parameter to specify a custom time range.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "End date in milliseconds since 1970. Used together with the time_range parameter to specify a custom time range.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "site_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the site to fetch data for. Multiple sites can be specified in a comma separated list. For example: 123,124,125.<br/>Note: You must specify either account_id or site_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "stats",
+                  "value": "<string>",
+                  "description": "(Required) Statistics to fetch, as specified in the table below. Multiple statistics can be specified in a comma separated list.<br/>Values for the stats parameters:<br/><ul><li><b>visits_timeseries</b> Number of visits by type (Humans/Bots) over time.</li><li><b>hits_timeseries</b> Number of hits by type (Humans/Bots/Blocked) over time and per second.</li><li><b>bandwidth_timeseries</b> Amount of bytes (bandwidth) and bits per second (throughput) transferred via the Imperva network from clients to proxy servers and vice-versa over time.</li><li><b>requests_geo_dist_summary</b> Total number of requests routed via the Imperva network by data center location.</li><li><b>visits_dist_summary</b> Total number of visits per client application and country.</li><li><b>caching</b> Total number of requests and bytes that were cached by the Imperva network.</li><li><b>caching_timeseries</b> Number of requests and bytes that were cached by the Imperva network, with one day resolution, with info regarding the caching mode (standard or advanced).</li><li><b>threats</b> Total number of threats by type with additional information regarding the security rules configuration.</li><li><b>incap_rules</b> List of security rules with total number of reported incidents for each rule.</li><li><b>incap_rules_timeseries</b> List of security rules with a series of reported incidents for each rule with the specified granularity.</li><li><b>delivery_rules</b> List of delivery rules with total number of hits for each rule.</li><li><b>delivery_rules_timeseries</b> List of delivery rules with a series of hits for each rule with the specified granularity.</li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>",
+                  "description": "Time interval in milliseconds between data points for time series statistics. (See the timeseries values in the table below.)<br/>The default granularity depends on the specified time range, as follows:<br/><ul><li>Time range of less than 24 hours: Default granularity is 7200000 (2 hours).</li><li>Time range of between 24 hours and 30 days: Default granularity is 86400000 (1 day).</li><li>Time range of more than 30 days: Default granularity is 259200000 (3 days).</li></ul>The response includes one result for each interval. For example, if you specify a time range value of last_7_days, the default granularity is 1 day, and the response will return 7 results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3021f79-9c70-4342-a9e7-5ff3f71f1ddb",
+              "name": "res - contains the specific error code:<br/> 13001 (Timerange invalid), 13002 (Granularity invalid)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "stats",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "last_7_days"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "site_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stats",
+                      "value": "threats"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"visits_timeseries\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"requests_geo_dist_summary\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"visits_dist_summary\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"data\": [\n        [],\n        []\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"data\": [\n        [],\n        []\n      ]\n    }\n  ],\n  \"caching\": {\n    \"saved_requests\": 23984923,\n    \"total_requests\": 48723648,\n    \"saved_bytes\": 762394786,\n    \"total_bytes\": 1098349834\n  },\n  \"caching_timeseries\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"hits_timeseries\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"bandwidth_timeseries\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"threats\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"incidents\": 12,\n      \"status\": \"ok\",\n      \"status_text_id\": \"api.threats.action.block_request\",\n      \"status_text\": \"Block Request\",\n      \"followup\": \"api.threats.followup.view\",\n      \"followup_text\": \"View Incidents\",\n      \"followup_url\": \"https://my.incapsula.com/sites/siteVisits?token=1123_103_13234435091_5d55197912387b94&timeFrame=last_7_days&extSiteId=123&threatFilters=badBot\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"incidents\": 12,\n      \"status\": \"ok\",\n      \"status_text_id\": \"api.threats.action.block_request\",\n      \"status_text\": \"Block Request\",\n      \"followup\": \"api.threats.followup.view\",\n      \"followup_text\": \"View Incidents\",\n      \"followup_url\": \"https://my.incapsula.com/sites/siteVisits?token=1123_103_13234435091_5d55197912387b94&timeFrame=last_7_days&extSiteId=123&threatFilters=badBot\"\n    }\n  ],\n  \"incap_rules\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Require Javascript Support\",\n      \"incidents\": 3451,\n      \"createdAt\": \"1988-01-25T00:34:44.058Z\",\n      \"updatedBy\": \"example@imperva.com\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Require Javascript Support\",\n      \"incidents\": 3451,\n      \"createdAt\": \"1969-10-12T20:36:52.008Z\",\n      \"updatedBy\": \"example@imperva.com\"\n    }\n  ],\n  \"incap_rules_timeseries\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Require Javascript Support\",\n      \"createdAt\": \"2013-03-19T10:27:05.365Z\",\n      \"updatedBy\": \"example@imperva.com\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Require Javascript Support\",\n      \"createdAt\": \"1954-03-19T16:03:15.037Z\",\n      \"updatedBy\": \"example@imperva.com\"\n    }\n  ],\n  \"delivery_rules\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Redirect\",\n      \"createdAt\": \"2018-03-29T04:19:14.622Z\",\n      \"updatedBy\": \"example@imperva.com\",\n      \"hits\": 3451\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Redirect\",\n      \"createdAt\": \"2004-03-18T00:36:47.247Z\",\n      \"updatedBy\": \"example@imperva.com\",\n      \"hits\": 3451\n    }\n  ],\n  \"delivery_rules_timeseries\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Redirect\",\n      \"createdAt\": \"1949-04-19T23:08:03.001Z\",\n      \"updatedBy\": \"example@imperva.com\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"action\": \"Redirect\",\n      \"createdAt\": \"1988-10-13T16:01:27.895Z\",\n      \"updatedBy\": \"example@imperva.com\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "801ee624-f1ea-478a-8677-a4d5e5ab41f8",
+          "name": "Get Infrastructure Protection Top Items (Table View)",
+          "request": {
+            "name": "Get Infrastructure Protection Top Items (Table View)",
+            "description": {
+              "content": "Use this operation to view the highest peak values and highest average values for a protected IP range during a selected time period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra",
+                "top-table"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<long>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip_range",
+                  "value": "<string>",
+                  "description": "(Required) The customer's IP range."
+                },
+                {
+                  "disabled": false,
+                  "key": "range_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: BGP, PROTECTED_IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<long>",
+                  "description": "(Required) The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<long>",
+                  "description": "(Required) The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: SRC_IP, DST_IP, SRC_PORT_PROTOCOL, DST_PORT_PROTOCOL"
+                },
+                {
+                  "disabled": false,
+                  "key": "metric_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: SRC_IP, DST_IP, SRC_PORT_PROTOCOL, DST_PORT_PROTOCOL"
+                },
+                {
+                  "disabled": false,
+                  "key": "mitigation_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: BLOCK, PASS"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: PEAK, AVERAGE"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_storage_region",
+                  "value": "<string>",
+                  "description": "The data region to use. If not specified, account's default data region will be used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6bfdcfd-6a89-4a21-ab73-753d4cf09a81",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>1 - Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra",
+                    "top-table"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "ip_range",
+                      "value": "INCAPSULA_IP"
+                    },
+                    {
+                      "key": "range_type",
+                      "value": "PROTECTED_IP"
+                    },
+                    {
+                      "key": "start",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "end",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "data_type",
+                      "value": "SRC_IP"
+                    },
+                    {
+                      "key": "metric_type",
+                      "value": "BPS"
+                    },
+                    {
+                      "key": "mitigation_type",
+                      "value": "BLOCK"
+                    },
+                    {
+                      "key": "aggregation_type",
+                      "value": "AVERAGE"
+                    },
+                    {
+                      "key": "data_storage_region",
+                      "value": "EU"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"stats\": [\n    {\n      \"object\": \"10.200.98.3\",\n      \"value\": 334160,\n      \"total\": 1109938\n    },\n    {\n      \"object\": \"10.200.98.3\",\n      \"value\": 334160,\n      \"total\": 1109938\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "512063fa-6502-4794-8188-8eb824775993",
+          "name": "Get Infrastructure Protection Top Items (Graph View)",
+          "request": {
+            "name": "Get Infrastructure Protection Top Items (Graph View)",
+            "description": {
+              "content": "Use this operation to view the highest peak values and highest average values for a protected IP range during a selected time period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra",
+                "top-graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<long>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip_range",
+                  "value": "<string>",
+                  "description": "(Required) The customer's IP range."
+                },
+                {
+                  "disabled": false,
+                  "key": "range_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: BGP, PROTECTED_IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<long>",
+                  "description": "(Required) The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<long>",
+                  "description": "(Required) The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: SRC_IP, DST_IP, SRC_PORT_PROTOCOL, DST_PORT_PROTOCOL"
+                },
+                {
+                  "disabled": false,
+                  "key": "metric_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: BW, PPS"
+                },
+                {
+                  "disabled": false,
+                  "key": "mitigation_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: BLOCK, PASS"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_storage_region",
+                  "value": "<string>",
+                  "description": "The data region to use. If not specified, account's default data region will be used."
+                },
+                {
+                  "disabled": false,
+                  "key": "objects",
+                  "value": "<string>",
+                  "description": "A comma separated list of items to fetch data for. e.g., 10.10.10.10, 2.2.2.2. If not specified, top items are automatically fetched."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a774a45c-1570-4acf-b4d7-b54f6eb1eb1b",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>1 - Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra",
+                    "top-graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "ip_range",
+                      "value": "INCAPSULA_IP"
+                    },
+                    {
+                      "key": "range_type",
+                      "value": "PROTECTED_IP"
+                    },
+                    {
+                      "key": "start",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "end",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "data_type",
+                      "value": "SRC_IP"
+                    },
+                    {
+                      "key": "metric_type",
+                      "value": "BPS"
+                    },
+                    {
+                      "key": "mitigation_type",
+                      "value": "BLOCK"
+                    },
+                    {
+                      "key": "data_storage_region",
+                      "value": "EU"
+                    },
+                    {
+                      "key": "objects",
+                      "value": "1.1.1.1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"stats\": [\n    {\n      \"res\": 0,\n      \"res_message\": \"OK\",\n      \"objectid\": \"200\",\n      \"time\": \"1522761000000\",\n      \"payload\": [\n        {\n          \"interval\": \"15000\",\n          \"startTime\": \"1987-10-02T01:55:50.176Z\",\n          \"data\": [\n            5462,\n            7563\n          ],\n          \"metric\": \"pps\",\n          \"dataType\": \"ip\",\n          \"item\": \"10.13.0.1\",\n          \"traffic\": \"blocked\"\n        },\n        {\n          \"interval\": \"15000\",\n          \"startTime\": \"1956-10-19T12:54:53.118Z\",\n          \"data\": [\n            5462,\n            7563\n          ],\n          \"metric\": \"pps\",\n          \"dataType\": \"ip\",\n          \"item\": \"10.13.0.1\",\n          \"traffic\": \"blocked\"\n        }\n      ]\n    },\n    {\n      \"res\": 0,\n      \"res_message\": \"OK\",\n      \"objectid\": \"200\",\n      \"time\": \"1522761000000\",\n      \"payload\": [\n        {\n          \"interval\": \"15000\",\n          \"startTime\": \"1950-07-21T14:42:37.147Z\",\n          \"data\": [\n            5462,\n            7563\n          ],\n          \"metric\": \"pps\",\n          \"dataType\": \"ip\",\n          \"item\": \"10.13.0.1\",\n          \"traffic\": \"blocked\"\n        },\n        {\n          \"interval\": \"15000\",\n          \"startTime\": \"2024-03-04T03:41:13.704Z\",\n          \"data\": [\n            5462,\n            7563\n          ],\n          \"metric\": \"pps\",\n          \"dataType\": \"ip\",\n          \"item\": \"10.13.0.1\",\n          \"traffic\": \"blocked\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb9ca4f3-7cf0-4e8b-bd5a-af61df9fc42a",
+          "name": "Get Infrastructure Protection Histogram",
+          "request": {
+            "name": "Get Infrastructure Protection Histogram",
+            "description": {
+              "content": "Use this operation to view the highest packet size values for a protected IP range during a selected time period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra",
+                "histogram"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<long>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip_range",
+                  "value": "<string>",
+                  "description": "(Required) The customer's IP range."
+                },
+                {
+                  "disabled": false,
+                  "key": "range_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: BGP, PROTECTED_IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<long>",
+                  "description": "(Required) The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<long>",
+                  "description": "(Required) The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mitigation_type",
+                  "value": "<string>",
+                  "description": "(Required) One of the following: BLOCK, PASS"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_storage_region",
+                  "value": "<string>",
+                  "description": "The data region to use. If not specified, account's default data region will be used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22df8c71-cfaa-47fe-a99d-5721b3eb5b3d",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>1 - Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra",
+                    "histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "10"
+                    },
+                    {
+                      "key": "ip_range",
+                      "value": "INCAPSULA_IP"
+                    },
+                    {
+                      "key": "range_type",
+                      "value": "PROTECTED_IP"
+                    },
+                    {
+                      "key": "start",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "end",
+                      "value": "1610356734"
+                    },
+                    {
+                      "key": "mitigation_type",
+                      "value": "BLOCK"
+                    },
+                    {
+                      "key": "data_storage_region",
+                      "value": "EU"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"stats\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bae6e782-9ee4-4189-b595-413891edc5c8",
+          "name": "Get visits",
+          "request": {
+            "name": "Get visits",
+            "description": {
+              "content": "Use this operation to get a log of recent visits to a website.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "visits",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "site_id",
+                  "value": "<string>",
+                  "description": "(Required) Numeric identifier of the site to operate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "<string>",
+                  "description": "Time range to fetch data for. Default is last_7_days.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Start date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "End date in milliseconds since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>",
+                  "description": "The number of objects to return in the response. Defaults to 10. Maximum is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_num",
+                  "value": "<string>",
+                  "description": "The page to return starting from 0. Default to 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "security",
+                  "value": "<string>",
+                  "description": "Filter the sessions that were handled according to the security-related specifications. Multiple values are supported, e.g.: \"api.threats.action.block_ip, api.threats.sql_injection\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Filter the sessions coming from the specified country."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>",
+                  "description": "Filter the sessions coming from the specified IP."
+                },
+                {
+                  "disabled": false,
+                  "key": "visit_id",
+                  "value": "<string>",
+                  "description": "Comma separated list of visit IDs to load."
+                },
+                {
+                  "disabled": false,
+                  "key": "list_live_visits",
+                  "value": "<string>",
+                  "description": "Whether or not to list visits that did not end and that may still be updated.<br/>Possible values: true, false<br/>Default: true"
+                },
+                {
+                  "disabled": false,
+                  "key": "use_previous_region",
+                  "value": "<string>",
+                  "description": "Whether or not to list visits from old region data. Valid only if a data region was changed in the last 90 days. One of: true | false. Default: false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec6f2501-6c90-4c2e-9a96-bee6095680d0",
+              "name": "res - contains the specific error code:<br/>1 - Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "visits",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "site_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "last_7_days"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_num",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "security",
+                      "value": "api.threats.action.block_ip"
+                    },
+                    {
+                      "key": "country",
+                      "value": "SE"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "1.2.3.4"
+                    },
+                    {
+                      "key": "visit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "list_live_visits",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "use_previous_region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"visits\": [\n    {\n      \"id\": \"133077760038625792\",\n      \"siteId\": 7,\n      \"startTime\": 1361468485000,\n      \"endTime\": 1361468486000,\n      \"clientType\": \"Unclassified\",\n      \"clientApplication\": \"Bot\",\n      \"clientApplicationId\": 0,\n      \"httpVersion\": \"2.0\",\n      \"clientApplicationVersion\": \"0\",\n      \"userAgent\": \"Mozilla/4.0 (compatible; MSIE 5.0; Windows 95; DigExt)\",\n      \"os\": \"Windows\",\n      \"osVersion\": \"Windows\",\n      \"supportsCookies\": true,\n      \"supportsJavaScript\": true,\n      \"hits\": 1,\n      \"pageViews\": 1,\n      \"entryReferer\": \"http://lp.usafis.org/_Incapsula_Resource?CWUDNSAI=9_E1521557&incident_id=133077760038102423-139906691365201416&edet=12&cinfo=2ef678e2c753856785000000\",\n      \"entryPage\": \"www.incapsula.com/ddos/ddos-mitigation-services\",\n      \"securitySummary\": [\n        {\n          \"key_0\": {}\n        },\n        {\n          \"key_0\": {}\n        }\n      ],\n      \"actions\": [\n        {\n          \"queryString\": \"?jobSYapi_password\\\\u003dXXXXX\",\n          \"postData\": \"string\",\n          \"requestResult\": \"api.request_result.req_challenge_javascript\",\n          \"isSecured\": false,\n          \"url\": \"www.google.com/ddos/ddos-mitigation-services\",\n          \"httpStatus\": 200,\n          \"responseTime\": 170,\n          \"thinkTime\": 169,\n          \"incidentId\": \"3411008890000033213-29571073433152\",\n          \"threats\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"queryString\": \"?jobSYapi_password\\\\u003dXXXXX\",\n          \"postData\": \"string\",\n          \"requestResult\": \"api.request_result.req_challenge_javascript\",\n          \"isSecured\": false,\n          \"url\": \"www.google.com/ddos/ddos-mitigation-services\",\n          \"httpStatus\": 200,\n          \"responseTime\": 170,\n          \"thinkTime\": 169,\n          \"incidentId\": \"3411008890000033213-29571073433152\",\n          \"threats\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"133077760038625792\",\n      \"siteId\": 7,\n      \"startTime\": 1361468485000,\n      \"endTime\": 1361468486000,\n      \"clientType\": \"Unclassified\",\n      \"clientApplication\": \"Bot\",\n      \"clientApplicationId\": 0,\n      \"httpVersion\": \"2.0\",\n      \"clientApplicationVersion\": \"0\",\n      \"userAgent\": \"Mozilla/4.0 (compatible; MSIE 5.0; Windows 95; DigExt)\",\n      \"os\": \"Windows\",\n      \"osVersion\": \"Windows\",\n      \"supportsCookies\": true,\n      \"supportsJavaScript\": true,\n      \"hits\": 1,\n      \"pageViews\": 1,\n      \"entryReferer\": \"http://lp.usafis.org/_Incapsula_Resource?CWUDNSAI=9_E1521557&incident_id=133077760038102423-139906691365201416&edet=12&cinfo=2ef678e2c753856785000000\",\n      \"entryPage\": \"www.incapsula.com/ddos/ddos-mitigation-services\",\n      \"securitySummary\": [\n        {\n          \"key_0\": {}\n        },\n        {\n          \"key_0\": {}\n        }\n      ],\n      \"actions\": [\n        {\n          \"queryString\": \"?jobSYapi_password\\\\u003dXXXXX\",\n          \"postData\": \"string\",\n          \"requestResult\": \"api.request_result.req_challenge_javascript\",\n          \"isSecured\": false,\n          \"url\": \"www.google.com/ddos/ddos-mitigation-services\",\n          \"httpStatus\": 200,\n          \"responseTime\": 170,\n          \"thinkTime\": 169,\n          \"incidentId\": \"3411008890000033213-29571073433152\",\n          \"threats\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"queryString\": \"?jobSYapi_password\\\\u003dXXXXX\",\n          \"postData\": \"string\",\n          \"requestResult\": \"api.request_result.req_challenge_javascript\",\n          \"isSecured\": false,\n          \"url\": \"www.google.com/ddos/ddos-mitigation-services\",\n          \"httpStatus\": 200,\n          \"responseTime\": 170,\n          \"thinkTime\": 169,\n          \"incidentId\": \"3411008890000033213-29571073433152\",\n          \"threats\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "118e2801-8faa-47be-acc6-5a2340886c08",
+          "name": "Upload Public Key",
+          "request": {
+            "name": "Upload Public Key",
+            "description": {
+              "content": "Available only for Enterprise Plan customers that purchased the Security Logs Integration SKU.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "logscollector",
+                "upload",
+                "publickey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "config_id",
+                  "value": "<string>",
+                  "description": "(Required) The Logs Collector configuration identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "public_key",
+                  "value": "<string>",
+                  "description": "(Required) The public key file (2048bit) in base64 format (without password protection)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a83af560-61eb-429a-84ea-33cb0e940418",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>13008 - Invalid configuration ID<br/>13009 - Invalid key length<br/>13007 - Invalid public key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "logscollector",
+                    "upload",
+                    "publickey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "config_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "public_key",
+                      "value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp dkVeG9ypRTuOUq4jocTQBXupcT wqH/gmCxb5xqdp0Dxrac91VsPmmGTNw0vMrcZfXPzRM26zzkhakA9vKR9TobpML3Tv90Gb43XByHjwipYNBxN/nfjCksXigqfqLUtiUODPfSqdwoUk6PJHAUnCvp8boPGaLFiFvwlPwtjBp8lNb4jgMH3Czbbgk3Q p zXIEg024WAGnp NrjsNM1xAuP9ON T096iBJaJqX7H2heWGw/7UqR eMtv7/vGilhi9kX2/sgNe5LDdAqdcWjzeCDXVqzqk rxil kHnAkwJ7eNAi49i4f6Zl6Zyhpf69fI0KOjaCI7QrEXZ1jwLQIDAQAB"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"publicKeyId\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "603f0fe7-9cc2-47c0-a6fb-5c3d32595755",
+          "name": "Change Logs Collector Configuration Status",
+          "request": {
+            "name": "Change Logs Collector Configuration Status",
+            "description": {
+              "content": "Change the status of the Logs Collector configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "logscollector",
+                "change",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "config_id",
+                  "value": "<string>",
+                  "description": "(Required) The Logs Collector configuration identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "logs_config_new_status",
+                  "value": "<string>",
+                  "description": "(Required) The new configuration status of the Logs Collector.\nPossible values: ACTIVE, SUSPENDED"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31869ace-51f9-4c94-9e89-0805c758d03e",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input<br/>13008 - Invalid configuration ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "logscollector",
+                    "change",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "config_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logs_config_new_status",
+                      "value": "ACTIVE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85d47423-f584-457f-b6ae-2fb3ff4b4260",
+          "name": "Get Infrastructure Protection Events",
+          "request": {
+            "name": "Get Infrastructure Protection Events",
+            "description": {
+              "content": "Use this operation to get Infrastructure Protection event information for an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "infra",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Numeric identifier of the account to operate on.<br/>If not specified, operation will be performed on the account identified by the authentication parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>",
+                  "description": "A comma separated list of specific event types. Any of: GRE_TUNNEL_UP, GRE_TUNNEL_DOWN, ORIGIN_CONNECTION_GRE_UP, ORIGIN_CONNECTION_GRE_DOWN, ORIGIN_CONNECTION_ECX_UP, ORIGIN_CONNECTION_ECX_DOWN, ORIGIN_CONNECTION_CROSS_CONNECT_UP, ORIGIN_CONNECTION_CROSS_CONNECT_DOWN, DDOS_START_IP_RANGE, DDOS_STOP_IP_RANGE, DDOS_QUIET_TIME_IP_RANGE, EXPORTER_NO_DATA, EXPORTER_BAD_DATA, EXPORTER_GOOD_DATA, MONITORING_CRITICAL_ATTACK, PROTECTED_IP_STATUS_UP, PROTECTED_IP_STATUS_DOWN, PER_IP_DDOS_START_IP_RANGE."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip_prefix",
+                  "value": "<string>",
+                  "description": "Specific Protected IP or IP range. For example, 1.1.1.0/24."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>",
+                  "description": "The number of objects to return in the response.<br/>Default: 50<br/>Maximum: 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_num",
+                  "value": "<string>",
+                  "description": "The page to return starting from 0. Default: 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "The start date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "The end date in milliseconds, since 1970.<br/>Some operations require the user to specify a time range. This is done via the time_range parameter, which accepts the following values:<br/><ul><li><b>today</b> Retrieve data from midnight today until the current time.</li><li><b>last_7_days</b> Retrieve data from midnight of 7 days ago until the current time.</li><li><b>last_30_days</b> Retrieve data from midnight of 30 days ago until the current time.</li><li><b>last_90_days</b> Retrieve data from midnight of 90 days ago until the current time.</li><li><b>month_to_date</b> Retrieve data from midnight of the first day of the month until the current time.</li><li><b>custom</b> Specify a custom time range using two additional parameters: start and end.<br/>Results are provided for full days only, starting from midnight. A time range of less than 24 hours gives results for the full day.<br/>For example:<ul><li>A time range of 14:00 - 20:00 yesterday gives results for all of yesterday (midnight to midnight) - a full day.</li><li>A time range of 14:00 last Tuesday to 14:00 last Wednesday gives results for all of Tuesday and Wednesday - two full days.</li> <li>A time range of 14:00 yesterday to 14:00 today gives results for all of yesterday starting from midnight until the current time today.</li></ul></li></ul>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "944c171f-fcef-463f-8d69-b2bd0264946e",
+              "name": "res - contains the specific error code:<br/>2 - Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "infra",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "GRE_TUNNEL_UP"
+                    },
+                    {
+                      "key": "ip_prefix",
+                      "value": "1.1.1.0/24"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_num",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"res\": 0,\n  \"res_message\": \"OK\",\n  \"events\": [\n    {\n      \"eventTime\": \"1988-04-13T05:01:06.244Z\",\n      \"eventType\": \"DDOS_STOP_IP_RANGE\",\n      \"bwTotal\": 9000,\n      \"ppsTotal\": 90,\n      \"bwPassed\": 200,\n      \"ppsPassed\": 87,\n      \"bwBlocked\": 8800,\n      \"ppsBlocked\": 3,\n      \"eventTarget\": \"IP_RANGE\",\n      \"reportedByPop\": \"zrh\"\n    },\n    {\n      \"eventTime\": \"2024-04-02T20:04:03.011Z\",\n      \"eventType\": \"DDOS_STOP_IP_RANGE\",\n      \"bwTotal\": 9000,\n      \"ppsTotal\": 90,\n      \"bwPassed\": 200,\n      \"ppsPassed\": 87,\n      \"bwBlocked\": 8800,\n      \"ppsBlocked\": 3,\n      \"eventTarget\": \"IP_RANGE\",\n      \"reportedByPop\": \"zrh\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://my.imperva.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a499f6a2-1f64-4ca2-a38b-092e77bda08a",
+    "name": "Cloud Application Security Account Management Traffic Statistics and Logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Add, delete, and modify accounts. Get account details.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management Login Protect API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Login Protect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Login Protect User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/lp/configure",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "enabled",
+                "value": "true",
+                "type": "query",
+                "description": "Pass true to enable login protect on site, and false to disable it.<br/>Default: true"
+              },
+              {
+                "name": "specific_users_list",
+                "value": "admin@example.com",
+                "type": "query",
+                "description": "Comma separated email list to set login protect users for the site. If the list is empty all users will be allowed to access the site using Login Protect."
+              },
+              {
+                "name": "send_lp_notifications",
+                "value": "true",
+                "type": "query",
+                "description": "Pass true to send notification on successful login using login protect.<br/>Default: false"
+              },
+              {
+                "name": "allow_all_users",
+                "value": "true",
+                "type": "query",
+                "description": "Pass true to allow all login protect users to access the site. If you want to allow only a specific list of users to access the site using Login Protect set this to false, and add the list to specific_user_list.<br/>Default: true"
+              },
+              {
+                "name": "authentication_methods",
+                "value": "sms",
+                "type": "query",
+                "description": "Comma separated list of allowed authentication methods: sms | email | ga"
+              },
+              {
+                "name": "urls",
+                "value": "/home",
+                "type": "query",
+                "description": "A comma separated list of resource paths. For example, /home and /admin/index.html are resource paths, while <a href=\"http://www.example.com/home\">http://www.example.com/home</a> is not. Each URL should be encoded separately using percent encoding as specified by RFC 3986 (<a href=\"http://tools.ietf.org/html/rfc3986#section-2.1\">http://tools.ietf.org/html/rfc3986#section-2.1</a>). An empty URL list will remove all URLs."
+              },
+              {
+                "name": "url_patterns",
+                "value": "prefix",
+                "type": "query",
+                "description": "A comma separated list of url patterns. Possible values: contains | equals | prefix | suffix | not_equals | not_contain | not_prefix | not_suffix. The patterns should be in accordance with the matching urls sent by the urls parameter."
+              }
+            ]
+          },
+          "docs": "Use this operation to change Login Protect settings for a site."
+        },
+        {
+          "info": {
+            "name": "Configure Login Protect on Admin Areas",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/lp/configure-app",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the site to operate on."
+              },
+              {
+                "name": "protected_app",
+                "value": "wordpress",
+                "type": "query",
+                "description": "Protect admin areas of joomla | wordpress | phpBB."
+              }
+            ]
+          },
+          "docs": "Use this operation to configure Login Protect on wordpress | joomla | phpbb admin areas."
+        },
+        {
+          "info": {
+            "name": "Add Login Protect User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/lp/add-user",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on."
+              },
+              {
+                "name": "email",
+                "value": "admin@example.com",
+                "type": "query",
+                "description": "Email address."
+              },
+              {
+                "name": "name",
+                "value": "John Smith",
+                "type": "query",
+                "description": "Example: John Smith"
+              },
+              {
+                "name": "phone",
+                "value": "1-8662507659",
+                "type": "query",
+                "description": "Phone number. For example: \"1-8662507659\""
+              },
+              {
+                "name": "is_phone_verified",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to skip phone verification."
+              },
+              {
+                "name": "is_email_verified",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to skip email address verification."
+              },
+              {
+                "name": "should_send_activation_email",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to send activation email to user."
+              }
+            ]
+          },
+          "docs": "Use this operation to add a Login Protect user for a site."
+        },
+        {
+          "info": {
+            "name": "Get Login Protect Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/lp/users",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on."
+              }
+            ]
+          },
+          "docs": "Use this operation to get the account's login protect user list."
+        },
+        {
+          "info": {
+            "name": "Edit Login Protect User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/lp/edit-user",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on."
+              },
+              {
+                "name": "email",
+                "value": "admin@example.com",
+                "type": "query",
+                "description": "Email address."
+              },
+              {
+                "name": "name",
+                "value": "John Smith",
+                "type": "query",
+                "description": "Example: John Smith"
+              },
+              {
+                "name": "phone",
+                "value": "1-8662507659",
+                "type": "query",
+                "description": "Phone number. For example: \"1-8662507659\""
+              },
+              {
+                "name": "is_phone_verified",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to skip phone verification."
+              },
+              {
+                "name": "is_email_verified",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to skip email address verification."
+              },
+              {
+                "name": "should_send_activation_email",
+                "value": "true",
+                "type": "query",
+                "description": "Whether or not to send activation email to user."
+              }
+            ]
+          },
+          "docs": "Edit Login Protect user's settings."
+        },
+        {
+          "info": {
+            "name": "Send SMS to User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/lp/send-sms",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on."
+              },
+              {
+                "name": "email",
+                "value": "admin@example.com",
+                "type": "query",
+                "description": "Email address."
+              },
+              {
+                "name": "sms_text",
+                "value": "hello",
+                "type": "query",
+                "description": "Text that will be sent in SMS."
+              }
+            ]
+          },
+          "docs": "Use this operation to send an SMS to a login protect user."
+        },
+        {
+          "info": {
+            "name": "Remove Login Protect User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/sites/lp/remove",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "10",
+                "type": "query",
+                "description": "Numeric identifier of the account to operate on."
+              },
+              {
+                "name": "email",
+                "value": "admin@example.com",
+                "type": "query",
+                "description": "Email address."
+              }
+            ]
+          },
+          "docs": "Use this operation to remove a login protect user from an account's user list."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

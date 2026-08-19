@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "abortJobById",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://my.imperva.com/v1/management/jobs/:JobId/currentRun",
+            "params": [
+              {
+                "name": "JobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "currentlyRunningJobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://my.imperva.com/v1/management/jobs"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

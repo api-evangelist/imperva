@@ -1,0 +1,421 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cloud Application Security Account Management DDoS Protection for Individual IPs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-API-Key",
+      "value": "{{x-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DDoS Protection for Individual IPs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Protected IP over TCP - Add by CNAME",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/add/ip",
+            "params": [
+              {
+                "name": "origin_ip",
+                "value": "1.2.3.4",
+                "type": "query",
+                "description": "Public origin IP to onboard to service"
+              },
+              {
+                "name": "enable_ha_protocol",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "description for the generated Edge IP"
+              },
+              {
+                "name": "monitoring_type",
+                "value": "TCP",
+                "type": "query",
+                "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE'"
+              },
+              {
+                "name": "tcp_monitoring_port",
+                "value": "25",
+                "type": "query",
+                "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+              }
+            ]
+          },
+          "docs": "Use this operation to onboard a public origin IP to the 'IP Protection over TCP' service.\nIf successful, the operation will return the generated Edge IP."
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Add by origin IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/add/cname",
+            "params": [
+              {
+                "name": "cname",
+                "value": "imperva.test.com",
+                "type": "query",
+                "description": "CNAME record to onboard to service"
+              },
+              {
+                "name": "enable_ha_protocol",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Optional description for the generated Edge IP"
+              },
+              {
+                "name": "monitoring_type",
+                "value": "TCP",
+                "type": "query",
+                "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE'"
+              },
+              {
+                "name": "tcp_monitoring_port",
+                "value": "25",
+                "type": "query",
+                "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+              }
+            ]
+          },
+          "docs": "Use this operation to onboard a CNAME record to the 'IP Protection over TCP' service.\nIf successful, the operation will return the generated Edge IP."
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Add by DNS and origin IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/add/dns-with-ip",
+            "params": [
+              {
+                "name": "dns_name",
+                "value": "example.imperva.com",
+                "type": "query",
+                "description": "Domain name to onboard to service"
+              },
+              {
+                "name": "origin_ip",
+                "value": "1.2.3.4",
+                "type": "query",
+                "description": "Public origin IP to onboard to service"
+              },
+              {
+                "name": "disable_dns_check",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+              },
+              {
+                "name": "enable_ha_protocol",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "description for the generated Edge IP"
+              },
+              {
+                "name": "monitoring_type",
+                "value": "TCP",
+                "type": "query",
+                "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE"
+              },
+              {
+                "name": "tcp_monitoring_port",
+                "value": "25",
+                "type": "query",
+                "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+              }
+            ]
+          },
+          "docs": "Use this operation to onboard a public origin IP with an associated DNS name to the 'IP Protection over TCP' service.\nIf DNS check is enabled, the response will include the list of resolved IPs for the provided domain name, and the operation will only succeed if the provided origin IP will be included in that list.\nIf successful, the operation will return the generated Edge IP."
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Add by DNS and CNAME",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/add/dns-with-cname",
+            "params": [
+              {
+                "name": "dns_name",
+                "value": "example.imperva.com",
+                "type": "query",
+                "description": "Domain name to onboard to service"
+              },
+              {
+                "name": "cname",
+                "value": "imperva.test.com",
+                "type": "query",
+                "description": "CNAME record to onboard to service"
+              },
+              {
+                "name": "disable_dns_check",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+              },
+              {
+                "name": "enable_ha_protocol",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to enable the Proxy Protocol setting (disabled by default)"
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "description for the generated Edge IP"
+              },
+              {
+                "name": "monitoring_type",
+                "value": "TCP",
+                "type": "query",
+                "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE"
+              },
+              {
+                "name": "tcp_monitoring_port",
+                "value": "25",
+                "type": "query",
+                "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+              }
+            ]
+          },
+          "docs": "Use this operation to onboard a CNAME record with an associated DNS name to the 'IP Protection over TCP' service.\nIf DNS check is enabled, the response will include the list of resolved CNAME records for the provided domain name, and the operation will only succeed if the provided CNAME will be included in that list.\nIf successful, the operation will return the generated Edge IP."
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Edit by origin IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/edit/ip",
+            "params": [
+              {
+                "name": "edge_ip",
+                "value": "172.17.14.1",
+                "type": "query",
+                "description": "Imperva generated Edge IP"
+              },
+              {
+                "name": "origin_ip",
+                "value": "1.2.3.4",
+                "type": "query",
+                "description": "Public origin IP to onboard to service"
+              }
+            ]
+          },
+          "docs": "Use this operation to assign a new origin IP to the provided Edge IP under the 'IP Protection over TCP' service.\nThis operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).\nIf successful, the operation will return the Edge IP.\nWARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protec"
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Edit by CNAME",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/edit/cname",
+            "params": [
+              {
+                "name": "edge_ip",
+                "value": "172.17.14.1",
+                "type": "query",
+                "description": "Imperva generated Edge IP"
+              },
+              {
+                "name": "cname",
+                "value": "imperva.test.com",
+                "type": "query",
+                "description": "CNAME to onboard to service"
+              }
+            ]
+          },
+          "docs": "Use this operation to assign a new CNAME record to the provided Edge IP under the 'IP Protection over TCP' service.\nThis operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS will be overwritten).\nIf successful, the operation will return the Edge IP.\nWARNING: Any entity already protected by this Edge IP prior to the change will no longer be protected once modification is successful, unless duplicate protecti"
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Edit by DNS and origin IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/edit/dns-with-ip",
+            "params": [
+              {
+                "name": "edge_ip",
+                "value": "172.17.14.1",
+                "type": "query",
+                "description": "Imperva generated Edge IP"
+              },
+              {
+                "name": "dns_name",
+                "value": "imperva.example.com",
+                "type": "query",
+                "description": "Domain name to onboard to service"
+              },
+              {
+                "name": "origin_ip",
+                "value": "1.2.3.4",
+                "type": "query",
+                "description": "Public origin IP to onboard to service"
+              },
+              {
+                "name": "disable_dns_check",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+              }
+            ]
+          },
+          "docs": "Use this operation to assign a new origin IP with an associated DNS name to the provided Edge IP under the 'IP Protection over TCP' service.\nThis operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).\nIf DNS check is enabled, the response will include the list of resolved IPs for the provided domain name, and the operation will only succeed if the provided origin IP is included in t"
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Edit by DNS and origin IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/edit/dns-with-cname",
+            "params": [
+              {
+                "name": "edge_ip",
+                "value": "172.17.14.1",
+                "type": "query",
+                "description": "Imperva generated Edge IP"
+              },
+              {
+                "name": "dns_name",
+                "value": "imperva.example.com",
+                "type": "query",
+                "description": "Domain name to onboard to service"
+              },
+              {
+                "name": "cname",
+                "value": "imperva.example.com",
+                "type": "query",
+                "description": "CNAME to onboard to service"
+              },
+              {
+                "name": "disable_dns_check",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to disable DNS resolution check (enabled by default)"
+              }
+            ]
+          },
+          "docs": "Use this operation to assign a new CNAME record with an associated DNS name to the provided Edge IP under the 'IP Protection over TCP' service.<br/>This operation is also able to change the type of the entity protected by the provided Edge IP (Any existing combination of Origin IP/CNAME and DNS name will be overwritten).<br/>If DNS check is enabled, the response will include the list of resolved CNAME records for the provided domain name, and the operation will only succeed if the provided CNAME"
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Edit HA Protocol Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/edit/ha-protocol",
+            "params": [
+              {
+                "name": "edge_ip",
+                "value": "172.17.14.1",
+                "type": "query",
+                "description": "Imperva generated Edge IP"
+              },
+              {
+                "name": "enable_ha_protocol",
+                "value": "true",
+                "type": "query",
+                "description": "Provide 'true' to enable the Proxy Protocol setting, 'false' to disable"
+              }
+            ]
+          },
+          "docs": "Use this operation on the provided Edge IP to toggle its HA Protocol setting on or off.\nBy default, this setting is disabled during onboarding unless explicitly set to 'true'.\nWARNING: Do not modify this setting unless you are familiar with the proxy protocol and understand the implications of enabling or disabling it for your account."
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Edit Monitoring Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/edit/monitoring-settings",
+            "params": [
+              {
+                "name": "edge_ip",
+                "value": "172.17.14.1",
+                "type": "query",
+                "description": "Imperva generated Edge IP"
+              },
+              {
+                "name": "monitoring_type",
+                "value": "TCP",
+                "type": "query",
+                "description": "Monitoring type for the Edge IP. Possible values: 'ICMP' (default), 'TCP' or 'NONE'"
+              },
+              {
+                "name": "tcp_monitoring_port",
+                "value": "15",
+                "type": "query",
+                "description": "Port to use for TCP monitoring of the Edge IP. Required only when TCP monitoring is used."
+              }
+            ]
+          },
+          "docs": "Use this operation on the specified Edge IP to modify its monitoring settings."
+        },
+        {
+          "info": {
+            "name": "Protected IP over TCP - Remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://my.imperva.com/api/prov/v1/ddos-protection/edge-ip/remove",
+            "params": [
+              {
+                "name": "edge_ip",
+                "value": "172.17.14.1",
+                "type": "query",
+                "description": "Imperva generated Edge IP"
+              }
+            ]
+          },
+          "docs": "Use this operation on the provided Edge IP to remove it from the 'IP Protection over TCP' service.<br/>WARNING: Any entity already protected by this Edge IP will no longer be protected once the operation is successful, unless duplicate protection was enabled and used."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
