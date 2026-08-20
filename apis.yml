@@ -108,6 +108,8 @@ apis:
     https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
   baseURL: https://api.imperva.com
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -198,6 +200,8 @@ apis:
     https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
   baseURL: https://api.imperva.com
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
