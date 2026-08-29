@@ -9,6 +9,18 @@ description: Imperva (a Thales company) is a cybersecurity company providing clo
   for the SecureSphere on-premises MX platform, a Terraform provider for infrastructure-as-code
   provisioning, and a CLI for orchestration and automation workflows.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
