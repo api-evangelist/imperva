@@ -1,11 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cloud Application Security Account Management Integrations API
+  title: Cloud Application Security Integrations API
   license:
     name: Imperva License Agreement.
     url: http://www.imperva.com/other/license_agreement.asp
   version: '1.0'
-  description: Add, delete, and modify accounts. Get account details.
+  description: Implement integrations with the Imperva service.
 servers:
 - url: https://my.imperva.com
   description: Imperva API server
@@ -84,35 +84,6 @@ paths:
                 $ref: '#/components/schemas/ApiResultGetClappsInfo'
 components:
   schemas:
-    ApiResultGetTexts:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        texts:
-          type: array
-          example:
-            api.stats.visits_timeseries.human: Human visits
-            api.stats.visits_timeseries.bot: Bot visits
-            api.threats.followup.view: View Incidents
-          items:
-            type: object
-            additionalProperties:
-              type: object
     ApiResult:
       type: object
       properties:
@@ -132,42 +103,6 @@ components:
               type: object
               example: {}
             example: {}
-    GeoInfo:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        countriesCodes:
-          type: array
-          example:
-            BD: Bangladesh
-            BE: Belgium
-          items:
-            type: object
-            additionalProperties:
-              type: object
-        continentsCodes:
-          type: array
-          example:
-            AF: Africa
-          items:
-            type: object
-            additionalProperties:
-              type: object
     ApiResultIncapsulaRanges:
       type: object
       properties:
@@ -228,6 +163,71 @@ components:
           type: array
           example:
             '1': Browser
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    ApiResultGetTexts:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        texts:
+          type: array
+          example:
+            api.stats.visits_timeseries.human: Human visits
+            api.stats.visits_timeseries.bot: Bot visits
+            api.threats.followup.view: View Incidents
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    GeoInfo:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        countriesCodes:
+          type: array
+          example:
+            BD: Bangladesh
+            BE: Belgium
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        continentsCodes:
+          type: array
+          example:
+            AF: Africa
           items:
             type: object
             additionalProperties:

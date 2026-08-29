@@ -1,11 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cloud Application Security Account Management Traffic Statistics and Logs API
+  title: Cloud Application Security Traffic Statistics and Logs API
   license:
     name: Imperva License Agreement.
     url: http://www.imperva.com/other/license_agreement.asp
   version: '1.0'
-  description: Add, delete, and modify accounts. Get account details.
+  description: Retrieve traffic statistics and logs for sites or accounts.
 servers:
 - url: https://my.imperva.com
   description: Imperva API server
@@ -607,287 +607,6 @@ paths:
                 - $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
-    ApiResultLCPublicKey:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        publicKeyId:
-          type: integer
-          format: int64
-          example: 1
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-    IncapRuleSeries:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        action:
-          type: string
-          example: Require Javascript Support
-        createdAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-          example: example@imperva.com
-        incidents:
-          type: array
-          example:
-          - - 1478613600000
-            - 6
-          - - 1478617200000
-            - 3
-          items:
-            type: object
-    ApiResultSiteStats:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        visits_timeseries:
-          type: array
-          items:
-            $ref: '#/components/schemas/VisitsItem'
-        requests_geo_dist_summary:
-          $ref: '#/components/schemas/RequestsGeo'
-        visits_dist_summary:
-          type: array
-          items:
-            $ref: '#/components/schemas/VisitsSummary'
-        caching:
-          $ref: '#/components/schemas/Caching'
-        caching_timeseries:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeSeriesItem'
-        hits_timeseries:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeSeriesItem'
-        bandwidth_timeseries:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeSeriesItem'
-        threats:
-          type: array
-          items:
-            $ref: '#/components/schemas/Threat'
-        incap_rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/IncapRule'
-        incap_rules_timeseries:
-          type: array
-          items:
-            $ref: '#/components/schemas/IncapRuleSeries'
-        delivery_rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/ADRule'
-        delivery_rules_timeseries:
-          type: array
-          items:
-            $ref: '#/components/schemas/ADRuleSeries'
-    InfraStatsApiResponse:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-      example:
-        stats:
-        - objectId: 607074
-          payload:
-          - interval: 15000
-            startTime: 1509936300000
-            data:
-            - 0
-            - 15
-            metric: pps
-            pop: tko
-            ipPrefix: 192.168.205.0/24
-            ipPrefixType: bgp
-            traffic: passed
-          - interval: 15000
-            startTime: 1509936300000
-            data:
-            - 7968575
-            - 8484564
-            metric: bw
-            pop: tko
-            ipPrefix: 192.168.205.0/24
-            ipPrefixType: bgp
-            traffic: passed
-        res: 0
-        res_message: OK
-        debug_info: {}
-    AnalyticsHistogramApiResponse:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        stats:
-          type: array
-          example:
-            PL_100: '366450640'
-            PL_200: '305475960'
-            PL_300: '0'
-            PL_400: '0'
-            PL_500: '0'
-            PL_600: '0'
-            PL_700: '0'
-            PL_800: '0'
-            PL_900: '0'
-            PL_1000: '0'
-            PL_1100: '0'
-            PL_1200: '0'
-            PL_1300: '0'
-            PL_1400: '0'
-            PL_1500: '0'
-          items:
-            type: object
-            additionalProperties:
-              type: object
-    ADRuleSeries:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        action:
-          type: string
-          example: Redirect
-        createdAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-          example: example@imperva.com
-        hits:
-          type: array
-          example:
-          - - 1478613600000
-            - 6
-          - - 1478617200000
-            - 3
-          items:
-            type: object
-    Caching:
-      type: object
-      properties:
-        saved_requests:
-          type: integer
-          format: int64
-          example: 23984923
-        total_requests:
-          type: integer
-          format: int64
-          example: 48723648
-        saved_bytes:
-          type: integer
-          format: int64
-          example: 762394786
-        total_bytes:
-          type: integer
-          format: int64
-          example: 1098349834
-    ADRule:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        action:
-          type: string
-          example: Redirect
-        createdAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-          example: example@imperva.com
-        hits:
-          type: integer
-          format: int32
-          example: 3451
     InfraProtectEvent:
       type: object
       properties:
@@ -962,6 +681,58 @@ components:
         reportedByPop:
           type: string
           example: zrh
+    Stats:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        objectid:
+          type: string
+          example: '200'
+        time:
+          type: string
+          example: '1522761000000'
+        payload:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopGraphPayloads'
+    ApiResultLCPublicKey:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        publicKeyId:
+          type: integer
+          format: int64
+          example: 1
     ApiResultSessions:
       type: object
       properties:
@@ -1092,6 +863,157 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ActionItem'
+    AnalyticsHistogramApiResponse:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        stats:
+          type: array
+          example:
+            PL_100: '366450640'
+            PL_200: '305475960'
+            PL_300: '0'
+            PL_400: '0'
+            PL_500: '0'
+            PL_600: '0'
+            PL_700: '0'
+            PL_800: '0'
+            PL_900: '0'
+            PL_1000: '0'
+            PL_1100: '0'
+            PL_1200: '0'
+            PL_1300: '0'
+            PL_1400: '0'
+            PL_1500: '0'
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    RequestsGeo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        data:
+          type: array
+          example: '[[''Tokyo, JA'',24365435],[''Los Angeles, CA'',98762738]]'
+          items:
+            type: object
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    AnalyticsTopTableData:
+      type: object
+      properties:
+        object:
+          type: string
+          example: 10.200.98.3
+        value:
+          type: number
+          format: double
+          example: 334160
+        total:
+          type: number
+          format: double
+          example: 1109938
+    InfraStatsApiResponse:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+      example:
+        stats:
+        - objectId: 607074
+          payload:
+          - interval: 15000
+            startTime: 1509936300000
+            data:
+            - 0
+            - 15
+            metric: pps
+            pop: tko
+            ipPrefix: 192.168.205.0/24
+            ipPrefixType: bgp
+            traffic: passed
+          - interval: 15000
+            startTime: 1509936300000
+            data:
+            - 7968575
+            - 8484564
+            metric: bw
+            pop: tko
+            ipPrefix: 192.168.205.0/24
+            ipPrefixType: bgp
+            traffic: passed
+        res: 0
+        res_message: OK
+        debug_info: {}
+    Caching:
+      type: object
+      properties:
+        saved_requests:
+          type: integer
+          format: int64
+          example: 23984923
+        total_requests:
+          type: integer
+          format: int64
+          example: 48723648
+        saved_bytes:
+          type: integer
+          format: int64
+          example: 762394786
+        total_bytes:
+          type: integer
+          format: int64
+          example: 1098349834
     VisitsItem:
       type: object
       properties:
@@ -1108,44 +1030,47 @@ components:
             - 40
           items:
             type: object
-    AnalyticsTopGraphDataResponse:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        stats:
-          type: array
-          items:
-            $ref: '#/components/schemas/Stats'
-    VisitsSummary:
+    IncapRule:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        data:
-          type: array
-          example: '[[''np'',15],[''no'',778]]'
-          items:
-            type: array
-            items:
-              type: object
-    AnalyticsTopTableApiResponse:
+        action:
+          type: string
+          example: Require Javascript Support
+        incidents:
+          type: integer
+          format: int32
+          example: 3451
+        createdAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+          example: example@imperva.com
+    ADRule:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        action:
+          type: string
+          example: Redirect
+        createdAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+          example: example@imperva.com
+        hits:
+          type: integer
+          format: int32
+          example: 3451
+    InfraEventsApiResponse:
       type: object
       properties:
         res:
@@ -1164,10 +1089,41 @@ components:
               type: object
               example: {}
             example: {}
-        stats:
+        events:
           type: array
           items:
-            $ref: '#/components/schemas/AnalyticsTopTableData'
+            $ref: '#/components/schemas/InfraProtectEvent'
+    TopGraphPayloads:
+      type: object
+      properties:
+        interval:
+          type: string
+          example: '15000'
+        startTime:
+          type: string
+          format: date-time
+        data:
+          type: array
+          example:
+          - 5462
+          - 7563
+          items:
+            type: object
+            example:
+            - 5462
+            - 7563
+        metric:
+          type: string
+          example: pps
+        dataType:
+          type: string
+          example: ip
+        item:
+          type: string
+          example: 10.13.0.1
+        traffic:
+          type: string
+          example: blocked
     ActionItem:
       type: object
       properties:
@@ -1205,7 +1161,84 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ThreatItem'
-    IncapRule:
+    ApiResultSiteStats:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        visits_timeseries:
+          type: array
+          items:
+            $ref: '#/components/schemas/VisitsItem'
+        requests_geo_dist_summary:
+          $ref: '#/components/schemas/RequestsGeo'
+        visits_dist_summary:
+          type: array
+          items:
+            $ref: '#/components/schemas/VisitsSummary'
+        caching:
+          $ref: '#/components/schemas/Caching'
+        caching_timeseries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeSeriesItem'
+        hits_timeseries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeSeriesItem'
+        bandwidth_timeseries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeSeriesItem'
+        threats:
+          type: array
+          items:
+            $ref: '#/components/schemas/Threat'
+        incap_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncapRule'
+        incap_rules_timeseries:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncapRuleSeries'
+        delivery_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ADRule'
+        delivery_rules_timeseries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ADRuleSeries'
+    VisitsSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        data:
+          type: array
+          example: '[[''np'',15],[''no'',778]]'
+          items:
+            type: array
+            items:
+              type: object
+    IncapRuleSeries:
       type: object
       properties:
         id:
@@ -1215,111 +1248,19 @@ components:
         action:
           type: string
           example: Require Javascript Support
-        incidents:
-          type: integer
-          format: int32
-          example: 3451
         createdAt:
           type: string
           format: date-time
         updatedBy:
           type: string
           example: example@imperva.com
-    Stats:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        objectid:
-          type: string
-          example: '200'
-        time:
-          type: string
-          example: '1522761000000'
-        payload:
-          type: array
-          items:
-            $ref: '#/components/schemas/TopGraphPayloads'
-    InfraEventsApiResponse:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/InfraProtectEvent'
-    ThreatItem:
-      type: object
-      properties:
-        securityRule:
-          type: string
-          example: api.threats.illegal_resource_access
-        alertLocation:
-          type: string
-          example: api.alert_location.alert_location_path
-        attackCodes:
-          uniqueItems: true
-          type: array
-          items:
-            type: object
-            example: 9070.0
-        securityRuleAction:
-          type: string
-          example: api.rule_action_type.rule_action_block
-      description: threats
-    RequestsGeo:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        data:
-          type: array
-          example: '[[''Tokyo, JA'',24365435],[''Los Angeles, CA'',98762738]]'
-          items:
-            type: object
-    TimeSeriesItem:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        data:
+        incidents:
           type: array
           example:
-          - - 1344247200000
-            - 5
+          - - 1478613600000
+            - 6
+          - - 1478617200000
+            - 3
           items:
             type: object
     Threat:
@@ -1351,51 +1292,110 @@ components:
         followup_url:
           type: string
           example: https://my.incapsula.com/sites/siteVisits?token=1123_103_13234435091_5d55197912387b94&timeFrame=last_7_days&extSiteId=123&threatFilters=badBot
-    AnalyticsTopTableData:
+    AnalyticsTopGraphDataResponse:
       type: object
       properties:
-        object:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
           type: string
-          example: 10.200.98.3
-        value:
-          type: number
-          format: double
-          example: 334160
-        total:
-          type: number
-          format: double
-          example: 1109938
-    TopGraphPayloads:
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stats'
+    AnalyticsTopTableApiResponse:
       type: object
       properties:
-        interval:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
           type: string
-          example: '15000'
-        startTime:
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalyticsTopTableData'
+    TimeSeriesItem:
+      type: object
+      properties:
+        id:
           type: string
-          format: date-time
+        name:
+          type: string
         data:
           type: array
           example:
-          - 5462
-          - 7563
+          - - 1344247200000
+            - 5
           items:
             type: object
-            example:
-            - 5462
-            - 7563
-        metric:
+    ADRuleSeries:
+      type: object
+      properties:
+        id:
           type: string
-          example: pps
-        dataType:
+        name:
           type: string
-          example: ip
-        item:
+        action:
           type: string
-          example: 10.13.0.1
-        traffic:
+          example: Redirect
+        createdAt:
           type: string
-          example: blocked
+          format: date-time
+        updatedBy:
+          type: string
+          example: example@imperva.com
+        hits:
+          type: array
+          example:
+          - - 1478613600000
+            - 6
+          - - 1478617200000
+            - 3
+          items:
+            type: object
+    ThreatItem:
+      type: object
+      properties:
+        securityRule:
+          type: string
+          example: api.threats.illegal_resource_access
+        alertLocation:
+          type: string
+          example: api.alert_location.alert_location_path
+        attackCodes:
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            example: 9070.0
+        securityRuleAction:
+          type: string
+          example: api.rule_action_type.rule_action_block
+      description: threats
   securitySchemes:
     api_id:
       type: apiKey

@@ -1,11 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cloud Application Security Account Management DDoS for Networks Test Alerts API
+  title: Cloud Application Security DDoS for Networks Test Alerts API
   license:
     name: Imperva License Agreement.
     url: http://www.imperva.com/other/license_agreement.asp
   version: '1.0'
-  description: Add, delete, and modify accounts. Get account details.
+  description: Generate dummy notifications to test system alerts.
 servers:
 - url: https://my.imperva.com
   description: Imperva API server
@@ -297,7 +297,7 @@ paths:
                 - $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
-    ApiResultTestAlert:
+    ApiResultTestAlertExporterStatus:
       type: object
       properties:
         res:
@@ -341,34 +341,6 @@ components:
               type: object
               example: {}
             example: {}
-    ApiResultTestAlertProtectedIPStatus:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        ip_prefix:
-          type: string
-          example: 100.1.2.0/24
-        status:
-          type: string
-          example: DDoS start notification sent successfully
-        ip:
-          type: string
-          example: 1.2.3.4
     ApiResultTestAlertConnectionStatus:
       type: object
       properties:
@@ -397,7 +369,7 @@ components:
         connection_name:
           type: string
           example: CONNECTION_NAME
-    ApiResultTestAlertExporterStatus:
+    ApiResultTestAlert:
       type: object
       properties:
         res:
@@ -422,6 +394,34 @@ components:
         status:
           type: string
           example: DDoS start notification sent successfully
+    ApiResultTestAlertProtectedIPStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
+        ip:
+          type: string
+          example: 1.2.3.4
   securitySchemes:
     api_id:
       type: apiKey

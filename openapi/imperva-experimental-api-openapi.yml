@@ -1,18 +1,9 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cloud Application Security Account Management Experimental API
-  license:
-    name: Imperva License Agreement.
-    url: http://www.imperva.com/other/license_agreement.asp
-  version: '1.0'
-  description: Add, delete, and modify accounts. Get account details.
+  version: 13.1.0.0
+  title: MX Open Experimental API
 servers:
-- url: https://my.imperva.com
-  description: Imperva API server
-  variables: {}
-security:
-- api_key: []
-- api_id: []
+- url: https://127.0.0.1:8083/SecureSphere/api
 tags:
 - name: Experimental
 paths:
@@ -634,14 +625,6 @@ paths:
                 $ref: '#/definitions/FooterDTO'
 components:
   securitySchemes:
-    api_id:
-      type: apiKey
-      name: x-API-Id
-      in: header
-    api_key:
-      type: apiKey
-      name: x-API-Key
-      in: header
-externalDocs:
-  description: Cloud Application Security API Reference
-  url: https://docs.imperva.com/bundle/cloud-application-security/page/api/api.htm
+    basicAuth:
+      type: http
+      scheme: basic

@@ -1,11 +1,11 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cloud Application Security Account Management Login Protect API
+  title: Cloud Application Security Login Protect API
   license:
     name: Imperva License Agreement.
     url: http://www.imperva.com/other/license_agreement.asp
   version: '1.0'
-  description: Add, delete, and modify accounts. Get account details.
+  description: Provision Login Protect users and configure protected pages.
 servers:
 - url: https://my.imperva.com
   description: Imperva API server
@@ -324,13 +324,116 @@ paths:
                 $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
-    APISealLocationItem:
+    PerformanceConfigurationApiResult:
       type: object
       properties:
-        id:
+        advanced_caching_rules:
+          type: array
+          example:
+            never_cache_resources:
+            - pattern: SUFFIX
+              url: /test.html
+            always_cache_resources:
+            - pattern: NOT_EQUALS
+              url: /index.html
+              ttl: '5'
+              ttlUnits: SECONDS
+            - pattern: EQUALS
+              url: /home.html
+              ttl: '6'
+              ttlUnits: DAYS
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        acceleration_level:
           type: string
-        name:
+          example: advanced
+        async_validation:
+          type: boolean
+          example: true
+        minify_javascript:
+          type: boolean
+          example: true
+        minify_css:
+          type: boolean
+          example: true
+        minify_static_html:
+          type: boolean
+          example: true
+        compress_jpeg:
+          type: boolean
+          example: true
+        compress_jepg:
+          type: boolean
+          example: true
+        progressive_image_rendering:
+          type: boolean
+          example: true
+        aggressive_compression:
+          type: boolean
+          example: true
+        compress_png:
+          type: boolean
+          example: true
+        on_the_fly_compression:
+          type: boolean
+          example: true
+        tcp_pre_pooling:
+          type: boolean
+          example: true
+        comply_no_cache:
+          type: boolean
+          example: true
+        comply_vary:
+          type: boolean
+          example: true
+        use_shortest_caching:
+          type: boolean
+          example: true
+        perfer_last_modified:
+          type: boolean
+          example: true
+        prefer_last_modified:
+          type: boolean
+          example: true
+        disable_client_side_caching:
+          type: boolean
+          example: true
+        cache300x:
+          type: boolean
+          example: true
+        cache_headers:
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+    LoginProtectUsersApiResults:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/LpExtendedUser'
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
           type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
     ApiResultSiteStatus:
       type: object
       properties:
@@ -510,164 +613,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IncapRuleApiResult'
-    LoginProtectApiResult:
+    IncapRuleApiResult:
       type: object
       properties:
-        enabled:
-          type: boolean
-          example: true
-        specific_users_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/specific_users_list'
-        send_lp_notifications:
-          type: boolean
-          example: true
-        allow_all_users:
-          type: boolean
-          example: true
-        authentication_methods:
-          uniqueItems: true
-          type: array
-          items:
-            type: object
-            example: email
-        urls:
-          type: array
-          items:
-            type: object
-            example: /userlist
-        url_patterns:
-          type: array
-          items:
-            type: object
-            example: CONTAINS
-    PerformanceConfigurationApiResult:
-      type: object
-      properties:
-        advanced_caching_rules:
-          type: array
-          example:
-            never_cache_resources:
-            - pattern: SUFFIX
-              url: /test.html
-            always_cache_resources:
-            - pattern: NOT_EQUALS
-              url: /index.html
-              ttl: '5'
-              ttlUnits: SECONDS
-            - pattern: EQUALS
-              url: /home.html
-              ttl: '6'
-              ttlUnits: DAYS
-          items:
-            type: object
-            additionalProperties:
-              type: object
-        acceleration_level:
-          type: string
-          example: advanced
-        async_validation:
-          type: boolean
-          example: true
-        minify_javascript:
-          type: boolean
-          example: true
-        minify_css:
-          type: boolean
-          example: true
-        minify_static_html:
-          type: boolean
-          example: true
-        compress_jpeg:
-          type: boolean
-          example: true
-        compress_jepg:
-          type: boolean
-          example: true
-        progressive_image_rendering:
-          type: boolean
-          example: true
-        aggressive_compression:
-          type: boolean
-          example: true
-        compress_png:
-          type: boolean
-          example: true
-        on_the_fly_compression:
-          type: boolean
-          example: true
-        tcp_pre_pooling:
-          type: boolean
-          example: true
-        comply_no_cache:
-          type: boolean
-          example: true
-        comply_vary:
-          type: boolean
-          example: true
-        use_shortest_caching:
-          type: boolean
-          example: true
-        perfer_last_modified:
-          type: boolean
-          example: true
-        prefer_last_modified:
-          type: boolean
-          example: true
-        disable_client_side_caching:
-          type: boolean
-          example: true
-        cache300x:
-          type: boolean
-          example: true
-        cache_headers:
-          uniqueItems: true
-          type: array
-          items:
-            type: object
-    ApiResult:
-      type: object
-      properties:
-        res:
+        id:
           type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
+          format: int64
+          example: 123
+        name:
           type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-    DnsInstructionItem:
-      type: object
-      properties:
-        dns_record_name:
+          example: Block Click Worms
+        action:
           type: string
-          example: loginprotectapi1610396334653.incaptest.info
-        set_type_to:
+          example: api.rule_action_type.rule_action_block
+        rule:
           type: string
-          example: CNAME
-          enum:
-          - CNAME
-          - A
-          - AAAA
-          - MX
-          - NS
-          - TXT
-          - Unkown
-          - CAA
-        set_data_to:
-          type: array
-          items:
-            type: object
-            example: 67eufzur3g.dev.impervadns.net
+          example: ClientIP == 1.2.3.4
+        creation_date:
+          type: integer
+          format: int64
+        updated_by:
+          type: string
+          example: John
+        updated_at:
+          type: integer
+          format: int64
+          example: 1611228121241
+        comment:
+          type: string
+          example: rule comment
     specific_users_list:
       type: object
       properties:
@@ -683,51 +657,6 @@ components:
           type: string
           description: status
           example: INVITATION_SENT
-    SiteConfigurationWarning:
-      type: object
-      properties:
-        type:
-          type: string
-          example: CNAME
-          enum:
-          - CNAME
-          - A
-          - AAAA
-          - MX
-          - NS
-          - TXT
-          - Unkown
-          - CAA
-        set_data_to:
-          type: array
-          items:
-            type: object
-            example: 67eufzur3g.dev.impervadns.net
-    LoginProtectUsersApiResults:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/LpExtendedUser'
-    customAreasExceptions:
-      type: object
-      properties:
-        pattern:
-          type: string
-          example: CONTAINS
-          enum:
-          - EQUALS
-          - NOT_EQUALS
-          - NOT_CONTAINS
-          - PREFIX
-          - SUFFIX
-          - NOT_PREFIX
-          - NOT_SUFFIX
-          - CONTAINS
-        url:
-          type: string
-          example: /userlist
     SiteDualFactorSettings:
       type: object
       properties:
@@ -772,36 +701,7 @@ components:
         version:
           type: integer
           format: int32
-    IncapRuleApiResult:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 123
-        name:
-          type: string
-          example: Block Click Worms
-        action:
-          type: string
-          example: api.rule_action_type.rule_action_block
-        rule:
-          type: string
-          example: ClientIP == 1.2.3.4
-        creation_date:
-          type: integer
-          format: int64
-        updated_by:
-          type: string
-          example: John
-        updated_at:
-          type: integer
-          format: int64
-          example: 1611228121241
-        comment:
-          type: string
-          example: rule comment
-    customAreas:
+    customAreasExceptions:
       type: object
       properties:
         pattern:
@@ -819,6 +719,13 @@ components:
         url:
           type: string
           example: /userlist
+    APISealLocationItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     LpExtendedUser:
       type: object
       properties:
@@ -842,6 +749,99 @@ components:
           type: string
           description: creation_date
           format: date-time
+    SiteConfigurationWarning:
+      type: object
+      properties:
+        type:
+          type: string
+          example: CNAME
+          enum:
+          - CNAME
+          - A
+          - AAAA
+          - MX
+          - NS
+          - TXT
+          - Unkown
+          - CAA
+        set_data_to:
+          type: array
+          items:
+            type: object
+            example: 67eufzur3g.dev.impervadns.net
+    LoginProtectApiResult:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        specific_users_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/specific_users_list'
+        send_lp_notifications:
+          type: boolean
+          example: true
+        allow_all_users:
+          type: boolean
+          example: true
+        authentication_methods:
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            example: email
+        urls:
+          type: array
+          items:
+            type: object
+            example: /userlist
+        url_patterns:
+          type: array
+          items:
+            type: object
+            example: CONTAINS
+    DnsInstructionItem:
+      type: object
+      properties:
+        dns_record_name:
+          type: string
+          example: loginprotectapi1610396334653.incaptest.info
+        set_type_to:
+          type: string
+          example: CNAME
+          enum:
+          - CNAME
+          - A
+          - AAAA
+          - MX
+          - NS
+          - TXT
+          - Unkown
+          - CAA
+        set_data_to:
+          type: array
+          items:
+            type: object
+            example: 67eufzur3g.dev.impervadns.net
+    customAreas:
+      type: object
+      properties:
+        pattern:
+          type: string
+          example: CONTAINS
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        url:
+          type: string
+          example: /userlist
   securitySchemes:
     api_id:
       type: apiKey
