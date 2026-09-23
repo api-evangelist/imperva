@@ -10,7 +10,7 @@ paths:
   /v1/auth/session/roles:
     get:
       operationId: getRole
-      summary: ''
+      summary: Get role
       description: ''
       tags:
       - Auth
@@ -25,10 +25,11 @@ paths:
                 items:
                   type: string
                 type: array
+      x-summary-source: derived
   /v1/auth/session:
     post:
       operationId: getSessionId
-      summary: ''
+      summary: Get session id
       description: ''
       tags:
       - Auth
@@ -48,9 +49,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/SessionIdDTO'
+      x-summary-source: derived
     delete:
       operationId: logout
-      summary: ''
+      summary: Logout
       description: ''
       tags:
       - Auth
@@ -59,6 +61,7 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
 components:
   securitySchemes:
     basicAuth:

@@ -10,7 +10,7 @@ paths:
   /experimental/nav/header:
     get:
       operationId: getNavigationTree
-      summary: ''
+      summary: Get navigation tree
       description: ''
       tags:
       - Experimental
@@ -30,10 +30,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/HeaderDTO'
+      x-summary-source: derived
   /experimental/fam/repository-users:
     get:
       operationId: findMatchingUsers
-      summary: ''
+      summary: Find matching users
       description: ''
       tags:
       - Experimental
@@ -53,10 +54,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/FamRepositoryUsersDTO'
+      x-summary-source: derived
   /experimental/fam/do-users-in-group:
     get:
       operationId: getUsersInGroup
-      summary: ''
+      summary: Get users in group
       description: ''
       tags:
       - Experimental
@@ -94,10 +96,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DopUsersInGroupDTO'
+      x-summary-source: derived
   /experimental/fam/do-file-permissions/stat/{dataOwnerId}:
     get:
       operationId: getProgressStatistics
-      summary: ''
+      summary: Get progress statistics
       description: ''
       tags:
       - Experimental
@@ -117,10 +120,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/FilePermissionsStatisticsDTO'
+      x-summary-source: derived
   /experimental/fam/do-file-permissions/signoff/{dataOwnerId}:
     put:
       operationId: signOffReview
-      summary: ''
+      summary: Sign off review
       description: ''
       tags:
       - Experimental
@@ -142,10 +146,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /experimental/nav/ui-view-mode:
     get:
       operationId: getUIViewMode
-      summary: ''
+      summary: Get UI view mode
       description: ''
       tags:
       - Experimental
@@ -158,10 +163,11 @@ paths:
             application/json:
               schema:
                 type: string
+      x-summary-source: derived
   /experimental/gateway/gatewayAlias:
     post:
       operationId: createAliasesForGateway
-      summary: ''
+      summary: Create aliases for gateway
       description: ''
       tags:
       - Experimental
@@ -176,10 +182,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KRPAliasDTO'
+      x-summary-source: derived
   /experimental/fam/do-application-data:
     get:
       operationId: getPermissionContent
-      summary: ''
+      summary: Get permission content
       description: ''
       tags:
       - Experimental
@@ -192,10 +199,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DopApplicationDataDTO'
+      x-summary-source: derived
   /experimental/waf/certificateAuthorities:
     post:
       operationId: uploadCACertificate
-      summary: ''
+      summary: Upload CA certificate
       description: ''
       tags:
       - Experimental
@@ -210,10 +218,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/SomMxCertificateDTO'
+      x-summary-source: derived
   /experimental/nav/deployment:
     get:
       operationId: getDeployment
-      summary: ''
+      summary: Get deployment
       description: ''
       tags:
       - Experimental
@@ -226,10 +235,11 @@ paths:
             application/json:
               schema:
                 type: string
+      x-summary-source: derived
   /experimental:
     options:
       operationId: getOptions
-      summary: ''
+      summary: Get options
       description: ''
       tags:
       - Experimental
@@ -238,10 +248,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /experimental/nav/workspaces:
     get:
       operationId: getWorkspaces
-      summary: ''
+      summary: Get workspaces
       description: ''
       tags:
       - Experimental
@@ -263,10 +274,11 @@ paths:
                 items:
                   $ref: '#/definitions/WorkspaceDTO'
                 type: array
+      x-summary-source: derived
   /experimental/waf/profilePolicies/{policyName}/disableLearningEngine:
     put:
       operationId: disableProfileLearning
-      summary: ''
+      summary: Disable profile learning
       description: ''
       tags:
       - Experimental
@@ -282,10 +294,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /experimental/token:
     get:
       operationId: getToken
-      summary: ''
+      summary: Get token
       description: ''
       tags:
       - Experimental
@@ -298,10 +311,11 @@ paths:
             application/json:
               schema:
                 type: string
+      x-summary-source: derived
   /experimental/fam/do-users/{dataOwnerName}:
     get:
       operationId: getAuthenticatedUser
-      summary: ''
+      summary: Get authenticated user
       description: ''
       tags:
       - Experimental
@@ -333,10 +347,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/FamRepositoryUserDTO'
+      x-summary-source: derived
   /experimental/fam/do-operation-navigation:
     post:
       operationId: getNextUnReviewedOperation
-      summary: ''
+      summary: Get next un reviewed operation
       description: ''
       tags:
       - Experimental
@@ -355,10 +370,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DopOperationNavigationRequestDTO'
+      x-summary-source: derived
   /experimental/fam/do-file-permissions/{dataOwnerId}:
     put:
       operationId: updateFilePermissions
-      summary: ''
+      summary: Update file permissions
       description: ''
       tags:
       - Experimental
@@ -385,10 +401,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DopUpdateOperationDTO'
+      x-summary-source: derived
   /experimental/fam/do-tree-folder-obj:
     get:
       operationId: getFolderObjChildren
-      summary: ''
+      summary: Get folder obj children
       description: ''
       tags:
       - Experimental
@@ -420,10 +437,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/TreeFolderObjsDTO'
+      x-summary-source: derived
   /experimental/fam/do-file-permissions:
     get:
       operationId: getPermissionContent
-      summary: ''
+      summary: Get permission content
       description: ''
       tags:
       - Experimental
@@ -479,10 +497,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/FilePermissionsDTO'
+      x-summary-source: derived
   /experimental/flex/checkAlarms:
     post:
       operationId: checkFlexProtectAlarms
-      summary: ''
+      summary: Check flex protect alarms
       description: ''
       tags:
       - Experimental
@@ -491,10 +510,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /experimental/fam/data-owner-folder/file_path_info:
     get:
       operationId: getFileObjectPathInfo
-      summary: ''
+      summary: Get file object path info
       description: ''
       tags:
       - Experimental
@@ -520,10 +540,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DopFileObjPathInfoDTO'
+      x-summary-source: derived
   /experimental/fam/data-owner-folder:
     get:
       operationId: getObjectsInFolder
-      summary: ''
+      summary: Get objects in folder
       description: ''
       tags:
       - Experimental
@@ -585,10 +606,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DOFileObjectsDTO'
+      x-summary-source: derived
   /experimental/fam/do-tree-folder-obj/todo:
     put:
       operationId: getNodesTodoStatus
-      summary: ''
+      summary: Get nodes todo status
       description: ''
       tags:
       - Experimental
@@ -607,10 +629,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DOFoldersToCheckTodoDTO'
+      x-summary-source: derived
   /experimental/nav/about:
     get:
       operationId: getAboutInfo
-      summary: ''
+      summary: Get about info
       description: ''
       tags:
       - Experimental
@@ -623,6 +646,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/FooterDTO'
+      x-summary-source: derived
 components:
   securitySchemes:
     basicAuth:

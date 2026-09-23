@@ -10,7 +10,7 @@ paths:
   /v1/management/jobs/{JobId}/currentRun:
     delete:
       operationId: abortJobById
-      summary: ''
+      summary: Abort job by id
       description: ''
       tags:
       - Management
@@ -26,10 +26,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/management/jobs:
     get:
       operationId: currentlyRunningJobs
-      summary: ''
+      summary: Currently running jobs
       description: ''
       tags:
       - Management
@@ -42,6 +43,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/JobsDTO'
+      x-summary-source: derived
 components:
   securitySchemes:
     basicAuth:

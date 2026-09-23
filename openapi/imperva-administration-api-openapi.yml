@@ -10,7 +10,7 @@ paths:
   /v1/administration/log/level:
     put:
       operationId: setLogLevel
-      summary: ''
+      summary: Set log level
       description: ''
       tags:
       - Administration
@@ -25,10 +25,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/LogLevelDTO'
+      x-summary-source: derived
   /v1/administration/gatewayRegistrationToken:
     get:
       operationId: getGatewayRegistrationToken
-      summary: ''
+      summary: Get gateway registration token
       description: ''
       tags:
       - Administration
@@ -41,10 +42,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/RegistrationTokenDTO'
+      x-summary-source: derived
   /v1/administration/version:
     get:
       operationId: getVersion
-      summary: ''
+      summary: Get version
       description: ''
       tags:
       - Administration
@@ -57,10 +59,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/VersionDTO'
+      x-summary-source: derived
   /v1/administration/strict:
     put:
       operationId: setStrictMode
-      summary: ''
+      summary: Set strict mode
       description: ''
       tags:
       - Administration
@@ -75,10 +78,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/StrictModeDTO'
+      x-summary-source: derived
   /v1/administration/challenge:
     get:
       operationId: getChallenge
-      summary: ''
+      summary: Get challenge
       description: ''
       tags:
       - Administration
@@ -91,10 +95,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ChallengeDTO'
+      x-summary-source: derived
   /v1/administration/user/password/firsttime:
     post:
       operationId: getSessionId
-      summary: ''
+      summary: Get session id
       description: ''
       tags:
       - Administration
@@ -114,10 +119,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/SessionIdDTO'
+      x-summary-source: derived
   /v1/administration/flex_protect:
     post:
       operationId: uploadFlexProtectCode
-      summary: ''
+      summary: Upload flex protect code
       description: ''
       tags:
       - Administration
@@ -132,10 +138,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/LicenseDTO'
+      x-summary-source: derived
   /v1/administration/license:
     post:
       operationId: uploadLicenseFile
-      summary: ''
+      summary: Upload license file
       description: ''
       tags:
       - Administration
@@ -150,6 +157,7 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/LicenseDTO'
+      x-summary-source: derived
 components:
   securitySchemes:
     basicAuth:

@@ -51,7 +51,9 @@ paths:
       tags:
       - Account Management
       summary: List managed accounts
-      description: Available for Reseller accounts only.<br/>Use this operation to get the list of accounts that are managed by account of the API client (the parent account).
+      description: 'Available for Reseller accounts only.
+
+        Use this operation to get the list of accounts that are managed by account of the API client (the parent account).'
       operationId: listAccounts
       parameters:
       - name: account_id
@@ -271,7 +273,9 @@ paths:
       tags:
       - Account Management
       summary: Modify account log level
-      description: Available for Reseller accounts only<br/>Use this operation to change the account log configuration.
+      description: 'Available for Reseller accounts only
+
+        Use this operation to change the account log configuration.'
       operationId: modifyAccountLogLevel
       parameters:
       - name: account_id
@@ -323,7 +327,9 @@ paths:
       tags:
       - Account Management
       summary: Add a new managed account
-      description: 'Available for Reseller accounts only<br/>Use this operation to add a new account that should be managed by the account of the API client (the parent account). The new account will be configured according to the preferences set for the parent account by Imperva.
+      description: 'Available for Reseller accounts only
+
+        Use this operation to add a new account that should be managed by the account of the API client (the parent account). The new account will be configured according to the preferences set for the parent account by Imperva.
 
         Depending on these preferences, an activation e-mail will be sent to the specified e-mail address. The user responds to the activation e-mail, selects a password, and can then log directly into the Imperva console. The same e-mail address can also be used to send system notifications to the account. The new account is identified by a numeric value as provided by Imperva in the response in the field account_id.'
       operationId: addAccount
@@ -613,6 +619,79 @@ paths:
                 $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
+    ApiResultGetSsoToken:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        generated_token:
+          type: string
+          example: 344ebcaf34dff34
+    PlanSectionRow:
+      type: object
+      properties:
+        name:
+          type: string
+        purchased:
+          type: string
+        used:
+          type: string
+    ApiResultAccountStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        account:
+          $ref: '#/components/schemas/account'
+    ApiResultSubAccountStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        sub_account:
+          $ref: '#/components/schemas/SubAccountStatus'
     accounts:
       type: object
       properties:
@@ -661,31 +740,6 @@ components:
         naked_domain_san_for_new_www_sites:
           type: boolean
           example: true
-    ApiResultAccountSubscription:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        planStatus:
-          $ref: '#/components/schemas/AccountPlanStatus'
-        bandwidthHistory:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountBandwidth'
     ApiResult:
       type: object
       properties:
@@ -705,7 +759,16 @@ components:
               type: object
               example: {}
             example: {}
-    ApiResultSubAccountStatus:
+    Login:
+      type: object
+      properties:
+        login_id:
+          type: string
+          example: demo_account@incapsula.com
+        email_verified:
+          type: boolean
+          example: true
+    ApiResultListUsers:
       type: object
       properties:
         res:
@@ -724,8 +787,22 @@ components:
               type: object
               example: {}
             example: {}
-        sub_account:
-          $ref: '#/components/schemas/SubAccountStatus'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/accounts'
+    AccountBandwidth:
+      type: object
+      properties:
+        ' billingCycle':
+          type: string
+          example: Earlier billing cycle
+        onDemandBandwidth:
+          type: string
+          example: 0bps
+        alwaysOnBandwidth:
+          type: string
+          example: 7.7kbps
     AccountPlanStatus:
       type: object
       properties:
@@ -825,70 +902,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/PlanSectionRow'
-    ApiResultGetSsoToken:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        generated_token:
-          type: string
-          example: 344ebcaf34dff34
-    ApiResultAccountStatus:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        account:
-          $ref: '#/components/schemas/account'
-    AccountBandwidth:
-      type: object
-      properties:
-        ' billingCycle':
-          type: string
-          example: Earlier billing cycle
-        onDemandBandwidth:
-          type: string
-          example: 0bps
-        alwaysOnBandwidth:
-          type: string
-          example: 7.7kbps
-    PlanSectionRow:
-      type: object
-      properties:
-        name:
-          type: string
-        purchased:
-          type: string
-        used:
-          type: string
     account:
       type: object
       properties:
@@ -937,38 +950,6 @@ components:
         naked_domain_san_for_new_www_sites:
           type: boolean
           example: true
-    Login:
-      type: object
-      properties:
-        login_id:
-          type: string
-          example: demo_account@incapsula.com
-        email_verified:
-          type: boolean
-          example: true
-    ApiResultListUsers:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/accounts'
     SubAccountStatus:
       type: object
       properties:
@@ -992,6 +973,31 @@ components:
         support_level:
           type: string
           example: Standard
+    ApiResultAccountSubscription:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        planStatus:
+          $ref: '#/components/schemas/AccountPlanStatus'
+        bandwidthHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountBandwidth'
   securitySchemes:
     api_id:
       type: apiKey

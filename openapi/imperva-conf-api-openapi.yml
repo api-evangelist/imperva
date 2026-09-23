@@ -10,7 +10,7 @@ paths:
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}:
     put:
       operationId: updateWebService
-      summary: ''
+      summary: Update web service
       description: ''
       tags:
       - Conf
@@ -44,9 +44,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebServiceDetailsDTO'
+      x-summary-source: derived
     post:
       operationId: createWebService
-      summary: ''
+      summary: Create web service
       description: ''
       tags:
       - Conf
@@ -80,9 +81,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebServiceDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteWebService
-      summary: ''
+      summary: Delete web service
       description: ''
       tags:
       - Conf
@@ -110,9 +112,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getWebServiceDetails
-      summary: ''
+      summary: Get web service details
       description: ''
       tags:
       - Conf
@@ -144,10 +147,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebServiceDetailsDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}:
     get:
       operationId: getAllServices
-      summary: ''
+      summary: Get all services
       description: ''
       tags:
       - Conf
@@ -173,10 +177,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ServicesDTO'
+      x-summary-source: derived
   /v1/conf/tags/{tagName}/taggedObjects:
     post:
       operationId: tagObjects
-      summary: ''
+      summary: Tag objects
       description: ''
       tags:
       - Conf
@@ -198,9 +203,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TaggedItemsDTO'
+      x-summary-source: derived
     delete:
       operationId: unTagObjects
-      summary: ''
+      summary: Un tag objects
       description: ''
       tags:
       - Conf
@@ -222,9 +228,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TaggedItemsDTO'
+      x-summary-source: derived
     get:
       operationId: getTagObjects
-      summary: ''
+      summary: Get tag objects
       description: ''
       tags:
       - Conf
@@ -256,10 +263,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/TaggedItemsDTO'
+      x-summary-source: derived
   /v1/conf/gateways/{gatewayName}/reverseProxy/aliases:
     get:
       operationId: getAllKrpAliases
-      summary: ''
+      summary: Get all krp aliases
       description: ''
       tags:
       - Conf
@@ -279,10 +287,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpAliasesDTO'
+      x-summary-source: derived
   /v1/conf/dataSets/{dataSetName}/data:
     put:
       operationId: incrementalOperationsOnDataset
-      summary: ''
+      summary: Incremental operations on dataset
       description: ''
       tags:
       - Conf
@@ -310,9 +319,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DatasetRecordsActionDTO'
+      x-summary-source: derived
     post:
       operationId: updateDatasetRecords
-      summary: ''
+      summary: Update dataset records
       description: ''
       tags:
       - Conf
@@ -334,9 +344,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DatasetRecordsDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteAllDatasetRecords
-      summary: ''
+      summary: Delete all dataset records
       description: ''
       tags:
       - Conf
@@ -352,9 +363,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getDatasetRecords
-      summary: ''
+      summary: Get dataset records
       description: ''
       tags:
       - Conf
@@ -386,10 +398,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DatasetRecordsOutputDTO'
+      x-summary-source: derived
   /v1/conf/webProfile/{siteName}/{serverGroupName}/{webServiceName}/{webApplicationName}/directories:
     put:
       operationId: setDirectoriesLock
-      summary: ''
+      summary: Set directories lock
       description: ''
       tags:
       - Conf
@@ -431,9 +444,10 @@ paths:
               items:
                 $ref: '#/definitions/WebProfileDirectoryDTO'
               type: array
+      x-summary-source: derived
     get:
       operationId: getDirectoriesLock
-      summary: ''
+      summary: Get directories lock
       description: ''
       tags:
       - Conf
@@ -473,10 +487,11 @@ paths:
                 items:
                   $ref: '#/definitions/WebProfileDirectoryDTO'
                 type: array
+      x-summary-source: derived
   /v1/conf/dbApplications/{siteName}/{serverGroupName}/{dbServiceName}/{dbApplicationName}/dbSecurityPolicies:
     get:
       operationId: getDBSecurityPoliciesAppliedToApplication
-      summary: ''
+      summary: Get DB security policies applied to application
       description: ''
       tags:
       - Conf
@@ -514,10 +529,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DBSecurityPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/applicationGroups/{applicationGroupName}/auditPolicies:
     get:
       operationId: getAuditPoliciesAppliedToApplicationGroup
-      summary: ''
+      summary: Get audit policies applied to application group
       description: ''
       tags:
       - Conf
@@ -537,10 +553,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AuditPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/trpRules/{serverIp}/{listenerPortList}:
     put:
       operationId: updateTrpRule
-      summary: ''
+      summary: Update trp rule
       description: ''
       tags:
       - Conf
@@ -586,9 +603,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TransparentReverseProxyConfigurationDTO'
+      x-summary-source: derived
     post:
       operationId: createTrpRule
-      summary: ''
+      summary: Create trp rule
       description: ''
       tags:
       - Conf
@@ -634,9 +652,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TransparentReverseProxyConfigurationDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteTrpRule
-      summary: ''
+      summary: Delete trp rule
       description: ''
       tags:
       - Conf
@@ -676,9 +695,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getTrpRule
-      summary: ''
+      summary: Get trp rule
       description: ''
       tags:
       - Conf
@@ -722,10 +742,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/TransparentReverseProxyConfigurationDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{serviceName}/logCollectors:
     post:
       operationId: createLogCollector
-      summary: ''
+      summary: Create log collector
       description: ''
       tags:
       - Conf
@@ -759,9 +780,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/LogCollectorDTO'
+      x-summary-source: derived
     get:
       operationId: getLogCollectorsByService
-      summary: ''
+      summary: Get log collectors by service
       description: ''
       tags:
       - Conf
@@ -793,10 +815,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/LogCollectorsDTO'
+      x-summary-source: derived
   /v1/conf/dbSecurityPolicies:
     get:
       operationId: getAllDBSecurityPolicies
-      summary: ''
+      summary: Get all DB security policies
       description: ''
       tags:
       - Conf
@@ -816,10 +839,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DBSecurityPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{serviceName}/logCollectors/{logCollectorName}:
     put:
       operationId: updateLogCollector
-      summary: ''
+      summary: Update log collector
       description: ''
       tags:
       - Conf
@@ -859,9 +883,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/LogCollectorDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteLogCollector
-      summary: ''
+      summary: Delete log collector
       description: ''
       tags:
       - Conf
@@ -895,9 +920,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getLogCollectorByName
-      summary: ''
+      summary: Get log collector by name
       description: ''
       tags:
       - Conf
@@ -935,10 +961,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/LogCollectorDTO'
+      x-summary-source: derived
   /v1/conf/dataSets/createDataset:
     post:
       operationId: createDataset
-      summary: ''
+      summary: Create dataset
       description: ''
       tags:
       - Conf
@@ -960,10 +987,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DatasetColumnsDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/sslCertificates/{sslKeyName}:
     post:
       operationId: uploadCertificate
-      summary: ''
+      summary: Upload certificate
       description: ''
       tags:
       - Conf
@@ -1003,9 +1031,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/UploadCertificateDTO'
+      x-summary-source: derived
     delete:
       operationId: removeCertificate
-      summary: ''
+      summary: Remove certificate
       description: ''
       tags:
       - Conf
@@ -1039,9 +1068,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getCertificate
-      summary: ''
+      summary: Get certificate
       description: ''
       tags:
       - Conf
@@ -1079,10 +1109,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/CertificateDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{dbServiceName}/agents/{agentName}/dataInterfaces/{dataInterfaceID}:
     post:
       operationId: applyDataInterfaceToService
-      summary: ''
+      summary: Apply data interface to service
       description: ''
       tags:
       - Conf
@@ -1122,9 +1153,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: unapplyDataInterfaceToService
-      summary: ''
+      summary: Unapply data interface to service
       description: ''
       tags:
       - Conf
@@ -1164,10 +1196,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/dataInterfaces:
     get:
       operationId: getAllDataInterfaces
-      summary: ''
+      summary: Get all data interfaces
       description: ''
       tags:
       - Conf
@@ -1187,10 +1220,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DataInterfacesDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/webApplicationCustomPolicies:
     get:
       operationId: getAllPolicies
-      summary: ''
+      summary: Get all policies
       description: ''
       tags:
       - Conf
@@ -1203,10 +1237,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/CustomWebPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/dasAssessment/scans:
     post:
       operationId: scans
-      summary: ''
+      summary: Scans
       description: ''
       tags:
       - Conf
@@ -1215,10 +1250,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/applicationGroups/{parentApplicationGroupName}/applicationGroups/{childApplicationGroupName}:
     post:
       operationId: createApplicationGroup
-      summary: ''
+      summary: Create application group
       description: ''
       tags:
       - Conf
@@ -1240,10 +1276,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/dasAssessment/scanRecords:
     post:
       operationId: scanRecords
-      summary: ''
+      summary: Scan records
       description: ''
       tags:
       - Conf
@@ -1258,10 +1295,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DasAssessmentRecordsFilterDTO'
+      x-summary-source: derived
   /v1/conf/serverGroups/{siteName}/{serverGroupName}:
     put:
       operationId: updateServerGroup
-      summary: ''
+      summary: Update server group
       description: ''
       tags:
       - Conf
@@ -1289,9 +1327,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ServerGroupDTO'
+      x-summary-source: derived
     post:
       operationId: createServerGroup
-      summary: ''
+      summary: Create server group
       description: ''
       tags:
       - Conf
@@ -1313,9 +1352,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: deleteServerGroup
-      summary: ''
+      summary: Delete server group
       description: ''
       tags:
       - Conf
@@ -1337,9 +1377,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getServerGroup
-      summary: ''
+      summary: Get server group
       description: ''
       tags:
       - Conf
@@ -1365,10 +1406,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ServerGroupDTO'
+      x-summary-source: derived
   /v1/conf/applicationGroups/{applicationGroupName}/dbSecurityPolicies:
     get:
       operationId: getDBSecurityPoliciesAppliedToApplicationGroup
-      summary: ''
+      summary: Get DB security policies applied to application group
       description: ''
       tags:
       - Conf
@@ -1388,10 +1430,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DBSecurityPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/serverGroups/{siteName}/{serverGroupName}/protectedIPs:
     get:
       operationId: getProtectedIPs
-      summary: ''
+      summary: Get protected IPs
       description: ''
       tags:
       - Conf
@@ -1417,10 +1460,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ProtectedIPsDTO'
+      x-summary-source: derived
   /v1/conf/auditPolicies/{policyName}:
     post:
       operationId: createAuditPolicy
-      summary: ''
+      summary: Create audit policy
       description: ''
       tags:
       - Conf
@@ -1442,9 +1486,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CreateAuditPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteAuditPolicy
-      summary: ''
+      summary: Delete audit policy
       description: ''
       tags:
       - Conf
@@ -1460,10 +1505,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/webProfile/{siteName}/{serverGroupName}/{webServiceName}/{webApplicationName}/url/{urlName}:
     put:
       operationId: putURL
-      summary: ''
+      summary: Put URL
       description: ''
       tags:
       - Conf
@@ -1509,9 +1555,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebProfileUrlDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteURL
-      summary: ''
+      summary: Delete URL
       description: ''
       tags:
       - Conf
@@ -1551,9 +1598,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getURL
-      summary: ''
+      summary: Get URL
       description: ''
       tags:
       - Conf
@@ -1597,10 +1645,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebProfileUrlDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/trpRules:
     get:
       operationId: getAllTrpRules
-      summary: ''
+      summary: Get all trp rules
       description: ''
       tags:
       - Conf
@@ -1632,10 +1681,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/TrpRulesDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/webApplicationSignaturesPolicies/{policyName}:
     put:
       operationId: updateWebApplicationSignaturesPolicy
-      summary: ''
+      summary: Update web application signatures policy
       description: ''
       tags:
       - Conf
@@ -1657,9 +1707,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebApplicationSignaturesPolicyDTO'
+      x-summary-source: derived
     post:
       operationId: createWebApplicationSignaturesPolicy
-      summary: ''
+      summary: Create web application signatures policy
       description: ''
       tags:
       - Conf
@@ -1681,9 +1732,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebApplicationSignaturesPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteWebApplicationSignaturesPolicy
-      summary: ''
+      summary: Delete web application signatures policy
       description: ''
       tags:
       - Conf
@@ -1699,9 +1751,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getWebApplicationSignaturesPolicy
-      summary: ''
+      summary: Get web application signatures policy
       description: ''
       tags:
       - Conf
@@ -1721,10 +1774,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebApplicationSignaturesPolicyDTO'
+      x-summary-source: derived
   /v1/conf/dasAssessment/scanResults:
     post:
       operationId: scanResults
-      summary: ''
+      summary: Scan results
       description: ''
       tags:
       - Conf
@@ -1739,10 +1793,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DasAssessmentResultsFilterDTO'
+      x-summary-source: derived
   /v1/conf/tags/{tagName}:
     put:
       operationId: updateTag
-      summary: ''
+      summary: Update tag
       description: ''
       tags:
       - Conf
@@ -1764,9 +1819,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TagDTO'
+      x-summary-source: derived
     post:
       operationId: createTag
-      summary: ''
+      summary: Create tag
       description: ''
       tags:
       - Conf
@@ -1782,9 +1838,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: deleteTag
-      summary: ''
+      summary: Delete tag
       description: ''
       tags:
       - Conf
@@ -1812,10 +1869,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/tags/{tagName}:
     post:
       operationId: tagAgent
-      summary: ''
+      summary: Tag agent
       description: ''
       tags:
       - Conf
@@ -1837,9 +1895,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeTagFromAgent
-      summary: ''
+      summary: Remove tag from agent
       description: ''
       tags:
       - Conf
@@ -1861,10 +1920,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/policies/security/webServiceCustomPolicies:
     get:
       operationId: getAllPolicies
-      summary: ''
+      summary: Get all policies
       description: ''
       tags:
       - Conf
@@ -1877,10 +1937,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/CustomWebPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/krpInboundRules:
     get:
       operationId: getAllKrpItems
-      summary: ''
+      summary: Get all krp items
       description: ''
       tags:
       - Conf
@@ -1912,10 +1973,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpItemsDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/webServiceCustomPolicies/{policyName}:
     put:
       operationId: updateWebServiceCustomPolicy
-      summary: ''
+      summary: Update web service custom policy
       description: ''
       tags:
       - Conf
@@ -1937,9 +1999,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CustomWebPolicyDTO'
+      x-summary-source: derived
     post:
       operationId: createWebServiceCustomPolicy
-      summary: ''
+      summary: Create web service custom policy
       description: ''
       tags:
       - Conf
@@ -1961,9 +2024,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CustomWebPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteWebServiceCustomPolicy
-      summary: ''
+      summary: Delete web service custom policy
       description: ''
       tags:
       - Conf
@@ -1979,9 +2043,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getWebServiceCustomPolicy
-      summary: ''
+      summary: Get web service custom policy
       description: ''
       tags:
       - Conf
@@ -2001,10 +2066,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/CustomWebPolicyDTO'
+      x-summary-source: derived
   /v1/conf/gatewayGroups/{gatewayGroupName}:
     post:
       operationId: createGatewayGroup
-      summary: ''
+      summary: Create gateway group
       description: ''
       tags:
       - Conf
@@ -2026,9 +2092,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/GatewayGroupDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteGatewayGroup
-      summary: ''
+      summary: Delete gateway group
       description: ''
       tags:
       - Conf
@@ -2044,10 +2111,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   ? /v1/conf/applicationGroups/{applicationGroupName}/applications/{siteName}/{serverGroupName}/{serviceName}/{applicationName}
   : post:
       operationId: addAppToAppGroup
-      summary: ''
+      summary: Add app to app group
       description: ''
       tags:
       - Conf
@@ -2087,9 +2155,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeAppFromAppGroup
-      summary: ''
+      summary: Remove app from app group
       description: ''
       tags:
       - Conf
@@ -2129,10 +2198,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{dbServiceName}:
     put:
       operationId: updateDbService
-      summary: ''
+      summary: Update db service
       description: ''
       tags:
       - Conf
@@ -2166,9 +2236,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/UpdateDBServiceDTO'
+      x-summary-source: derived
     post:
       operationId: createDbService
-      summary: ''
+      summary: Create db service
       description: ''
       tags:
       - Conf
@@ -2202,9 +2273,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CreateDBServiceDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteService
-      summary: ''
+      summary: Delete service
       description: ''
       tags:
       - Conf
@@ -2232,9 +2304,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getService
-      summary: ''
+      summary: Get service
       description: ''
       tags:
       - Conf
@@ -2266,10 +2339,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/UpdateDBServiceDTO'
+      x-summary-source: derived
   /v1/conf/dbApplications/{siteName}/{serverGroupName}/{dbServiceName}/{dbApplicationName}:
     put:
       operationId: updateApplication
-      summary: ''
+      summary: Update application
       description: ''
       tags:
       - Conf
@@ -2309,9 +2383,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DBApplicationDTO'
+      x-summary-source: derived
     post:
       operationId: createApplication
-      summary: ''
+      summary: Create application
       description: ''
       tags:
       - Conf
@@ -2345,9 +2420,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: deleteApplication
-      summary: ''
+      summary: Delete application
       description: ''
       tags:
       - Conf
@@ -2381,10 +2457,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/webProfile/{siteName}/{serverGroupName}/{webServiceName}/{webApplicationName}:
     put:
       operationId: setProfile
-      summary: ''
+      summary: Set profile
       description: ''
       tags:
       - Conf
@@ -2424,9 +2501,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebProfileDTO'
+      x-summary-source: derived
     get:
       operationId: getProfile
-      summary: ''
+      summary: Get profile
       description: ''
       tags:
       - Conf
@@ -2464,10 +2542,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebProfileDTO'
+      x-summary-source: derived
   /v1/conf/ipGroups/{ipGroupName}/clear:
     delete:
       operationId: removeAllInIpGroup
-      summary: ''
+      summary: Remove all in ip group
       description: ''
       tags:
       - Conf
@@ -2483,10 +2562,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/envExport:
     post:
       operationId: exportEnvironment
-      summary: ''
+      summary: Export environment
       description: ''
       tags:
       - Conf
@@ -2508,10 +2588,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ItemsToExportDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/streamSignaturesPolicies:
     get:
       operationId: getAllStreamSignaturesPolicies
-      summary: ''
+      summary: Get all stream signatures policies
       description: ''
       tags:
       - Conf
@@ -2524,10 +2605,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/StreamSignaturesPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/hostToAppMappings:
     get:
       operationId: getHostToApplicationMappings
-      summary: ''
+      summary: Get host to application mappings
       description: ''
       tags:
       - Conf
@@ -2559,10 +2641,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/HostToApplicationMappingsDTO'
+      x-summary-source: derived
   /v1/conf/dataSets/{dataSetName}/columns:
     get:
       operationId: getDatasetColumns
-      summary: ''
+      summary: Get dataset columns
       description: ''
       tags:
       - Conf
@@ -2582,10 +2665,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DatasetColumnsDTO'
+      x-summary-source: derived
   /v1/conf/tableGroups/{tableGroupName}:
     delete:
       operationId: removeTableGroup
-      summary: ''
+      summary: Remove table group
       description: ''
       tags:
       - Conf
@@ -2601,10 +2685,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/tags:
     put:
       operationId: addTagsToAgent
-      summary: ''
+      summary: Add tags to agent
       description: ''
       tags:
       - Conf
@@ -2626,9 +2711,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TagsDTO'
+      x-summary-source: derived
     post:
       operationId: setAgentTags
-      summary: ''
+      summary: Set agent tags
       description: ''
       tags:
       - Conf
@@ -2650,9 +2736,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TagsDTO'
+      x-summary-source: derived
     delete:
       operationId: untagAgent
-      summary: ''
+      summary: Untag agent
       description: ''
       tags:
       - Conf
@@ -2668,9 +2755,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getAgentTags
-      summary: ''
+      summary: Get agent tags
       description: ''
       tags:
       - Conf
@@ -2690,10 +2778,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/TagsDTO'
+      x-summary-source: derived
   /v1/conf/globalObjects/parameterTypeConfiguration:
     get:
       operationId: getAllParameterTypeConfigurations
-      summary: ''
+      summary: Get all parameter type configurations
       description: ''
       tags:
       - Conf
@@ -2706,10 +2795,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ParameterTypeConfigurationsDTO'
+      x-summary-source: derived
   /v1/conf/gateways/{gatewayName}:
     get:
       operationId: getGateway
-      summary: ''
+      summary: Get gateway
       description: ''
       tags:
       - Conf
@@ -2729,10 +2819,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/GatewayDetailedDTO'
+      x-summary-source: derived
   /v1/conf/sites/{siteName}:
     put:
       operationId: updateSite
-      summary: ''
+      summary: Update site
       description: ''
       tags:
       - Conf
@@ -2754,9 +2845,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/SiteDTO'
+      x-summary-source: derived
     post:
       operationId: createSite
-      summary: ''
+      summary: Create site
       description: ''
       tags:
       - Conf
@@ -2772,9 +2864,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: deleteSite
-      summary: ''
+      summary: Delete site
       description: ''
       tags:
       - Conf
@@ -2790,10 +2883,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{serviceName}/dbConnections/{connectionName}:
     put:
       operationId: updateDBConnection
-      summary: ''
+      summary: Update DB connection
       description: ''
       tags:
       - Conf
@@ -2833,9 +2927,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DBConnectionDTO'
+      x-summary-source: derived
     post:
       operationId: createDBConnection
-      summary: ''
+      summary: Create DB connection
       description: ''
       tags:
       - Conf
@@ -2875,9 +2970,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DBConnectionDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteDBConnection
-      summary: ''
+      summary: Delete DB connection
       description: ''
       tags:
       - Conf
@@ -2911,9 +3007,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getDBConnection
-      summary: ''
+      summary: Get DB connection
       description: ''
       tags:
       - Conf
@@ -2951,10 +3048,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DBConnectionDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}:
     get:
       operationId: getAllWebServices
-      summary: ''
+      summary: Get all web services
       description: ''
       tags:
       - Conf
@@ -2980,10 +3078,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebServicesDTO'
+      x-summary-source: derived
   /v1/conf/applicationGroups/{applicationGroupName}/dbSecurityPolicies/{policyName}:
     post:
       operationId: applyAndLockDBSecurityPolicyToApplicationGroup
-      summary: ''
+      summary: Apply and lock DB security policy to application group
       description: ''
       tags:
       - Conf
@@ -3005,9 +3104,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeAndUnlockDBSecurityPolicyFromApplicationGroup
-      summary: ''
+      summary: Remove and unlock DB security policy from application group
       description: ''
       tags:
       - Conf
@@ -3029,10 +3129,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/serverGroups/{siteName}:
     get:
       operationId: getServerGroups
-      summary: ''
+      summary: Get server groups
       description: ''
       tags:
       - Conf
@@ -3052,10 +3153,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ServerGroupsDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/httpProtocolSignaturesPolicies/{policyName}:
     put:
       operationId: updateHttpProtocolSignaturesPolicy
-      summary: ''
+      summary: Update http protocol signatures policy
       description: ''
       tags:
       - Conf
@@ -3077,9 +3179,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/HttpProtocolSignaturesPolicyDTO'
+      x-summary-source: derived
     post:
       operationId: createHttpProtocolSignaturesPolicy
-      summary: ''
+      summary: Create http protocol signatures policy
       description: ''
       tags:
       - Conf
@@ -3101,9 +3204,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/HttpProtocolSignaturesPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteHttpProtocolSignaturesPolicy
-      summary: ''
+      summary: Delete http protocol signatures policy
       description: ''
       tags:
       - Conf
@@ -3119,9 +3223,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getHttpProtocolSignaturesPolicy
-      summary: ''
+      summary: Get http protocol signatures policy
       description: ''
       tags:
       - Conf
@@ -3141,10 +3246,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/HttpProtocolSignaturesPolicyDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{serviceName}/dbSecurityPolicies:
     get:
       operationId: getDBSecurityPoliciesAppliedToService
-      summary: ''
+      summary: Get DB security policies applied to service
       description: ''
       tags:
       - Conf
@@ -3176,10 +3282,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DBSecurityPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/Settings/CPUUsageRestraining:
     put:
       operationId: setCPUUsageRestraining
-      summary: ''
+      summary: Set CPU usage restraining
       description: ''
       tags:
       - Conf
@@ -3205,9 +3312,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/AgentCpuUsageRestrainingDTO'
+      x-summary-source: derived
     get:
       operationId: getCPUUsageRestraining
-      summary: ''
+      summary: Get CPU usage restraining
       description: ''
       tags:
       - Conf
@@ -3227,10 +3335,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AgentCpuUsageRestrainingDTO'
+      x-summary-source: derived
   /v1/conf/gateways/{gatewayName}/move/{targetGatewayGroupName}:
     put:
       operationId: moveGatewayToGatewayGroup
-      summary: ''
+      summary: Move gateway to gateway group
       description: ''
       tags:
       - Conf
@@ -3252,10 +3361,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/actionSets/{actionSetName}/{actionName}:
     put:
       operationId: updateActionInActionSet
-      summary: ''
+      summary: Update action in action set
       description: ''
       tags:
       - Conf
@@ -3283,9 +3393,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ActionDTO'
+      x-summary-source: derived
     post:
       operationId: createActionInActionSet
-      summary: ''
+      summary: Create action in action set
       description: ''
       tags:
       - Conf
@@ -3313,9 +3424,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ActionDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteActionInActionSet
-      summary: ''
+      summary: Delete action in action set
       description: ''
       tags:
       - Conf
@@ -3337,9 +3449,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getActionInActionSet
-      summary: ''
+      summary: Get action in action set
       description: ''
       tags:
       - Conf
@@ -3365,10 +3478,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ActionDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{serviceName}/dbConnections:
     get:
       operationId: getDBConnectionsByService
-      summary: ''
+      summary: Get DB connections by service
       description: ''
       tags:
       - Conf
@@ -3400,10 +3514,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/DBConnectionsDTO'
+      x-summary-source: derived
   ? /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/krpInboundRules/{gatewayGroupName}/{aliasName}/{gatewayPort}/krpOutboundRules
   : get:
       operationId: getKrpRules
-      summary: ''
+      summary: Get krp rules
       description: ''
       tags:
       - Conf
@@ -3465,10 +3580,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpRulesDTO'
+      x-summary-source: derived
   /v1/conf/tableGroups/{tableGroupName}/data:
     put:
       operationId: incrementalOperationsOnTableGroup
-      summary: ''
+      summary: Incremental operations on table group
       description: ''
       tags:
       - Conf
@@ -3496,9 +3612,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TableGroupRecordsActionDTO'
+      x-summary-source: derived
     post:
       operationId: updateTableGroupRecords
-      summary: ''
+      summary: Update table group records
       description: ''
       tags:
       - Conf
@@ -3520,9 +3637,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TableGroupRecordsDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteAllTableGroupRecords
-      summary: ''
+      summary: Delete all table group records
       description: ''
       tags:
       - Conf
@@ -3538,9 +3656,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getTableGroupRecords
-      summary: ''
+      summary: Get table group records
       description: ''
       tags:
       - Conf
@@ -3572,10 +3691,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/TableGroupRecordsOutputDTO'
+      x-summary-source: derived
   /v1/conf/agents:
     get:
       operationId: getAllAgents
-      summary: ''
+      summary: Get all agents
       description: ''
       tags:
       - Conf
@@ -3595,10 +3715,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AgentsDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/firewallPolicies/{policyName}:
     put:
       operationId: updateFirewallPolicy
-      summary: ''
+      summary: Update firewall policy
       description: ''
       tags:
       - Conf
@@ -3620,9 +3741,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/FirewallPolicyDTO'
+      x-summary-source: derived
     post:
       operationId: createFirewallPolicy
-      summary: ''
+      summary: Create firewall policy
       description: ''
       tags:
       - Conf
@@ -3644,9 +3766,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/FirewallPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteFirewallPolicy
-      summary: ''
+      summary: Delete firewall policy
       description: ''
       tags:
       - Conf
@@ -3662,9 +3785,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getFirewallPolicy
-      summary: ''
+      summary: Get firewall policy
       description: ''
       tags:
       - Conf
@@ -3684,10 +3808,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/FirewallPolicyDTO'
+      x-summary-source: derived
   /v1/conf/serverGroups/{siteName}/{serverGroupName}/servers:
     get:
       operationId: getOSConnectionsByServerGroup
-      summary: ''
+      summary: Get OS connections by server group
       description: ''
       tags:
       - Conf
@@ -3713,10 +3838,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/OSConnectionsDTO'
+      x-summary-source: derived
   ? /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/krpInboundRules/{gatewayGroupName}/{aliasName}/{gatewayPorts}
   : post:
       operationId: createKrpItem
-      summary: ''
+      summary: Create krp item
       description: ''
       tags:
       - Conf
@@ -3768,10 +3894,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpItemDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/sslCertificates:
     get:
       operationId: getCertificates
-      summary: ''
+      summary: Get certificates
       description: ''
       tags:
       - Conf
@@ -3803,10 +3930,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/CertificatesDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/errorPage:
     put:
       operationId: updateErrorPage
-      summary: ''
+      summary: Update error page
       description: ''
       tags:
       - Conf
@@ -3840,9 +3968,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ErrorPageDTO'
+      x-summary-source: derived
     get:
       operationId: getErrorPage
-      summary: ''
+      summary: Get error page
       description: ''
       tags:
       - Conf
@@ -3874,10 +4003,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ErrorPageDTO'
+      x-summary-source: derived
   /v1/conf/dasAssessment/policies:
     post:
       operationId: policies
-      summary: ''
+      summary: Policies
       description: ''
       tags:
       - Conf
@@ -3886,10 +4016,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   ? /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/krpInboundRules/{gatewayGroupName}/{aliasName}/{gatewayPort}
   : put:
       operationId: updateKrpItem
-      summary: ''
+      summary: Update krp item
       description: ''
       tags:
       - Conf
@@ -3941,9 +4072,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpItemDetailsDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteKrpItem
-      summary: ''
+      summary: Delete krp item
       description: ''
       tags:
       - Conf
@@ -3989,9 +4121,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getKrpItem
-      summary: ''
+      summary: Get krp item
       description: ''
       tags:
       - Conf
@@ -4041,10 +4174,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpItemDetailsDTO'
+      x-summary-source: derived
   /v1/conf/mxs:
     get:
       operationId: getAllMxs
-      summary: ''
+      summary: Get all mxs
       description: ''
       tags:
       - Conf
@@ -4057,10 +4191,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/MxsDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/hostToAppMappings/{priority}:
     delete:
       operationId: removeHostToApplicationMapping
-      summary: ''
+      summary: Remove host to application mapping
       description: ''
       tags:
       - Conf
@@ -4094,9 +4229,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getHostToApplicationMapping
-      summary: ''
+      summary: Get host to application mapping
       description: ''
       tags:
       - Conf
@@ -4134,10 +4270,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/HostToApplicationMappingDTO'
+      x-summary-source: derived
   /v1/conf/tags:
     get:
       operationId: getAllTags
-      summary: ''
+      summary: Get all tags
       description: ''
       tags:
       - Conf
@@ -4169,10 +4306,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/TagsDTO'
+      x-summary-source: derived
   /v1/conf/ipGroups/{ipGroupName}/data:
     put:
       operationId: updateIpGroup
-      summary: ''
+      summary: Update ip group
       description: ''
       tags:
       - Conf
@@ -4194,9 +4332,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/IpGroupEntriesDTO'
+      x-summary-source: derived
     get:
       operationId: getAllEntriesInGroup
-      summary: ''
+      summary: Get all entries in group
       description: ''
       tags:
       - Conf
@@ -4216,10 +4355,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/IpGroupEntriesDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/httpProtocolSignaturesPolicies:
     get:
       operationId: getAllHttpProtocolSignaturesPolicies
-      summary: ''
+      summary: Get all http protocol signatures policies
       description: ''
       tags:
       - Conf
@@ -4232,10 +4372,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/HttpProtocolSignaturesPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/gatewayGroups/{gatewayGroupName}/gateways:
     get:
       operationId: getAllGateways
-      summary: ''
+      summary: Get all gateways
       description: ''
       tags:
       - Conf
@@ -4255,10 +4396,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/GatewaysDTO'
+      x-summary-source: derived
   /v1/conf/applicationGroups/{applicationGroupName}:
     put:
       operationId: updateApplicationGroup
-      summary: ''
+      summary: Update application group
       description: ''
       tags:
       - Conf
@@ -4280,9 +4422,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ApplicationGroupDTO'
+      x-summary-source: derived
     post:
       operationId: createApplicationGroupAsRoot
-      summary: ''
+      summary: Create application group as root
       description: ''
       tags:
       - Conf
@@ -4298,9 +4441,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: deleteApplicationGroup
-      summary: ''
+      summary: Delete application group
       description: ''
       tags:
       - Conf
@@ -4316,9 +4460,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getApplicationGroup
-      summary: ''
+      summary: Get application group
       description: ''
       tags:
       - Conf
@@ -4344,10 +4489,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ApplicationGroupTreeDTO'
+      x-summary-source: derived
   /v1/conf/dasAssessment/scanInfo:
     post:
       operationId: scanInfo
-      summary: ''
+      summary: Scan info
       description: ''
       tags:
       - Conf
@@ -4362,10 +4508,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DasAssessmentScanInfoFilterDTO'
+      x-summary-source: derived
   /v1/conf/gateways/{gatewayName}/reverseProxy/addresses:
     get:
       operationId: getAllKrpIpAddresses
-      summary: ''
+      summary: Get all krp ip addresses
       description: ''
       tags:
       - Conf
@@ -4385,10 +4532,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/IpAddressesDTO'
+      x-summary-source: derived
   /v1/conf/systemDefinitions/{paramName}:
     put:
       operationId: updateSystemDefinition
-      summary: ''
+      summary: Update system definition
       description: ''
       tags:
       - Conf
@@ -4410,9 +4558,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/SystemDefinitionDTO'
+      x-summary-source: derived
     get:
       operationId: getSystemDefinition
-      summary: ''
+      summary: Get system definition
       description: ''
       tags:
       - Conf
@@ -4432,10 +4581,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/SystemDefinitionDTO'
+      x-summary-source: derived
   /v1/conf/dataSets/{dataSetName}/deleteDataset:
     post:
       operationId: deleteDataset
-      summary: ''
+      summary: Delete dataset
       description: ''
       tags:
       - Conf
@@ -4451,10 +4601,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/globalObjects/sslSettings/{sslSettingsName}:
     put:
       operationId: updateSSLSettings
-      summary: ''
+      summary: Update SSL settings
       description: ''
       tags:
       - Conf
@@ -4476,9 +4627,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/SSLSettingsObjectDTO'
+      x-summary-source: derived
     post:
       operationId: createSSLSettings
-      summary: ''
+      summary: Create SSL settings
       description: ''
       tags:
       - Conf
@@ -4500,9 +4652,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/SSLSettingsObjectDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteSSLSettings
-      summary: ''
+      summary: Delete SSL settings
       description: ''
       tags:
       - Conf
@@ -4518,9 +4671,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getSSLSettings
-      summary: ''
+      summary: Get SSL settings
       description: ''
       tags:
       - Conf
@@ -4540,10 +4694,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/SSLSettingsObjectDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{dbServiceName}/auditPolicies/{policyName}:
     post:
       operationId: applyAuditPolicyToService
-      summary: ''
+      summary: Apply audit policy to service
       description: ''
       tags:
       - Conf
@@ -4577,9 +4732,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeAuditPolicyFromService
-      summary: ''
+      summary: Remove audit policy from service
       description: ''
       tags:
       - Conf
@@ -4613,10 +4769,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   ? /v1/conf/webApplications/{siteName}/{serverGroupName}/{webServiceName}/{webApplicationName}/webApplicationCustomPolicies/{policyName}
   : post:
       operationId: apply
-      summary: ''
+      summary: Apply
       description: ''
       tags:
       - Conf
@@ -4656,10 +4813,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/GeneralDetails:
     get:
       operationId: getGeneralDetails
-      summary: ''
+      summary: Get general details
       description: ''
       tags:
       - Conf
@@ -4679,10 +4837,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AgentGeneralDetailsDTO'
+      x-summary-source: derived
   /v1/conf/gateways/{gatewayName}/reverseProxy/addresses/{ip}:
     put:
       operationId: updateKrpIpAddress
-      summary: ''
+      summary: Update krp ip address
       description: ''
       tags:
       - Conf
@@ -4710,9 +4869,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpGatewayIpAddressDTO'
+      x-summary-source: derived
     post:
       operationId: createKrpIpAddress
-      summary: ''
+      summary: Create krp ip address
       description: ''
       tags:
       - Conf
@@ -4740,9 +4900,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpGatewayIpAddressDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteKrpIpAddress
-      summary: ''
+      summary: Delete krp ip address
       description: ''
       tags:
       - Conf
@@ -4764,9 +4925,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getKrpIpAddress
-      summary: ''
+      summary: Get krp ip address
       description: ''
       tags:
       - Conf
@@ -4792,10 +4954,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpGatewayIpAddressDTO'
+      x-summary-source: derived
   /v1/conf/gateways/{gatewayName}/reverseProxy/aliases/{aliasName}:
     put:
       operationId: updateKrpAlias
-      summary: ''
+      summary: Update krp alias
       description: ''
       tags:
       - Conf
@@ -4823,9 +4986,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpAliasDTO'
+      x-summary-source: derived
     post:
       operationId: createKrpAlias
-      summary: ''
+      summary: Create krp alias
       description: ''
       tags:
       - Conf
@@ -4853,9 +5017,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpAliasDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteKrpAlias
-      summary: ''
+      summary: Delete krp alias
       description: ''
       tags:
       - Conf
@@ -4877,9 +5042,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getKrpAlias
-      summary: ''
+      summary: Get krp alias
       description: ''
       tags:
       - Conf
@@ -4905,10 +5071,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpAliasDTO'
+      x-summary-source: derived
   /v1/conf/applicationGroups:
     get:
       operationId: getAllApplicationGroups
-      summary: ''
+      summary: Get all application groups
       description: ''
       tags:
       - Conf
@@ -4928,10 +5095,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/RootApplicationGroupsTreeDTO'
+      x-summary-source: derived
   /v1/conf/auditPolicies:
     get:
       operationId: getAllAuditPolicies
-      summary: ''
+      summary: Get all audit policies
       description: ''
       tags:
       - Conf
@@ -4951,10 +5119,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AuditPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/webApplicationSignaturesPolicies:
     get:
       operationId: getAllWebApplicationSignaturesPolicies
-      summary: ''
+      summary: Get all web application signatures policies
       description: ''
       tags:
       - Conf
@@ -4967,10 +5136,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebApplicationSignaturesPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/streamSignaturesPolicies/{policyName}:
     put:
       operationId: updateStreamSignaturesPolicy
-      summary: ''
+      summary: Update stream signatures policy
       description: ''
       tags:
       - Conf
@@ -4992,9 +5162,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/StreamSignaturesPolicyDTO'
+      x-summary-source: derived
     post:
       operationId: createStreamSignaturesPolicy
-      summary: ''
+      summary: Create stream signatures policy
       description: ''
       tags:
       - Conf
@@ -5016,9 +5187,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/StreamSignaturesPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteStreamSignaturesPolicy
-      summary: ''
+      summary: Delete stream signatures policy
       description: ''
       tags:
       - Conf
@@ -5034,9 +5206,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getStreamSignaturesPolicy
-      summary: ''
+      summary: Get stream signatures policy
       description: ''
       tags:
       - Conf
@@ -5056,10 +5229,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/StreamSignaturesPolicyDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/webServiceCustomPolicies/{policyName}:
     post:
       operationId: applyWebCustomPolicyToWebService
-      summary: ''
+      summary: Apply web custom policy to web service
       description: ''
       tags:
       - Conf
@@ -5093,10 +5267,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/policies/security/firewallPolicies:
     get:
       operationId: getFirewallPolicies
-      summary: ''
+      summary: Get firewall policies
       description: ''
       tags:
       - Conf
@@ -5109,10 +5284,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/FirewallPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{serviceName}/dbConnections/{connectionName}/connectivityStatus:
     get:
       operationId: testDBConnection
-      summary: ''
+      summary: Test DB connection
       description: ''
       tags:
       - Conf
@@ -5150,10 +5326,11 @@ paths:
             application/json:
               schema:
                 type: boolean
+      x-summary-source: derived
   /v1/conf/dasAssessment/runFields:
     post:
       operationId: runFields
-      summary: ''
+      summary: Run fields
       description: ''
       tags:
       - Conf
@@ -5168,10 +5345,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DasAssessmentRunsFieldsFilterDTO'
+      x-summary-source: derived
   /v1/conf/gatewayGroups:
     get:
       operationId: getAllGatewayGroups
-      summary: ''
+      summary: Get all gateway groups
       description: ''
       tags:
       - Conf
@@ -5184,10 +5362,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/GatewayGroupsDTO'
+      x-summary-source: derived
   /v1/conf/policies/security/webApplicationCustomPolicies/{policyName}:
     put:
       operationId: updateWebApplicationCustomPolicy
-      summary: ''
+      summary: Update web application custom policy
       description: ''
       tags:
       - Conf
@@ -5209,9 +5388,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CustomWebPolicyDTO'
+      x-summary-source: derived
     post:
       operationId: createWebApplicationCustomPolicy
-      summary: ''
+      summary: Create web application custom policy
       description: ''
       tags:
       - Conf
@@ -5233,9 +5413,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CustomWebPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteWebApplicationCustomPolicy
-      summary: ''
+      summary: Delete web application custom policy
       description: ''
       tags:
       - Conf
@@ -5251,9 +5432,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getWebApplicationCustomPolicy
-      summary: ''
+      summary: Get web application custom policy
       description: ''
       tags:
       - Conf
@@ -5273,10 +5455,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/CustomWebPolicyDTO'
+      x-summary-source: derived
   /v1/conf/sites:
     get:
       operationId: getAllSites
-      summary: ''
+      summary: Get all sites
       description: ''
       tags:
       - Conf
@@ -5289,10 +5472,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/SitesDTO'
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/restart:
     post:
       operationId: restartAgent
-      summary: ''
+      summary: Restart agent
       description: ''
       tags:
       - Conf
@@ -5312,10 +5496,11 @@ paths:
             application/json:
               schema:
                 type: string
+      x-summary-source: derived
   /v1/conf/actionSets:
     get:
       operationId: getAllActionSets
-      summary: ''
+      summary: Get all action sets
       description: ''
       tags:
       - Conf
@@ -5328,10 +5513,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ActionSetsDTO'
+      x-summary-source: derived
   /v1/conf/dasAssessment/runDbs:
     post:
       operationId: runTargetDbs
-      summary: ''
+      summary: Run target dbs
       description: ''
       tags:
       - Conf
@@ -5346,10 +5532,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DasAssessmentRunsIPsFilterDTO'
+      x-summary-source: derived
   /v1/conf/dasAssessment/tests:
     post:
       operationId: tests
-      summary: ''
+      summary: Tests
       description: ''
       tags:
       - Conf
@@ -5358,10 +5545,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/webApplications/{siteName}/{serverGroupName}/{webServiceName}:
     get:
       operationId: getAllWebApplications
-      summary: ''
+      summary: Get all web applications
       description: ''
       tags:
       - Conf
@@ -5393,10 +5581,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebApplicationsDTO'
+      x-summary-source: derived
   ? /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/krpInboundRules/{gatewayGroupName}/{aliasName}/{gatewayPort}/krpOutboundRules/{priority}
   : put:
       operationId: updateKrpRule
-      summary: ''
+      summary: Update krp rule
       description: ''
       tags:
       - Conf
@@ -5454,9 +5643,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpRuleDTO'
+      x-summary-source: derived
     post:
       operationId: createKrpRule
-      summary: ''
+      summary: Create krp rule
       description: ''
       tags:
       - Conf
@@ -5514,9 +5704,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpRuleDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteKrpRule
-      summary: ''
+      summary: Delete krp rule
       description: ''
       tags:
       - Conf
@@ -5568,9 +5759,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getKrpRule
-      summary: ''
+      summary: Get krp rule
       description: ''
       tags:
       - Conf
@@ -5626,10 +5818,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpRuleDTO'
+      x-summary-source: derived
   /v1/conf/dbApplications/{siteName}/{serverGroupName}/{dbServiceName}/{dbApplicationName}/auditPolicies:
     get:
       operationId: getAuditPoliciesAppliedToApplication
-      summary: ''
+      summary: Get audit policies applied to application
       description: ''
       tags:
       - Conf
@@ -5667,10 +5860,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AuditPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/forwardedConnections:
     put:
       operationId: updateForwardedConnections
-      summary: ''
+      summary: Update forwarded connections
       description: ''
       tags:
       - Conf
@@ -5704,9 +5898,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ForwardedConnectionsDTO'
+      x-summary-source: derived
     get:
       operationId: getForwardedConnections
-      summary: ''
+      summary: Get forwarded connections
       description: ''
       tags:
       - Conf
@@ -5738,10 +5933,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ForwardedConnectionsDTO'
+      x-summary-source: derived
   /v1/conf/serverGroups/{siteName}/{serverGroupName}/protectedIPs/{IPAddress}:
     put:
       operationId: updateProtectedIP
-      summary: ''
+      summary: Update protected IP
       description: ''
       tags:
       - Conf
@@ -5781,9 +5977,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/UpdateProtectedIPDTO'
+      x-summary-source: derived
     post:
       operationId: createProtectedIP
-      summary: ''
+      summary: Create protected IP
       description: ''
       tags:
       - Conf
@@ -5823,9 +6020,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CreateProtectedIPDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteProtectedIP
-      summary: ''
+      summary: Delete protected IP
       description: ''
       tags:
       - Conf
@@ -5859,10 +6057,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/Settings/DiscoverySettings:
     put:
       operationId: updateDiscoverytSettings
-      summary: ''
+      summary: Update discoveryt settings
       description: ''
       tags:
       - Conf
@@ -5888,9 +6087,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/AgentDiscoverySettingsDTO'
+      x-summary-source: derived
     get:
       operationId: getDiscoverytSettings
-      summary: ''
+      summary: Get discoveryt settings
       description: ''
       tags:
       - Conf
@@ -5910,10 +6110,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AgentDiscoverySettingsDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/hostToAppMappings/{webApplicationName}/{priority}:
     post:
       operationId: createHostToApplicationMapping
-      summary: ''
+      summary: Create host to application mapping
       description: ''
       tags:
       - Conf
@@ -5959,10 +6160,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CreateHostToApplicationMappingDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{dbServiceName}/dbSecurityPolicies/{policyName}:
     post:
       operationId: applyDBSecurityPolicyToService
-      summary: ''
+      summary: Apply DB security policy to service
       description: ''
       tags:
       - Conf
@@ -5996,9 +6198,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeDBSecurityPolicyFromService
-      summary: ''
+      summary: Remove DB security policy from service
       description: ''
       tags:
       - Conf
@@ -6032,10 +6235,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/dbApplications/{siteName}/{serverGroupName}/{dbServiceName}/{dbApplicationName}/auditPolicies/{policyName}:
     post:
       operationId: applyAuditPolicyToApplication
-      summary: ''
+      summary: Apply audit policy to application
       description: ''
       tags:
       - Conf
@@ -6075,9 +6279,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeAuditPolicyFromApplication
-      summary: ''
+      summary: Remove audit policy from application
       description: ''
       tags:
       - Conf
@@ -6117,10 +6322,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/webApplications/{siteName}/{serverGroupName}/{webServiceName}/{webApplicationName}:
     put:
       operationId: updateWebApplication
-      summary: ''
+      summary: Update web application
       description: ''
       tags:
       - Conf
@@ -6160,9 +6366,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebApplicationDTO'
+      x-summary-source: derived
     post:
       operationId: createWebApplication
-      summary: ''
+      summary: Create web application
       description: ''
       tags:
       - Conf
@@ -6202,9 +6409,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/WebApplicationCreationDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteWebApplication
-      summary: ''
+      summary: Delete web application
       description: ''
       tags:
       - Conf
@@ -6238,9 +6446,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getWebApplication
-      summary: ''
+      summary: Get web application
       description: ''
       tags:
       - Conf
@@ -6278,10 +6487,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/WebApplicationDTO'
+      x-summary-source: derived
   /v1/conf/applicationGroups/{applicationGroupName}/auditPolicies/{policyName}:
     post:
       operationId: applyAndLockAuditPolicyToApplicationGroup
-      summary: ''
+      summary: Apply and lock audit policy to application group
       description: ''
       tags:
       - Conf
@@ -6303,9 +6513,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeAndUnlockAuditPolicyFromApplicationGroup
-      summary: ''
+      summary: Remove and unlock audit policy from application group
       description: ''
       tags:
       - Conf
@@ -6327,10 +6538,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/actionSets/{actionSetName}:
     post:
       operationId: createActionSet
-      summary: ''
+      summary: Create action set
       description: ''
       tags:
       - Conf
@@ -6352,9 +6564,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ActionSetDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteActionSet
-      summary: ''
+      summary: Delete action set
       description: ''
       tags:
       - Conf
@@ -6370,9 +6583,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getActionSet
-      summary: ''
+      summary: Get action set
       description: ''
       tags:
       - Conf
@@ -6392,10 +6606,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ActionSetDTO'
+      x-summary-source: derived
   /v1/conf/serverGroups/{siteName}/{serverGroupName}/servers/{ip}/connectivityStatus:
     get:
       operationId: testOSConnection
-      summary: ''
+      summary: Test OS connection
       description: ''
       tags:
       - Conf
@@ -6427,10 +6642,11 @@ paths:
             application/json:
               schema:
                 type: boolean
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/gateway/{gatewayName}:
     post:
       operationId: moveAgentToGateway
-      summary: ''
+      summary: Move agent to gateway
       description: ''
       tags:
       - Conf
@@ -6452,10 +6668,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/globalObjects/sslSettings:
     get:
       operationId: getAllSSLSettings
-      summary: ''
+      summary: Get all SSL settings
       description: ''
       tags:
       - Conf
@@ -6468,10 +6685,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/SSLSettingsObjectsDTO'
+      x-summary-source: derived
   /v1/conf/agents/{agentName}/Settings/AdvancedConfiguration:
     put:
       operationId: updateSettings
-      summary: ''
+      summary: Update settings
       description: ''
       tags:
       - Conf
@@ -6497,9 +6715,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/AdvancedConfigParamsDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteFromAdvancedConfig
-      summary: ''
+      summary: Delete from advanced config
       description: ''
       tags:
       - Conf
@@ -6525,9 +6744,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/AdvancedConfigParamsDTO'
+      x-summary-source: derived
     get:
       operationId: getSettings
-      summary: ''
+      summary: Get settings
       description: ''
       tags:
       - Conf
@@ -6547,10 +6767,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AdvancedConfigDTO'
+      x-summary-source: derived
   /v1/conf/globalObjects/parameterTypeConfiguration/{parameterTypeConfigurationName}:
     put:
       operationId: updateParameterTypeConfiguration
-      summary: ''
+      summary: Update parameter type configuration
       description: ''
       tags:
       - Conf
@@ -6572,9 +6793,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ParameterTypeConfigurationDTO'
+      x-summary-source: derived
     post:
       operationId: createParameterTypeConfiguration
-      summary: ''
+      summary: Create parameter type configuration
       description: ''
       tags:
       - Conf
@@ -6596,9 +6818,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/ParameterTypeConfigurationDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteParameterTypeConfiguration
-      summary: ''
+      summary: Delete parameter type configuration
       description: ''
       tags:
       - Conf
@@ -6614,9 +6837,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getParameterTypeConfiguration
-      summary: ''
+      summary: Get parameter type configuration
       description: ''
       tags:
       - Conf
@@ -6636,10 +6860,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ParameterTypeConfigurationDTO'
+      x-summary-source: derived
   /v1/conf/dbServices/{siteName}/{serverGroupName}/{dbServiceName}/auditPolicies:
     get:
       operationId: getAuditPoliciesAppliedToService
-      summary: ''
+      summary: Get audit policies applied to service
       description: ''
       tags:
       - Conf
@@ -6671,10 +6896,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/AuditPoliciesDTO'
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/forwardedClientIp:
     put:
       operationId: updateKrpForwardedClientIp
-      summary: ''
+      summary: Update krp forwarded client ip
       description: ''
       tags:
       - Conf
@@ -6708,9 +6934,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/KrpForwardedClientIpDTO'
+      x-summary-source: derived
     get:
       operationId: getKrpForwardedClientIp
-      summary: ''
+      summary: Get krp forwarded client ip
       description: ''
       tags:
       - Conf
@@ -6742,10 +6969,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/KrpForwardedClientIpDTO'
+      x-summary-source: derived
   /v1/conf/dasAssessment/runs:
     post:
       operationId: runs
-      summary: ''
+      summary: Runs
       description: ''
       tags:
       - Conf
@@ -6760,10 +6988,11 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/DasAssessmentRunsFilterDTO'
+      x-summary-source: derived
   /v1/conf/dbApplications/{siteName}/{serverGroupName}/{dbServiceName}/{dbApplicationName}/dbSecurityPolicies/{policyName}:
     post:
       operationId: applyDBSecurityPolicyToApplication
-      summary: ''
+      summary: Apply DB security policy to application
       description: ''
       tags:
       - Conf
@@ -6803,9 +7032,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     delete:
       operationId: removeDBSecurityPolicyFromApplication
-      summary: ''
+      summary: Remove DB security policy from application
       description: ''
       tags:
       - Conf
@@ -6845,10 +7075,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/dbSecurityPolicies/{policyName}:
     post:
       operationId: createDBSecurityPolicy
-      summary: ''
+      summary: Create DB security policy
       description: ''
       tags:
       - Conf
@@ -6870,9 +7101,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/CreateDBSecurityPolicyDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteDBSecurityPolicy
-      summary: ''
+      summary: Delete DB security policy
       description: ''
       tags:
       - Conf
@@ -6888,10 +7120,11 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/plugins:
     put:
       operationId: updatePlugins
-      summary: ''
+      summary: Update plugins
       description: ''
       tags:
       - Conf
@@ -6925,9 +7158,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/PluginsDTO'
+      x-summary-source: derived
     get:
       operationId: getPlugins
-      summary: ''
+      summary: Get plugins
       description: ''
       tags:
       - Conf
@@ -6959,10 +7193,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/PluginsDTO'
+      x-summary-source: derived
   /v1/conf/tableGroups:
     post:
       operationId: createTableGroup
-      summary: ''
+      summary: Create table group
       description: ''
       tags:
       - Conf
@@ -6977,9 +7212,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/TableGroupDTO'
+      x-summary-source: derived
     get:
       operationId: getTableGroupList
-      summary: ''
+      summary: Get table group list
       description: ''
       tags:
       - Conf
@@ -6994,10 +7230,11 @@ paths:
                 items:
                   $ref: '#/definitions/TableGroupDTO'
                 type: array
+      x-summary-source: derived
   /v1/conf/serverGroups/{siteName}/{serverGroupName}/servers/{ip}:
     put:
       operationId: updateOSConnection
-      summary: ''
+      summary: Update OS connection
       description: ''
       tags:
       - Conf
@@ -7031,9 +7268,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/OSConnectionDTO'
+      x-summary-source: derived
     post:
       operationId: createOSConnection
-      summary: ''
+      summary: Create OS connection
       description: ''
       tags:
       - Conf
@@ -7067,9 +7305,10 @@ paths:
           application/json:
             schema:
               $ref: '#/definitions/OSConnectionDTO'
+      x-summary-source: derived
     delete:
       operationId: deleteOSConnection
-      summary: ''
+      summary: Delete OS connection
       description: ''
       tags:
       - Conf
@@ -7097,9 +7336,10 @@ paths:
       responses:
         default:
           description: successful operation
+      x-summary-source: derived
     get:
       operationId: getOSConnection
-      summary: ''
+      summary: Get OS connection
       description: ''
       tags:
       - Conf
@@ -7131,10 +7371,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/OSConnectionDTO'
+      x-summary-source: derived
   /v1/conf/dbApplications/{siteName}/{serverGroupName}/{dbServiceName}:
     get:
       operationId: getAllApplications
-      summary: ''
+      summary: Get all applications
       description: ''
       tags:
       - Conf
@@ -7166,6 +7407,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/ApplicationsDTO'
+      x-summary-source: derived
 components:
   securitySchemes:
     basicAuth:

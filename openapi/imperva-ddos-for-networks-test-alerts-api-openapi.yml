@@ -22,7 +22,9 @@ paths:
       tags:
       - DDoS for Networks Test Alerts
       summary: DDoS Start
-      description: Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has started.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.
+      description: 'Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has started.
+
+        You can optionally provide additional parameters to determine the magnitude of the attack.'
       operationId: postInfraProtectDdosStart
       parameters:
       - name: ip_prefix
@@ -59,7 +61,9 @@ paths:
       tags:
       - DDoS for Networks Test Alerts
       summary: DDoS Stop
-      description: Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has ended.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.
+      description: 'Use this operation to send a test notification informing you that an Infrastructure Protection DDoS attack has ended.
+
+        You can optionally provide additional parameters to determine the magnitude of the attack.'
       operationId: postInfraProtectDdosStop
       parameters:
       - name: ip_prefix
@@ -96,7 +100,9 @@ paths:
       tags:
       - DDoS for Networks Test Alerts
       summary: Connection Down
-      description: Use this operation to send a test notification informing you that the Infrastructure Protection connection is down.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.
+      description: 'Use this operation to send a test notification informing you that the Infrastructure Protection connection is down.
+
+        You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.'
       operationId: postInfraProtectTunnelDown
       parameters:
       - name: connection_name
@@ -119,7 +125,9 @@ paths:
       tags:
       - DDoS for Networks Test Alerts
       summary: Connection UP
-      description: Use this operation to send a test notification informing you that the Infrastructure Protection connection is up.<br/>You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.
+      description: 'Use this operation to send a test notification informing you that the Infrastructure Protection connection is up.
+
+        You can optionally provide the name of the connection as it appears in the Management Console’s Protection Settings page.'
       operationId: postInfraProtectTunnelUp
       parameters:
       - name: connection_name
@@ -188,7 +196,9 @@ paths:
       tags:
       - DDoS for Networks Test Alerts
       summary: Monitoring Start
-      description: Use this operation to send a test notification informing you that flow monitoring has started.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.
+      description: 'Use this operation to send a test notification informing you that flow monitoring has started.
+
+        You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.'
       operationId: postInfraProtectNetFlowStart
       parameters:
       - name: exporter_ip
@@ -234,7 +244,9 @@ paths:
       tags:
       - DDoS for Networks Test Alerts
       summary: Monitoring Bad Data
-      description: Use this operation to send a test notification informing you that the monitoring service is receiving messages that do not conform to the accepted format.<br/>You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.
+      description: 'Use this operation to send a test notification informing you that the monitoring service is receiving messages that do not conform to the accepted format.
+
+        You can optionally provide the exporter IP found in the Management Console’s Monitoring Settings page.'
       operationId: postInfraProtectNetFlowBadData
       parameters:
       - name: exporter_ip
@@ -257,7 +269,9 @@ paths:
       tags:
       - DDoS for Networks Test Alerts
       summary: Monitoring Attack Start
-      description: Use this operation to send a test notification informing you that the monitoring service has detected a DDoS attack.<br/>You can optionally provide additional parameters to determine the magnitude of the attack.
+      description: 'Use this operation to send a test notification informing you that the monitoring service has detected a DDoS attack.
+
+        You can optionally provide additional parameters to determine the magnitude of the attack.'
       operationId: postInfraProtectMonitoringAttackStartCriticalAlert
       parameters:
       - name: ip_prefix
@@ -297,50 +311,6 @@ paths:
                 - $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
-    ApiResultTestAlertExporterStatus:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        ip_prefix:
-          type: string
-          example: 100.1.2.0/24
-        status:
-          type: string
-          example: DDoS start notification sent successfully
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
     ApiResultTestAlertConnectionStatus:
       type: object
       properties:
@@ -369,6 +339,25 @@ components:
         connection_name:
           type: string
           example: CONNECTION_NAME
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
     ApiResultTestAlert:
       type: object
       properties:
@@ -422,6 +411,31 @@ components:
         ip:
           type: string
           example: 1.2.3.4
+    ApiResultTestAlertExporterStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
   securitySchemes:
     api_id:
       type: apiKey

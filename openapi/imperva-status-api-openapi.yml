@@ -10,7 +10,7 @@ paths:
   /v1/status/alarms/active:
     get:
       operationId: getDeploymentActiveAlarms
-      summary: ''
+      summary: Get deployment active alarms
       description: ''
       tags:
       - Status
@@ -32,6 +32,7 @@ paths:
                 items:
                   $ref: '#/definitions/ActiveAlarmDTO'
                 type: array
+      x-summary-source: derived
 components:
   securitySchemes:
     basicAuth:

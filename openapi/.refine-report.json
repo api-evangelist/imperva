@@ -444,7 +444,8 @@
     "imperva-securesphere-openapi.yml: declared missing tag: Conf",
     "imperva-securesphere-openapi.yml: declared missing tag: Experimental",
     "imperva-securesphere-openapi.yml: declared missing tag: Management",
-    "imperva-securesphere-openapi.yml: declared missing tag: Status"
+    "imperva-securesphere-openapi.yml: declared missing tag: Status",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "imperva-account-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",

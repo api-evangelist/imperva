@@ -84,89 +84,6 @@ paths:
                 $ref: '#/components/schemas/ApiResultGetClappsInfo'
 components:
   schemas:
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-    ApiResultIncapsulaRanges:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        ipRanges:
-          type: array
-          items:
-            type: object
-            example: 199.83.128.0/21
-        ipv6Ranges:
-          type: array
-          items:
-            type: object
-            example: 2a02:e980::/29
-    ApiResultGetClappsInfo:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        clientApps:
-          type: array
-          example:
-            '1': Firefox
-          items:
-            type: object
-            additionalProperties:
-              type: object
-        clientAppTypes:
-          type: array
-          example:
-            '1': Browser
-          items:
-            type: object
-            additionalProperties:
-              type: object
     ApiResultGetTexts:
       type: object
       properties:
@@ -228,6 +145,89 @@ components:
           type: array
           example:
             AF: Africa
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    ApiResultIncapsulaRanges:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ipRanges:
+          type: array
+          items:
+            type: object
+            example: 199.83.128.0/21
+        ipv6Ranges:
+          type: array
+          items:
+            type: object
+            example: 2a02:e980::/29
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    ApiResultGetClappsInfo:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        clientApps:
+          type: array
+          example:
+            '1': Firefox
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        clientAppTypes:
+          type: array
+          example:
+            '1': Browser
           items:
             type: object
             additionalProperties:
