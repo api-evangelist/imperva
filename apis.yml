@@ -92,8 +92,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-administration-api
@@ -110,8 +108,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-auth-api
@@ -130,8 +126,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-conf-api
@@ -148,8 +142,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-ddos-for-networks-test-alerts-api
@@ -166,8 +158,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-ddos-protection-for-individual-ips-api
@@ -184,8 +174,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-experimental-api
@@ -202,8 +190,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-integrations-api
@@ -222,8 +208,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-login-protect-api
@@ -240,8 +224,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-management-api
@@ -258,8 +240,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-site-management-api
@@ -276,8 +256,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-status-api
@@ -294,8 +272,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 - aid: imperva:imperva-traffic-statistics-and-logs-api
@@ -312,8 +288,6 @@ apis:
   - type: Documentation
     url: >-
       https://docs-cybersec.thalesgroup.com/bundle/cloud-application-security/page/apiv2/cloud-api.htm
-  - type: GraphQL
-    url: graphql/imperva-graphql.md
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 common:
