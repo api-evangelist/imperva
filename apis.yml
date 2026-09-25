@@ -291,6 +291,8 @@ apis:
   - type: Documentation
     url: https://docs-cybersec.thalesgroup.com/bundle/api-docs/page/api/api-overview.htm
 common:
+- type: VendorFacets
+  url: vendor-facets/imperva-vendor-facets.yml
 - type: AgenticAccess
   url: agentic-access/imperva-agentic-access.yml
 - type: DomainSecurity

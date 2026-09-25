@@ -1,0 +1,122 @@
+# Vendor facets — Imperva (Thales). Secure CDN, Advanced Bot Protection with AI-agent visibility
+# and controls, and API Security discovery. Pure protection and delivery: no maps.
+vendor: imperva
+name: Imperva
+website: https://www.imperva.com
+areas:
+- cdn
+registry_keys:
+- imperva
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  Imperva moves no Kin Score check. Its CDN caches and absorbs DDoS. Advanced Bot Protection classifies
+  AI crawlers, agents and fetch bots and allows, blocks or rate-limits them. API Security discovers APIs
+  and tests specs the customer uploads. None of these publishes a Content Signal, a well-known file, an
+  llms.txt or a contract, and the fetched pages describe no AI-bot monetization or Web Bot Auth support.
+features:
+- id: secure-cdn
+  name: Imperva Secure CDN
+  description: >-
+    Caching (including ML-driven dynamic caching), load balancing, TLS and DDoS mitigation inside the
+    WAAP platform, plus a Waiting Room.
+  source: https://www.imperva.com/products/content-delivery-network-cdn/
+  tier: paid
+- id: ai-bot-protection
+  name: Advanced Bot Protection for AI tools and agents
+  description: >-
+    A dashboard of AI tool activity, with allow, block or rate-limit policies by category (AI crawlers,
+    agents, fetch bots), scoped per application function.
+  source: >-
+    https://www.imperva.com/blog/why-ai-bot-protection-and-control-are-essential-for-application-security/
+  tier: enterprise
+- id: api-security
+  name: Imperva API Security
+  description: >-
+    Continuous API discovery and classification, OWASP risk assessment, scans of uploaded specs, and BOLA
+    detection.
+  source: https://www.imperva.com/products/api-security/
+  tier: enterprise
+maps: []
+earns_nothing:
+- feature: ai-bot-protection
+  check: consent_identity
+  layer: agent_readiness
+  why: >-
+    Controls on incoming agents are enforcement. No AIPREF/ContentSignal/WebBotAuth artifact is published
+    for the provider.
+- feature: api-security
+  check: contract_present
+  layer: composite
+  why: >-
+    It reads specs the customer uploads, and the fetched page describes no OpenAPI export of discovered
+    APIs.
+- feature: secure-cdn
+  check: servers_resolvable
+  layer: composite
+  why: Caching, TLS and DDoS protection change nothing any check reads.
+out_of_reach:
+  checks:
+  - consent_identity
+  - agentic_commerce
+  - well_known_published
+  - llms_txt_published
+  - mcp_server
+  - contract_present
+  note: No feature on the fetched pages publishes anything on the provider's surface.
+surface:
+  agent_readiness:
+    reachable: 0
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- >-
+  https://www.imperva.com/blog/why-ai-bot-protection-and-control-are-essential-for-application-security/
+- https://www.imperva.com/products/api-security/
+- https://www.imperva.com/products/content-delivery-network-cdn/
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 17
+    in_baseline: 3
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5213
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 3 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 0
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 0.0
+    p75: 0.0
+    p90: 0.0
+    max: 0.0
+    mean_among_movers: 0.0
+  agent_readiness_lift:
+    median: 0.0
+    p75: 0.0
+    p90: 0.0
+    max: 0.0
+    mean_among_movers: 0.0
+  facet_lift_median_among_movers: {}
+  composite_band_moves: {}
+  agent_readiness_band_moves: {}
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written
