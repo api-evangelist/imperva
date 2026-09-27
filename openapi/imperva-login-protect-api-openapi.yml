@@ -324,6 +324,71 @@ paths:
                 $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
+    LoginProtectUsersApiResults:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/LpExtendedUser'
+    LoginProtectApiResult:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        specific_users_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/specific_users_list'
+        send_lp_notifications:
+          type: boolean
+          example: true
+        allow_all_users:
+          type: boolean
+          example: true
+        authentication_methods:
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            example: email
+        urls:
+          type: array
+          items:
+            type: object
+            example: /userlist
+        url_patterns:
+          type: array
+          items:
+            type: object
+            example: CONTAINS
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    APISealLocationItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     DnsInstructionItem:
       type: object
       properties:
@@ -331,6 +396,155 @@ components:
           type: string
           example: loginprotectapi1610396334653.incaptest.info
         set_type_to:
+          type: string
+          example: CNAME
+          enum:
+          - CNAME
+          - A
+          - AAAA
+          - MX
+          - NS
+          - TXT
+          - Unkown
+          - CAA
+        set_data_to:
+          type: array
+          items:
+            type: object
+            example: 67eufzur3g.dev.impervadns.net
+    SiteDualFactorSettings:
+      type: object
+      properties:
+        specificUsers:
+          type: array
+          items:
+            type: string
+            example: lpuser1_api1610396342408@incaptest.info
+        enabled:
+          type: boolean
+          example: false
+        customAreas:
+          type: array
+          items:
+            $ref: '#/components/schemas/customAreas'
+        customAreasExceptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/customAreasExceptions'
+        allowAllUsers:
+          type: boolean
+          example: true
+        shouldSuggestApplicatons:
+          type: boolean
+          example: true
+        allowedMedia:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            example: sms
+            enum:
+            - ga
+            - sms
+            - email
+        shouldSendLoginNotifications:
+          type: boolean
+          example: true
+        application:
+          type: boolean
+          writeOnly: true
+        version:
+          type: integer
+          format: int32
+    customAreas:
+      type: object
+      properties:
+        pattern:
+          type: string
+          example: CONTAINS
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        url:
+          type: string
+          example: /userlist
+    IncapRuleApiResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        name:
+          type: string
+          example: Block Click Worms
+        action:
+          type: string
+          example: api.rule_action_type.rule_action_block
+        rule:
+          type: string
+          example: ClientIP == 1.2.3.4
+        creation_date:
+          type: integer
+          format: int64
+        updated_by:
+          type: string
+          example: John
+        updated_at:
+          type: integer
+          format: int64
+          example: 1611228121241
+        comment:
+          type: string
+          example: rule comment
+    LpExtendedUser:
+      type: object
+      properties:
+        email:
+          type: string
+          description: email
+          example: John@example.com
+        name:
+          type: string
+          description: name
+          example: John Doe
+        status:
+          type: string
+          description: status
+          example: INVITATION_SENT
+        phone:
+          type: string
+          description: phone
+          example: 1-8662507658
+        creation_date:
+          type: string
+          description: creation_date
+          format: date-time
+    specific_users_list:
+      type: object
+      properties:
+        email:
+          type: string
+          description: email
+          example: John@example.com
+        name:
+          type: string
+          description: name
+          example: John Doe
+        status:
+          type: string
+          description: status
+          example: INVITATION_SENT
+    SiteConfigurationWarning:
+      type: object
+      properties:
+        type:
           type: string
           example: CNAME
           enum:
@@ -431,124 +645,6 @@ components:
           type: array
           items:
             type: object
-    LpExtendedUser:
-      type: object
-      properties:
-        email:
-          type: string
-          description: email
-          example: John@example.com
-        name:
-          type: string
-          description: name
-          example: John Doe
-        status:
-          type: string
-          description: status
-          example: INVITATION_SENT
-        phone:
-          type: string
-          description: phone
-          example: 1-8662507658
-        creation_date:
-          type: string
-          description: creation_date
-          format: date-time
-    APISealLocationItem:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    SiteDualFactorSettings:
-      type: object
-      properties:
-        specificUsers:
-          type: array
-          items:
-            type: string
-            example: lpuser1_api1610396342408@incaptest.info
-        enabled:
-          type: boolean
-          example: false
-        customAreas:
-          type: array
-          items:
-            $ref: '#/components/schemas/customAreas'
-        customAreasExceptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/customAreasExceptions'
-        allowAllUsers:
-          type: boolean
-          example: true
-        shouldSuggestApplicatons:
-          type: boolean
-          example: true
-        allowedMedia:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-            example: sms
-            enum:
-            - ga
-            - sms
-            - email
-        shouldSendLoginNotifications:
-          type: boolean
-          example: true
-        application:
-          type: boolean
-          writeOnly: true
-        version:
-          type: integer
-          format: int32
-    IncapRuleApiResult:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 123
-        name:
-          type: string
-          example: Block Click Worms
-        action:
-          type: string
-          example: api.rule_action_type.rule_action_block
-        rule:
-          type: string
-          example: ClientIP == 1.2.3.4
-        creation_date:
-          type: integer
-          format: int64
-        updated_by:
-          type: string
-          example: John
-        updated_at:
-          type: integer
-          format: int64
-          example: 1611228121241
-        comment:
-          type: string
-          example: rule comment
-    specific_users_list:
-      type: object
-      properties:
-        email:
-          type: string
-          description: email
-          example: John@example.com
-        name:
-          type: string
-          description: name
-          example: John Doe
-        status:
-          type: string
-          description: status
-          example: INVITATION_SENT
     ApiResultSiteStatus:
       type: object
       properties:
@@ -728,70 +824,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IncapRuleApiResult'
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-    SiteConfigurationWarning:
-      type: object
-      properties:
-        type:
-          type: string
-          example: CNAME
-          enum:
-          - CNAME
-          - A
-          - AAAA
-          - MX
-          - NS
-          - TXT
-          - Unkown
-          - CAA
-        set_data_to:
-          type: array
-          items:
-            type: object
-            example: 67eufzur3g.dev.impervadns.net
-    LoginProtectUsersApiResults:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/LpExtendedUser'
-    customAreas:
-      type: object
-      properties:
-        pattern:
-          type: string
-          example: CONTAINS
-          enum:
-          - EQUALS
-          - NOT_EQUALS
-          - NOT_CONTAINS
-          - PREFIX
-          - SUFFIX
-          - NOT_PREFIX
-          - NOT_SUFFIX
-          - CONTAINS
-        url:
-          type: string
-          example: /userlist
     customAreasExceptions:
       type: object
       properties:
@@ -810,38 +842,6 @@ components:
         url:
           type: string
           example: /userlist
-    LoginProtectApiResult:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        specific_users_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/specific_users_list'
-        send_lp_notifications:
-          type: boolean
-          example: true
-        allow_all_users:
-          type: boolean
-          example: true
-        authentication_methods:
-          uniqueItems: true
-          type: array
-          items:
-            type: object
-            example: email
-        urls:
-          type: array
-          items:
-            type: object
-            example: /userlist
-        url_patterns:
-          type: array
-          items:
-            type: object
-            example: CONTAINS
   securitySchemes:
     api_id:
       type: apiKey

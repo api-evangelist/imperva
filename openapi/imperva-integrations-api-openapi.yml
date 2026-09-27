@@ -84,7 +84,7 @@ paths:
                 $ref: '#/components/schemas/ApiResultGetClappsInfo'
 components:
   schemas:
-    ApiResultGetTexts:
+    ApiResult:
       type: object
       properties:
         res:
@@ -103,12 +103,37 @@ components:
               type: object
               example: {}
             example: {}
-        texts:
+    ApiResultGetClappsInfo:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        clientApps:
           type: array
           example:
-            api.stats.visits_timeseries.human: Human visits
-            api.stats.visits_timeseries.bot: Bot visits
-            api.threats.followup.view: View Incidents
+            '1': Firefox
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        clientAppTypes:
+          type: array
+          example:
+            '1': Browser
           items:
             type: object
             additionalProperties:
@@ -178,7 +203,7 @@ components:
           items:
             type: object
             example: 2a02:e980::/29
-    ApiResult:
+    ApiResultGetTexts:
       type: object
       properties:
         res:
@@ -197,37 +222,12 @@ components:
               type: object
               example: {}
             example: {}
-    ApiResultGetClappsInfo:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        clientApps:
+        texts:
           type: array
           example:
-            '1': Firefox
-          items:
-            type: object
-            additionalProperties:
-              type: object
-        clientAppTypes:
-          type: array
-          example:
-            '1': Browser
+            api.stats.visits_timeseries.human: Human visits
+            api.stats.visits_timeseries.bot: Bot visits
+            api.threats.followup.view: View Incidents
           items:
             type: object
             additionalProperties:

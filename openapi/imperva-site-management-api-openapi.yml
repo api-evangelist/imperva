@@ -2967,7 +2967,7 @@ paths:
                 $ref: '#/components/schemas/ListCustomRulesResponse'
 components:
   schemas:
-    RecommendedPopsApiResult:
+    GetStaleContentApiResult:
       type: object
       properties:
         res:
@@ -2986,70 +2986,80 @@ components:
               type: object
               example: {}
             example: {}
-        pops:
-          type: array
-          items:
-            $ref: '#/components/schemas/PopRttResponse'
-        reason:
+        enabled:
+          type: boolean
+          example: true
+        mode:
           type: string
-          example: N/A
-    ListCustomRulesResponse:
+          example: ADAPTIVE
+        time:
+          type: integer
+          format: int32
+          example: 10
+        unit:
+          type: string
+          example: HOURS
+    ApiResultReport:
       type: object
       properties:
-        incap_rules:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
           type: array
-          example:
-            All:
-            - id: '3660'
-              last_7_days_requests_count: '0'
-              name: Ortal
-              action: RULE_ACTION_ALERT
-              filter: ''
           items:
             type: object
             additionalProperties:
               type: object
-        delivery_rules:
-          type: array
-          example:
-            Redirect:
-            - to: /home.php
-              id: '3648'
-              priority: '1'
-              last_7_days_requests_count: '0'
-              name: Test new
-              action: RULE_ACTION_REWRITE_URL
-              from: '*/home.html'
-              filter: ASN == 1
-            Forward:
-            - id: '3628'
-              priority: '2'
-              last_7_days_requests_count: '0'
-              name: move to rewrite
-              dc_id: '54313'
-              action: RULE_ACTION_FORWARD_TO_DC
-              filter: ''
-          items:
-            type: object
-            additionalProperties:
-              type: object
-        rate_rules:
-          type: array
-          example:
-            Rates:
-            - id: '4723'
-              enabled: 'true'
-              interval: '120'
-              name: Test Rate IP
-              context: IP
-              action: RULE_ACTION_RATE
-              internal_name: test-rate-ip
-              filter: ASN == 2
-          items:
-            type: object
-            additionalProperties:
-              type: object
-    GetPopLevelCacheSettingsApiResult:
+              example: {}
+            example: {}
+        format:
+          type: string
+          example: pdf
+          enum:
+          - html
+          - xml
+          - amf
+          - pdf
+          - flash
+          - json
+          - mail
+          - csv
+          - statistics
+          - syslog
+        report:
+          type: string
+          example: JVBERi0xLjUNCiXvv73vv73vv73vv70NCjEgMCBvYmoNCjw8L1R5cGUvQ2F0YWxvZy9QYWdlcyAyIDAgUi9MYW5nKGVuLVVT ...
+    HtmlInjectionItem:
+      type: object
+      properties:
+        url:
+          type: string
+          example: /
+        url_pattern:
+          type: string
+          example: prefix
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        location:
+          type: string
+          example: head
+        content:
+          type: string
+          example: Some content
+    IsCacheShieldEnabledApiResult:
       type: object
       properties:
         res:
@@ -3115,7 +3125,16 @@ components:
         version:
           type: integer
           format: int32
-    ApiResultGetMaxRespSize:
+    SetPriorityResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        res:
+          type: string
+          example: '0'
+    ApiResultGetCacheSizeLimitLargeMem:
       type: object
       properties:
         res:
@@ -3134,42 +3153,79 @@ components:
               type: object
               example: {}
             example: {}
-        max_resp_size:
+        cache_size_limit_large_mem:
           type: integer
-          format: int32
-          example: 20971520
+          format: int64
+          example: 500
         unit:
           type: string
-          example: BYTES
-    SetPriorityResponse:
+          example: MB
+    IncapRuleApiResult:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        name:
+          type: string
+          example: Block Click Worms
+        action:
+          type: string
+          example: api.rule_action_type.rule_action_block
+        rule:
+          type: string
+          example: ClientIP == 1.2.3.4
+        creation_date:
+          type: integer
+          format: int64
+        updated_by:
+          type: string
+          example: John
+        updated_at:
+          type: integer
+          format: int64
+          example: 1611228121241
+        comment:
+          type: string
+          example: rule comment
+    specific_users_list:
+      type: object
+      properties:
+        email:
+          type: string
+          description: email
+          example: John@example.com
+        name:
+          type: string
+          description: name
+          example: John Doe
         status:
           type: string
-          example: ok
-        res:
-          type: string
-          example: '0'
-    RewritePort:
-      type: object
-      properties:
-        from:
-          type: string
-        to:
-          type: string
-    CaaComplianceCheckResult:
+          description: status
+          example: INVITATION_SENT
+    ApiResultSetDataRegion:
       type: object
       properties:
         res:
           type: integer
+          description: res - contains specific error code
           format: int32
+          example: 0
         res_message:
           type: string
-        non_compliant_sans:
+          example: OK
+        debug_info:
           type: array
           items:
             type: object
-            example: '*.caa.incaptest.co'
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        region:
+          type: string
+          example: US
     ApiResultGetSecureResources:
       type: object
       properties:
@@ -3192,6 +3248,146 @@ components:
         secured_resources_mode:
           type: string
           example: do_not_cache (i.e. Do not cache HTTPS resources)
+    ApiResultSetSupportDeprecatedTLSForSite:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        support_all_tls_versions:
+          type: boolean
+          example: true
+        new_A_record:
+          type: string
+          example: 1.2.3.4
+        additional_instructions:
+          type: string
+          example: After the site is moved, update the site’s 'A' records according to the information in Websites General Settings.
+    ApiResultDomainEmails:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        domain_emails:
+          type: array
+          items:
+            type: object
+            example: admin.example.com
+    CustomRuleResponse:
+      type: object
+      properties:
+        rule_id:
+          type: integer
+          format: int64
+          example: 43573
+        status:
+          type: string
+          example: ok
+        res:
+          type: integer
+          format: int32
+          example: 0
+    DataCenterResponse:
+      type: object
+      properties:
+        datacenter_id:
+          type: integer
+          format: int32
+          example: 484377
+        status:
+          type: string
+          example: ok
+        res:
+          type: string
+          example: '0'
+    CaaComplianceCheckResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          format: int32
+        res_message:
+          type: string
+        non_compliant_sans:
+          type: array
+          items:
+            type: object
+            example: '*.caa.incaptest.co'
+    GetCache404SettingsApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        enabled:
+          type: boolean
+          example: true
+        time:
+          type: integer
+          format: int32
+          example: 10
+        time_unit:
+          type: string
+          example: HOURS
+    RewritePort:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string
+    ServerOperationResponse:
+      type: object
+      properties:
+        server_id:
+          type: string
+          example: '2'
+        status:
+          type: string
+          example: ok
+        res:
+          type: string
+          example: '0'
     PopRttResponse:
       type: object
       properties:
@@ -3208,6 +3404,213 @@ components:
           type: integer
           format: int32
           example: 8
+    SiteConfigurationWarning:
+      type: object
+      properties:
+        type:
+          type: string
+          example: CNAME
+          enum:
+          - CNAME
+          - A
+          - AAAA
+          - MX
+          - NS
+          - TXT
+          - Unkown
+          - CAA
+        set_data_to:
+          type: array
+          items:
+            type: object
+            example: 67eufzur3g.dev.impervadns.net
+    PerformanceConfigurationApiResult:
+      type: object
+      properties:
+        advanced_caching_rules:
+          type: array
+          example:
+            never_cache_resources:
+            - pattern: SUFFIX
+              url: /test.html
+            always_cache_resources:
+            - pattern: NOT_EQUALS
+              url: /index.html
+              ttl: '5'
+              ttlUnits: SECONDS
+            - pattern: EQUALS
+              url: /home.html
+              ttl: '6'
+              ttlUnits: DAYS
+          items:
+            type: object
+            additionalProperties:
+              type: object
+        acceleration_level:
+          type: string
+          example: advanced
+        async_validation:
+          type: boolean
+          example: true
+        minify_javascript:
+          type: boolean
+          example: true
+        minify_css:
+          type: boolean
+          example: true
+        minify_static_html:
+          type: boolean
+          example: true
+        compress_jpeg:
+          type: boolean
+          example: true
+        compress_jepg:
+          type: boolean
+          example: true
+        progressive_image_rendering:
+          type: boolean
+          example: true
+        aggressive_compression:
+          type: boolean
+          example: true
+        compress_png:
+          type: boolean
+          example: true
+        on_the_fly_compression:
+          type: boolean
+          example: true
+        tcp_pre_pooling:
+          type: boolean
+          example: true
+        comply_no_cache:
+          type: boolean
+          example: true
+        comply_vary:
+          type: boolean
+          example: true
+        use_shortest_caching:
+          type: boolean
+          example: true
+        perfer_last_modified:
+          type: boolean
+          example: true
+        prefer_last_modified:
+          type: boolean
+          example: true
+        disable_client_side_caching:
+          type: boolean
+          example: true
+        cache300x:
+          type: boolean
+          example: true
+        cache_headers:
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+    RecommendedPopsApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        pops:
+          type: array
+          items:
+            $ref: '#/components/schemas/PopRttResponse'
+        reason:
+          type: string
+          example: N/A
+    ApiResultMoveSite:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        status:
+          type: string
+          writeOnly: true
+          enum:
+          - MOVED
+          - PENDING_CA_APPROVAL
+          - FAILED
+    customAreas:
+      type: object
+      properties:
+        pattern:
+          type: string
+          example: CONTAINS
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        url:
+          type: string
+          example: /userlist
+    ApiResultHtmlInjections:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        html_injections:
+          type: array
+          items:
+            $ref: '#/components/schemas/HtmlInjectionItem'
+    DeleteCustomRuleResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        res:
+          type: integer
+          format: int32
+          example: 0
     LoginProtectApiResult:
       type: object
       properties:
@@ -3240,20 +3643,7 @@ components:
           items:
             type: object
             example: CONTAINS
-    DataCenterResponse:
-      type: object
-      properties:
-        datacenter_id:
-          type: integer
-          format: int32
-          example: 484377
-        status:
-          type: string
-          example: ok
-        res:
-          type: string
-          example: '0'
-    ApiResultSetSupportDeprecatedTLSForSite:
+    ApiResultListSites:
       type: object
       properties:
         res:
@@ -3272,43 +3662,11 @@ components:
               type: object
               example: {}
             example: {}
-        support_all_tls_versions:
-          type: boolean
-          example: true
-        new_A_record:
-          type: string
-          example: 1.2.3.4
-        additional_instructions:
-          type: string
-          example: After the site is moved, update the site’s 'A' records according to the information in Websites General Settings.
-    CustomRuleResponse:
-      type: object
-      properties:
-        rule_id:
-          type: integer
-          format: int64
-          example: 43573
-        status:
-          type: string
-          example: ok
-        res:
-          type: integer
-          format: int32
-          example: 0
-    ListDataCenterResponse:
-      type: object
-      example:
-      - isActive: true
-        id: '54313'
-        enabled: 'false'
-        isStandBy: 'false'
-        servers:
-        - id: '1034487'
-          enabled: 'true'
-          address: 69.61.27.182
-          isStandby: 'true'
-        contentOnly: 'true'
-    ApiResultDomainEmails:
+        ApiResultSiteStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiResultSiteStatus'
+    ApiResultGetRewritePorts:
       type: object
       properties:
         res:
@@ -3327,12 +3685,11 @@ components:
               type: object
               example: {}
             example: {}
-        domain_emails:
-          type: array
-          items:
-            type: object
-            example: admin.example.com
-    GetCache404SettingsApiResult:
+        port:
+          $ref: '#/components/schemas/RewritePort'
+        ssl_port:
+          $ref: '#/components/schemas/RewritePort'
+    GetPopLevelCacheSettingsApiResult:
       type: object
       properties:
         res:
@@ -3354,89 +3711,69 @@ components:
         enabled:
           type: boolean
           example: true
-        time:
-          type: integer
-          format: int32
-          example: 10
-        time_unit:
-          type: string
-          example: HOURS
-    ApiResultAddCacheRule:
+    ListCustomRulesResponse:
       type: object
       properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
+        incap_rules:
           type: array
+          example:
+            All:
+            - id: '3660'
+              last_7_days_requests_count: '0'
+              name: Ortal
+              action: RULE_ACTION_ALERT
+              filter: ''
           items:
             type: object
             additionalProperties:
               type: object
-              example: {}
-            example: {}
-        rule_id:
-          type: integer
-          format: int64
-          example: 10
-    ApiResultGetResourceMapSize:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
+        delivery_rules:
           type: array
+          example:
+            Redirect:
+            - to: /home.php
+              id: '3648'
+              priority: '1'
+              last_7_days_requests_count: '0'
+              name: Test new
+              action: RULE_ACTION_REWRITE_URL
+              from: '*/home.html'
+              filter: ASN == 1
+            Forward:
+            - id: '3628'
+              priority: '2'
+              last_7_days_requests_count: '0'
+              name: move to rewrite
+              dc_id: '54313'
+              action: RULE_ACTION_FORWARD_TO_DC
+              filter: ''
           items:
             type: object
             additionalProperties:
               type: object
-              example: {}
-            example: {}
-        resource_map_size:
-          type: integer
-          format: int32
-          example: 34000
-    ApiResultMoveSite:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
+        rate_rules:
           type: array
+          example:
+            Rates:
+            - id: '4723'
+              enabled: 'true'
+              interval: '120'
+              name: Test Rate IP
+              context: IP
+              action: RULE_ACTION_RATE
+              internal_name: test-rate-ip
+              filter: ASN == 2
           items:
             type: object
             additionalProperties:
               type: object
-              example: {}
-            example: {}
-        status:
-          type: string
-          writeOnly: true
-          enum:
-          - MOVED
-          - PENDING_CA_APPROVAL
-          - FAILED
-    SiteConfigurationWarning:
+    DnsInstructionItem:
       type: object
       properties:
-        type:
+        dns_record_name:
+          type: string
+          example: loginprotectapi1610396334653.incaptest.info
+        set_type_to:
           type: string
           example: CNAME
           enum:
@@ -3453,115 +3790,6 @@ components:
           items:
             type: object
             example: 67eufzur3g.dev.impervadns.net
-    ApiResultGetCacheSizeLimitLargeMem:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        cache_size_limit_large_mem:
-          type: integer
-          format: int64
-          example: 500
-        unit:
-          type: string
-          example: MB
-    ApiResultGetTagResponseHeader:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        header:
-          type: string
-          example: h1
-    ApiResultGetCacheMode:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        cache_mode:
-          type: string
-          example: static_and_dynamic
-    GetAdvancedCachingSettingsApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        value:
-          type: boolean
-          example: true
-    APISealLocationItem:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    DeleteCustomRuleResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ok
-        res:
-          type: integer
-          format: int32
-          example: 0
     SiteCacheRuleResponse:
       type: object
       example:
@@ -3612,22 +3840,211 @@ components:
           filter: URL ==  "/admin"
           disabled: 'false'
           disabledByCacheMode: 'false'
-    specific_users_list:
+    ApiResultGetResourceMapSize:
       type: object
       properties:
-        email:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
           type: string
-          description: email
-          example: John@example.com
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        resource_map_size:
+          type: integer
+          format: int32
+          example: 34000
+    ApiResultAddCacheRule:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        rule_id:
+          type: integer
+          format: int64
+          example: 10
+    ApiResultGetSiteXrayLink:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        url:
+          type: string
+          example: https://
+    ApiResultGetTagResponseHeader:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        header:
+          type: string
+          example: h1
+    customAreasExceptions:
+      type: object
+      properties:
+        pattern:
+          type: string
+          example: CONTAINS
+          enum:
+          - EQUALS
+          - NOT_EQUALS
+          - NOT_CONTAINS
+          - PREFIX
+          - SUFFIX
+          - NOT_PREFIX
+          - NOT_SUFFIX
+          - CONTAINS
+        url:
+          type: string
+          example: /userlist
+    ApiResultGetMaxRespSize:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        max_resp_size:
+          type: integer
+          format: int32
+          example: 20971520
+        unit:
+          type: string
+          example: BYTES
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    APISealLocationItem:
+      type: object
+      properties:
+        id:
+          type: string
         name:
           type: string
-          description: name
-          example: John Doe
-        status:
+    GetAdvancedCachingSettingsApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
           type: string
-          description: status
-          example: INVITATION_SENT
-    IsCacheShieldEnabledApiResult:
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        value:
+          type: boolean
+          example: true
+    ApiResultGetCacheMode:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        cache_mode:
+          type: string
+          example: static_and_dynamic
+    ApiResultGetResponseHeaderSettings:
       type: object
       properties:
         res:
@@ -3649,28 +4066,15 @@ components:
         enabled:
           type: boolean
           example: true
-    ApiResultSetDataRegion:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
+        mode:
           type: string
-          example: OK
-        debug_info:
+          example: CUSTOM
+        custom_headers:
+          uniqueItems: true
           type: array
           items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        region:
-          type: string
-          example: US
+            type: string
+            example: Header1
     ApiResultSiteStatus:
       type: object
       properties:
@@ -3850,423 +4254,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IncapRuleApiResult'
-    customAreasExceptions:
+    ListDataCenterResponse:
       type: object
-      properties:
-        pattern:
-          type: string
-          example: CONTAINS
-          enum:
-          - EQUALS
-          - NOT_EQUALS
-          - NOT_CONTAINS
-          - PREFIX
-          - SUFFIX
-          - NOT_PREFIX
-          - NOT_SUFFIX
-          - CONTAINS
-        url:
-          type: string
-          example: /userlist
-    customAreas:
-      type: object
-      properties:
-        pattern:
-          type: string
-          example: CONTAINS
-          enum:
-          - EQUALS
-          - NOT_EQUALS
-          - NOT_CONTAINS
-          - PREFIX
-          - SUFFIX
-          - NOT_PREFIX
-          - NOT_SUFFIX
-          - CONTAINS
-        url:
-          type: string
-          example: /userlist
-    GetStaleContentApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        enabled:
-          type: boolean
-          example: true
-        mode:
-          type: string
-          example: ADAPTIVE
-        time:
-          type: integer
-          format: int32
-          example: 10
-        unit:
-          type: string
-          example: HOURS
-    ApiResultGetRewritePorts:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        port:
-          $ref: '#/components/schemas/RewritePort'
-        ssl_port:
-          $ref: '#/components/schemas/RewritePort'
-    ApiResultListSites:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        ApiResultSiteStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiResultSiteStatus'
-    ServerOperationResponse:
-      type: object
-      properties:
-        server_id:
-          type: string
-          example: '2'
-        status:
-          type: string
-          example: ok
-        res:
-          type: string
-          example: '0'
-    DnsInstructionItem:
-      type: object
-      properties:
-        dns_record_name:
-          type: string
-          example: loginprotectapi1610396334653.incaptest.info
-        set_type_to:
-          type: string
-          example: CNAME
-          enum:
-          - CNAME
-          - A
-          - AAAA
-          - MX
-          - NS
-          - TXT
-          - Unkown
-          - CAA
-        set_data_to:
-          type: array
-          items:
-            type: object
-            example: 67eufzur3g.dev.impervadns.net
-    PerformanceConfigurationApiResult:
-      type: object
-      properties:
-        advanced_caching_rules:
-          type: array
-          example:
-            never_cache_resources:
-            - pattern: SUFFIX
-              url: /test.html
-            always_cache_resources:
-            - pattern: NOT_EQUALS
-              url: /index.html
-              ttl: '5'
-              ttlUnits: SECONDS
-            - pattern: EQUALS
-              url: /home.html
-              ttl: '6'
-              ttlUnits: DAYS
-          items:
-            type: object
-            additionalProperties:
-              type: object
-        acceleration_level:
-          type: string
-          example: advanced
-        async_validation:
-          type: boolean
-          example: true
-        minify_javascript:
-          type: boolean
-          example: true
-        minify_css:
-          type: boolean
-          example: true
-        minify_static_html:
-          type: boolean
-          example: true
-        compress_jpeg:
-          type: boolean
-          example: true
-        compress_jepg:
-          type: boolean
-          example: true
-        progressive_image_rendering:
-          type: boolean
-          example: true
-        aggressive_compression:
-          type: boolean
-          example: true
-        compress_png:
-          type: boolean
-          example: true
-        on_the_fly_compression:
-          type: boolean
-          example: true
-        tcp_pre_pooling:
-          type: boolean
-          example: true
-        comply_no_cache:
-          type: boolean
-          example: true
-        comply_vary:
-          type: boolean
-          example: true
-        use_shortest_caching:
-          type: boolean
-          example: true
-        perfer_last_modified:
-          type: boolean
-          example: true
-        prefer_last_modified:
-          type: boolean
-          example: true
-        disable_client_side_caching:
-          type: boolean
-          example: true
-        cache300x:
-          type: boolean
-          example: true
-        cache_headers:
-          uniqueItems: true
-          type: array
-          items:
-            type: object
-    IncapRuleApiResult:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 123
-        name:
-          type: string
-          example: Block Click Worms
-        action:
-          type: string
-          example: api.rule_action_type.rule_action_block
-        rule:
-          type: string
-          example: ClientIP == 1.2.3.4
-        creation_date:
-          type: integer
-          format: int64
-        updated_by:
-          type: string
-          example: John
-        updated_at:
-          type: integer
-          format: int64
-          example: 1611228121241
-        comment:
-          type: string
-          example: rule comment
-    ApiResultGetSiteXrayLink:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        url:
-          type: string
-          example: https://
-    HtmlInjectionItem:
-      type: object
-      properties:
-        url:
-          type: string
-          example: /
-        url_pattern:
-          type: string
-          example: prefix
-          enum:
-          - EQUALS
-          - NOT_EQUALS
-          - NOT_CONTAINS
-          - PREFIX
-          - SUFFIX
-          - NOT_PREFIX
-          - NOT_SUFFIX
-          - CONTAINS
-        location:
-          type: string
-          example: head
-        content:
-          type: string
-          example: Some content
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-    ApiResultReport:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        format:
-          type: string
-          example: pdf
-          enum:
-          - html
-          - xml
-          - amf
-          - pdf
-          - flash
-          - json
-          - mail
-          - csv
-          - statistics
-          - syslog
-        report:
-          type: string
-          example: JVBERi0xLjUNCiXvv73vv73vv73vv70NCjEgMCBvYmoNCjw8L1R5cGUvQ2F0YWxvZy9QYWdlcyAyIDAgUi9MYW5nKGVuLVVT ...
-    ApiResultHtmlInjections:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        html_injections:
-          type: array
-          items:
-            $ref: '#/components/schemas/HtmlInjectionItem'
-    ApiResultGetResponseHeaderSettings:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        enabled:
-          type: boolean
-          example: true
-        mode:
-          type: string
-          example: CUSTOM
-        custom_headers:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-            example: Header1
+      example:
+      - isActive: true
+        id: '54313'
+        enabled: 'false'
+        isStandBy: 'false'
+        servers:
+        - id: '1034487'
+          enabled: 'true'
+          address: 69.61.27.182
+          isStandby: 'true'
+        contentOnly: 'true'
   securitySchemes:
     api_id:
       type: apiKey

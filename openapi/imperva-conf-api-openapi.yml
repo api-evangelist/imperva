@@ -1923,7 +1923,7 @@ paths:
       x-summary-source: derived
   /v1/conf/policies/security/webServiceCustomPolicies:
     get:
-      operationId: getAllPolicies
+      operationId: getV1ConfPoliciesSecurityWebServiceCustomPolicies
       summary: Get all policies
       description: ''
       tags:
@@ -1938,6 +1938,8 @@ paths:
               schema:
                 $ref: '#/definitions/CustomWebPoliciesDTO'
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: getAllPolicies
   /v1/conf/webServices/{siteName}/{serverGroupName}/{webServiceName}/krpInboundRules:
     get:
       operationId: getAllKrpItems

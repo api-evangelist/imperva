@@ -440,7 +440,7 @@ paths:
       x-summary-source: derived
   /experimental/fam/do-file-permissions:
     get:
-      operationId: getPermissionContent
+      operationId: getExperimentalFamDoFilePermissions
       summary: Get permission content
       description: ''
       tags:
@@ -498,6 +498,8 @@ paths:
               schema:
                 $ref: '#/definitions/FilePermissionsDTO'
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: getPermissionContent
   /experimental/flex/checkAlarms:
     post:
       operationId: checkFlexProtectAlarms
