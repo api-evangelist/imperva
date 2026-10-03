@@ -174,35 +174,6 @@ components:
             type: object
             additionalProperties:
               type: object
-    ApiResultIncapsulaRanges:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        ipRanges:
-          type: array
-          items:
-            type: object
-            example: 199.83.128.0/21
-        ipv6Ranges:
-          type: array
-          items:
-            type: object
-            example: 2a02:e980::/29
     ApiResultGetTexts:
       type: object
       properties:
@@ -232,6 +203,35 @@ components:
             type: object
             additionalProperties:
               type: object
+    ApiResultIncapsulaRanges:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ipRanges:
+          type: array
+          items:
+            type: object
+            example: 199.83.128.0/21
+        ipv6Ranges:
+          type: array
+          items:
+            type: object
+            example: 2a02:e980::/29
   securitySchemes:
     api_id:
       type: apiKey

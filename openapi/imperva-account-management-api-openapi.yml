@@ -667,6 +667,58 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AccountBandwidth'
+    PlanSectionRow:
+      type: object
+      properties:
+        name:
+          type: string
+        purchased:
+          type: string
+        used:
+          type: string
+    ApiResultGetSsoToken:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        generated_token:
+          type: string
+          example: 344ebcaf34dff34
+    Login:
+      type: object
+      properties:
+        login_id:
+          type: string
+          example: demo_account@incapsula.com
+        email_verified:
+          type: boolean
+          example: true
+    AccountBandwidth:
+      type: object
+      properties:
+        ' billingCycle':
+          type: string
+          example: Earlier billing cycle
+        onDemandBandwidth:
+          type: string
+          example: 0bps
+        alwaysOnBandwidth:
+          type: string
+          example: 7.7kbps
     ApiResultListUsers:
       type: object
       properties:
@@ -709,18 +761,96 @@ components:
               type: object
               example: {}
             example: {}
-    AccountBandwidth:
+    ApiResultAccountStatus:
       type: object
       properties:
-        ' billingCycle':
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
           type: string
-          example: Earlier billing cycle
-        onDemandBandwidth:
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        account:
+          $ref: '#/components/schemas/account'
+    account:
+      type: object
+      properties:
+        email:
           type: string
-          example: 0bps
-        alwaysOnBandwidth:
+          example: example@imperva.com
+        plan_id:
           type: string
-          example: 7.7kbps
+          example: ent100
+        plan_name:
+          type: string
+          example: Enterprise 100
+        trial_end_date:
+          type: string
+          format: date-time
+        account_id:
+          type: integer
+          format: int64
+          example: 10
+        John Account:
+          type: string
+          example: Jhon
+        user_name:
+          type: string
+          example: Jhon
+        logins:
+          type: array
+          items:
+            $ref: '#/components/schemas/Login'
+        log_level:
+          type: string
+          example: full
+        support_level:
+          type: string
+          example: Standard
+        support_all_tls_versions:
+          type: boolean
+          example: true
+        wildcard_san_for_new_sites:
+          type: string
+          example: 'true'
+          enum:
+          - 'True'
+          - 'False'
+          - Default
+        naked_domain_san_for_new_www_sites:
+          type: boolean
+          example: true
+    ApiResultSubAccountStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        sub_account:
+          $ref: '#/components/schemas/SubAccountStatus'
     AccountPlanStatus:
       type: object
       properties:
@@ -820,127 +950,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/PlanSectionRow'
-    ApiResultSubAccountStatus:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        sub_account:
-          $ref: '#/components/schemas/SubAccountStatus'
-    ApiResultGetSsoToken:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        generated_token:
-          type: string
-          example: 344ebcaf34dff34
-    account:
-      type: object
-      properties:
-        email:
-          type: string
-          example: example@imperva.com
-        plan_id:
-          type: string
-          example: ent100
-        plan_name:
-          type: string
-          example: Enterprise 100
-        trial_end_date:
-          type: string
-          format: date-time
-        account_id:
-          type: integer
-          format: int64
-          example: 10
-        John Account:
-          type: string
-          example: Jhon
-        user_name:
-          type: string
-          example: Jhon
-        logins:
-          type: array
-          items:
-            $ref: '#/components/schemas/Login'
-        log_level:
-          type: string
-          example: full
-        support_level:
-          type: string
-          example: Standard
-        support_all_tls_versions:
-          type: boolean
-          example: true
-        wildcard_san_for_new_sites:
-          type: string
-          example: 'true'
-          enum:
-          - 'True'
-          - 'False'
-          - Default
-        naked_domain_san_for_new_www_sites:
-          type: boolean
-          example: true
-    PlanSectionRow:
-      type: object
-      properties:
-        name:
-          type: string
-        purchased:
-          type: string
-        used:
-          type: string
-    ApiResultAccountStatus:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        account:
-          $ref: '#/components/schemas/account'
     accounts:
       type: object
       properties:
@@ -987,15 +996,6 @@ components:
           - 'False'
           - Default
         naked_domain_san_for_new_www_sites:
-          type: boolean
-          example: true
-    Login:
-      type: object
-      properties:
-        login_id:
-          type: string
-          example: demo_account@incapsula.com
-        email_verified:
           type: boolean
           example: true
   securitySchemes:
