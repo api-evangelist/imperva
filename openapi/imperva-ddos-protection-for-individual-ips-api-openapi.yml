@@ -520,7 +520,7 @@ paths:
                 $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
-    ApiResultInfraProtectSipDnsWithIp:
+    ApiResultInfraProtectSipIp:
       type: object
       properties:
         res:
@@ -542,15 +542,9 @@ components:
         edge_ip:
           type: string
           example: 172.17.14.1
-        resolved_ips:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-            example: 157.166.226.25
         origin_ip:
           type: string
-          example: 157.166.249.10
+          example: 1.2.3.4
     ApiResultInfraProtectSipDnsWithCname:
       type: object
       properties:
@@ -607,26 +601,7 @@ components:
         cname:
           type: string
           example: imperva.test.com
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-    ApiResultInfraProtectSipIp:
+    ApiResultInfraProtectSipDnsWithIp:
       type: object
       properties:
         res:
@@ -648,9 +623,34 @@ components:
         edge_ip:
           type: string
           example: 172.17.14.1
+        resolved_ips:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            example: 157.166.226.25
         origin_ip:
           type: string
-          example: 1.2.3.4
+          example: 157.166.249.10
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
   securitySchemes:
     api_id:
       type: apiKey
