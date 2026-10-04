@@ -1,0 +1,58 @@
+slug: imperva
+provider: Imperva
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Login Protect
+  spec_file: imperva-login-protect-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: '"Provision Login Protect users and configure protected pages"; operations "Add Login Protect
+    User", "Send SMS to User"; schema "SiteDualFactorSettings"'
+  reason: Imperva's Login Protect provisions users and two-factor settings for protected application areas
+    — this is identity and access management (two-factor authentication) delivered as a security control,
+    so Cybersecurity Management / Identity & Access Management fits.
+- tag: Account Management
+  spec_file: imperva-account-management-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.7
+  evidence: Add a new managed account / Add a new sub account / Delete managed account / Modify account
+    configuration
+  reason: This is provisioning and lifecycle of customer accounts and sub-accounts in Imperva's multi-tenant
+    cloud service, including subscription status — tenant provisioning and lifecycle. Some ambiguity with
+    tenant configuration management.
+- tag: DDoS Protection for Individual IPs
+  spec_file: imperva-ddos-protection-for-individual-ips-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: Manage IP Protection over TCP/IP settings ... Protected IP over TCP - Add by CNAME
+  reason: Configuring DDoS protection for individual IPs is a network security control, part of Cybersecurity
+    Management. No L2 fits cleanly (not IAM, not vulnerability scanning, not SOC/SIEM), so L1 only.
+- tag: Site Management
+  spec_file: imperva-site-management-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: '"Add, remove, and update sites."; operations "Add data center", "Add datacenter" (addDCServer),
+    "Resume traffic to your active data centers", "Add a cache rule"'
+  reason: The surface configures protected sites, origin data centers, servers and caching/CDN behaviour
+    — i.e. management of cloud/network delivery infrastructure. Maps to IT Infrastructure Management rather
+    than a security-specific capability, since the operations are site/DC/cache configuration. Confidence
+    moderate as some operations are WAF policy adjacent.
