@@ -520,7 +520,7 @@ paths:
                 $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
-    ApiResultInfraProtectSipIp:
+    ApiResultInfraProtectSipCname:
       type: object
       properties:
         res:
@@ -542,9 +542,9 @@ components:
         edge_ip:
           type: string
           example: 172.17.14.1
-        origin_ip:
+        cname:
           type: string
-          example: 1.2.3.4
+          example: imperva.test.com
     ApiResultInfraProtectSipDnsWithCname:
       type: object
       properties:
@@ -576,7 +576,26 @@ components:
         cname:
           type: string
           example: imperva.test.com
-    ApiResultInfraProtectSipCname:
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    ApiResultInfraProtectSipIp:
       type: object
       properties:
         res:
@@ -598,9 +617,9 @@ components:
         edge_ip:
           type: string
           example: 172.17.14.1
-        cname:
+        origin_ip:
           type: string
-          example: imperva.test.com
+          example: 1.2.3.4
     ApiResultInfraProtectSipDnsWithIp:
       type: object
       properties:
@@ -632,25 +651,6 @@ components:
         origin_ip:
           type: string
           example: 157.166.249.10
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
   securitySchemes:
     api_id:
       type: apiKey

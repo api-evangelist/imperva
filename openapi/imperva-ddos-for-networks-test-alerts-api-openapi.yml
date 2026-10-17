@@ -311,56 +311,6 @@ paths:
                 - $ref: '#/components/schemas/ApiResult'
 components:
   schemas:
-    ApiResultTestAlertExporterStatus:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        ip_prefix:
-          type: string
-          example: 100.1.2.0/24
-        status:
-          type: string
-          example: DDoS start notification sent successfully
-    ApiResultTestAlert:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        ip_prefix:
-          type: string
-          example: 100.1.2.0/24
-        status:
-          type: string
-          example: DDoS start notification sent successfully
     ApiResultTestAlertConnectionStatus:
       type: object
       properties:
@@ -389,6 +339,31 @@ components:
         connection_name:
           type: string
           example: CONNECTION_NAME
+    ApiResultTestAlertExporterStatus:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
     ApiResultTestAlertProtectedIPStatus:
       type: object
       properties:
@@ -436,6 +411,31 @@ components:
               type: object
               example: {}
             example: {}
+    ApiResultTestAlert:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        ip_prefix:
+          type: string
+          example: 100.1.2.0/24
+        status:
+          type: string
+          example: DDoS start notification sent successfully
   securitySchemes:
     api_id:
       type: apiKey

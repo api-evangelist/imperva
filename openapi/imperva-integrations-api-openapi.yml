@@ -119,6 +119,54 @@ components:
             type: object
             additionalProperties:
               type: object
+    ApiResult:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+    ApiResultGetTexts:
+      type: object
+      properties:
+        res:
+          type: integer
+          description: res - contains specific error code
+          format: int32
+          example: 0
+        res_message:
+          type: string
+          example: OK
+        debug_info:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+              example: {}
+            example: {}
+        texts:
+          type: array
+          example:
+            api.stats.visits_timeseries.human: Human visits
+            api.stats.visits_timeseries.bot: Bot visits
+            api.threats.followup.view: View Incidents
+          items:
+            type: object
+            additionalProperties:
+              type: object
     ApiResultIncapsulaRanges:
       type: object
       properties:
@@ -184,54 +232,6 @@ components:
             type: object
             additionalProperties:
               type: object
-    ApiResultGetTexts:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
-        texts:
-          type: array
-          example:
-            api.stats.visits_timeseries.human: Human visits
-            api.stats.visits_timeseries.bot: Bot visits
-            api.threats.followup.view: View Incidents
-          items:
-            type: object
-            additionalProperties:
-              type: object
-    ApiResult:
-      type: object
-      properties:
-        res:
-          type: integer
-          description: res - contains specific error code
-          format: int32
-          example: 0
-        res_message:
-          type: string
-          example: OK
-        debug_info:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-              example: {}
-            example: {}
   securitySchemes:
     api_id:
       type: apiKey
