@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- kong/integrations/kong-integration-edges.yml
 - microsoft-sentinel/integrations/microsoft-sentinel-integration-edges.yml
 marketplace_apps: []
 edges:
@@ -77,5 +78,22 @@ edges:
   category: Security - Network
   badges:
   - support-tier:partner
+- partner_name: Kong (own)
+  partner: kong
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://developer.konghq.com/plugins/imp-appsec-connector/
+  mirror_of: kong/integrations/kong-integration-edges.yml
+  apps:
+  - Imperva API Security
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Kong Plugin Hub
 source:
 - microsoft-sentinel/integrations/microsoft-sentinel-integration-edges.yml

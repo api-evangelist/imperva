@@ -40,3 +40,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: imperva-kong-own
+  label: Kong (own)
+  partner: kong
+  partner_name: Kong (own)
+  category: Kong Plugin Hub
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://developer.konghq.com/plugins/imp-appsec-connector/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
